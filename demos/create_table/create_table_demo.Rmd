@@ -1,0 +1,46 @@
+---
+title: "Demo RplotterPkg::create_table()"
+author: "Rick Dean"
+date: "1/17/2021"
+output: html_document
+---
+
+```{r}
+library(kableExtra)
+library(knitr)
+library(RplotterPkg)
+library(data.table)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, fig.width=8, fig.height=6}
+df <- mtcars[1:5, 1:6]
+new_table <- RplotterPkg::create_table(
+  x = df
+)
+new_table
+```
+```{r}
+dt <- data.table::as.data.table(mtcars)
+dt[, cars := rownames(mtcars)]
+setcolorder(dt,neworder = "cars")
+new_table <- RplotterPkg::create_table(
+  x = dt,
+  font_size = 20,
+  caption = "Car mpg",
+  position = "left",
+  fixed_thead = T,
+  head_bkgd = "purple",
+  head_col = "white",
+  footnote = "mtcars",
+  footnote_title = "Source:",
+  scroll_height = "200px"
+)
+new_table
+```
+

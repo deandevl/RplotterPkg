@@ -1,0 +1,315 @@
+---
+title: "RplotterPkg::create_bar_plot() demos"
+author: "Rick Dean"
+date: "12/18/2019"
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 3
+    css: ../style.css
+---
+
+```{r,setup, include=FALSE, eval=TRUE}
+options(knitr.table.format = "html")
+knitr::opts_chunk$set(echo = TRUE, collapse=TRUE, message=FALSE, warning = FALSE, fig.width = 12, fig.height = 8)
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(data.table)
+library(forcats)
+library(socviz)
+library(rlang)
+library(grid)
+library(gtable)
+library(RplotterPkg)
+```
+
+# Demos
+
+## 1 Introduction
+The following R scripts provides some bar plot examples of [RplotterPkg::create_bar_plot()](https://github.com/deandevl/RplotterPkg).
+
+## 2 Setting just the aes_x aesthetic.
+
+Plotting a bar chart showing counts across a categorical/factor variable. The ggplot2::diamonds dataset has a factor variable named *cut*.
+```{r}
+str(ggplot2::diamonds)
+```
+<div class="task">
+  Task: Assign the argument *aes_x* to "cut" and display and label its factor level counts with default y axis scaling. 
+</div>
+
+```{r, fig.width=10, fig.height=8}
+RplotterPkg::create_bar_plot(
+  df = ggplot2::diamonds,
+  aes_x = "cut",
+  title = "Counts for 'cut' values from the diamonds dataset",
+  bar_fill = "blue",
+  bar_color = "violet",
+  bar_size = 2,
+  bar_width = 0.6,
+  bar_alpha = 0.6,
+  rot_y_tic_label = TRUE,
+  bar_labels = TRUE
+)
+```
+
+<div class="task">
+  Task: Continuing with the same *cut* variable, set the y axis limits, breaks, and labels.  Also center the title and change the labelling along the x axis.
+</div>
+
+```{r, fig.width=10, fig.height=8}
+RplotterPkg::create_bar_plot(
+  df = ggplot2::diamonds,
+  aes_x = "cut",
+  title = "Counts for 'cut' values from the diamonds dataset",
+  y_title = "Count x 1000",
+  bar_fill = "blue",
+  bar_color = "violet",
+  x_labels = c("Fairness", "Goodness", "Very Good", "Premium", "Ideal"),
+  y_limits = c(0, 24000),
+  y_major_breaks = seq(from = 0, to = 24000, by = 3000),
+  y_labels = c("0", "3", "6", "9", "12", "15", "18", "21", "24"),
+  rot_y_tic_label = TRUE,
+  center_titles = TRUE,
+  bar_labels = TRUE
+)
+```
+
+## 3 Setting both aes_x aesthetic and aes_y.
+By default `create_bar_plot()` displays bars whose heights show the count of categorical variable levels.  Instead of counts, we can have bars whose heights reflect a numeric value such as proportions, weights, or some other non-count values.
+<div class="task">
+  Task: We are given a dataset with a *name* and *weight* variable which we will reorder from low to high by setting *order_bars* to "asc".  We can create a bar chart by assigning *aes_x* to the categorical variable "name" and *aes_y* to "weight" -- the height of the bars will identify with the value of *weight*.
+</div>
+
+```{r, fig.width=10, fig.height=8}
+people_weights_df <- data.frame(
+  name = c("John", "Alice", "Peter", "Paul", "Tom"),
+  weight = c(175, 110, 210, 187, 155)
+)
+
+RplotterPkg::create_bar_plot(
+  df = people_weights_df,
+  aes_x = "name",
+  aes_y = "weight",
+  title = "Weights of Employees",
+  subtitle = "Aceme Hardware",
+  x_title = "Name",
+  y_title = "Weight",
+  bar_fill = "green",
+  bar_color = "red",
+  rot_y_tic_label = TRUE,
+  center_titles = TRUE,
+  order_bars = "asc"
+)
+```
+
+## 4 Setting both aes_x and aes_fill aesthetics.
+
+Assign one x axis categorical variable and obtain its counts across the levels of a second categorical/factor variable.
+
+<div class="task">
+  Task: From the `diamond` dataset we want to see the counts for *cut* across levels of *clarity*.  Assign *aes_x* to "cut" and *aes_fill* to "clarity".  In addition assign *position* to "dodge" to position the bars side by side instead of stacked.
+</div>
+
+```{r, fig.width=10, fig.height=8}
+RplotterPkg::create_bar_plot(
+  df = ggplot2::diamonds,
+  aes_x = "cut",
+  title = "Count of diamond 'cut' across of levels of 'clarity'",
+  aes_fill = "clarity",
+  position = "dodge",
+  rot_y_tic_label = TRUE,
+  center_titles = TRUE
+)
+```
+
+In the `socviz::gss_sm` dataset there are two factor variables, *happy* and *religion*. 
+```{r}
+glimpse(socviz::gss_sm)
+```
+<div class="task">
+  Task: Plot the distribution of the different religions across levels of *happy*.  Set *palette_colors* to a vector of custom colors to be used in filling the bars. Set the *position* of the bars as side-by-side (i.e. **position = "dodge"**).
+</div>  
+
+```{r, fig.width=10, fig.height=8}
+religion_df <- socviz::gss_sm %>% filter(!is.na(religion) & !is.na(happy)) %>% select(happy,religion)
+RplotterPkg::create_bar_plot(
+  df = religion_df,
+  title = "Distribution of religions across 'happy'",
+  aes_x = "happy",
+  aes_fill = "religion",
+  position = "dodge",
+  palette_colors = c("blue", "black", "seagreen", "red", "brown"),
+  center_titles = TRUE,
+  rot_y_tic_label = TRUE
+)
+```
+
+<div class="task">
+  Task: Find the percentages between Catholic and Protestant across the levels of happy.  
+</div>
+
+```{r}
+religion_df <- socviz::gss_sm %>% filter(!is.na(religion) & !is.na(happy)) %>% select(happy,religion)
+religion_percent_happy_df <- religion_df %>% 
+  group_by(religion, happy) %>% 
+  rename(Happy = happy) %>% 
+  summarise(
+    n = n()
+  ) %>% 
+  mutate(
+    Percent = n/sum(n)
+  )
+str(religion_percent_happy_df)
+```
+ 
+<div class="task">
+  Task: Plot Catholic vs Protestant across percentage of happy levels. Position the bars as stacked (i.e. **position = "stack"**). Define *x_limits* so that we plot just Catholic and Protestant.
+</div>
+
+```{r, fig.width=12, fig.height=10}
+RplotterPkg::create_bar_plot(
+  df = religion_percent_happy_df,
+  aes_x = "religion",
+  aes_y = "Percent",
+  y_title = "Percent",
+  aes_fill = "Happy",
+  position = "stack",
+  palette_colors = c("green", "seagreen", "blue"),
+  x_limits = c("Catholic", "Protestant")
+)
+```
+
+## 5 Multi plots of data frame variables.
+We want to see the counts of multiple factors from a single data frame.
+<div class="task">Task: Plot the level counts of several factor variables from the `socviz::gss_sm` data frame.</div>  
+```{r, fig.width=13, fig.height=13}
+data_df <- socviz::gss_sm %>% filter(!is.na(relig) & !is.na(polviews) & !is.na(marital))
+
+variables_gss_sm_plot <- RplotterPkg::multi_bar_plot(
+  df = data_df,
+  variables = c("sex", "race", "region", "polviews", "relig", "marital"),
+  title = "Counts of variables from socviz::gss_sm",
+  col_width = 6,
+  rot_y_tic_label = TRUE,
+  do_coord_flip = TRUE,
+  order_bars = TRUE
+)
+```
+
+## 6 Multi plots across levels of factor variables.
+We have a main factor variable and we want to plot its counts across levels of a second factor.
+For example, in the `diamonds` dataset we want to show counts of the main factor *cut* (assigned as *factor_var*) across levels of a seccond factor *clarity* (assigned as *factor_x*) in `RplotterPkg::multi_bar_plot()`.
+
+<div class="task">
+  Task: From `RplotterPkg::multi_bar_plot()` and the `diamond` dataset assign *factor_var* to "clarity" and assign *factor_x* to "cut". The multi-panelled plot will show counts across levels of *clarity* and *cut*.
+</div>
+
+```{r, fig.width=12, fig.height=13}
+cut_clarity_panels_plot <- RplotterPkg::multi_bar_plot(
+  df = ggplot2::diamonds,
+  factor_var = "clarity",
+  factor_x = "cut",
+  title = "Count of diamond 'cut' across of levels of 'clarity'",
+  rot_y_tic_label = TRUE,
+  bar_color = "black",
+  bar_fill = "green",
+  y_limits = c(0, 5000),
+  y_major_breaks = seq(from =0,to = 5000, by = 500),
+  col_width = 4.5,
+  row_height = 3,
+  bar_labels = TRUE,
+  silent_NA_warning = TRUE
+)
+```
+
+
+In a similar fashion, instead of counts we want to show a measurement across levels of a pair of factors.
+For example in the `socviz::gss_sm` dataset find the percent across levels of *religion* and *bigregion*.
+
+<div class="task">Task: Taking the `socviz::gss_sm` dataset find the percent of each level of *religion* across *bigregion*.</div>  
+
+```{r}
+percent_religion_df <- socviz::gss_sm %>% 
+  filter(!is.na(religion)) %>% 
+  group_by(bigregion, religion) %>% 
+  summarise(n_relig = n()) %>%  # religion is peeled off; is now grouped by bigregion
+  mutate(Percent = n_relig/sum(n_relig) * 100) # sum(n_relig) is the total by bigregion
+str(percent_religion_df)
+```
+
+<div class="task">
+  Task: We want to see the bars reflect percentages of religions across *bigregion* in separate bar charts so set *factor_var* to "bigregion", *factor_x* to "religion" and our measurement *aes_y* to "Percent" in `RplotterPkg::multi_bar_plot()`.
+</div>
+
+```{r, fig.width=12, fig.height=10}
+religion_by_region_plot <- RplotterPkg::multi_bar_plot(
+  df = percent_religion_df,
+  factor_var = "bigregion",
+  factor_x = "religion",
+  aes_y = "Percent",
+  y_limits = c(0,70),
+  y_major_breaks = seq(from = 0, to = 70, by = 10),
+  bar_fill = "gold",
+  bar_color = "black",
+  title = "Percent of religions across US regions",
+  subtitle = "Source: socviz::gss_sm",
+  x_title = "Religion",
+  col_width = 4,
+  row_height = 3,
+  silent_NA_warning = TRUE
+)
+```
+
+<div class="task">
+  Task: Repeat the above plot but flip the Religion and Percent axis' by setting *do_coord_flip* to TRUE.
+</div>
+
+```{r, fig.width=12, fig.height=10}
+religion_by_region_plot <- RplotterPkg::multi_bar_plot(
+  df = percent_religion_df,
+  factor_var = "bigregion",
+  factor_x = "religion",
+  aes_y = "Percent",
+  y_limits = c(0,70),
+  y_major_breaks = seq(from = 0, to = 70, by = 10),
+  bar_fill = "gold",
+  bar_color = "black",
+  title = "Percent of religions across US regions",
+  subtitle = "Source: socviz::gss_sm",
+  x_title = "Religion",
+  do_coord_flip = TRUE,
+  rot_y_tic_label = TRUE,
+  col_width = 4,
+  row_height = 3,
+  silent_NA_warning = TRUE
+)
+```
+
+<div class="task">
+  Task: From the `socviz::gss_sm` dataset show the distribution of *happy* by *sex* across marital status.  Overlap the bars by setting *position* = "identity".
+</div>  
+
+```{r, fig.width = 12,fig.height = 13}
+marital_df <- socviz::gss_sm %>% 
+  filter(!is.na(happy)) %>% 
+  rename(Happy = happy)
+sex_happy_marital_plot <- RplotterPkg::multi_bar_plot(
+  df = marital_df,
+  factor_var = "marital",
+  factor_x = "Happy",
+  aes_fill = "sex",
+  position = "identity",
+  title = "Distribution of 'happy' by 'sex' Across 'marital'",
+  subtitle = "dataset: socviz::gss_sm",
+  palette_colors = c(Male = "blue", Female = "pink"),
+  bar_alpha = 0.3,
+  bar_size = 1.5,
+  col_width = 4,
+  row_height = 3
+)
+```
+

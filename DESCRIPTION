@@ -1,0 +1,18 @@
+Package: RplotterPkg
+Title: Provides functional based simple everyday plotting routines
+Version: 0.1.0
+Author: Rick Dean
+Maintainer: Rick Dean <deanr3@bardstown.com>
+Description: Contains various 2d numeric and categorical plotting based on ggplot2.
+License: MIT
+Depends: R (>= 3.0.2)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    ggplot2,
+    data.table,
+    rlang
+
+    

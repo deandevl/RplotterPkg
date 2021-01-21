@@ -1,0 +1,129 @@
+---
+title: "Demo Using RplotterPkg::multi_panel_grid()"
+author: "Rick Dean"
+date: "12/15/2019"
+output: 
+   html_document:
+    toc: yes
+    toc_depth: 3
+    css: ../style.css
+---
+
+```{r}
+library(knitr)
+library(grid)
+library(gtable)
+library(dplyr)
+library(ggplot2)
+library(RplotterPkg)
+```
+
+
+```{r,setup, include=FALSE, eval=TRUE}
+options(knitr.table.format = "html")
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.width = 10, fig.height = 8)
+```
+
+# 1 The data
+Will be using ggplot2::midwest --
+```{r}
+str(ggplot2::midwest)
+```
+
+# 2 Define a data frame
+
+<div class="task">Task: Create a data frame that focuses on the percent of child poverty across 5 midwest states and their counties.</div> 
+
+```{r}
+child_poverty_df <- ggplot2::midwest %>% 
+  select(state, county, perchsd, percchildbelowpovert) %>% 
+  mutate(state = factor(state)) %>% 
+  rename(State = state, High_School = perchsd, Child_Poverty = percchildbelowpovert) %>% 
+  arrange(desc(Child_Poverty))
+str(child_poverty_df)
+```
+
+# 3 Summarize the data
+
+<div class="task">Task: Summarize the child poverty across the states by creating a graphic summary table.</div>  
+<div class="note">Note: We just need the summary table's *grob* and not display it yet.</div>
+
+```{r, fig.width=9, fig.height=3}
+child_poverty_summary_df <- child_poverty_df %>% 
+  group_by(State) %>% 
+  summarise(
+    N = n(),
+    Mean_Child_Poverty = round(mean(Child_Poverty), 2)
+  ) %>% 
+  arrange(desc(Mean_Child_Poverty))
+
+child_poverty_table <- RplotterPkg::create_table_graphic(
+  df = child_poverty_summary_df,
+  table_width = 8,
+  title = "Mean Percent of Child Poverty Across Midwest Counties",
+  show_row_names = FALSE,
+  display_plot = FALSE
+)
+```
+
+
+# 4 Plotting a relationship
+
+<div class="task">Task: Plot the relationship between percent having a high school diploma and child poverty for counties across the 5 states.</div>
+
+```{r}
+poverty_plot <-RplotterPkg::multi_scatter_plot(
+  df = child_poverty_df,
+  columns = 5,
+  factor_var = "State",
+  factor_x = "High_School",
+  aes_y = "Child_Poverty",
+  x_title = "% High School Diploma",
+  x_limits = c(40,90),
+  x_major_breaks = seq(40,90,5),
+  y_limits = c(0,60),
+  y_major_breaks = seq(0,60,10),
+  show_minor_grids = FALSE,
+  col_width = 3,
+  row_height = 3,
+  display_plot = FALSE,
+  silent_NA_warning = TRUE
+)
+```
+
+# 5 Combine table, plot, and text
+
+<div class="task">Task: Use RplotterPkg::multi_panel_grid() to combine the above table, factor plot, and some text in a single layout.</div> 
+
+1. Create the text grob:
+
+```{r}
+caption_text_grob <- grid::textGrob(label = "There appears to be a relationship between adult education and child poverty", gp = grid::gpar(col = "black", fontsize = 14, fontface = 2))
+```
+2. Create the layout. The *layout* argument of `multi_panel_grid()` is a named list defined as follows:
+
+```{r}
+layout <- list(
+  plots = list(child_poverty_table, poverty_plot, caption_text_grob), # plot/grob objects to display
+  rows = c(1, 2, 3), # each plot/grob will be on a separate row
+  cols = c(list(1:2), list(1:3), list(1:2)) # the table spans columns 1 to 2; the plot spans columns 1 to 3; the caption spans columns 1 to 2;
+)
+```
+3. We have 3 columns and 3 rows. Define (in inches) the width of the columns and heights of the rows:
+```{r}
+col_widths <- c(5, 5, 5) # divide the grid in columns of 5 inches
+row_heights <- c(3.5, 3.4, .5) # table is 3.5 inches hight; plot is 3.4 inches hight; caption is .5 inch high
+```
+
+Enter the above arguments to `RplotterPkg::multi_panel_grid()` and display the combined figure:
+<div class="note">Note: The argument *display_plot* is by default *TRUE* for `multi_panel_grid()`</div>
+
+```{r,fig.width=15, fig.height=11}
+poverty_figure <- RplotterPkg::multi_panel_grid(
+  layout = layout,
+  col_widths = col_widths,
+  row_heights = row_heights,
+  title = "Child Poverty vs Adult Education",
+  subtitle = "Percentages in counties across midwest states"
+)
+```

@@ -1,0 +1,437 @@
+---
+title: "RplotterPkg::create_scatter_plot() demos"
+author: "Rick Dean"
+date: "12/18/2019"
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 3
+    css: ../style.css
+---
+
+```{r, message=FALSE, warning=FALSE}
+library(here)
+library(ggplot2)
+library(rlang)
+library(ggrepel)
+library(grid)
+library(gtable)
+library(dplyr)
+library(readr)
+library(modelr)
+library(RplotterPkg)
+
+here::here()
+```
+
+```{r,setup, include=FALSE, eval=TRUE}
+options(knitr.table.format = "html")
+knitr::opts_chunk$set(echo = TRUE, collapse=TRUE, message=FALSE, warning = FALSE, fig.width = 10, fig.height = 6)
+```
+
+# Demos
+
+## 1 Introduction
+The following R scripts provides some scatter plot examples of [RplotterPkg::create_scatter_plot()](https://github.com/deandevl/RplotterPkg).
+
+## 2 Setting the `aes_x` and `aes_y` aesthetics.
+
+The *modelr::sim1* dataset has both a continuous independent variable `x` and continuous dependent variable `y`.
+
+```{r}
+str(modelr::sim1)
+```
+<div class="task">
+  Task: Set `aes_x` = "x" and `aes_y` = "y" from the *modelr::sim1* dataset and plot the points with axis' defaults.
+</div>
+
+```{r}
+RplotterPkg::create_scatter_plot(
+  df = modelr::sim1,
+  aes_x = "x",
+  aes_y = "y",
+  title = "X vs Y",
+  center_titles = TRUE,
+  subtitle = "dataset: sim1",
+  x_title = "X",
+  y_title = "Y",
+  rot_y_tic_label = TRUE,
+  pts_color = "green",
+  pts_fill = "blue",
+  pts_size = 5.0,
+  pts_stroke = 2.0,
+  pts_line_alpha = 0.8
+)
+```
+
+<div class="task">
+  Task: Define a linear model for the *modelr::sim1* dataset.
+</div>
+
+```{r}
+model_indep_sim1 <- lm(y ~ x, data = modelr::sim1)
+summary(model_indep_sim1)
+```
+<div class="task">
+  Task: Compute the predictions from the linear model.
+</div>
+
+```{r}
+sim1_pred_df <- modelr::add_predictions(data = modelr::sim1, model = model_indep_sim1)
+str(sim1_pred_df)
+```
+
+<div class="task">
+  Task: Plot the x/y points and their predictions from the model by setting `df` = `sim1_pred_df`, aesthetic variables `aes_x` = "x", `aes_y` = "y". Add a *geom_line* that plots the predicted line with  <code class="cd">aes(y = pred)</code>.
+</div>
+
+```{r}
+RplotterPkg::create_scatter_plot(
+  df = sim1_pred_df,
+  aes_x = "x",
+  aes_y = "y",
+  title = "Linear model for sim1 data",
+  subtitle = "model: lm(y ~ x) in red",
+  center_titles = TRUE,
+  rot_y_tic_label = TRUE,
+  x_limits = c(1,10),
+  x_major_breaks = seq(from = 0, to = 10, by = 1),
+  y_limits = c(0,30),
+  y_major_breaks = seq(from = 0, to = 30, by = 2),
+  show_minor_grids = FALSE,
+  pts_color = "green",
+  pts_fill = "blue",
+  pts_size = 5.0,
+  pts_stroke = 2.0,
+  pts_line_alpha = 0.8
+) + geom_line(aes(y = pred), linetype = "dashed", color = "red", size = 1.5)
+```
+
+<div class="task">
+  Task: Compute residuals of the linear model <code class="cd">lm(y ~ x)</code>  for the *modelr::sim1* dataset.
+</div>
+
+```{r}
+model_indep_sim1 <- lm(y ~ x, data = modelr::sim1)
+residuals_sim1_df <- sim1 %>%
+  modelr::add_residuals(model_indep_sim1, var = "Residual")
+str(residuals_sim1_df)
+```
+
+<div class="task">
+  Task: Plot the residuals by setting `df` = `residuals_sim1_df`, `aes_x` = "x", and `aes_y` = "Residual".
+</div>
+
+```{r}
+RplotterPkg::create_scatter_plot(
+  df = residuals_sim1_df,
+  aes_x = "x",
+  aes_y = "Residual",
+  title = "Residuals for sim1 dataset",
+  subtitle = "model: lm(y ~ x)",
+  center_titles = TRUE,
+  rot_y_tic_label = TRUE,
+  x_limits = c(1,10),
+  x_major_breaks = seq(from = 1, to = 10, by = 1),
+  y_limits = c(-5,5),
+  y_major_breaks = seq(from = -5, to = 5, by = 1),
+  show_minor_grids = FALSE,
+  pts_fill = "blue",
+  pts_size = 2,
+  pts_line_alpha = 0.6,
+  bold_y = 0.0
+)
+```
+
+## 3 Setting the `aes_x`, `aes_y`, and `aes_fill` aesthetics.
+
+The *modelr::sim3* dataset has a continuous independent variable `x1`, a categorical independent variable `x2` and a continuous dependent variable `y`.
+
+```{r}
+str(modelr::sim3)
+```
+`x1` and `x2` are independent variables where `x2` is a factor variable with 4 levels.
+
+<div class="task">
+  Task: Define a linear model for the *modelr::sim3* dataset involving `x1` and `x2` as independent variables.
+</div>
+
+```{r}
+model_indep_sim3 <- lm(y ~ x1 + x2, data = modelr::sim3)
+summary(model_indep_sim3)
+```
+<div class="task">
+  Task: Compute residuals of the linear model `model_indep_sim3`. 
+</div>
+
+```{r}
+residuals_sim3_df <- modelr::sim3 %>%
+  modelr::add_residuals(model_indep_sim3, var = "Residual")
+str(residuals_sim3_df)
+```
+
+<div class="task">
+  Task: Plot `x1` vs residuals across levels of `x2` by setting `df` = `residuals_sim3_df`, `aes_x` = "x1", `aes_y` = "Residual" and `aes_fill` = "x2".
+</div>
+
+```{r}
+RplotterPkg::create_scatter_plot(
+  df = residuals_sim3_df,
+  aes_x = "x1",
+  aes_y = "Residual",
+  aes_fill = "x2",
+  title = "Residuals across x2 levels for sim3 dataset",
+  subtitle = "model: lm(y ~ x1 + x2)",
+  center_titles = TRUE,
+  rot_y_tic_label = TRUE,
+  x_limits = c(1,10),
+  x_major_breaks = seq(from = 1, to = 10, by = 1),
+  y_limits = c(-5,5),
+  y_major_breaks = seq(from = -5, to = 5, by = 1),
+  show_minor_grids = FALSE,
+  pts_size = 3,
+  bold_y = 0.0
+)
+```
+
+## 4 Setting the `aes_x` and `aes_y` aesthetics across factor levels.
+
+<div class="task">
+  Task: Repeat the above residuals plot from the *modelr::sim3* dataset but put `x1` vs `Residual` in separate plots/panels across levels of `x2`. Remove the `aes_fill` assignment and set `factor_var` to "x2". Put each plot of `x1` vs `Residual` in separate panels/levels of `x2` on one row (set columns = 4) using <code class="cd">RplotterPkg::multi_scatter_plot()</code>.
+</div>
+
+```{r, fig.height = 8, fig.width = 12}
+plot_sim3_panels_resid <- RplotterPkg::multi_scatter_plot(
+  df = residuals_sim3_df,
+  factor_var = "x2",
+  factor_x = "x1",
+  columns = 4,
+  aes_y = "Residual",
+  title = "Residuals across x2 levels for modelr::sim3 dataset",
+  subtitle = "model: lm(y ~ x1 + x2)",
+  x_limits = c(1,10),
+  x_major_breaks = seq(from = 1, to = 10, by = 1),
+  y_limits = c(-5,5),
+  y_major_breaks = seq(from = -5, to = 5, by = 1),
+  show_minor_grids = FALSE,
+  bold_y = 0.0,
+  col_width = 3
+)
+```
+
+<div class="task">
+  Task: Define a linear independent and interactive model for the *modelr::sim3* dataset.
+</div>
+
+```{r}
+model_indep_sim3 <- lm(y ~ x1 + x2, data = modelr::sim3)
+model_inter_sim3 <- lm(y ~ x1 * x2, data = modelr::sim3)
+```
+<div class="task">
+  Task: Compute the residuals of both models from *modelr::sim3* by using <code class="cd">modelr::gather_residuals()</code> 
+</div>
+
+```{r}
+residuals_models_sim3_df <- modelr::sim3 %>%
+  modelr::gather_residuals(model_indep_sim3, model_inter_sim3, .resid = "Residual", .model = "Model")
+str(residuals_models_sim3_df)
+```
+
+<div class="task">
+  Task: Plot the residuals from each model by setting `df` = `residuals_models_sim3_df`, `factor_x` = "y", `aes_y` = "Residual", `factor_var` = "Model" for a separate panel display for each model level.
+</div>
+
+```{r, fig.height=11, fig.width=8}
+plot_sim3_indep_inter <- multi_scatter_plot(
+  df = residuals_models_sim3_df,
+  factor_var = "Model",
+  factor_x = "y",
+  columns = 1,
+  aes_y = "Residual",
+  title = "Residuals of linear models for modelr::sim3 dataset",
+  subtitle = "models: lm(y ~ x1 + x2), lm(y ~ x1 * x2)",
+  x_limits = c(1,10),
+  x_major_breaks = seq(from = 1, to = 10, by = 1),
+  y_limits = c(-5,5),
+  y_major_breaks = seq(from = -5, to = 5, by = 1),
+  show_minor_grids = FALSE,
+  bold_y = 0.0,
+  col_width = 8.5
+)
+```
+
+
+<div class="task">
+  Task: From the *ggplot2::mpg* plot `cty` vs `hwy` across levels of car compacts using <code class="cd">RplotterPkg::multi_scatter_plot()</code> with the plots under a single column (i.e. columns = 1). Label the points with the model name.
+</div>  
+
+```{r,fig.width=12, fig.height=11}
+compact_df <- ggplot2::mpg %>% 
+  dplyr::filter(class == "compact" | class == "subcompact")
+plot_mtcars <- RplotterPkg::multi_scatter_plot(
+  df = compact_df,
+  factor_var = "class",
+  factor_x = "cty",
+  columns = 1,
+  aes_y = "hwy",
+  aes_label = "model",
+  x_limits = c(10,40),
+  x_major_breaks = seq(10,40,5),
+  y_limits = c(15,50),
+  y_major_breaks = seq(15,50,5),
+  title = "City vs Highway MPG across Compacts",
+  subtitle = "source - ggplot2::mpg",
+  x_title = "City MPG",
+  y_titles = c("Highway MPG", "Highway MPG"),
+  rot_y_tic_label = TRUE,
+  pts_size = 2.5,
+  pts_fill = "gold",
+  show_minor_grids = FALSE,
+  row_height = 5,
+  col_width = 12
+)
+```
+
+<div class="task">Task: Plot the *gapminder* dataset of `lifeExp` vs `pop` across `continent` and `year` using <code class="cd">RplotterPkg::multi_scatter_plot()</code>.</div>
+
+```{r}
+gapminder_df <- gapminder::gapminder %>% 
+  filter(year > 1987 & continent %in% c("Africa", "Americas", "Asia", "Europe")) %>%  
+  droplevels() %>% 
+  mutate(year = factor(year)) %>% 
+  mutate(pop = pop/1e+6) %>% 
+  rename(
+    Year = year,
+    Population = pop,
+    Life_Exp = lifeExp,
+    Continent = continent
+  )
+str(gapminder_df)
+```
+
+```{r, fig.width=13, fig.height=10}
+gapminder_plot <- RplotterPkg::multi_scatter_plot(
+  df = gapminder_df,
+  factor_var = "Year",
+  factor_x = "Life_Exp",
+  aes_y = "Population",
+  aes_fill = "Continent",
+  x_limits = c(20,90),
+  x_major_breaks = seq(from = 20, to = 90, by = 5),
+  y_limits = c(0,300),
+  y_major_breaks = seq(from = 0, to = 300, by = 50),
+  title = "Life expectancy vs population(millions) across continents and years",
+  subtitle = "dataset: gapminder",
+  pts_size = 3,
+  pts_line_alpha = 0.6,
+  col_width = 5
+)
+```
+
+<div class="task">
+  Task: From the *ggplot2::economics* dataset plot a time series of unemployment from 2000 to 2014. Accept the defaults for `x_date_labels`, and `x_major_date_breaks` in <code class="cd">RplotterPkg::create_scatter_plot()</code> for a time based x axis.
+</div>  
+
+```{r}
+str(ggplot2::economics)
+```
+
+```{r, fig.height=7,fig.width=14}
+RplotterPkg::create_scatter_plot(
+  df = ggplot2::economics,
+  aes_x = "date",
+  aes_y = "unemploy",
+  x_title = "Date",
+  y_title = "Unemployment",
+  rot_y_tic_label = TRUE,
+  title = "US Monthly Unemployment",
+  subtitle = "2000 to 2014 (in thousands)",
+  pts_color = "blue",
+  line_color = "violet",
+  connect = TRUE
+)
+```
+
+<div class="task">
+  Task: Repeat the above plot with values for `x_date_labels`, and `x_major_date_breaks` in a Year-month format. Do not draw the point symbols.
+</div>
+
+```{r, fig.width=14}
+RplotterPkg::create_scatter_plot(
+  df = ggplot2::economics,
+  aes_x = "date",
+  aes_y = "unemploy",
+  x_title = "Date",
+  y_title = "Unemployment",
+  rot_y_tic_label = TRUE,
+  title = "US Monthly Unemployment",
+  subtitle = "2000 to 2014 (in thousands)",
+  line_color = "violet",
+  show_pts = FALSE,
+  connect = TRUE,
+  x_date_labels = "%Y-%b",
+  x_major_date_breaks = "5 year"
+) + geom_hline(aes(yintercept = 8000), color = "red", linetype = "dashed", lwd = 1)
+```
+
+<div class="task">
+  Task: Repeat the above plot and set the x axis breaks as a sequence of years.
+</div>  
+
+```{r, fig.width=14}
+RplotterPkg::create_scatter_plot(
+  df = ggplot2::economics,
+  aes_x = "date",
+  aes_y = "unemploy",
+  x_title = "Date",
+  y_title = "Unemployment",
+  rot_y_tic_label = TRUE,
+  title = "US Monthly Unemployment",
+  subtitle = "1967 to 2014 (in thousands)",
+  line_color = "violet",
+  connect = TRUE,
+  x_date_labels = "%Y",
+  x_major_breaks = seq.Date(from = as.Date("1964-01-01"), to = as.Date("2020-01-01"), by = "4 year"),
+  show_minor_grids = FALSE
+) + geom_hline(aes(yintercept = 8000), color = "red", linetype = "dashed", lwd = 1)
+```
+
+
+<div class="task">
+  Task: Read the *yosemite_temps.csv* file.
+</div>  
+
+```{r}
+yosemite_df <- readr::read_csv("../data/yosemite_temp.csv")
+str(yosemite_df)
+
+```
+Convert `yosemite_df` time as POSIXct.
+```{r}
+yosemite_df <- yosemite_df %>% 
+  mutate(time_alt = as.POSIXct(time, format = "%Y-%m-%d %H:%M"))
+str(yosemite_df)
+```
+
+<div class="task">
+  Task: Plot the datetime data of Yosemite temperatures recorded every 5 minutes.
+</div>  
+
+```{r}
+RplotterPkg::create_scatter_plot(
+  df = yosemite_df,
+  title = "Yosemite Tempertures",
+  subtitle = "Every 5 minutes on 2017-05-01 for 10 hours",
+  x_title = "Time Hr:Min",
+  y_title = "Temperature",
+  rot_y_tic_label = TRUE,
+  aes_x = "time_alt",
+  aes_y = "y",
+  y_limits = c(0,30),
+  y_major_breaks = seq(from = 0, to = 30, by = 5),
+  x_date_labels = "%H:%M",
+  x_major_date_breaks = "30 min",
+  connect = TRUE
+)
+```
+

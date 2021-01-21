@@ -1,0 +1,235 @@
+---
+title: "RplotterPkg::histogram_plot() demos"
+author: "Rick Dean"
+date: "12/20/2019"
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 3
+    css: ../style.css
+---
+
+```{r, message=FALSE, warning=FALSE}
+library(data.table)
+library(rlang)
+library(grid)
+library(gtable)
+library(ggplot2)
+library(socviz)
+library(tidyr)
+library(dplyr)
+library(RplotterPkg)
+```
+
+```{r,setup, include=FALSE, eval=TRUE}
+options(knitr.table.format = "html")
+knitr::opts_chunk$set(echo = TRUE, results="as-is", collapse=TRUE, message=FALSE, warning = FALSE, fig.width = 10, fig.height = 8)
+```
+
+# Demos
+
+## 1 Introduction
+
+The following R scripts provides some histogram plot examples of [RplotterPkg::create_histogram_plot()](https://github.com/deandevl/RplotterPkg).
+
+## 2 Setting the aes_x aesthetic.
+<div class="task">
+  Task:  Plot a histogram showing counts for a binned continuous variable.  The dataset `ggplot2::midwest` has a continuous variable called *area*. Show the count distribution of *area* for 437 counties from the `ggplot2::midwest` dataset by setting <code class="cd">aes_x = "area"</code> .  Accept ggplot2's default *binwidth* along with scaling of the x and y axis'.
+</div>
+
+```{r, fig.width = 10, fig.height = 8}
+RplotterPkg::create_histogram_plot(
+  df = ggplot2::midwest,
+  aes_x = "area",
+  title = "Distribution of area",
+  subtitle = "437 counties from midwest dataset",
+  x_title = "Area",
+  bar_color = "white",
+  bar_size = 2.0,
+  bar_fill = "brown",
+  bar_alpha = 0.6,
+  bar_labels = TRUE,
+  bar_label_size = 4,
+  bar_label_color = "blue"
+)
+```
+
+<div class="task">
+  Task: Repeat the above plot with <code class="cd">binwidth = 0.01</code>, new x axis scaling and plot the observations along the axis margin.
+</div>
+
+```{r, fig.width = 10, fig.height = 9}
+RplotterPkg::create_histogram_plot(
+  df = ggplot2::midwest,
+  aes_x = "area",
+  binwidth = 0.01,
+  x_limits = c(0.0, 0.12),
+  x_major_breaks = seq(0.0, 0.12, 0.01),
+  title = "Distribution of area",
+  subtitle = "437 counties from midwest dataset",
+  x_title = "Area",
+  bar_color = "white",
+  bar_size = 2.0,
+  bar_fill = "blue",
+  bar_alpha = 0.6,
+  bar_labels = TRUE,
+  bar_label_size = 4,
+  bar_label_color = "blue",
+  plot_obs = TRUE,
+  plot_obs_color = "darkorange",
+  silent_NA_warning = TRUE
+)
+```
+
+## 2 Setting the aes_x and aes_fill aesthetics.
+<div class="task">
+  Task: From the `ggplot2::midwest` dataset compare the areas of Ohio and Wisconsin with the default bar position of "stack". Set the fill palette colors to "green" for "OH" and "blue" for "WI".
+</div>
+
+```{r, fig.width = 10, fig.height = 8}
+oh_wis_df <- ggplot2::midwest %>% 
+  filter(state %in% c("OH","WI")) %>% 
+  select(state,percollege)
+
+create_histogram_plot(
+  df = oh_wis_df,
+  aes_x = "percollege",
+  aes_fill = "state",
+  binwidth = 2.0,
+  x_major_breaks = seq(0,50,2),
+  y_limits = c(0, 30),
+  y_major_breaks = seq(from = 0, to = 30, by =5),
+  x_title = "Percollege",
+  bar_alpha = 0.3,
+  title = "Stacked Distribution of Counties Percent in College",
+  subtitle = "437 counties from midwest dataset",
+  palette_colors = c(OH = "green", WI = "blue"),
+  bar_labels = TRUE
+)
+```
+
+<div class="task">
+Task: Repeat the above midwest distribution where the bars overlap <code class="cd">position = "identity"</code>.
+</div>
+
+```{r, fig.width = 12, fig.height = 10}
+oh_wis_plot <- create_histogram_plot(
+  df = oh_wis_df,
+  aes_x = "percollege",
+  aes_fill = "state",
+  position = "identity",
+  binwidth = 2.0,
+  x_major_breaks = seq(0,50,2),
+  y_limits = c(0, 30),
+  y_major_breaks = seq(from = 0, to = 30, by =5),
+  x_title = "Percollege",
+  bar_alpha = 0.3,
+  title = "Overlap Distribution of Counties Percent in College",
+  subtitle = "437 counties from midwest dataset",
+  palette_colors = c(OH = "green", WI = "blue"),
+  center_titles = TRUE,
+  rot_y_tic_label = TRUE
+)
+oh_wis_plot
+```
+
+<div class="task">
+  Task: Repeat the above midwest distribution where the bars are side by side <code class="cd">position = "dodge"</code>.
+</div>
+
+```{r, fig.width = 12, fig.height = 10}
+oh_wis_plot <- create_histogram_plot(
+  df = oh_wis_df,
+  aes_x = "percollege",
+  aes_fill = "state",
+  position = "dodge",
+  binwidth = 2.0,
+  x_major_breaks = seq(0,50,2),
+  y_limits = c(0, 30),
+  y_major_breaks = seq(from = 0, to = 30, by =5),
+  x_title = "Percollege",
+  bar_color = "white",
+  bar_size = 1.5,
+  title = "Overlap Distribution of Counties Percent in College",
+  subtitle = "437 counties from midwest dataset",
+  palette_colors = c(OH = "green", WI = "blue")
+)
+oh_wis_plot
+```
+
+## 3 Setting the aesthetic aes_x and factor_var.
+<div class="task">
+  Task: From the `datasets::trees` dataset compare distributions for the continuous variables *Girth*, *Height*, and *Volume*. Create a data frame that converts the variables from raw values to z-scores.
+</div>  
+
+```{r}
+trees_z_df <- datasets::trees %>% 
+  transmute(
+    Girth_z = (Girth - mean(Girth))/sd(Girth),
+    Height_z = (Height - mean(Height))/sd(Height),
+    Volume_z = (Volume - mean(Volume))/sd(Volume)
+  )  
+trees_z_df <- tidyr::pivot_longer(data = trees_z_df, cols = c(Girth_z, Height_z, Volume_z), 
+                                  names_to = "Measure", values_to = "Z_Score")
+str(trees_z_df)
+```
+<div class="task">
+  Task: Plot their individual z score counts by setting *factor_x* to "Z_Score" variable from *trees_z_df*.  Show the distributions in individual panels by using `RplotterPkg::multi_histogram_plot()` and setting *factor_var* = "Measure" and *columns* = 3 which will show all 3 levels of "Measure" in one row. Set the x axis scaling breaks at 0.5.
+</div>
+
+```{r, fig.width = 16, fig.height = 8}
+tree_plot <- multi_histogram_plot(
+  df = trees_z_df,
+  factor_var = "Measure",
+  factor_x = "Z_Score",
+  columns = 3,
+  title = "Girth, Height, Volume of data(trees)",
+  bar_color = "black",
+  bar_fill = "green",
+  binwidth = 0.5,
+  x_limits = c(-3,3.5),
+  x_major_breaks = seq(from = -3, to = 3.5, by = 0.5),
+  y_limits = c(0,8),
+  col_width = 5,
+  row_height = 6,
+  bar_labels = TRUE,
+  silent_NA_warning = TRUE
+)
+```
+
+<div class="task">
+  Task: From the `socviz::gss_sm` dataset find the distribution of *age* and *race* across *marital* status.
+</div>
+
+```{r,fig.width=11, fig.height=11}
+white_black_df <- socviz::gss_sm %>% 
+  filter(race %in% c("White", "Black"))
+age_race_plot <- multi_histogram_plot(
+  df = white_black_df,
+  factor_var = "marital",
+  factor_x = "age",
+  title = "Distribution of age across marital status and race",
+  subtitle = "dataset: socviz::gss_sm",
+  rot_y_tic_label = TRUE,
+  aes_fill = "race",
+  position = "identity",
+  x_limits = c(20,90),
+  x_major_breaks = seq(20,90,10),
+  palette_colors = c("white", "black"),
+  bar_alpha = 0.5,
+  binwidth = 5,
+  row_height = 3,
+  silent_NA_warning = TRUE
+)
+```
+
+<div class="task">Task: From the `ggplot2::midwest` data set, get histograms for some of its numeric variables.</div>  
+
+```{r,fig.width=11, fig.height=14}
+midwest_histos <- RplotterPkg::multi_histogram_plot(
+  df = ggplot2::midwest,
+  variables = c("percwhite", "percblack", "perchsd", "percollege", "popdensity",  "percchildbelowpovert"),
+  title = "Histograms from ggplot2::midwest"
+)
+```
+
