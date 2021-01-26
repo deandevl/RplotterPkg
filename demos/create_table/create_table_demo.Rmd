@@ -16,31 +16,39 @@ library(data.table)
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+Add a "Car" column to `mtcars`:
+```{r}
+data("mtcars")
+mtcars_dt <- data.table::setDT(mtcars, keep.rownames = T)
+data.table::setnames(mtcars_dt, old = "rn", new = "Car")
+```
 
 ```{r, fig.width=8, fig.height=6}
-df <- mtcars[1:5, 1:6]
 new_table <- RplotterPkg::create_table(
-  x = df
+  x = mtcars_dt[1:5, 1:6]
 )
 new_table
 ```
-```{r}
-dt <- data.table::as.data.table(mtcars)
-dt[, cars := rownames(mtcars)]
-setcolorder(dt,neworder = "cars")
-new_table <- RplotterPkg::create_table(
-  x = dt,
-  font_size = 20,
-  caption = "Car mpg",
+```{r kable, results="asis"}
+x <- mtcars_dt[1:20, 1:6]
+scroll_table <- create_table(
+  x = mtcars[1:20, 1:6],
+  caption = "Car mpg  car mpg  car mpg car mpg  ",
+  align_v = c("l",rep("c", 5)),
   position = "left",
+  full_width = T,
   fixed_thead = T,
   head_bkgd = "purple",
   head_col = "white",
+  head_sz = 22,
   footnote = "mtcars",
   footnote_title = "Source:",
-  scroll_height = "200px"
+  borders = T,
+  border_sz = 3,
+  border_col = "green",
+  scroll_height = "200px",
+  hide_hor_scrollbar = T
 )
-new_table
+scroll_table
 ```
 

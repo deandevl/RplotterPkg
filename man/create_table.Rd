@@ -5,13 +5,13 @@
 \title{Function creates a table for tabular data in rmarkdown documents}
 \usage{
 create_table(
-  x = NULL,
+  x,
   format = "html",
   col_names = NULL,
   font_size = NULL,
   caption = NULL,
   caption_sz = 20,
-  align = "c",
+  align_v = NULL,
   position = "center",
   full_width = F,
   fixed_thead = F,
@@ -21,7 +21,13 @@ create_table(
   head_angle = 0,
   footnote = NULL,
   footnote_title = NULL,
-  scroll_height = NULL
+  borders = FALSE,
+  border_sz = 2,
+  border_col = "black",
+  scroll_height = NULL,
+  scroll_width = NULL,
+  hide_ver_scrollbar = FALSE,
+  hide_hor_scrollbar = FALSE
 )
 }
 \arguments{
@@ -39,8 +45,8 @@ then names are taken from \code{x}.}
 
 \item{caption_sz}{A numeric that sets the font size of the caption in pixels.}
 
-\item{align}{A string that sets the alignment for the data under the headings.
-Acceptable values are \dQuote{c}, \dQuote{l}, \dQuote{r}.}
+\item{align_v}{A character vector that sets the alignment for the data under the headings.
+Acceptable values are \dQuote{c}, \dQuote{l}, \dQuote{r} for each of the columns.}
 
 \item{position}{A string that sets the placement of the table. Acceptable
 values are \dQuote{center}, \dQuote{left}, \dQuote{right}.}
@@ -62,8 +68,21 @@ the documents available width.}
 
 \item{footnote_title}{A string that sets the footnote title.}
 
+\item{borders}{A logical which if TRUE will place borders along the rows and columns.}
+
+\item{border_sz}{A numeric that defines the border width in pixels.}
+
+\item{border_col}{A string that sets the border color.}
+
 \item{scroll_height}{A string that sets the scroll height in pixels. For example:
 \dQuote{200px}}
+
+\item{scroll_width}{A string that sets the scroll width in pixels. For example:
+\dQuote{200px}}
+
+\item{hide_ver_scrollbar}{A logical which if TRUE will hide the vertical scroll bar.}
+
+\item{hide_hor_scrollbar}{A logical which if TRUE will hide the horizontal scroll bar.}
 }
 \value{
 A "kableExtra"-"knitr_kable" object

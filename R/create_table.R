@@ -12,8 +12,8 @@
 #' @param font_size A numeric that sets the table's font size.
 #' @param caption A string that sets the table's caption.
 #' @param caption_sz A numeric that sets the font size of the caption in pixels.
-#' @param align A string that sets the alignment for the data under the headings.
-#'  Acceptable values are \dQuote{c}, \dQuote{l}, \dQuote{r}.
+#' @param align_v A character vector that sets the alignment for the data under the headings.
+#'  Acceptable values are \dQuote{c}, \dQuote{l}, \dQuote{r} for each of the columns.
 #' @param position A string that sets the placement of the table. Acceptable
 #'  values are \dQuote{center}, \dQuote{left}, \dQuote{right}.
 #' @param full_width A logical which if TRUE, the table takes the full width of
@@ -25,8 +25,15 @@
 #' @param head_angle A numeric that sets the header's angle.
 #' @param footnote A string which if not NULL adds a general footnote to the table.
 #' @param footnote_title A string that sets the footnote title.
+#' @param borders A logical which if TRUE will place borders along the rows and columns.
+#' @param border_sz A numeric that defines the border width in pixels.
+#' @param border_col A string that sets the border color.
 #' @param scroll_height A string that sets the scroll height in pixels. For example:
 #'  \dQuote{200px}
+#' @param scroll_width A string that sets the scroll width in pixels. For example:
+#'  \dQuote{200px}
+#' @param hide_ver_scrollbar A logical which if TRUE will hide the vertical scroll bar.
+#' @param hide_hor_scrollbar A logical which if TRUE will hide the horizontal scroll bar.
 #'
 #' @importFrom kableExtra kable_paper
 #' @importFrom kableExtra kbl
@@ -40,13 +47,13 @@
 #'
 #' @export
 create_table <- function(
-  x = NULL,
+  x,
   format = "html",
   col_names = NULL,
   font_size = NULL,
   caption = NULL,
   caption_sz = 20,
-  align = "c",
+  align_v = NULL,
   position = "center",
   full_width = F,
   fixed_thead = F,
@@ -56,11 +63,15 @@ create_table <- function(
   head_angle = 0,
   footnote = NULL,
   footnote_title = NULL,
-  scroll_height = NULL
+  borders = FALSE,
+  border_sz = 2,
+  border_col = "black",
+  scroll_height = NULL,
+  scroll_width = NULL,
+  hide_ver_scrollbar = FALSE,
+  hide_hor_scrollbar = FALSE
 ){
-  if(is.null(col_names)){
-    col_names <- colnames(x)
-  }
+
   if(!is.null(caption)){
     caption <- paste0(
       "<center>",
@@ -69,20 +80,17 @@ create_table <- function(
       caption,
       "</div></center>")
   }
+  if(is.null(col_names)){
+    col_names <- colnames(x)[1:ncol(x)]
+  }
   a_table <- kableExtra::kbl(
     x = x,
-    format = format,
+    format = "html",
     caption = caption,
     col.names = col_names,
-    align = rep(align, ncol(x))
+    align = align_v
   )
-  a_table <- kableExtra::kable_paper(
-    kable_input = a_table,
-    full_width = full_width,
-    position = position,
-    font_size = font_size,
-    fixed_thead = fixed_thead
-  )
+
   a_table <- kableExtra::row_spec(
     kable_input = a_table,
     row = 0,
@@ -93,6 +101,21 @@ create_table <- function(
     bold = T
   )
 
+  if(borders){
+    a_table <- kableExtra::row_spec(
+      kable_input = a_table,
+      row = 1:nrow(x),
+      extra_css = paste0("border-bottom: ", border_sz,"px solid ",border_col,";")
+    )
+
+    a_table <- kableExtra::column_spec(
+      kable_input = a_table,
+      column = 1:ncol(x),
+      border_left = paste0(border_sz, "px solid ", border_col),
+      border_right = paste0(border_sz, "px solid ", border_col)
+    )
+  }
+
   if(!is.null(footnote)){
     a_table <- kableExtra::footnote(
       kable_input = a_table,
@@ -100,10 +123,29 @@ create_table <- function(
       general_title = footnote_title
     )
   }
-  if(!is.null(scroll_height)){
+
+  a_table <- kableExtra::kable_paper(
+    kable_input = a_table,
+    full_width = full_width,
+    position = position,
+    font_size = font_size
+  )
+
+  if(hide_ver_scrollbar | hide_hor_scrollbar | !is.null(scroll_height) | !is.null(scroll_width)){
+    extra_css <- NULL
+    if(hide_hor_scrollbar & hide_ver_scrollbar){
+      extra_css <- "overflow-y: hidden; overflow-x: hidden;"
+    }else if(hide_ver_scrollbar){
+      extra_css <- "overflow-y: hidden;"
+    }else if(hide_hor_scrollbar){
+      extra_css <- "overflow-x: hidden;"
+    }
     a_table <- kableExtra::scroll_box(
+      height = scroll_height,
+      width = scroll_width,
       kable_input = a_table,
-      height = scroll_height
+      fixed_thead = fixed_thead,
+      extra_css = extra_css
     )
   }
 

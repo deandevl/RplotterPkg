@@ -658,1444 +658,606 @@ summary {
 library(knitr)
 library(RplotterPkg)
 library(data.table)</code></pre>
-<pre class="r"><code>df &lt;- mtcars[1:5, 1:6]
-new_table &lt;- RplotterPkg::create_table(
-  x = df
+<p>Add a “Car” column to <code>mtcars</code>:</p>
+<pre class="r"><code>data(&quot;mtcars&quot;)
+mtcars_dt &lt;- data.table::setDT(mtcars, keep.rownames = T)
+data.table::setnames(mtcars_dt, old = &quot;rn&quot;, new = &quot;Car&quot;)</code></pre>
+<pre class="r"><code>new_table &lt;- RplotterPkg::create_table(
+  x = mtcars_dt[1:5, 1:6]
 )</code></pre>
 <pre><code>## Warning: namespace &#39;highr&#39; is not available and has been replaced
 ## by .GlobalEnv when processing object &#39;&lt;unknown&gt;&#39;</code></pre>
 <pre class="r"><code>new_table</code></pre>
-<table class=" lightable-paper" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:400px; overflow-x: scroll; width:400px; ">
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;font-weight: bold;color: black !important;background-color: white !important;font-size: 22px;">
+<th style="font-weight: bold;color: black !important;background-color: white !important;font-size: 18px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);">
+Car
 </th>
-<th style="text-align:center;font-weight: bold;color: black !important;background-color: white !important;font-size: 22px;">
+<th style="font-weight: bold;color: black !important;background-color: white !important;font-size: 18px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);">
 mpg
 </th>
-<th style="text-align:center;font-weight: bold;color: black !important;background-color: white !important;font-size: 22px;">
+<th style="font-weight: bold;color: black !important;background-color: white !important;font-size: 18px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);">
 cyl
 </th>
-<th style="text-align:center;font-weight: bold;color: black !important;background-color: white !important;font-size: 22px;">
+<th style="font-weight: bold;color: black !important;background-color: white !important;font-size: 18px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);">
 disp
 </th>
-<th style="text-align:center;font-weight: bold;color: black !important;background-color: white !important;font-size: 22px;">
+<th style="font-weight: bold;color: black !important;background-color: white !important;font-size: 18px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);">
 hp
 </th>
-<th style="text-align:center;font-weight: bold;color: black !important;background-color: white !important;font-size: 22px;">
+<th style="font-weight: bold;color: black !important;background-color: white !important;font-size: 18px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);">
 drat
-</th>
-<th style="text-align:center;font-weight: bold;color: black !important;background-color: white !important;font-size: 22px;">
-wt
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 Mazda RX4
 </td>
-<td style="text-align:center;">
+<td>
 21.0
 </td>
-<td style="text-align:center;">
+<td>
 6
 </td>
-<td style="text-align:center;">
+<td>
 160
 </td>
-<td style="text-align:center;">
+<td>
 110
 </td>
-<td style="text-align:center;">
+<td>
 3.90
-</td>
-<td style="text-align:center;">
-2.620
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Mazda RX4 Wag
 </td>
-<td style="text-align:center;">
+<td>
 21.0
 </td>
-<td style="text-align:center;">
+<td>
 6
 </td>
-<td style="text-align:center;">
+<td>
 160
 </td>
-<td style="text-align:center;">
+<td>
 110
 </td>
-<td style="text-align:center;">
+<td>
 3.90
 </td>
-<td style="text-align:center;">
-2.875
-</td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Datsun 710
 </td>
-<td style="text-align:center;">
+<td>
 22.8
 </td>
-<td style="text-align:center;">
+<td>
 4
 </td>
-<td style="text-align:center;">
+<td>
 108
 </td>
-<td style="text-align:center;">
+<td>
 93
 </td>
-<td style="text-align:center;">
+<td>
 3.85
 </td>
-<td style="text-align:center;">
-2.320
-</td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Hornet 4 Drive
 </td>
-<td style="text-align:center;">
+<td>
 21.4
 </td>
-<td style="text-align:center;">
+<td>
 6
 </td>
-<td style="text-align:center;">
+<td>
 258
 </td>
-<td style="text-align:center;">
+<td>
 110
 </td>
-<td style="text-align:center;">
+<td>
 3.08
-</td>
-<td style="text-align:center;">
-3.215
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Hornet Sportabout
 </td>
-<td style="text-align:center;">
+<td>
 18.7
 </td>
-<td style="text-align:center;">
+<td>
 8
 </td>
-<td style="text-align:center;">
+<td>
 360
 </td>
-<td style="text-align:center;">
+<td>
 175
 </td>
-<td style="text-align:center;">
+<td>
 3.15
-</td>
-<td style="text-align:center;">
-3.440
 </td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>dt &lt;- data.table::as.data.table(mtcars)
-dt[, cars := rownames(mtcars)]
-setcolorder(dt,neworder = &quot;cars&quot;)
-new_table &lt;- RplotterPkg::create_table(
-  x = dt,
-  font_size = 20,
-  caption = &quot;Data Set: mtcars&quot;,
-  position = &quot;left&quot;,
+</div>
+<pre class="r"><code>x &lt;- mtcars_dt[1:20, 1:6]
+my_table &lt;- create_table(
+  x = x,
+  caption = &quot;Table of mtcars&quot;,
+  align_v = c(&quot;l&quot;,rep(&quot;c&quot;, 5)),
+  full_width = T,
   fixed_thead = T,
   head_bkgd = &quot;purple&quot;,
   head_col = &quot;white&quot;,
-  footnote = &quot;These numbers are not real&quot;,
-  footnote_title = &quot;By the way:&quot;,
-  scroll_height = &quot;200px&quot;
+  head_sz = 22,
+  footnote = &quot;mtcars&quot;,
+  footnote_title = &quot;Source:&quot;,
+  borders = T,
+  border_sz = 3,
+  border_col = &quot;black&quot;,
+  scroll_height = &quot;500px&quot;,
+  scroll_width = &quot;900px&quot;,
+  hide_hor_scrollbar = T
 )
-new_table</code></pre>
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
-<table class=" lightable-paper" style="font-size: 20px; font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; border-bottom: 0;">
-<caption style="font-size: initial !important;">
-Data Set: mtcars
+my_table</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-x: hidden;overflow-y: scroll; height:500px; overflow-x: scroll; width:900px; ">
+<table style="NAborder-bottom: 0; margin-left: auto; margin-right: auto;" class="table">
+<caption>
+<center>
+<div style="font-weight:bold;font-size:20px; color:black">
+Table of mtcars
+</div>
+</center>
 </caption>
 <thead>
 <tr>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
-cars
+<th style="text-align:left;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);position: sticky; top:0; background-color: #FFFFFF;">
+Car
 </th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);position: sticky; top:0; background-color: #FFFFFF;">
 mpg
 </th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);position: sticky; top:0; background-color: #FFFFFF;">
 cyl
 </th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);position: sticky; top:0; background-color: #FFFFFF;">
 disp
 </th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);position: sticky; top:0; background-color: #FFFFFF;">
 hp
 </th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -ms-transform: rotate(0deg); -o-transform: rotate(0deg); transform: rotate(0deg);position: sticky; top:0; background-color: #FFFFFF;">
 drat
-</th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
-wt
-</th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
-qsec
-</th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
-vs
-</th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
-am
-</th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
-gear
-</th>
-<th style="text-align:center;position: sticky; top:0; background-color: #FFFFFF;font-weight: bold;color: white !important;background-color: purple !important;font-size: 22px;position: sticky; top:0; background-color: #FFFFFF;">
-carb
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Mazda RX4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 21.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 6
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 160.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 110
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.90
-</td>
-<td style="text-align:center;">
-2.620
-</td>
-<td style="text-align:center;">
-16.46
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-4
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Mazda RX4 Wag
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 21.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 6
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 160.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 110
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.90
 </td>
-<td style="text-align:center;">
-2.875
-</td>
-<td style="text-align:center;">
-17.02
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-4
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Datsun 710
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 22.8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 108.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 93
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.85
 </td>
-<td style="text-align:center;">
-2.320
-</td>
-<td style="text-align:center;">
-18.61
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-1
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Hornet 4 Drive
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 21.4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 6
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 258.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 110
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.08
-</td>
-<td style="text-align:center;">
-3.215
-</td>
-<td style="text-align:center;">
-19.44
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-1
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Hornet Sportabout
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 18.7
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 360.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 175
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.15
-</td>
-<td style="text-align:center;">
-3.440
-</td>
-<td style="text-align:center;">
-17.02
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-2
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Valiant
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 18.1
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 6
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 225.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 105
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 2.76
-</td>
-<td style="text-align:center;">
-3.460
-</td>
-<td style="text-align:center;">
-20.22
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-1
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Duster 360
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 14.3
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 360.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 245
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.21
 </td>
-<td style="text-align:center;">
-3.570
-</td>
-<td style="text-align:center;">
-15.84
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-4
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Merc 240D
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 24.4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 146.7
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 62
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.69
 </td>
-<td style="text-align:center;">
-3.190
-</td>
-<td style="text-align:center;">
-20.00
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-2
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Merc 230
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 22.8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 140.8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 95
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.92
-</td>
-<td style="text-align:center;">
-3.150
-</td>
-<td style="text-align:center;">
-22.90
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-2
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Merc 280
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 19.2
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 6
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 167.6
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 123
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.92
-</td>
-<td style="text-align:center;">
-3.440
-</td>
-<td style="text-align:center;">
-18.30
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-4
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Merc 280C
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 17.8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 6
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 167.6
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 123
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.92
 </td>
-<td style="text-align:center;">
-3.440
-</td>
-<td style="text-align:center;">
-18.90
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-4
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Merc 450SE
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 16.4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 275.8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 180
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.07
-</td>
-<td style="text-align:center;">
-4.070
-</td>
-<td style="text-align:center;">
-17.40
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-3
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Merc 450SL
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 17.3
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 275.8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 180
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.07
-</td>
-<td style="text-align:center;">
-3.730
-</td>
-<td style="text-align:center;">
-17.60
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-3
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Merc 450SLC
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 15.2
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 275.8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 180
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.07
 </td>
-<td style="text-align:center;">
-3.780
-</td>
-<td style="text-align:center;">
-18.00
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-3
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Cadillac Fleetwood
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 10.4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 472.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 205
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 2.93
 </td>
-<td style="text-align:center;">
-5.250
-</td>
-<td style="text-align:center;">
-17.98
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-4
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Lincoln Continental
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 10.4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 460.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 215
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.00
 </td>
-<td style="text-align:center;">
-5.424
-</td>
-<td style="text-align:center;">
-17.82
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-4
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Chrysler Imperial
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 14.7
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 8
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 440.0
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 230
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 3.23
 </td>
-<td style="text-align:center;">
-5.345
-</td>
-<td style="text-align:center;">
-17.42
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-4
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Fiat 128
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 32.4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 78.7
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 66
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4.08
-</td>
-<td style="text-align:center;">
-2.200
-</td>
-<td style="text-align:center;">
-19.47
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-1
 </td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Honda Civic
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 30.4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 75.7
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 52
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4.93
 </td>
-<td style="text-align:center;">
-1.615
-</td>
-<td style="text-align:center;">
-18.52
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-2
-</td>
 </tr>
 <tr>
-<td style="text-align:center;">
+<td style="text-align:left;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 Toyota Corolla
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 33.9
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 71.1
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 65
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;border-bottom: 3px solid black;border-left:3px solid black;border-right:3px solid black;">
 4.22
-</td>
-<td style="text-align:center;">
-1.835
-</td>
-<td style="text-align:center;">
-19.90
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Toyota Corona
-</td>
-<td style="text-align:center;">
-21.5
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-120.1
-</td>
-<td style="text-align:center;">
-97
-</td>
-<td style="text-align:center;">
-3.70
-</td>
-<td style="text-align:center;">
-2.465
-</td>
-<td style="text-align:center;">
-20.01
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Dodge Challenger
-</td>
-<td style="text-align:center;">
-15.5
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-318.0
-</td>
-<td style="text-align:center;">
-150
-</td>
-<td style="text-align:center;">
-2.76
-</td>
-<td style="text-align:center;">
-3.520
-</td>
-<td style="text-align:center;">
-16.87
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-AMC Javelin
-</td>
-<td style="text-align:center;">
-15.2
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-304.0
-</td>
-<td style="text-align:center;">
-150
-</td>
-<td style="text-align:center;">
-3.15
-</td>
-<td style="text-align:center;">
-3.435
-</td>
-<td style="text-align:center;">
-17.30
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Camaro Z28
-</td>
-<td style="text-align:center;">
-13.3
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-350.0
-</td>
-<td style="text-align:center;">
-245
-</td>
-<td style="text-align:center;">
-3.73
-</td>
-<td style="text-align:center;">
-3.840
-</td>
-<td style="text-align:center;">
-15.41
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-4
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Pontiac Firebird
-</td>
-<td style="text-align:center;">
-19.2
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-400.0
-</td>
-<td style="text-align:center;">
-175
-</td>
-<td style="text-align:center;">
-3.08
-</td>
-<td style="text-align:center;">
-3.845
-</td>
-<td style="text-align:center;">
-17.05
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Fiat X1-9
-</td>
-<td style="text-align:center;">
-27.3
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-79.0
-</td>
-<td style="text-align:center;">
-66
-</td>
-<td style="text-align:center;">
-4.08
-</td>
-<td style="text-align:center;">
-1.935
-</td>
-<td style="text-align:center;">
-18.90
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Porsche 914-2
-</td>
-<td style="text-align:center;">
-26.0
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-120.3
-</td>
-<td style="text-align:center;">
-91
-</td>
-<td style="text-align:center;">
-4.43
-</td>
-<td style="text-align:center;">
-2.140
-</td>
-<td style="text-align:center;">
-16.70
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Lotus Europa
-</td>
-<td style="text-align:center;">
-30.4
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-95.1
-</td>
-<td style="text-align:center;">
-113
-</td>
-<td style="text-align:center;">
-3.77
-</td>
-<td style="text-align:center;">
-1.513
-</td>
-<td style="text-align:center;">
-16.90
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Ford Pantera L
-</td>
-<td style="text-align:center;">
-15.8
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-351.0
-</td>
-<td style="text-align:center;">
-264
-</td>
-<td style="text-align:center;">
-4.22
-</td>
-<td style="text-align:center;">
-3.170
-</td>
-<td style="text-align:center;">
-14.50
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-4
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Ferrari Dino
-</td>
-<td style="text-align:center;">
-19.7
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-145.0
-</td>
-<td style="text-align:center;">
-175
-</td>
-<td style="text-align:center;">
-3.62
-</td>
-<td style="text-align:center;">
-2.770
-</td>
-<td style="text-align:center;">
-15.50
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Maserati Bora
-</td>
-<td style="text-align:center;">
-15.0
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-301.0
-</td>
-<td style="text-align:center;">
-335
-</td>
-<td style="text-align:center;">
-3.54
-</td>
-<td style="text-align:center;">
-3.570
-</td>
-<td style="text-align:center;">
-14.60
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Volvo 142E
-</td>
-<td style="text-align:center;">
-21.4
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-121.0
-</td>
-<td style="text-align:center;">
-109
-</td>
-<td style="text-align:center;">
-4.11
-</td>
-<td style="text-align:center;">
-2.780
-</td>
-<td style="text-align:center;">
-18.60
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-2
 </td>
 </tr>
 </tbody>
 <tfoot>
 <tr>
 <td style="padding: 0; " colspan="100%">
-<span style="font-style: italic;">By the way:</span>
+<span style="font-style: italic;">Source:</span>
 </td>
 </tr>
 <tr>
 <td style="padding: 0; " colspan="100%">
-<sup></sup> These numbers are not real
+<sup></sup> mtcars
 </td>
 </tr>
 </tfoot>
