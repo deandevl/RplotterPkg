@@ -80,9 +80,11 @@ create_table <- function(
       caption,
       "</div></center>")
   }
+
   if(is.null(col_names)){
-    col_names <- colnames(x)[1:ncol(x)]
+    col_names <- colnames(x)
   }
+
   a_table <- kableExtra::kbl(
     x = x,
     format = "html",
@@ -98,7 +100,8 @@ create_table <- function(
     background = head_bkgd,
     color = head_col,
     font_size = head_sz,
-    bold = T
+    bold = T,
+    extra_css = paste0("border-bottom: 4px solid ",border_col,";")
   )
 
   if(borders){
@@ -110,13 +113,13 @@ create_table <- function(
 
     a_table <- kableExtra::column_spec(
       kable_input = a_table,
-      column = 1:ncol(x),
+      column = 1:(ncol(x)+1),
       border_left = paste0(border_sz, "px solid ", border_col),
       border_right = paste0(border_sz, "px solid ", border_col)
     )
   }
 
-  if(!is.null(footnote)){
+  if(!is.null(footnote) & !is.null(footnote_title)){
     a_table <- kableExtra::footnote(
       kable_input = a_table,
       general = footnote,

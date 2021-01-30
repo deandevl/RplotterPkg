@@ -10,6 +10,7 @@
 #' @param aes_color A string that sets the variable name from \code{df} for the aesthetic mapping for color.
 #' @param aes_fill A string that sets the variable name from \code{df} for the aesthetic mapping for fill.
 #' @param aes_size A string that sets the variable name from \code{df} for the aesthetic mapping for size.
+#' @param aes_linetype A string that sets the variable name from \code{df} for the aesthetic mapping for linetype.
 #' @param aes_label A string that sets the variable name from \code{df} for the aesthetic mapping for labeling. If
 #'  labeling points then the package \code{ggrepel} is required.
 #' @param position A string or function that does a slight adjustment to overlapping points.  Typical values are
@@ -52,7 +53,10 @@
 #' @param pts_stroke A numeric that sets the drawing width for a point shape.
 #' @param pts_size A numeric value that sets the size of the points.
 #' @param pts_line_alpha A numeric value that sets the alpha level of points and connected line.
-#' @param palette_colors A character vector to set the palette colors.
+#' @param palette_colors A string vector to set the aes mapping of colors which changes their appearance in the
+#'  order given.
+#' @param palette_linetypes A string vector to set the aes mapping of linetypes which changes their appearance in
+#'  the order given.
 #' @param connect A logical which if \code{TRUE} then points will be connected with a line.
 #' @param line_size A numeric value that sets the thickness of lines if \code{connect} is TRUE.
 #' @param line_color A string that sets the color of the lines if \code{connect} is TRUE.
@@ -85,6 +89,7 @@ create_scatter_plot <- function(
   aes_color = NULL,
   aes_fill = NULL,
   aes_size = NULL,
+  aes_linetype = NULL,
   aes_label = NULL,
   position = position_jitter(width = 0.0, height = 0.0),
   title = NULL,
@@ -116,6 +121,7 @@ create_scatter_plot <- function(
   pts_line_alpha = 1.0,
   pts_size = 1,
   palette_colors = NULL,
+  palette_linetypes = NULL,
   connect = FALSE,
   line_size = 1,
   line_color = "black",
@@ -223,6 +229,13 @@ create_scatter_plot <- function(
         )
       }
     }
+  }else if(!is.null(aes_linetype)){
+    aplot <- aplot + geom_line(
+      aes(linetype = !!sym(aes_linetype)),
+      size = line_size,
+      color = line_color,
+      alpha = pts_line_alpha,
+      na.rm = silent_NA_warning)
   }else {
     if(!connect && show_pts){
       aplot <- aplot + geom_point(
@@ -267,6 +280,12 @@ create_scatter_plot <- function(
       aplot <- aplot + scale_fill_manual(values = palette_colors)
     }else if(!is.null(aes_color)) {
       aplot <- aplot + scale_color_manual(values = palette_colors)
+    }
+  }
+
+  if(!is.null(palette_linetypes)){
+    if(!is.null(aes_linetype)){
+      aplot <- aplot + scale_linetype_manual(values = palette_linetypes)
     }
   }
 

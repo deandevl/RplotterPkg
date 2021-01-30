@@ -14,6 +14,7 @@ multi_scatter_plot(
   aes_color = NULL,
   aes_fill = NULL,
   aes_size = NULL,
+  aes_linetype = NULL,
   aes_label = NULL,
   position = ggplot2::position_jitter(width = 0, height = 0),
   title = NULL,
@@ -44,6 +45,7 @@ multi_scatter_plot(
   pts_line_alpha = 1,
   pts_size = 1,
   palette_colors = NULL,
+  palette_linetypes = NULL,
   connect = FALSE,
   line_size = 0.6,
   line_color = "black",
@@ -80,6 +82,8 @@ then a scatter plot of \code{factor_x} versus \code{aes_y} will be plotted for e
 \item{aes_fill}{A string that sets the variable name from \code{df} for the aesthetic mapping for fill.}
 
 \item{aes_size}{A string that sets the variable name from \code{df} for the aesthetic mapping for size.}
+
+\item{aes_linetype}{A string that sets the variable name from \code{df} for the aesthetic mapping for linetype.}
 
 \item{aes_label}{A string that sets the variable name from \code{df} for the aesthetic mapping for labeling. If
 labelling points then the package \code{ggrepel} is required.}
@@ -150,7 +154,11 @@ format, for the date. Examples: \code{"\%Y-\%m"}, \code{"\%Y/\%b/\%d"}, \code{"\
 
 \item{pts_size}{A numeric value that sets the size of the points.}
 
-\item{palette_colors}{A character vector to set the palette colors.}
+\item{palette_colors}{A string vector to set the aes mapping of colors which changes their appearance in the
+order given.}
+
+\item{palette_linetypes}{A string vector to set the aes mapping of linetypes which changes their appearance in
+the order given.}
 
 \item{connect}{A logical which if \code{TRUE} then points will be connected with a line.}
 

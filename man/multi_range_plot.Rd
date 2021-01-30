@@ -17,7 +17,7 @@ multi_range_plot(
   title = NULL,
   subtitle = NULL,
   center_titles = FALSE,
-  x_title = aes_x,
+  x_title = NULL,
   y_titles = NULL,
   rot_x_tic_angle = 0,
   rot_y_tic_label = FALSE,
