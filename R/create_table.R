@@ -86,7 +86,7 @@ create_table <- function(
   }
 
   a_table <- kableExtra::kbl(
-    x = x,
+    x = as.matrix(x, rownames.force = F),
     format = "html",
     caption = caption,
     col.names = col_names,
@@ -113,7 +113,7 @@ create_table <- function(
 
     a_table <- kableExtra::column_spec(
       kable_input = a_table,
-      column = 1:(ncol(x)+1),
+      column = 1:ncol(x),
       border_left = paste0(border_sz, "px solid ", border_col),
       border_right = paste0(border_sz, "px solid ", border_col)
     )
@@ -123,7 +123,10 @@ create_table <- function(
     a_table <- kableExtra::footnote(
       kable_input = a_table,
       general = footnote,
-      general_title = footnote_title
+      general_title = footnote_title,
+      fixed_small_size = T,
+      title_format = c("italic"),
+      footnote_as_chunk = T
     )
   }
 

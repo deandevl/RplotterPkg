@@ -33,7 +33,7 @@ new_table
 x <- mtcars_dt[1:20, 1:6]
 scroll_table <- create_table(
   x = mtcars[1:20, 1:6],
-  caption = "Car mpg  car mpg  car mpg car mpg  ",
+  caption = "Cars Miles Per Gallon",
   align_v = c("l",rep("c", 5)),
   position = "left",
   full_width = T,
