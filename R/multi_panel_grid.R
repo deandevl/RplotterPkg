@@ -4,12 +4,21 @@ library(gtable)
 #' Arranges a group of ggplot2 plots or grid::grobs into multiple panels.
 #'
 #' Function creates a figure with title, subtitle, legend and arranges multiple plots
-#' across a given number of rows and columns. The function depends on the \code{grid} and \code{gtable} packages.
+#' across a given number of rows and columns. The function depends on the \code{grid}
+#' and \code{gtable} packages. As an example of defining the \code{layout} argument,
+#' \code{layout} has three named elements: \dQuote{plots}, \dQuote{rows}, and \dQuote{cols}.
+#'  \dQuote{plots} is a list() of ggplot2 plot objects; \dQuote{rows} defines the row number
+#'  for each plot and \dQuote{cols} defines the column number for each plot. If we have
+#'  two plots with both plots on a single row then \dQuote{rows} = c(1,1) and \dQuote{cols}
+#'  = c(1,2).
 #'
 #' @param layout A named list containing a list for plot objects or grobs \dQuote{plots}, row locations \dQuote{rows} vector,
 #'  column locations \dQuote{cols} vector.
-#' @param col_widths A numeric vector of column widths in inches.
-#' @param row_heights A numeric vector of row heights in inches.
+#' @param col_widths A numeric vector of column widths in inches. Note that if there are two
+#'  columns 4 inches wide then the argument should be \code{c(4,4)}.
+#' @param row_heights A numeric vector of row heights in inches. Note that if there are two
+#'  rows 5 inches high then the argument should be \code{c(5,5)}. If we have one row 5 inches high then
+#'  this argument should just be assigned the value 5.
 #' @param title A string that sets the title of the figure.
 #' @param subtitle A string that sets the subtitle of the figure.
 #' @param do_legend A logical that displays a common legend among the plots.
@@ -88,6 +97,9 @@ multi_panel_grid <- function (
     widths = grid::unit(x = col_widths, units = "in"),
     heights = grid::unit(heights_v, units = heights_units)
   )
+
+  # for debug: show layout
+  #gtable::gtable_show_layout(plots_table)
 
   # find the max column index
   max_col = 0

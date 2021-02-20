@@ -18,9 +18,12 @@ multi_panel_grid(
 \item{layout}{A named list containing a list for plot objects or grobs \dQuote{plots}, row locations \dQuote{rows} vector,
 column locations \dQuote{cols} vector.}
 
-\item{col_widths}{A numeric vector of column widths in inches.}
+\item{col_widths}{A numeric vector of column widths in inches. Note that if there are two
+columns 4 inches wide then the argument should be \code{c(4,4)}.}
 
-\item{row_heights}{A numeric vector of row heights in inches.}
+\item{row_heights}{A numeric vector of row heights in inches. Note that if there are two
+rows 5 inches high then the argument should be \code{c(5,5)}. If we have one row 5 inches high then
+this argument should just be assigned the value 5.}
 
 \item{title}{A string that sets the title of the figure.}
 
@@ -36,7 +39,13 @@ A grob object. Note that if \code{display_plot} is set to \code{FALSE}, then to 
 }
 \description{
 Function creates a figure with title, subtitle, legend and arranges multiple plots
-across a given number of rows and columns. The function depends on the \code{grid} and \code{gtable} packages.
+across a given number of rows and columns. The function depends on the \code{grid}
+and \code{gtable} packages. As an example of defining the \code{layout} argument,
+\code{layout} has three named elements: \dQuote{plots}, \dQuote{rows}, and \dQuote{cols}.
+\dQuote{plots} is a list() of ggplot2 plot objects; \dQuote{rows} defines the row number
+for each plot and \dQuote{cols} defines the column number for each plot. If we have
+two plots with both plots on a single row then \dQuote{rows} = c(1,1) and \dQuote{cols}
+= c(1,2).
 }
 \author{
 Rick Dean
