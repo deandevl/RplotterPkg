@@ -54,8 +54,8 @@
 #' @param plot_obs A logical which if \code{TRUE} plots a line for each observation along the axis margin.
 #' @param plot_obs_len A numeric that sets the length of the \code{plot_obs} lines.
 #' @param plot_obs_color A string that sets the color of the \code{plot_obs} lines.
-#' @param add_ons Is a vector of ggplot objects that will be appended to each histogram plot object.  This can be used
-#'  to override or add to all the multiple histogram plot objects.
+#' @param add_ons Is a vector of ggplot objects that will be appended to separate scatter plots. Each
+#'  element in this vector addresses a separate plot in the order of presentation.
 #' @param show_legend A logical that controls the appearance of the legend.
 #' @param legend_pos A string that sets the legend position. Acceptable values are
 #'  \dQuote{top}, \dQuote{bottom}, \dQuote{left}, \dQuote{right}.
@@ -126,7 +126,7 @@ multi_histogram_plot <- function(
   silent_NA_warning = FALSE,
   display_plot = TRUE) {
 
-  plot_fun <- function(variable_id, n_variables, plot_df, plot_x, plot_title){
+  plot_fun <- function(columns, variable_id, n_variables, plot_df, plot_x, plot_title, add_on){
     if(columns == 1){
       do_y_title <-  TRUE
       if(variable_id == n_variables){
@@ -191,10 +191,8 @@ multi_histogram_plot <- function(
       legend_pos = legend_pos,
       silent_NA_warning = silent_NA_warning
     )
-    if(!is.null(add_ons)) {
-      for(i in seq(from = 1, to = length(add_ons), by = 1)){
-        p1 <- p1 + add_ons[i]
-      }
+    if(!is.null(add_on)) {
+      p1 <- p1 + add_on
     }
     return(p1)
   }
@@ -205,25 +203,41 @@ multi_histogram_plot <- function(
     factor_levels <- levels(factor(df[[factor_var]]))
     factor_n <- length(factor_levels)
     plots <- vector(mode = "list", length = factor_n)
+    plot_add_ons <- vector(mode = "list", length = factor_n)
+    if(!is.null(add_ons)){
+      for(i in 1:length(add_ons)){
+        plot_add_ons[[i]] <- add_ons[[i]]
+      }
+    }
     for(i in seq(1, factor_n, 1)){
       factor_level <- factor_levels[[i]]
       level_df <- df_copy[base::get(factor_var) == factor_level]
       plots[[i]] <- plot_fun(
+        columns = columns,
         variable_id = i,
         n_variables = factor_n,
         plot_df = level_df,
         plot_x = factor_x,
-        plot_title = factor_level)
+        plot_title = factor_level,
+        add_on = plot_add_ons[[i]])
     }
   }else{
     plots <- vector(mode = "list", length = length(variables))
+    plot_add_ons <- vector(mode = "list", length = length(variables))
+    if(!is.null(add_ons)){
+      for(i in 1:length(add_ons)){
+        plot_add_ons[[i]] <- add_ons[[i]]
+      }
+    }
     for(i in seq(1, length(variables), 1)){
       plots[[i]] <- plot_fun(
+        columns = columns,
         variable_id = i,
         n_variables = length(variables),
         plot_df = df,
         plot_x = variables[[i]],
-        plot_title = variables[[i]])
+        plot_title = variables[[i]],
+        add_on = plot_add_ons[[i]])
     }
   }
 

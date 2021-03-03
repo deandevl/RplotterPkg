@@ -125,8 +125,8 @@ refer to the existing minimum and maximum.}
 
 \item{row_height}{An integer that sets the height of each plot column in inches.}
 
-\item{add_ons}{Is a vector of ggplot objects that will be appended to each density plot object.  This can be used
-to override or add to all the multiple density plot objects.}
+\item{add_ons}{Is a vector of ggplot objects that will be appended to separate scatter plots. Each
+element in this vector addresses a separate plot in the order of presentation.}
 
 \item{show_major_grids}{A logical that controls the appearance of major grids.}
 

@@ -127,8 +127,8 @@ dashed, blank}.}
 
 \item{do_coord_flip}{A logical which if \code{TRUE} will flip the x and y axis'.}
 
-\item{add_ons}{Is a vector of ggplot objects that will be appended to each range plot object.  This can be used
-to override or add to all the multiple range plot objects.}
+\item{add_ons}{Is a vector of ggplot objects that will be appended to separate scatter plots. Each
+element in this vector addresses a separate plot in the order of presentation.}
 
 \item{silent_NA_warning}{A logical that controls the appearance of a console warning when Na's
 are removed.}

@@ -126,7 +126,7 @@ multi_bar_plot <- function(
   silent_NA_warning = FALSE,
   display_plot = TRUE) {
 
-  plot_fun <- function(variable_id, n_variables, plot_df, plot_x, plot_title){
+  plot_fun <- function(columns, variable_id, n_variables, plot_df, plot_x, plot_title){
     if(columns == 1){
       do_y_title <-  TRUE
       if(variable_id == n_variables){
@@ -214,6 +214,7 @@ multi_bar_plot <- function(
       factor_level <- factor_levels[[i]]
       level_df <- df_copy[base::get(factor_var) == factor_level]
       plots[[i]] <- plot_fun(
+        columns = columns,
         variable_id = i,
         n_variables = factor_n,
         plot_df = level_df,
@@ -224,6 +225,7 @@ multi_bar_plot <- function(
     plots <- vector(mode = "list", length = length(variables))
     for(i in seq(1, length(variables), 1)){
       plots[[i]] <- plot_fun(
+        columns = columns,
         variable_id = i,
         n_variables = length(variables),
         plot_df = df_copy,

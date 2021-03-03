@@ -4,9 +4,9 @@
 #'  line connection.
 #'
 #' @param df The target data frame from which the scatter points are plotted.
-#' @param aes_x A string that sets the x axis variable name from \code{df}. Is a required discrete/continuous numeric,
-#'  Date/POSIXct variable.
-#' @param aes_y A string that sets the y axis variable name from \code{df}. Is a required discrete/continuous numeric.
+#' @param aes_x A string that sets the x axis variable name from \code{df}. Is a required discrete factor, continuous numeric,
+#'  or Date/POSIXct variable.
+#' @param aes_y A string that sets the y axis variable name from \code{df}. Is a required discrete factor or continuous numeric.
 #' @param aes_color A string that sets the variable name from \code{df} for the aesthetic mapping for color.
 #' @param aes_fill A string that sets the variable name from \code{df} for the aesthetic mapping for fill.
 #' @param aes_size A string that sets the variable name from \code{df} for the aesthetic mapping for size.
@@ -70,6 +70,13 @@
 #' @param legend_pos A string that sets the legend position. Acceptable values are
 #'  \dQuote{top}, \dQuote{bottom}, \dQuote{left}, \dQuote{right}.
 #' @param bold_y A numeric that plots a bold horizontal line at this y value intercept.
+#' @param CI_lwr A string that sets the column from \code{df} for the lower confidence interval with reference to the x or y axis.
+#' @param CI_upr A string that sets the column from \code{df} for the upper confidence interval with reference to the x or y axis.
+#' @param CI_dir A string that sets the axis orientation of the confidence intervals. Acceptable values are "x" or "y".
+#' @param CI_type A string that sets the confidence interval type. Acceptable values are "bar" or "ribbon".
+#' @param CI_color A string that sets the confidence interval color.
+#' @param CI_width A numeric that sets the confidence interval error cross bar width.
+#' @param CI_size A numeric that sets the confidence interval line thickness.
 #' @param silent_NA_warning A logical that controls the appearance of a console warning when Na's
 #' are removed.
 #'
@@ -133,6 +140,13 @@ create_scatter_plot <- function(
   show_legend = TRUE,
   legend_pos = "top",
   bold_y = NULL,
+  CI_lwr = NULL,
+  CI_upr = NULL,
+  CI_dir = "y",
+  CI_type = "bar",
+  CI_color = "black",
+  CI_width = 0.1,
+  CI_size = 1.0,
   silent_NA_warning = FALSE) {
   aplot <- ggplot(data = df, aes(x = !!rlang::sym(aes_x), y = !!rlang::sym(aes_y)))
 
@@ -447,6 +461,26 @@ create_scatter_plot <- function(
       theme(
         axis.title.y = element_blank()
       )
+  }
+
+  if(!is.null(CI_lwr) & !is.null(CI_upr)){
+    if(CI_type == "bar"){
+      if(CI_dir == "x"){
+        aplot <- aplot +
+          geom_errorbar(aes(xmin = !!sym(CI_lwr), xmax = !!sym(CI_upr)), color = CI_color, width = CI_width, size = CI_size)
+      }else if(CI_dir == "y"){
+        aplot <- aplot +
+          geom_errorbar(aes(ymin = !!sym(CI_lwr), ymax = !!sym(CI_upr)), color = CI_color, width = CI_width, size = CI_size)
+      }
+    }else if(CI_type == "ribbon"){
+      if(CI_dir == "x"){
+        aplot <- aplot +
+          geom_ribbon(aes(xmin = !!sym(CI_lwr), xmax = !!sym(CI_upr)), fill = CI_color, alpha = 0.4, size = CI_size)
+      }else if(CI_dir == "y"){
+        aplot <- aplot +
+          geom_ribbon(aes(ymin = !!sym(CI_lwr), ymax = !!sym(CI_upr)), fill = CI_color, alpha = 0.4, size = CI_size)
+      }
+    }
   }
 
   return(aplot)

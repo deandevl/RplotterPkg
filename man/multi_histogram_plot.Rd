@@ -141,8 +141,8 @@ refer to the existing minimum and maximum.}
 
 \item{plot_obs_color}{A string that sets the color of the \code{plot_obs} lines.}
 
-\item{add_ons}{Is a vector of ggplot objects that will be appended to each histogram plot object.  This can be used
-to override or add to all the multiple histogram plot objects.}
+\item{add_ons}{Is a vector of ggplot objects that will be appended to separate scatter plots. Each
+element in this vector addresses a separate plot in the order of presentation.}
 
 \item{show_legend}{A logical that controls the appearance of the legend.}
 

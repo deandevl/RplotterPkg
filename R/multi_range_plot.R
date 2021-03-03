@@ -50,8 +50,8 @@
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
 #' @param do_coord_flip A logical which if \code{TRUE} will flip the x and y axis'.
 #' @param display_plot A logical that if TRUE will display the plot
-#' @param add_ons Is a vector of ggplot objects that will be appended to each range plot object.  This can be used
-#'  to override or add to all the multiple range plot objects.
+#' @param add_ons Is a vector of ggplot objects that will be appended to separate scatter plots. Each
+#'  element in this vector addresses a separate plot in the order of presentation.
 #' @param silent_NA_warning A logical that controls the appearance of a console warning when Na's
 #' are removed.
 #'
@@ -108,7 +108,7 @@ multi_range_plot <- function(
   add_ons = NULL,
   silent_NA_warning = FALSE
 ){
-  plot_fun <- function(variable_id, n_variables, plot_df, plot_x, plot_title){
+  plot_fun <- function(columns, variable_id, n_variables, plot_df, plot_x, plot_title, add_on){
 
     y_title <-  aes_y
     if(!is.null(y_titles)){
@@ -171,10 +171,8 @@ multi_range_plot <- function(
       do_coord_flip = do_coord_flip,
       silent_NA_warning = silent_NA_warning
     )
-    if(!is.null(add_ons)) {
-      for(i in seq(from = 1, to = length(add_ons), by = 1)){
-        p1 <- p1 + add_ons[i]
-      }
+    if(!is.null(add_on)) {
+      p1 <- p1 + add_on
     }
     return(p1)
   }
@@ -182,15 +180,23 @@ multi_range_plot <- function(
   factor_levels <- levels(factor(df_copy[[factor_var]]))
   factor_n <- length(factor_levels)
   plots <- vector(mode = "list", length = factor_n)
+  plot_add_ons <- vector(mode = "list", length = factor_n)
+  if(!is.null(add_ons)){
+    for(i in 1:length(add_ons)){
+      plot_add_ons[[i]] <- add_ons[[i]]
+    }
+  }
   for(i in seq(1, factor_n, 1)){
     factor_level <- factor_levels[[i]]
     level_df <- df_copy[base::get(factor_var) == factor_level]
     plots[[i]] <- plot_fun(
+      columns = columns,
       variable_id = i,
       n_variables = factor_n,
       plot_df = level_df,
       plot_x = factor_x,
-      plot_title = factor_level)
+      plot_title = factor_level,
+      add_on = plot_add_ons[[i]])
   }
 
   cols <- c()

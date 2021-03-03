@@ -55,16 +55,23 @@ create_scatter_plot(
   show_legend = TRUE,
   legend_pos = "top",
   bold_y = NULL,
+  CI_lwr = NULL,
+  CI_upr = NULL,
+  CI_dir = "y",
+  CI_type = "bar",
+  CI_color = "black",
+  CI_width = 0.1,
+  CI_size = 1,
   silent_NA_warning = FALSE
 )
 }
 \arguments{
 \item{df}{The target data frame from which the scatter points are plotted.}
 
-\item{aes_x}{A string that sets the x axis variable name from \code{df}. Is a required discrete/continuous numeric,
-Date/POSIXct variable.}
+\item{aes_x}{A string that sets the x axis variable name from \code{df}. Is a required discrete factor, continuous numeric,
+or Date/POSIXct variable.}
 
-\item{aes_y}{A string that sets the y axis variable name from \code{df}. Is a required discrete/continuous numeric.}
+\item{aes_y}{A string that sets the y axis variable name from \code{df}. Is a required discrete factor or continuous numeric.}
 
 \item{aes_color}{A string that sets the variable name from \code{df} for the aesthetic mapping for color.}
 
@@ -175,6 +182,20 @@ dashed, blank} if \code{connect} is TRUE.}
 \dQuote{top}, \dQuote{bottom}, \dQuote{left}, \dQuote{right}.}
 
 \item{bold_y}{A numeric that plots a bold horizontal line at this y value intercept.}
+
+\item{CI_lwr}{A string that sets the column from \code{df} for the lower confidence interval with reference to the x or y axis.}
+
+\item{CI_upr}{A string that sets the column from \code{df} for the upper confidence interval with reference to the x or y axis.}
+
+\item{CI_dir}{A string that sets the axis orientation of the confidence intervals. Acceptable values are "x" or "y".}
+
+\item{CI_type}{A string that sets the confidence interval type. Acceptable values are "bar" or "ribbon".}
+
+\item{CI_color}{A string that sets the confidence interval color.}
+
+\item{CI_width}{A numeric that sets the confidence interval error cross bar width.}
+
+\item{CI_size}{A numeric that sets the confidence interval line thickness.}
 
 \item{silent_NA_warning}{A logical that controls the appearance of a console warning when Na's
 are removed.}

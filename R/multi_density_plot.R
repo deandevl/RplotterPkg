@@ -48,8 +48,8 @@
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
 #' @param col_width An integer that sets the width of each plot column in inches.
 #' @param row_height An integer that sets the height of each plot column in inches.
-#' @param add_ons Is a vector of ggplot objects that will be appended to each density plot object.  This can be used
-#'  to override or add to all the multiple density plot objects.
+#' @param add_ons Is a vector of ggplot objects that will be appended to separate scatter plots. Each
+#'  element in this vector addresses a separate plot in the order of presentation.
 #' @param show_major_grids A logical that controls the appearance of major grids.
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
 #' @param plot_obs A logical which if \code{TRUE} plots a line for each observation along the axis margin.
@@ -123,7 +123,7 @@ multi_density_plot <- function(
   na.rm = TRUE,
   display_plot = TRUE){
 
-  plot_fun <- function(variable_id, n_variables, plot_df, plot_x, plot_title){
+  plot_fun <- function(columns, variable_id, n_variables, plot_df, plot_x, plot_title, add_on){
     if(columns == 1){
       do_y_title <-  TRUE
       if(variable_id == n_variables){
@@ -185,10 +185,8 @@ multi_density_plot <- function(
       na.rm = na.rm
     )
 
-    if(!is.null(add_ons)) {
-      for(i in seq(from = 1, to = length(add_ons), by = 1)){
-        p1 <- p1 + add_ons[i]
-      }
+    if(!is.null(add_on)) {
+      p1 <- p1 + add_on
     }
     return(p1)
   }
@@ -199,25 +197,41 @@ multi_density_plot <- function(
     factor_levels <- levels(factor(df_copy[[factor_var]]))
     factor_n <- length(factor_levels)
     plots <- vector(mode = "list", length = factor_n)
+    plot_add_ons <- vector(mode = "list", length = factor_n)
+    if(!is.null(add_ons)){
+      for(i in 1:length(add_ons)){
+        plot_add_ons[[i]] <- add_ons[[i]]
+      }
+    }
     for(i in seq(1, factor_n, 1)){
       factor_level <- factor_levels[[i]]
       level_df <- df_copy[base::get(factor_var) == factor_level]
       plots[[i]] <- plot_fun(
+        columns = columns,
         variable_id = i,
         n_variables = factor_n,
         plot_df = level_df,
         plot_x = factor_x,
-        plot_title = factor_level)
+        plot_title = factor_level,
+        add_on = plot_add_ons[[i]])
     }
   }else{
     plots <- vector(mode = "list", length = length(variables))
+    plot_add_ons <- vector(mode = "list", length = length(variables))
+    if(!is.null(add_ons)){
+      for(i in 1:length(add_ons)){
+        plot_add_ons[[i]] <- add_ons[[i]]
+      }
+    }
     for(i in seq(1, length(variables), 1)){
       plots[[i]] <- plot_fun(
+        columns = columns,
         variable_id = i,
         n_variables = length(variables),
         plot_df = df,
         plot_x = variables[[i]],
-        plot_title = variables[[i]])
+        plot_title = variables[[i]],
+        add_on = plot_add_ons[[i]])
     }
   }
 

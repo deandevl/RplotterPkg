@@ -14,10 +14,10 @@ TSstudio::ts_info(TSstudio::USVSales)
 
 USUnRate_df <- RtsaPkg::ts_to_df(TSstudio::USUnRate) %>%
   filter(DateTime > as.Date("1975-12-30")) %>%
-  rename(USUnRate = Value)
+  rename(USUnRate = V1)
 
 USVSales_df <- RtsaPkg::ts_to_df(TSstudio::USVSales) %>%
-  rename(USVSales = Value)
+  rename(USVSales = V1)
 
 USUnRate_USVSales_df <- dplyr::inner_join(USUnRate_df, USVSales_df)
 

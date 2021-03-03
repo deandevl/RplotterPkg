@@ -79,8 +79,15 @@
 #'  \dQuote{top}, \dQuote{bottom}, \dQuote{left}, \dQuote{right}.
 #' @param display_plot A logical that if TRUE will display the plot
 #' @param bold_y A numeric that plots a bold horizontal line at this y value intercept.
-#' @param add_ons Is a vector of ggplot objects that will be appended to each scatter plot object.  This can be used
-#'  to override or add to all the multiple scatter plot objects.
+#' @param CI_lwr A string that sets the column from \code{df} for the lower confidence interval with reference to the x or y axis.
+#' @param CI_upr A string that sets the column from \code{df} for the upper confidence interval with reference to the x or y axis.
+#' @param CI_dir A string that sets the axis orientation of the confidence intervals. Acceptable values are "x" or "y".
+#' @param CI_type A string that sets the confidence interval type. Acceptable values are "bar" or "ribbon".
+#' @param CI_color A string that sets the confidence interval color.
+#' @param CI_width A numeric that sets the confidence interval error cross bar width.
+#' @param CI_size A numeric that sets the confidence interval line thickness.
+#' @param add_ons Is a vector of ggplot objects that will be appended to separate scatter plots. Each
+#'  element in this vector addresses a separate plot in the order of presentation.
 #' @param silent_NA_warning A logical that controls the appearance of a console warning when NA's
 #' are removed at the start/end of the line.
 #'
@@ -152,10 +159,17 @@ multi_scatter_plot <- function(
   legend_pos = "top",
   display_plot = TRUE,
   bold_y = NULL,
+  CI_lwr = NULL,
+  CI_upr = NULL,
+  CI_dir = "y",
+  CI_type = "bar",
+  CI_color = "black",
+  CI_width = 0.1,
+  CI_size = 1.0,
   add_ons = NULL,
   silent_NA_warning = FALSE){
 
-  plot_fun <- function(variable_id, n_variables, plot_df, plot_x, plot_title){
+  plot_fun <- function(columns, variable_id, n_variables, plot_df, plot_x, plot_title, add_on){
     if(columns == 1){
       do_y_title <-  TRUE
       if(variable_id == n_variables){
@@ -225,14 +239,19 @@ multi_scatter_plot <- function(
       show_major_grids = show_major_grids,
       show_minor_grids = show_minor_grids,
       bold_y = bold_y,
+      CI_lwr = CI_lwr,
+      CI_upr = CI_upr,
+      CI_dir = CI_dir,
+      CI_type = CI_type,
+      CI_color = CI_color,
+      CI_width = CI_width,
+      CI_size = CI_size,
       show_legend = show_legend,
       legend_pos = legend_pos,
       silent_NA_warning = silent_NA_warning
     )
-    if(!is.null(add_ons)) {
-      for(i in seq(from = 1, to = length(add_ons), by = 1)){
-        p1 <- p1 + add_ons[i]
-      }
+    if(!is.null(add_on)) {
+      p1 <- p1 + add_on
     }
     return(p1)
   }
@@ -243,25 +262,41 @@ multi_scatter_plot <- function(
     factor_levels <- levels(factor(df_copy[[factor_var]]))
     factor_n <- length(factor_levels)
     plots <- vector(mode = "list", length = factor_n)
+    plot_add_ons <- vector(mode = "list", length = factor_n)
+    if(!is.null(add_ons)){
+      for(i in 1:length(add_ons)){
+        plot_add_ons[[i]] <- add_ons[[i]]
+      }
+    }
     for(i in seq(1, factor_n, 1)){
       factor_level <- factor_levels[[i]]
       level_df <- df_copy[base::get(factor_var) == factor_level]
       plots[[i]] <- plot_fun(
+        columns = columns,
         variable_id = i,
         n_variables = factor_n,
         plot_df = level_df,
         plot_x = factor_x,
-        plot_title = factor_level)
+        plot_title = factor_level,
+        add_on = plot_add_ons[[i]])
     }
   }else{
     plots <- vector(mode = "list", length = length(variables))
+    plot_add_ons <- vector(mode = "list", length = length(variables))
+    if(!is.null(add_ons)){
+      for(i in 1:length(add_ons)){
+        plot_add_ons[[i]] <- add_ons[[i]]
+      }
+    }
     for(i in seq(1, length(variables), 1)){
       plots[[i]] <- plot_fun(
+        columns = columns,
         variable_id = i,
         n_variables = length(variables),
         plot_df = df_copy,
         plot_x = variables[[i]],
-        plot_title = variables[[i]])
+        plot_title = variables[[i]],
+        add_on = plot_add_ons[[i]])
     }
   }
 

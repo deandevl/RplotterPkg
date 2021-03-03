@@ -58,6 +58,13 @@ multi_scatter_plot(
   legend_pos = "top",
   display_plot = TRUE,
   bold_y = NULL,
+  CI_lwr = NULL,
+  CI_upr = NULL,
+  CI_dir = "y",
+  CI_type = "bar",
+  CI_color = "black",
+  CI_width = 0.1,
+  CI_size = 1,
   add_ons = NULL,
   silent_NA_warning = FALSE
 )
@@ -186,8 +193,22 @@ dashed, blank} if \code{connect} is TRUE.}
 
 \item{bold_y}{A numeric that plots a bold horizontal line at this y value intercept.}
 
-\item{add_ons}{Is a vector of ggplot objects that will be appended to each scatter plot object.  This can be used
-to override or add to all the multiple scatter plot objects.}
+\item{CI_lwr}{A string that sets the column from \code{df} for the lower confidence interval with reference to the x or y axis.}
+
+\item{CI_upr}{A string that sets the column from \code{df} for the upper confidence interval with reference to the x or y axis.}
+
+\item{CI_dir}{A string that sets the axis orientation of the confidence intervals. Acceptable values are "x" or "y".}
+
+\item{CI_type}{A string that sets the confidence interval type. Acceptable values are "bar" or "ribbon".}
+
+\item{CI_color}{A string that sets the confidence interval color.}
+
+\item{CI_width}{A numeric that sets the confidence interval error cross bar width.}
+
+\item{CI_size}{A numeric that sets the confidence interval line thickness.}
+
+\item{add_ons}{Is a vector of ggplot objects that will be appended to separate scatter plots. Each
+element in this vector addresses a separate plot in the order of presentation.}
 
 \item{silent_NA_warning}{A logical that controls the appearance of a console warning when NA's
 are removed at the start/end of the line.}
