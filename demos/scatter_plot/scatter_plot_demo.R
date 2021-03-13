@@ -4,7 +4,7 @@ library(ggplot2)
 library(RplotterPkg)
 
 # -------------First demo on ggplot::economics data set-----------------
-RplotterPkg::create_scatter_plot(
+unemploy_plot <- RplotterPkg::create_scatter_plot(
   df = ggplot2::economics,
   aes_x = "date",
   aes_y = "unemploy",
@@ -20,6 +20,17 @@ RplotterPkg::create_scatter_plot(
   x_major_breaks = seq.Date(from = as.Date("1964-01-01"), to = as.Date("2020-01-01"), by = "4 year"),
   show_minor_grids = FALSE
 ) + geom_hline(aes(yintercept = 8000), color = "red", linetype = "dashed", lwd = 1)
+unemploy_plot
+
+# save the plot
+ggsave(
+  filename = "demos/scatter_plot/unemployment_plot.svg",
+  plot = unemploy_plot,
+  device = "svg",
+  width = 40,
+  height = 40,
+  units = "cm"
+)
 
 # -----------palmerpenguins: mean flipper length over years by species----------
 data("penguins", package = "palmerpenguins")
