@@ -1,0 +1,12 @@
+Package: RplotterPkg
+Title: R Plotting Functions Using ggplot2
+Version: 0.0.0.9000
+Author: Rick Dean, <deanr3@bardstown.com>
+Maintainer: Rick Dean, <deanr3@bardstown.com>
+Description: R and ggplot2 based plotting functions.
+Imports: data.table,ggplot2,ggrepel,gt,gtable,purrr,rlang,glue
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

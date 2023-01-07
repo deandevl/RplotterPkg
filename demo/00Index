@@ -1,0 +1,37 @@
+bar_count_happy_religion        bar plot of counts happy by religion
+bar_count_religions             bar plot of counts across religions
+bar_percent_religions           bar plot of percent across religions
+bar_weights                     bar plot of weights across people
+box_census                      box plot of census data
+box_country_donors              box plot of organ donors across countries
+density_cumulative_prob         density plot of normal cumulative probabilities
+density_midwest_area            density plot of state areas in midwest
+density_observations_air        density plot with observations of air quality
+density_ridge_home_values       density ridge plot of home values
+heatmap_baseball_spinvelocity   heatmap plot of baseball spin vs velocity
+heatmap_home_sales              heatmap plot of home sales
+histo_state_area_obs            histogram of state areas with observations
+histo_beta_distrib              histogram of simulated beta distribution
+histo_census_income             histogram of census derived household income
+histo_college_earnings          histogram of college earnings
+histo_state_percollege          histogram comparing Wis. Ohio on percent college
+multi_panel_1_3_trees           multipanel 1 x 3 on tree variables
+multi_panel_1_2_alcohol_regres  multipanel 1 x 2 on alcohol regress on strength
+multi_panel_1_2_mpg             multipanel 1 x 2 on cars mpg
+multi_panel_1_3_penguins        multipanel 1 x 3 on penguin variables
+multi_panel_1_4_gapminder       multipanel 1 x 4 on gapminder
+multi_panel_1_6_child_poverty   multipanel 1 x 6 on child poverty variables
+multi_panel_2_2_religions       multipanel 2 x 2 on religion variables
+multi_panel_3_2_midwest         multipanel 3 x 2 on midwest variables
+multi_panel_3_5_child_poverty   multipanel 3 x 5 on child poverty variables
+range_penguins                  range plot on penguin variables
+scatter_color_gapminder         scatter plot of aes color of life-exp across years
+scatter_linetype_penguins       scatter plot of aes linetype of penguin variables
+scatter_POSIXct_yosemite        scatter plot of yosemite eruptions across time
+scatter_size_gapminder          scatter plot of aes pop. size with life-exp
+scatter_size_mtcars             scatter plot of aes mpg size of hp vs displacement
+scatter_unemployment            scatter plot of unemployment across the years
+stick_air_passengers            stick plot of air passenger counts across the years
+stick_births                    stick plot of births across the years
+table_employees                 table of employee information
+table_graphic_cars              graphic table of car statistics
