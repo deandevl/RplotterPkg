@@ -74,8 +74,8 @@ multi_panel_grid <- function (
   )
 
   # for debug: show layout
-  gtable::gtable_show_layout(plots_table)
-  browser()
+  #gtable::gtable_show_layout(plots_table)
+
   idx <- 0
   # add title to table?
   if(!is.null(title_grob)){
