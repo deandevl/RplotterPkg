@@ -30,7 +30,7 @@ build_plot <- function(id, dt, regions){
     df = plot_dt,
     aes_x = "Religion",
     aes_y = "Percent",
-    title = regions[[id]],
+    subtitle = regions[[id]],
     x_title = "Religion",
     y_title = y_title,
     hide_y_tics = hide_y_tics,
@@ -57,10 +57,9 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(6.4,6),
-  row_heights = c(4,4),
-  title = "Percent of religions across US regions",
-  subtitle = "Source: socviz::gss_sm"
+  col_widths = c(10.4,10),
+  row_heights = c(9,9),
+  title = "Percent of religions across US regions"
 )
 
 

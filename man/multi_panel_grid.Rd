@@ -6,10 +6,10 @@
 \usage{
 multi_panel_grid(
   layout,
-  col_widths = c(4, 4),
-  row_heights = c(4, 4),
+  col_widths = c(8, 8),
+  row_heights = c(8, 8),
   title = NULL,
-  subtitle = NULL,
+  title_fontsz = 14,
   display_plot = TRUE
 )
 }
@@ -17,16 +17,16 @@ multi_panel_grid(
 \item{layout}{A named list containing a list for plot objects or grobs "plots", row locations "rows" vector,
 column locations "cols" vector. This argument is required.}
 
-\item{col_widths}{A numeric vector of column widths in inches. Note that if there are two
-columns 4 inches wide then the argument should be \code{c(4,4)}.}
+\item{col_widths}{A numeric vector of each column's widths in centimeters. Note that if there are two
+columns 8 centimeters wide then the argument should be \code{c(8,8)}.}
 
-\item{row_heights}{A numeric vector of row heights in inches. Note that if there are two
-rows 5 inches high then the argument should be \code{c(5,5)}. If we have one row 5 inches high then
-this argument should just be assigned the value 5.}
+\item{row_heights}{A numeric vector of each row's heights in centimeters. Note that if there are two
+rows 10 centimeters high then the argument should be \code{c(10,10)}. If we have one row 10 centimeters
+high then this argument should just be assigned the value 10.}
 
 \item{title}{A string that sets the title of the figure.}
 
-\item{subtitle}{A string that sets the subtitle of the figure.}
+\item{title_fontsz}{A numeric that sets the title's font size. The default is 14.}
 
 \item{display_plot}{A logical that if TRUE will display the plot.}
 }
@@ -34,7 +34,7 @@ this argument should just be assigned the value 5.}
 A TableGrob object if \code{display_plot} is FALSE.
 }
 \description{
-Function creates a figure with title/subtitle and arranges multiple plots/grobs
+Function creates a figure with title and arranges multiple plots/grobs
 across a given number of rows and columns. The function depends on the \code{grid}
 and \code{gtable} packages. As an example of defining the \code{layout} argument,
 \code{layout} has three named elements: "plots", "rows", and "cols".

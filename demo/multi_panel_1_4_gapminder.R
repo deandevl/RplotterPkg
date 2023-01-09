@@ -39,7 +39,7 @@ build_plot <- function(id, dt, years){
     x_major_breaks = seq(from = 20, to = 80, by = 10),
     y_limits = c(0, 400),
     y_major_breaks = seq(from = 0, to = 400, by = 50),
-    title = years[[id]],
+    subtitle = years[[id]],
     x_title = "Life Expectancy",
     y_title = y_title,
     hide_y_tics = hide_y_tics,
@@ -67,8 +67,7 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(4.2, 3.8, 3.8, 4.8),
-  row_heights = 5,
-  title = "Life expectancy vs population(millions) across continents",
-  subtitle = "dataset: gapminder"
+  col_widths = c(8.2, 7.8, 7.8, 10.6),
+  row_heights = 10,
+  title = "Life expectancy vs population(millions) across continents"
 )

@@ -10,20 +10,17 @@ library(RplotterPkg)
 
 # -----------First demo: Ridge plot densities for midwest variables
 dt <- data.table::setDT(ggplot2::midwest) %>%
-  .[, .(perchsd, percollege, percprof, percwhite, percblack, percasian)]
-
-
-data.table::setnames(dt,
-  old = c("perchsd", "percollege", "percprof", "percwhite", "percblack", "percasian"),
-  new = c("HS Diploma", "College Edu", "Prof Deg", "White", "Black", "Asian")
-)
+  .[, .(perchsd, percollege, percprof, percwhite, percblack, percasian)] %>%
+  data.table::setnames(
+    old = c("perchsd", "percollege", "percprof", "percwhite", "percblack", "percasian"),
+    new = c("HS Diploma", "College Edu", "Prof Deg", "White", "Black", "Asian")
+  )
 
 midwest_ridge_plot <- RplotterPkg::create_density_ridge_plot(
   df = dt,
   bw = "SJ",
   variables = c("HS Diploma", "College Edu", "Prof Deg", "White", "Black", "Asian"),
   title = "Percent Distribution Among Midwest Counties",
-  subtitle = "2000 US census - 437 counties",
   x_limits = c(0, 100),
   x_major_breaks = seq(0, 100, 10),
   density_fill = "blue",
@@ -91,7 +88,8 @@ data.table::setnames(home_vals_wide_dt,
 RplotterPkg::create_density_ridge_plot(
   df = home_vals_wide_dt,
   variables = names(home_vals_wide_dt)[3:8],
-  subtitle = "Median Home Values Across Selected Oregon Counties",
-  #subtitle = "Source: Census Bureau 2015-2019 ACS (acs/acs5)",
-  plot_heights = c(1.5, 1.5, 1.5, 1.5, 1.5, 1.5)
+  title = "Median Home Values Across Selected Oregon Counties",
+  y_show_axis = TRUE,
+  plot_heights = 3.0,
+  plot_widths = 30.0
 )

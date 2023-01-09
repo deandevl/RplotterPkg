@@ -37,7 +37,7 @@ build_plot <- function(id, dt, states){
     df = plot_dt,
     aes_x = "High_School",
     aes_y = "Child_Poverty",
-    title = state,
+    subtitle = state,
     x_title = "% HS Diploma",
     y_title = y_title,
     hide_y_tics = hide_y_tics,
@@ -56,7 +56,6 @@ plot_lst <- purrr::map(1:5,
                         dt = child_poverty_dt,
                         states = states
 )
-names(plot_lst) <- states
 
 # Summarize the child poverty across the states by creating a graphic summary table
 mean_child_poverty_dt <- child_poverty_dt[, .(N = .N,  Mean_Child_Poverty = unlist(lapply(.SD, mean))), by = State, .SDcols = "Child_Poverty"] %>%
@@ -83,8 +82,7 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(2.1, 1.8, 1.8, 1.8, 1.8),
-  row_heights = c(3.5, 3.4, 0.5),
-  title = "Child Poverty vs Adult Education",
-  subtitle = "Percentages in counties across midwest states"
+  col_widths = c(6.4, 5.8, 5.8, 5.8, 5.8),
+  row_heights = c(7.5, 7.4, 2),
+  title = "Child Poverty vs Adult Education in counties across midwest states"
 )

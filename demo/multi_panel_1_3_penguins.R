@@ -34,7 +34,7 @@ build_plot <- function(id, dt, islands){
     aes_y = "avg_body_mass",
     aes_y_min = "min_body_mass",
     aes_y_max = "max_body_mass",
-    title = islands[[id]],
+    subtitle = islands[[id]],
     x_title = "Species",
     y_title = y_title,
     hide_y_tics = hide_y_tics,
@@ -68,10 +68,9 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(5.4, 5, 5),
-  row_heights = 5,
-  title = "Average and Range of Penguins Body Mass(g) by Island/Species",
-  subtitle = "Source: palmerpenguins"
+  col_widths = c(9, 8, 8),
+  row_heights = 10,
+  title = "Average and Range of Penguins Body Mass(g) by Island/Species"
 )
 
 

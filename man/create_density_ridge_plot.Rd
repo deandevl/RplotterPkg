@@ -7,14 +7,15 @@
 create_density_ridge_plot(
   df,
   variables,
-  plot_heights = NULL,
+  plot_heights = 3.5,
+  plot_widths = 24,
   bw = "nrd0",
   adjust = 1,
   kernel = "gaussian",
   n = 512,
   na.rm = TRUE,
   title = NULL,
-  subtitle = NULL,
+  title_fontsz = 14,
   x_title = NULL,
   rot_x_tic_angle = 0,
   density_size = 1,
@@ -38,8 +39,11 @@ create_density_ridge_plot(
 
 \item{variables}{A vector that names the x axis variables from \code{df} for plotting their densities.}
 
-\item{plot_heights}{A vector that sets the plot height in inches for each variable in \code{variables}.
-If this argument is NULL, then each plot will be 1.2 inches in height.}
+\item{plot_heights}{A numeric that sets the plot height in centimeters for each variable in \code{variables}.
+The default is 3.5 centimeters in height for each plot.}
+
+\item{plot_widths}{A numeric that sets the plot width in centimeters for each variable in \code{variables}.
+The default is 24 centimeters in width for each plot.}
 
 \item{bw}{A string or numeric that sets the smoothing bandwidth to be used with the KDE function.}
 
@@ -55,7 +59,7 @@ values cause an error.}
 
 \item{title}{A string that sets the overall title.}
 
-\item{subtitle}{A string that sets the overall subtitle.}
+\item{title_fontsz}{A numeric that sets the title's font size. The default is 14.}
 
 \item{x_title}{A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.}
 
@@ -100,6 +104,11 @@ Function creates ggplot2 based density plots stacked vertically (also known as r
 The function's density arguments mirror most of the arguments available
 from \code{\link{density}} for the Kernel Density Estimation (KDE). See the \code{\link{density}} help page
 for more information.
+}
+\details{
+if \code{display_plot} is TRUE then the plots will be displayed. If \code{display_plot} is FALSE then
+the function returns a plot object which can be displayed from the console by entering
+\code{grid::grid.draw(plot object)}
 }
 \author{
 Rick Dean

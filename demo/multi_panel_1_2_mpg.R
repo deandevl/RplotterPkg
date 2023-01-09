@@ -62,8 +62,8 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = 10,
-  row_heights = c(4.5, 4.5),
-  subtitle = "City vs Highway MPG Across Compacts",
+  col_widths = 30,
+  row_heights = c(9, 9),
+  title = "City vs Highway MPG Across Compacts",
 )
 

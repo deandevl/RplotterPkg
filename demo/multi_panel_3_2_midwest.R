@@ -44,7 +44,7 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(6.4,6),
-  row_heights = c(3.0, 3.0, 3.0),
+  col_widths = c(10.4,10),
+  row_heights = c(7.5, 7.5, 7.5),
   title = "Density Distributions for Selected ggplot2::midwest % Variables"
 )

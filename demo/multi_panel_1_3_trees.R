@@ -37,15 +37,16 @@ build_plot <- function(id, dt, measures){
   aplot <- RplotterPkg::create_histogram_plot(
     df = plot_dt,
     aes_x = "Measure",
-    title = measures[[id]],
+    subtitle = measures[[id]],
     y_title = y_title,
     hide_y_tics = hide_y_tics,
     bar_color = "black",
     bar_fill = "green",
     bar_labels = T,
+    bar_label_size = 3,
     binwidth = 0.5,
-    x_limits = c(-3,3.5),
-    x_major_breaks = seq(from = -3, to = 3.5, by = 0.5),
+    x_limits = c(-3.0,4.0),
+    x_major_breaks = seq(from = -3.0, to = 4.0, by = 1.0),
     y_limits = c(0,8)
   )
   return(aplot)
@@ -65,7 +66,7 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths =  c(5.4, 5, 5),
-  row_heights = 5,
+  col_widths =  c(8.4, 8, 8),
+  row_heights = 8,
   title = "Girth, Height, Volume of data(trees)"
 )

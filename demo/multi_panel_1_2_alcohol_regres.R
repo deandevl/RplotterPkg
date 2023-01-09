@@ -1,11 +1,11 @@
 library(data.table)
-library(RregressPkg)
 library(ggplot2)
 library(here)
+library(RregressPkg)
 library(RplotterPkg)
 
-# This demo has 2 ggplot2 objects with layout of 1 row 5 inches high and
-# 2 columns 5 inches wide.
+# This demo has 2 ggplot2 objects with layout of 1 row 14 centimeters high and
+# 2 columns 15.4 and 15 centimeters wide.
 
 data_path <- file.path(here::here(), "demo", "data", "alcoholarm.txt")
 
@@ -34,8 +34,7 @@ reduced_plot <- RplotterPkg::create_scatter_plot(
   df = plot_df,
   aes_x = "Alcohol",
   aes_y = "Strength",
-  title = "Reduced Model",
-  subtitle = paste0("strength ~ mean(strength); SSE = ",round(reduced_ss,digits = 2)),
+  subtitle = paste0("Reduced Model: strength ~ mean(strength); SSE = ",round(reduced_ss,digits = 2)),
   x_title = "Alcohol",
   y_title = "Strength",
   rot_y_tic_label = T,
@@ -47,8 +46,7 @@ full_plot <- RplotterPkg::create_scatter_plot(
   df = plot_df,
   aes_x = "Alcohol",
   aes_y = "Strength",
-  title = "Full Model",
-  subtitle = paste0("strength ~ alcohol; SSE = ",round(full_ss, digits = 2)),
+  subtitle = paste0("Full Model: strength ~ alcohol; SSE = ",round(full_ss, digits = 2)),
   rot_y_tic_label = T,
   x_title = "Alcohol",
   y_title = NULL,
@@ -63,8 +61,8 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(5.4,5),
-  row_heights = 5,
+  col_widths = c(15.4,15),
+  row_heights = 14,
   title = "Reduced and Full Model of Alcohol vs Strength"
 )
 

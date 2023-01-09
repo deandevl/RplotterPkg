@@ -5,10 +5,16 @@
 #'  from \code{\link{density}} for the Kernel Density Estimation (KDE). See the \code{\link{density}} help page
 #'  for more information.
 #'
+#' if \code{display_plot} is TRUE then the plots will be displayed. If \code{display_plot} is FALSE then
+#' the function returns a plot object which can be displayed from the console by entering
+#' \code{grid::grid.draw(plot object)}
+#'
 #' @param df The source data frame from which the densities are plotted.
 #' @param variables A vector that names the x axis variables from \code{df} for plotting their densities.
-#' @param plot_heights A vector that sets the plot height in inches for each variable in \code{variables}.
-#'   If this argument is NULL, then each plot will be 1.2 inches in height.
+#' @param plot_heights A numeric that sets the plot height in centimeters for each variable in \code{variables}.
+#'   The default is 3.5 centimeters in height for each plot.
+#' @param plot_widths A numeric that sets the plot width in centimeters for each variable in \code{variables}.
+#'   The default is 24 centimeters in width for each plot.
 #' @param bw  A string or numeric that sets the smoothing bandwidth to be used with the KDE function.
 #' @param adjust A numeric that adjusts \code{bw} since the actual bandwidth is computed as \code{adjust*bw}.
 #' @param kernel A string that set the type of Kernel Density Estimation (KDE). Acceptable values are "gaussian",
@@ -17,7 +23,7 @@
 #' @param na.rm A logical which if \code{TRUE}, missing values are removed from \code{df}. If \code{FALSE} any missing
 #'  values cause an error.
 #' @param title A string that sets the overall title.
-#' @param subtitle A string that sets the overall subtitle.
+#' @param title_fontsz A numeric that sets the title's font size. The default is 14.
 #' @param x_title A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.
 #' @param rot_x_tic_angle A numeric that sets the angle of rotation for the x tic labels. When x tic labels are long,
 #'  a value of 40 for this argument usually works well.
@@ -55,14 +61,15 @@
 create_density_ridge_plot <- function(
   df,
   variables,
-  plot_heights = NULL,
+  plot_heights = 3.5,
+  plot_widths = 24,
   bw = "nrd0",
   adjust = 1,
   kernel = "gaussian",
   n = 512,
   na.rm = TRUE,
   title = NULL,
-  subtitle = NULL,
+  title_fontsz = 14,
   x_title = NULL,
   rot_x_tic_angle = 0,
   density_size = 1.0,
@@ -168,18 +175,13 @@ create_density_ridge_plot <- function(
       do_x_axis = do_x_axis
     )
   }
-
-  titles <- list()
+  row_heights <- c()
+  title_grob <- NULL
   # Are we doing a title
   if(!is.null(title)){
-    titles[["a_title"]] <- grid::textGrob(label = title, gp = grid::gpar(col = "black", fontsize = 18, fontface = 2L))
+    title_grob <- grid::textGrob(label = title, gp = grid::gpar(col = "black", fontsize = title_fontsz, fontface = 2L))
+    row_heights <- c(1.0, row_heights)
   }
-
-  # Are we doing a subtitle
-  if(!is.null(subtitle)){
-    titles[["a_subtitle"]] <- grid::textGrob(label = subtitle, gp = grid::gpar(col = "black", fontsize = 14))
-  }
-
 
   # convert plots from ggplot to grobs
   plot_grobs <- vector(mode = "list", length = length(plots))
@@ -188,37 +190,31 @@ create_density_ridge_plot <- function(
   }
 
   # define row heights
-  row_heights <- rep(1.2, length(variables))
-  if(!is.null(plot_heights)){
-    row_heights <- plot_heights
-  }
-  heights_v <- c(rep(1.0, length(titles)), row_heights)
-  heights_units <- rep("in",length(row_heights))
-  heights_units <- c(rep("cm", length(titles)),heights_units)
+  row_heights <- c(row_heights, rep(plot_heights, length(variables)))
 
   # define gtable
   plots_table <- gtable::gtable(
     name = "plots_table",
-    widths = grid::unit(x = 8, units = "in"),
-    heights = grid::unit(heights_v, units = heights_units)
+    widths = grid::unit(x = plot_widths, units = "cm"),
+    heights = grid::unit(x = row_heights, units = "cm")
   )
 
   # for debug: show layout
-  # gtable::gtable_show_layout(plots_table)
+  #gtable::gtable_show_layout(plots_table)
 
-  # add titles to table
   idx <- 1
-  for(item in titles){
+  # add title to table?
+  if(!is.null(title_grob)){
     plots_table <- gtable::gtable_add_grob(
       x = plots_table,
-      grobs = item,
-      t = idx,
+      grobs = title_grob,
+      t = 1,
       l = 1,
       r = 1
     )
-    idx <- idx + 1
+    idx <- 2
   }
-
+  # add the plots
   for(i in seq_along(variables)){
     plots_table <- gtable::gtable_add_grob(
       x = plots_table,

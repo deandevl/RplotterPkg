@@ -26,7 +26,7 @@ build_plot <- function(id, dt, variables){
     df = dt,
     aes_x = variables[[id]],
     aes_y = "Child_Poverty",
-    title = variables[[id]],
+    subtitle = variables[[id]],
     y_title = y_title,
     hide_y_tics = hide_y_tics,
     show_minor_grids = F,
@@ -45,9 +45,8 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(3.0, 2.5, 2.5, 2.5, 2.5, 2.5),
-  row_heights = 3,
-  title = "Midwest Child Poverty Across Percent Population Segments",
-  subtitle = "Source: ggplot2::midwest"
+  col_widths = c(7.4, 6.5, 6.5, 6.5, 6.5, 6.5),
+  row_heights = 10,
+  title = "Midwest Child Poverty Across Percent Population Segments"
 )
 

@@ -7,7 +7,7 @@ box_country_donors              box plot of organ donors across countries
 density_cumulative_prob         density plot of normal cumulative probabilities
 density_midwest_area            density plot of state areas in midwest
 density_observations_air        density plot with observations of air quality
-density_ridge_home_values       density ridge plot of home values
+density_ridge_2_demos           density ridge plots from 2 demos
 heatmap_baseball_spinvelocity   heatmap plot of baseball spin vs velocity
 heatmap_home_sales              heatmap plot of home sales
 histo_state_area_obs            histogram of state areas with observations
