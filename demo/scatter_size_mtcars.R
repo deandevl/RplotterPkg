@@ -1,12 +1,21 @@
 library(ggplot2)
+library(ggrepel)
+library(data.table)
+library(magrittr)
 library(RplotterPkg)
 
+mtcars_dt <- data.table::as.data.table(mtcars) %>%
+  .[,car_name := rownames(mtcars)]
+
 RplotterPkg::create_scatter_plot(
-  df = mtcars,
+  df = mtcars_dt,
   aes_x = "disp",
   aes_y = "hp",
   aes_fill = "mpg",
   aes_size = "carb",
+  aes_label = "car_name",
+  aes_label_size = 3,
+  aes_label_nudge_y = 12,
   rot_y_tic_label = TRUE,
   x_title = "Engine Displacement",
   y_title = "Engine Horsepower",

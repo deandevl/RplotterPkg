@@ -180,6 +180,11 @@ create_range_plot <- function(
       )
   }
 
+  # Are we flipping axes?
+  if(do_coord_flip){
+    aplot <- aplot + coord_flip()
+  }
+
   # -------------------rotate/size tic labels--------------------
   if(rot_y_tic_label){
     rot_y_tic_angle <- 0
@@ -233,10 +238,6 @@ create_range_plot <- function(
       minor_breaks = y_minor_breaks,
       labels = y_labels
     )
-  }
-
-  if(do_coord_flip){
-    aplot <- aplot + coord_flip()
   }
 
   # -----------------------hide x/y axis tics?----------------------

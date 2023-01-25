@@ -14,6 +14,9 @@ create_scatter_plot(
   aes_linetype = NULL,
   aes_label = NULL,
   aes_label_color = "black",
+  aes_label_size = 6,
+  aes_label_nudge_x = 0,
+  aes_label_nudge_y = 0,
   aes_CI_lwr = NULL,
   aes_CI_upr = NULL,
   position = position_jitter(width = 0, height = 0),
@@ -100,7 +103,13 @@ or Date/POSIXct variable.}
 \item{aes_label}{The variable name from \code{df} for the variable dependent aesthetic mapping for labeling. If
 labeling points then the package \code{ggrepel} is required.}
 
-\item{aes_label_color}{A string that sets the color of outlier labels.}
+\item{aes_label_color}{A string that sets the color of labels.}
+
+\item{aes_label_size}{A numeric that sets the size of labels.}
+
+\item{aes_label_nudge_x}{A numeric that nudges the label's horizontal position in x axis units.}
+
+\item{aes_label_nudge_y}{A numeric that nudges the label's vertical position in y axis units.}
 
 \item{aes_CI_lwr}{Sets the column from \code{df} for the lower confidence interval with reference to the x or y axis.}
 

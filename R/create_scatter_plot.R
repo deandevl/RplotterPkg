@@ -13,7 +13,10 @@
 #' @param aes_linetype The variable name from \code{df} for the variable dependent aesthetic mapping for linetype.
 #' @param aes_label The variable name from \code{df} for the variable dependent aesthetic mapping for labeling. If
 #'  labeling points then the package \code{ggrepel} is required.
-#' @param aes_label_color A string that sets the color of outlier labels.
+#' @param aes_label_color A string that sets the color of labels.
+#' @param aes_label_size A numeric that sets the size of labels.
+#' @param aes_label_nudge_x A numeric that nudges the label's horizontal position in x axis units.
+#' @param aes_label_nudge_y A numeric that nudges the label's vertical position in y axis units.
 #' @param aes_CI_lwr Sets the column from \code{df} for the lower confidence interval with reference to the x or y axis.
 #' @param aes_CI_upr Sets the column from \code{df} for the upper confidence interval with reference to the x or y axis.
 #' @param position A string or function that does a slight adjustment to overlapping points.  Typical values are
@@ -117,6 +120,9 @@ create_scatter_plot <- function(
     aes_linetype = NULL,
     aes_label = NULL,
     aes_label_color = "black",
+    aes_label_size = 6,
+    aes_label_nudge_x = 0,
+    aes_label_nudge_y = 0,
     aes_CI_lwr = NULL,
     aes_CI_upr = NULL,
     position = position_jitter(width = 0.0, height = 0.0),
@@ -280,14 +286,16 @@ create_scatter_plot <- function(
   if(!is.null(aes_label)){
     aplot <- aplot +
       ggrepel::geom_text_repel(
+      #ggplot2::geom_text(
         data = df,
         aes(label = !!sym(aes_label)),
         na.rm = T,
         max.overlaps = Inf,
         color = aes_label_color,
+        size = aes_label_size,
         min.segment.length = unit(0, 'lines'),
-        nudge_x = 0.4,
-        nudge_y = 0.4
+        nudge_x = aes_label_nudge_x,
+        nudge_y = aes_label_nudge_y
       )
   }
 

@@ -22,6 +22,7 @@ create_stick_plot(
   rot_y_tic_label = FALSE,
   x_limits = NULL,
   x_major_breaks = waiver(),
+  x_minor_breaks = waiver(),
   x_labels = waiver(),
   x_major_date_breaks = waiver(),
   x_date_labels = waiver(),
@@ -89,6 +90,9 @@ and maximum for the x axis. Use NA to refer to the existing minimum and maximum.
 
 \item{x_major_breaks}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that
 defines the exact major tic locations along the x axis.}
+
+\item{x_minor_breaks}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+the exact minor tic locations along the x axis.}
 
 \item{x_labels}{A character vector with the same length as \code{x_major_breaks}, that labels the major tics.}
 

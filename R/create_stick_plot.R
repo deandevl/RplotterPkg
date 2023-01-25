@@ -25,6 +25,8 @@
 #'  and maximum for the x axis. Use NA to refer to the existing minimum and maximum.
 #' @param x_major_breaks Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that
 #'  defines the exact major tic locations along the x axis.
+#' @param x_minor_breaks Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+#'  the exact minor tic locations along the x axis.
 #' @param x_labels A character vector with the same length as \code{x_major_breaks}, that labels the major tics.
 #' @param x_major_date_breaks If the class of \code{aes_x} is Date/POSIXct, a string containing the number and date
 #'  unit for major breaks. \code{"1 year"}, \code{"4 sec"}, \code{"3 month"}, \code{"2 week"}.
@@ -87,6 +89,7 @@ create_stick_plot <- function(
   rot_y_tic_label = FALSE,
   x_limits = NULL,
   x_major_breaks = waiver(),
+  x_minor_breaks = waiver(),
   x_labels = waiver(),
   x_major_date_breaks = waiver(),
   x_date_labels = waiver(),
@@ -230,6 +233,7 @@ create_stick_plot <- function(
     aplot <- aplot + scale_x_date(
       limits = x_limits,
       breaks = x_major_breaks,
+      minor_breaks = x_minor_breaks,
       labels = x_labels,
       date_breaks = x_major_date_breaks,
       date_labels = x_date_labels
@@ -238,6 +242,7 @@ create_stick_plot <- function(
     aplot <- aplot + scale_x_datetime(
       limits = x_limits,
       breaks = x_major_breaks,
+      minor_breaks = x_minor_breaks,
       labels = x_labels,
       date_breaks = x_major_date_breaks,
       date_labels = x_date_labels
@@ -246,6 +251,7 @@ create_stick_plot <- function(
     aplot <- aplot + scale_x_time(
       limits = x_limits,
       breaks = x_major_breaks,
+      minor_breaks = x_minor_breaks,
       labels = x_labels
     )
   }else {
@@ -259,6 +265,7 @@ create_stick_plot <- function(
       aplot <- aplot + scale_x_continuous(
         limits = x_limits,
         breaks = x_major_breaks,
+        minor_breaks = x_minor_breaks,
         labels = x_labels
       )
     }
