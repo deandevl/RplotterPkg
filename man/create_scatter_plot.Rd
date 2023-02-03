@@ -11,6 +11,7 @@ create_scatter_plot(
   aes_color = NULL,
   aes_fill = NULL,
   aes_size = NULL,
+  aes_alpha = NULL,
   aes_linetype = NULL,
   aes_label = NULL,
   aes_label_color = "black",
@@ -54,7 +55,7 @@ create_scatter_plot(
   pts_size = 1,
   pts_line_alpha = 1,
   connect = FALSE,
-  line_width = 1,
+  line_width = 0.6,
   line_color = "black",
   connect_linetype = "solid",
   show_major_grids = TRUE,
@@ -97,6 +98,8 @@ or Date/POSIXct variable.}
 \item{aes_fill}{The variable name from \code{df} for the variable dependent aesthetic mapping for fill.}
 
 \item{aes_size}{The variable name from \code{df} for the variable dependent aesthetic mapping for size.}
+
+\item{aes_alpha}{The variable name from \code{df} for the variable dependent aesthetic mapping for alpha.}
 
 \item{aes_linetype}{The variable name from \code{df} for the variable dependent aesthetic mapping for linetype.}
 

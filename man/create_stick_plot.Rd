@@ -32,7 +32,7 @@ create_stick_plot(
   y_labels = waiver(),
   axis_text_size = 11,
   line_color = "black",
-  line_size = 0.8,
+  line_width = 0.8,
   line_type = "solid",
   line_alpha = 1,
   show_major_grids = TRUE,
@@ -115,7 +115,7 @@ Use NA to refer to the existing minimum and maximum.}
 
 \item{line_color}{A string that sets the color attribute of the lines.}
 
-\item{line_size}{A numeric value that sets the thickness attribute of lines.}
+\item{line_width}{A numeric value that sets the width of lines.}
 
 \item{line_type}{A string that sets the linetype. The default is "solid".}
 

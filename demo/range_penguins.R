@@ -16,7 +16,7 @@ penguins_stats_dt <- penguins_dt[, .(
 
 str(penguins_stats_dt)
 
-penguins_plot <- RplotterPkg::create_range_plot(
+RplotterPkg::create_range_plot(
   df = penguins_stats_dt,
   aes_x = "species",
   aes_y = "avg_body_mass",
@@ -31,7 +31,8 @@ penguins_plot <- RplotterPkg::create_range_plot(
   pts_fill = "blue",
   pts_shape = 22,
   pts_stroke = 1.7,
-  line_pts_size = 1.5,
+  line_width = 1.5,
+  fatten_pts = 6,
   line_type = "solid",
   line_pts_color = "red",
   line_pts_alpha = 0.5,
@@ -41,5 +42,3 @@ penguins_plot <- RplotterPkg::create_range_plot(
   show_minor_grids = F,
   do_coord_flip = T
 )
-
-penguins_plot

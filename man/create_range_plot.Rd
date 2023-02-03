@@ -30,7 +30,8 @@ create_range_plot(
   pts_shape = 21,
   pts_stroke = 1,
   line_type = "solid",
-  line_pts_size = 1,
+  line_width = 1,
+  fatten_pts = 4,
   line_pts_color = "black",
   line_pts_alpha = 1,
   panel_color = "white",
@@ -107,7 +108,9 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 \item{line_type}{A string that sets range line type \code{twodash, solid, longdash, dotted, dotdash,
 dashed, blank}.}
 
-\item{line_pts_size}{A numeric value that sets the size of both lines(width) and points(diameter).}
+\item{line_width}{A numeric that sets the width of the lines.}
+
+\item{fatten_pts}{A multiplicative numeric that sets the size of points(diameter).}
 
 \item{line_pts_color}{A string that sets the color of the range lines and outlines of the points.}
 

@@ -17,6 +17,7 @@ RplotterPkg::create_stick_plot(
   subtitle = "Time Series for US Births",
   y_title = "Number",
   rot_y_tic_label = TRUE,
+  line_width = 1.2,
   line_color = "lightblue",
   x_major_breaks = seq(as.Date("1948-01-01"), as.Date("1979-01-01"), "2 year"),
   x_date_labels = "%Y"

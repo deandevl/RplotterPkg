@@ -39,7 +39,7 @@
 #' @param y_labels A character vector with the same length as \code{y_major_breaks}, that labels the major tics.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
 #' @param line_color A string that sets the color attribute of the lines.
-#' @param line_size A numeric value that sets the thickness attribute of lines.
+#' @param line_width A numeric value that sets the width of lines.
 #' @param line_type A string that sets the linetype. The default is "solid".
 #' @param line_alpha A numeric value that sets the degree of color alpha attribute for the lines.
 #' @param show_major_grids A logical that controls the appearence of major grids.
@@ -99,7 +99,7 @@ create_stick_plot <- function(
   y_labels = waiver(),
   axis_text_size = 11,
   line_color = "black",
-  line_size = 0.8,
+  line_width = 0.8,
   line_type = "solid",
   line_alpha = 1.0,
   show_major_grids = TRUE,
@@ -130,7 +130,7 @@ create_stick_plot <- function(
     "linerange",
     list(
       color = line_color,
-      size = line_size,
+      linewidth = line_width,
       alpha = line_alpha,
       linetype = line_type
     )

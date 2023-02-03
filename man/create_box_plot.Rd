@@ -24,7 +24,7 @@ create_box_plot(
   rot_y_tic_label = FALSE,
   box_fill = NA,
   box_color = "black",
-  box_size = 1,
+  box_line_width = 1,
   box_alpha = 1,
   y_limits = NULL,
   y_major_breaks = waiver(),
@@ -97,7 +97,7 @@ a value of 40 for this argument usually works well.}
 
 \item{box_color}{A string that sets the color attribute for the box plot.}
 
-\item{box_size}{A numeric that sets the size attribute of the box outline.}
+\item{box_line_width}{A numeric that sets the size attribute of the box line width.}
 
 \item{box_alpha}{A numeric that set the alpha component attribute to \code{box_color}.}
 

@@ -41,7 +41,8 @@
 #' @param pts_stroke A numeric that sets the drawing width for a point shape.
 #' @param line_type A string that sets range line type \code{twodash, solid, longdash, dotted, dotdash,
 #'  dashed, blank}.
-#' @param line_pts_size A numeric value that sets the size of both lines(width) and points(diameter).
+#' @param line_width A numeric that sets the width of the lines.
+#' @param fatten_pts A multiplicative numeric that sets the size of points(diameter).
 #' @param line_pts_color A string that sets the color of the range lines and outlines of the points.
 #' @param line_pts_alpha A numeric value that sets the alpha level of points.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
@@ -92,7 +93,8 @@ create_range_plot <- function(
     pts_shape = 21,
     pts_stroke = 1,
     line_type = "solid",
-    line_pts_size = 1,
+    line_width = 1,
+    fatten_pts = 4,
     line_pts_color = "black",
     line_pts_alpha = 1.0,
     panel_color = "white",
@@ -126,7 +128,8 @@ create_range_plot <- function(
       shape = pts_shape,
       stroke = pts_stroke,
       color = line_pts_color,
-      size = line_pts_size,
+      linewidth = line_width,
+      fatten = fatten_pts,
       alpha = line_pts_alpha,
       linetype = line_type
     )

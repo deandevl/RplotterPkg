@@ -11,7 +11,7 @@ str(socviz::organdata)
 organdata_dt <- data.table::as.data.table(socviz::organdata) %>%
   .[, country := as.factor(country)]
 
-donor_plot <- RplotterPkg::create_box_plot(
+RplotterPkg::create_box_plot(
   df = organdata_dt,
   aes_x = "country",
   aes_y = "donors",
@@ -25,7 +25,7 @@ donor_plot <- RplotterPkg::create_box_plot(
   x_title = "Country",
   y_title = "Donor Rate",
   box_color = "purple",
-  box_size = 0.8,
+  box_line_width = 0.8,
   rot_x_tic_angle = 40,
   rot_y_tic_label = TRUE,
   ol_color = "red",
@@ -33,4 +33,3 @@ donor_plot <- RplotterPkg::create_box_plot(
   silent_NA_warning = T
  # png_file_path = file.path(here::here(),"plots.png")
 )
-donor_plot

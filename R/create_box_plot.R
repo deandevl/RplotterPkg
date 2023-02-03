@@ -24,7 +24,7 @@
 #' @param rot_y_tic_label A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.
 #' @param box_fill A string that sets the fill color attribute for the box plot.
 #' @param box_color A string that sets the color attribute for the box plot.
-#' @param box_size A numeric that sets the size attribute of the box outline.
+#' @param box_line_width A numeric that sets the size attribute of the box line width.
 #' @param box_alpha A numeric that set the alpha component attribute to \code{box_color}.
 #' @param y_limits A numeric 2 element vector that sets the minimum and maximum for the y axis.
 #'  Use NA to refer to the existing minimum and maximum.
@@ -92,7 +92,7 @@ create_box_plot <- function(
     rot_y_tic_label = FALSE,
     box_fill = NA,
     box_color = "black",
-    box_size = 1.0,
+    box_line_width = 1.0,
     box_alpha = 1.0,
     y_limits = NULL,
     y_major_breaks = waiver(),
@@ -143,7 +143,7 @@ create_box_plot <- function(
     list(
       fill = box_fill,
       color = box_color,
-      size = box_size,
+      linewidth = box_line_width,
       alpha = box_alpha
     )
   )
@@ -211,9 +211,8 @@ create_box_plot <- function(
     outlier.alpha = ol_alpha,
     na.rm = silent_NA_warning
   )
-
+  # -----------------Are we labeling the points?----------------
   if(!is.null(aes_label)){
-    base::browser()
     aplot <- aplot +
       ggrepel::geom_text_repel(
         aes(label = !!sym(aes_label)),

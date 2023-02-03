@@ -31,6 +31,7 @@ scatter_POSIXct_yosemite        scatter plot of yosemite eruptions across time
 scatter_size_gapminder          scatter plot of aes pop. size with life-exp
 scatter_size_mtcars             scatter plot of aes mpg size of hp vs displacement
 scatter_unemployment            scatter plot of unemployment across the years
+scatter_timeseries_sales        scatter plot of US vehicle sales from timeseries object
 stick_air_passengers            stick plot of air passenger counts across the years
 stick_births                    stick plot of births across the years
 table_employees                 table of employee information

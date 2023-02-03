@@ -10,6 +10,7 @@
 #' @param aes_color The variable name from \code{df} for the variable dependent aesthetic mapping for color.
 #' @param aes_fill The variable name from \code{df} for the variable dependent aesthetic mapping for fill.
 #' @param aes_size The variable name from \code{df} for the variable dependent aesthetic mapping for size.
+#' @param aes_alpha The variable name from \code{df} for the variable dependent aesthetic mapping for alpha.
 #' @param aes_linetype The variable name from \code{df} for the variable dependent aesthetic mapping for linetype.
 #' @param aes_label The variable name from \code{df} for the variable dependent aesthetic mapping for labeling. If
 #'  labeling points then the package \code{ggrepel} is required.
@@ -101,7 +102,6 @@
 #' @param png_width_height A numeric vector that sets the width and height of the png image in pixels. The
 #'  default is c(480,480).  There are 37.8 pixels in a centimeter.
 #'
-#'
 #' @importFrom ggrepel geom_text_repel
 #' @import ggplot2
 #'
@@ -117,6 +117,7 @@ create_scatter_plot <- function(
     aes_color = NULL,
     aes_fill = NULL,
     aes_size = NULL,
+    aes_alpha = NULL,
     aes_linetype = NULL,
     aes_label = NULL,
     aes_label_color = "black",
@@ -160,7 +161,7 @@ create_scatter_plot <- function(
     pts_size = 1.0,
     pts_line_alpha = 1.0,
     connect = FALSE,
-    line_width = 1.0,
+    line_width = 0.6,
     line_color = "black",
     connect_linetype = "solid",
     show_major_grids = TRUE,
@@ -208,6 +209,9 @@ create_scatter_plot <- function(
   if(!is.null(aes_size)){
     aes_size <- rlang::sym(aes_size)
   }
+  if(!is.null(aes_alpha)){
+    aes_alpha <- rlang::sym(aes_alpha)
+  }
   if(!is.null(aes_linetype)){
     aes_linetype <- rlang::sym(aes_linetype)
   }
@@ -228,7 +232,7 @@ create_scatter_plot <- function(
   ggplot2::update_geom_defaults(
     "line",
     list(
-      size = line_width,
+      linewidth = line_width,
       color = line_color,
       linetype = connect_linetype,
       alpha = pts_line_alpha
@@ -252,7 +256,8 @@ create_scatter_plot <- function(
           aes(
             color = !!aes_color,
             fill = !!aes_fill,
-            size = !!aes_size
+            size = !!aes_size,
+            alpha = !!aes_alpha
           ),
           position = position,
           na.rm = silent_NA_warning
@@ -264,7 +269,8 @@ create_scatter_plot <- function(
         aes(
           color = !!aes_color,
           fill = !!aes_fill,
-          size = !!aes_size
+          size = !!aes_size,
+          alpha = !!aes_alpha
         ),
         position = position,
         na.rm = silent_NA_warning
@@ -276,7 +282,8 @@ create_scatter_plot <- function(
       geom_line(
         aes(
           linetype = !!aes_linetype,
-          color = !!aes_color
+          color = !!aes_color,
+          alpha = !!aes_alpha
         ),
         na.rm = silent_NA_warning
       )
@@ -286,7 +293,6 @@ create_scatter_plot <- function(
   if(!is.null(aes_label)){
     aplot <- aplot +
       ggrepel::geom_text_repel(
-      #ggplot2::geom_text(
         data = df,
         aes(label = !!sym(aes_label)),
         na.rm = T,
@@ -561,6 +567,5 @@ create_scatter_plot <- function(
     print(aplot)
     grDevices::dev.off()
   }
-
   return(aplot)
 }
