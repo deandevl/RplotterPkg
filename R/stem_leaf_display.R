@@ -59,7 +59,7 @@ stem_leaf_display <- function(
   )
 
   col_widths <- rep(col_width, length(var_names) + 1)
-  row_heights <- rep(0.5, length(stem_leaf_lst$stem) + 1) # adds line for textGrob headings
+  row_heights <- rep(0.5, length(stem_leaf_lst$stem) + 2) # adds 2 lines for info and textGrob headings
   display_table <- gtable::gtable(
     name = "display_table",
     widths = grid::unit(x = col_widths, units = "cm"),
@@ -68,12 +68,19 @@ stem_leaf_display <- function(
   # for debug: show layout
   #gtable::gtable_show_layout(display_table)
 
+  # creating info textGrob
+  info_grob <- grid::textGrob(
+    label = paste(stem_leaf_lst$info[[1]], stem_leaf_lst$info[[2]], stem_leaf_lst$info[[3]], sep = "  "),
+    just = "center",
+    gp = grid::gpar(col = "black", fontsize = 12, fontface = 2L)
+  )
+
   # creating heading textGrobs
   heading_grobs <- vector(mode = "list", length = length(var_names))
   for(i in seq_along(var_names)){
     heading_grobs[[i]] <- grid::textGrob(
       label = var_names[[i]],
-      just = "right",
+      just = "left",
       gp = grid::gpar(col = heading_color, fontsize = 12, fontface = 2L))
   }
 
@@ -108,12 +115,21 @@ stem_leaf_display <- function(
     }
   }
 
+  # add info textGrob to gtable
+  display_table <- gtable::gtable_add_grob(
+    x = display_table,
+    grobs = info_grob,
+    t = 1,
+    l = 1,
+    r = length(var_names)+1
+  )
+
   # add heading textGrobs to gtable
   for(i in seq_along(var_names)){
     display_table <- gtable::gtable_add_grob(
       x = display_table,
       grobs = heading_grobs[[i]],
-      t = 1,
+      t = 2,
       l = i,
       r = i + 1
     )
@@ -125,7 +141,7 @@ stem_leaf_display <- function(
       display_table <- gtable::gtable_add_grob(
         x = display_table,
         grobs = stem_leaf_grobs[[(i - 1) * n_rows + ii]],
-        t = ii + 1,  # first line are the heading textGrobs
+        t = ii + 2,  # first two lines are info and the heading textGrobs
         l = i,
         r = i + 1
       )
