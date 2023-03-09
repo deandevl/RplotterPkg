@@ -1,6 +1,3 @@
-library(grid)
-library(gtable)
-
 #' Arranges a group of ggplot2 plots or grid::grobs into multiple panels.
 #'
 #' Function creates a figure with title and arranges multiple plots/grobs

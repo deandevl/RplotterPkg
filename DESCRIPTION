@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Author: Rick Dean, <deanr3@bardstown.com>
 Maintainer: Rick Dean, <deanr3@bardstown.com>
 Description: R and ggplot2 based plotting functions.
-Imports: data.table,ggplot2,ggrepel,gt,gtable,purrr,rlang,glue
+Imports: data.table,ggplot2,ggrepel,gt,gtable,purrr,rlang,glue,aplpack
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
