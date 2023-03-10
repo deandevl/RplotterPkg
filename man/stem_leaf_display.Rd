@@ -13,6 +13,7 @@ stem_leaf_display(
   outliers = TRUE,
   depths = FALSE,
   col_width = 4,
+  row_height = 0.5,
   font_sz = 11,
   heading_color = "black",
   display_grob = TRUE
@@ -34,7 +35,10 @@ stem_leaf_display(
 \item{depths}{A logical which if TRUE (the default), print a column of "depths" to the left of the stems}
 
 \item{col_width}{A numeric that sets the display column widths in cm. The default is 4, which
-works when \code{depths} is FALSE. You may need to increase this value to avoid cutting off long leaves.}
+works when \code{depths} is FALSE. You may need to increase this value to avoid cutting off wide leaf values.}
+
+\item{row_height}{A numeric that sets the display row height in cm. The default is 0.5. You may need to
+decrease this value for smaller font sizes and longer stem values.}
 
 \item{font_sz}{A numeric that sets the display's font size. The default is 11.}
 

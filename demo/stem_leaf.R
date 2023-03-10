@@ -4,6 +4,7 @@ library(magrittr)
 library(aplpack)
 library(RplotterPkg)
 
+# ----------------------Women in Boston marathon---------------------
 # read the Boston marathon ages/times for women
 data_path <- file.path(here(), "demo", "data", "boston_marathon.txt")
 marathon_dt <- data.table::fread(data_path) %>%
@@ -29,5 +30,22 @@ RplotterPkg::stem_leaf_display(
   depths = TRUE,
   col_width = 3,
   font_sz = 8,
+  heading_color = "#FF5500"
+)
+
+# ----------------Heaviest fish caught-----------------------
+# read the fish data
+data_path <- file.path(here(), "demo", "data", "heaviest_fish.txt")
+heaviest_fish_dt <- data.table::fread(data_path)
+
+# display stem and leaf of women times across ages
+# data has an outlier with value 563, so set max value to 155 to exclude it.
+RplotterPkg::stem_leaf_display(
+  x = list("fish_weight" = heaviest_fish_dt$Weight),
+  unit = 1,
+  m = 1,
+  max_val = 155,
+  outliers = TRUE,
+  col_width = 6,
   heading_color = "#FF5500"
 )

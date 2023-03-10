@@ -11,7 +11,9 @@
 #' @param outliers A logical which if TRUE (the default), outliers are placed on LO and HI stems
 #' @param depths A logical which if TRUE (the default), print a column of "depths" to the left of the stems
 #' @param col_width A numeric that sets the display column widths in cm. The default is 4, which
-#'   works when \code{depths} is FALSE. You may need to increase this value to avoid cutting off long leaves.
+#'   works when \code{depths} is FALSE. You may need to increase this value to avoid cutting off wide leaf values.
+#' @param row_height A numeric that sets the display row height in cm. The default is 0.5. You may need to
+#'   decrease this value for smaller font sizes and longer stem values.
 #' @param font_sz A numeric that sets the display's font size. The default is 11.
 #' @param heading_color A string that sets the heading's color in name or hex. The default is "black".
 #' @param display_grob A logical that if TRUE (the default) will display the TableGrob.
@@ -32,6 +34,7 @@ stem_leaf_display <- function(
     outliers = TRUE,
     depths = FALSE,
     col_width = 4,
+    row_height = 0.5,
     font_sz = 11,
     heading_color = "black",
     display_grob = TRUE
@@ -59,7 +62,7 @@ stem_leaf_display <- function(
   )
 
   col_widths <- rep(col_width, length(var_names) + 1)
-  row_heights <- rep(0.5, length(stem_leaf_lst$stem) + 2) # adds 2 lines for info and textGrob headings
+  row_heights <- rep(row_height, length(stem_leaf_lst$stem) + 2) # adds 2 lines for info and textGrob headings
   display_table <- gtable::gtable(
     name = "display_table",
     widths = grid::unit(x = col_widths, units = "cm"),
