@@ -3,13 +3,14 @@ library(data.table)
 library(magrittr)
 library(ggrepel)
 library(socviz)
-library(RplotterPkg)
 library(here)
+library(RplotterPkg)
 
 str(socviz::organdata)
 
 organdata_dt <- data.table::as.data.table(socviz::organdata) %>%
-  .[, country := as.factor(country)]
+  .[, country := as.factor(country)] %>%
+  na.omit(.)
 
 RplotterPkg::create_box_plot(
   df = organdata_dt,
@@ -21,7 +22,7 @@ RplotterPkg::create_box_plot(
   y_limits = c(5,35),
   y_major_breaks = seq(5, 35, 5),
   title = "Organ Donation Rate per Million",
-  subtitle = "Showing outlier rates (source: socviz::organdata)",
+  subtitle = "Showing outlier rates",
   x_title = "Country",
   y_title = "Donor Rate",
   box_color = "purple",

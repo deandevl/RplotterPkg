@@ -211,6 +211,7 @@ create_box_plot <- function(
     outlier.alpha = ol_alpha,
     na.rm = silent_NA_warning
   )
+
   # -----------------Are we labeling the points?----------------
   if(!is.null(aes_label)){
     aplot <- aplot +
@@ -283,11 +284,6 @@ create_box_plot <- function(
       )
   }
 
-  # ------------------Are we flipping the boxplot?---------------------
-  if(do_coord_flip){
-    aplot <- aplot + coord_flip()
-  }
-
   # ---y axis scaling
   # ---define function for formatting decimals
   fmt_decimals <- function(decimals=0, sci=FALSE){
@@ -326,7 +322,7 @@ create_box_plot <- function(
     theme(
       axis.text.x = element_text(size = axis_text_size, color = "black"),
       axis.title.x = element_text(size = axis_text_size + 2, color = "black"),
-      axis.text.y = element_text(size = axis_text_size, color = "black", angle = rot_y_tic_angle),
+      axis.text.y = element_text(size = axis_text_size, color = "black"),
       axis.title.y = element_text(size = axis_text_size + 2, color = "black")
     )
   if(rot_x_tic_angle > 0){
@@ -352,13 +348,27 @@ create_box_plot <- function(
 
   # If aes_x is NULL then remove x axis title, tic text, ticks
   if(aes_x_is_null){
-    aplot <- aplot +
-      theme(
-        axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank()
-      )
+    if(!do_coord_flip){
+      aplot <- aplot +
+        theme(
+          axis.title.x = element_blank(),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank()
+        )
+    }else if(do_coord_flip){
+      aplot <- aplot +
+        theme(
+          axis.title.y = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks.y = element_blank()
+        )
+    }
   }
+  # ------------------Are we flipping the boxplot?---------------------
+  if(do_coord_flip){
+    aplot <- aplot + coord_flip()
+  }
+
   # -------------------legend related parameters---------------------------
   if(!show_legend){
     aplot <- aplot +
@@ -385,5 +395,4 @@ create_box_plot <- function(
   }
 
   return(aplot)
-
 }
