@@ -24,7 +24,7 @@ create_box_plot(
   rot_y_tic_label = FALSE,
   box_fill = NA,
   box_color = "black",
-  box_line_width = 1,
+  box_line_width = 0.5,
   box_alpha = 1,
   y_limits = NULL,
   y_major_breaks = waiver(),

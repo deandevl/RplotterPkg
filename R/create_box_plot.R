@@ -92,7 +92,7 @@ create_box_plot <- function(
     rot_y_tic_label = FALSE,
     box_fill = NA,
     box_color = "black",
-    box_line_width = 1.0,
+    box_line_width = 0.5,
     box_alpha = 1.0,
     y_limits = NULL,
     y_major_breaks = waiver(),
@@ -221,8 +221,8 @@ create_box_plot <- function(
         max.overlaps = Inf,
         color = aes_label_color,
         min.segment.length = unit(0, 'lines'),
-        nudge_x = 0.4,
-        nudge_y = 0.4
+        nudge_x = 0.1,
+        nudge_y = 0.1
       )
   }
 
@@ -274,13 +274,13 @@ create_box_plot <- function(
   if(show_major_grids){
     aplot <- aplot +
       theme(
-        panel.grid.major = element_line(size = 0.5, linetype = "solid", color = "gray")
+        panel.grid.major = element_line(size = 0.2, linetype = "solid", color = "gray90")
       )
   }
   if(show_minor_grids){
     aplot <- aplot +
       theme(
-        panel.grid.minor = element_line(size = 0.5, linetype = "solid", color = "gray")
+        panel.grid.minor = element_line(size = 0.2, linetype = "solid", color = "gray90")
       )
   }
 

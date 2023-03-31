@@ -25,6 +25,7 @@ multi_panel_1_6_child_poverty   multipanel 1 x 6 on child poverty variables
 multi_panel_2_2_religions       multipanel 2 x 2 on religion variables
 multi_panel_3_2_midwest         multipanel 3 x 2 on midwest variables
 multi_panel_3_5_child_poverty   multipanel 3 x 5 on child poverty variables
+percentile_table                percentile table for infant mortality
 range_penguins                  range plot on penguin variables
 scatter_color_gapminder         scatter plot of aes color of life-exp across years
 scatter_linetype_penguins       scatter plot of aes linetype of penguin variables
@@ -33,8 +34,10 @@ scatter_size_gapminder          scatter plot of aes pop. size with life-exp
 scatter_size_mtcars             scatter plot of aes mpg size of hp vs displacement
 scatter_unemployment            scatter plot of unemployment across the years
 scatter_timeseries_sales        scatter plot of US vehicle sales from timeseries object
+spread_level                    scatter plot of median vs quartile spread across factor levels
 stem_leaf                       stem and leaf display of single/multiple variables
 stick_air_passengers            stick plot of air passenger counts across the years
 stick_births                    stick plot of births across the years
+symmetry_plot                   symmetry plot of farm counts across US states
 table_employees                 table of employee information
 table_graphic_cars              graphic table of car statistics

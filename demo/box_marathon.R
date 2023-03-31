@@ -11,5 +11,9 @@ marathon_dt <- data.table::fread(data_path) %>%
 RplotterPkg::create_box_plot(
   df = marathon_dt[age == 20,],
   aes_y = "time",
+  box_color = "blue",
+  y_limits = c(150, 280),
+  y_major_breaks = seq(150, 280, 10),
+  show_minor_grids = FALSE,
   do_coord_flip = TRUE
 )
