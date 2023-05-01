@@ -26,6 +26,7 @@ create_bar_plot(
   bar_alpha = 1,
   bar_size = 1,
   bar_width = NULL,
+  x_major_breaks = NULL,
   y_limits = NULL,
   y_major_breaks = waiver(),
   y_minor_breaks = waiver(),
@@ -99,6 +100,9 @@ a value of 40 for this argument usually works well.}
 \item{bar_size}{A numeric that sets the outline thickness attribute of the bars.}
 
 \item{bar_width}{A numeric that sets the width attribute of the bars.}
+
+\item{x_major_breaks}{If \code{aes_x} is numeric then this parameter is a numeric vector that defines the major
+breaks/intervals for the x axis.  Interval labels are created and their respective counts are displayed.}
 
 \item{y_limits}{A numeric 2 element vector that sets the minimum and maximum for the y axis.
 Use NA to refer to the existing minimum and maximum.}

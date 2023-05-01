@@ -331,13 +331,13 @@ create_scatter_plot <- function(
   if(show_major_grids){
     aplot <- aplot +
       theme(
-        panel.grid.major = element_line(size = 0.5, linetype = "solid", color = "gray")
+        panel.grid.major = element_line(linewidth = 0.5, linetype = "solid", color = "gray")
       )
   }
   if(show_minor_grids){
     aplot <- aplot +
       theme(
-        panel.grid.minor = element_line(size = 0.5, linetype = "solid", color = "gray")
+        panel.grid.minor = element_line(linewidth = 0.5, linetype = "solid", color = "gray")
       )
   }
 

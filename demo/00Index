@@ -1,10 +1,12 @@
 bar_count_happy_religion        bar plot of counts happy by religion
+bar_count_infant_mortality      bar plot of counts of infant mortality
 bar_count_religions             bar plot of counts across religions
 bar_percent_religions           bar plot of percent across religions
 bar_weights                     bar plot of weights across people
 box_census                      box plot of census data
 box_country_donors              box plot of organ donors across countries
 box_marathon                    box plot of single variable
+box_ornstein                    box plot of ordered nations
 density_cumulative_prob         density plot of normal cumulative probabilities
 density_midwest_area            density plot of state areas in midwest
 density_observations_air        density plot with observations of air quality

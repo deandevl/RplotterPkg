@@ -28,6 +28,8 @@
 #' @param bar_alpha A numeric that sets the alpha component attribute to \code{bar_color}.
 #' @param bar_size A numeric that sets the outline thickness attribute of the bars.
 #' @param bar_width A numeric that sets the width attribute of the bars.
+#' @param x_major_breaks If \code{aes_x} is numeric then this parameter is a numeric vector that defines the major
+#'  breaks/intervals for the x axis.  Interval labels are created and their respective counts are displayed.
 #' @param y_limits A numeric 2 element vector that sets the minimum and maximum for the y axis.
 #'  Use NA to refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
@@ -93,6 +95,7 @@ create_bar_plot <- function(
     bar_alpha = 1.0,
     bar_size = 1.0,
     bar_width = NULL,
+    x_major_breaks = NULL,
     y_limits = NULL,
     y_major_breaks = waiver(),
     y_minor_breaks = waiver(),
@@ -163,7 +166,7 @@ create_bar_plot <- function(
   dt <- data.table::as.data.table(df)
 
   # ------------Reorder the data.frame aes_x factor levels?--------------
-  if(!is.null(order_bars) & is.null(aes_y)){
+  if(!is.null(order_bars) & is.null(aes_y) & is.null(x_major_breaks)){
     # We are doing bars that reflect counts
     # 1. Group by aes_x to find the counts for each subgroups N
     # 2. Order by the N counts
@@ -176,7 +179,7 @@ create_bar_plot <- function(
     }
 
     dt[[aes_x]] <- factor(dt[[aes_x]], levels = aes_count_ordered_dt[[aes_x]])
-  }else if(!is.null(order_bars)){
+  }else if(!is.null(order_bars) & is.null(x_major_breaks)){
     # We are doing bars that reflect values
     # 1. Set the order of dt by aes_y
     # 2. Set the levels of aes_x by the re-ordered aes_x
@@ -187,6 +190,14 @@ create_bar_plot <- function(
     }
     dt[[aes_x]] <- factor(dt[[aes_x]], levels = dt[[aes_x]])
   }
+
+  # Is x_major_breaks defined?
+  if(!is.null(x_major_breaks)){
+    breaks_data_v <- dt[, ..aes_x][[1]]
+    dt[, cut := cut(x = breaks_data_v, breaks = x_major_breaks, ordered_result = T)]
+    aes_x <- "cut"
+  }
+
   # ------------Define the main ggplot2 plot object, aesthetics, geoms------------
   aplot <- ggplot(
     data = dt

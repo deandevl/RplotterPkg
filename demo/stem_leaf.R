@@ -7,12 +7,12 @@ library(RplotterPkg)
 # ----------------------Women in Boston marathon---------------------
 # read the Boston marathon ages/times for women
 data_path <- file.path(here(), "demo", "data", "boston_marathon.txt")
-marathon_dt <- data.table::fread(data_path) %>%
+marthon_dt <- data.table::fread(data_path) %>%
   na.omit(.)
 
 # stem and leaf for marathon times of women across ages
 marathon_times_lst <- list(
-  "age_20" = marathon_dt[age == 20,]$time,
+  "age_2a0" = marathon_dt[age == 20,]$time,
   "age_30" = marathon_dt[age == 30,]$time,
   "age_40" = marathon_dt[age == 40,]$time,
   "age_50" = marathon_dt[age == 50,]$time,

@@ -149,7 +149,7 @@ create_box_plot <- function(
   )
 
   # Convert df to a data.table
-  dt <- data.table::as.data.table(df, keep.rownames = T)
+  dt <- data.table::as.data.table(df)
 
   # If aes_x is undefined, then add an "x" column for doing a single boxplot
   if(aes_x_is_null){
@@ -178,7 +178,8 @@ create_box_plot <- function(
   # ------------Reorder dt aes_x factor levels?------------
   if(!is.null(order_by_median)){
     # Get the medians of aes_y for each aes_x group
-    x_medians_dt <- dt[, .(x_medians = stats::median(get(aes_y), na.rm = T)), by = aes_x]
+    x_medians_dt <- dt[, .(x_medians = stats::median(as.numeric(get(aes_y)))), by = get(aes_x)]
+    data.table::setnames(x_medians_dt, old="get", new = aes_x)
 
     # Sort the "x_medians" column
     if(order_by_median == "desc") {
