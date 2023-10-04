@@ -100,7 +100,7 @@ refer to the existing minimum and maximum.}
 A TableGrob object if \code{display_plot} is FALSE.
 }
 \description{
-Function creates ggplot2 based density plots stacked vertically (also known as ridge plots).
+Function creates ggplot2 based density plots stacked vertically (also known as ridge or raincloud plots).
 The function's density arguments mirror most of the arguments available
 from \code{\link{density}} for the Kernel Density Estimation (KDE). See the \code{\link{density}} help page
 for more information.
@@ -109,6 +109,12 @@ for more information.
 if \code{display_plot} is TRUE then the plots will be displayed. If \code{display_plot} is FALSE then
 the function returns a plot object which can be displayed from the console by entering
 \code{grid::grid.draw(plot object)}
+}
+\references{
+Micah Allen,Davide Poggiali,Kirstie Whitaker,Tom Rhys Marshall,
+Jordy van Langen,Rogier A. Kievit (2021) Raincloud plots: a multi-platform tool for robust data visualization: version 2
+
+Joachim Schork (2021) Ridgeline Plots in R (3 Examples)
 }
 \author{
 Rick Dean

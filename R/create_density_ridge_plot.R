@@ -1,6 +1,6 @@
 #' Function creates a vertical stack of density plots.
 #'
-#' Function creates ggplot2 based density plots stacked vertically (also known as ridge plots).
+#' Function creates ggplot2 based density plots stacked vertically (also known as ridge or raincloud plots).
 #'  The function's density arguments mirror most of the arguments available
 #'  from \code{\link{density}} for the Kernel Density Estimation (KDE). See the \code{\link{density}} help page
 #'  for more information.
@@ -56,6 +56,10 @@
 #' @return A TableGrob object if \code{display_plot} is FALSE.
 #'
 #' @author Rick Dean
+#'
+#' @references Micah Allen,Davide Poggiali,Kirstie Whitaker,Tom Rhys Marshall,
+#'  Jordy van Langen,Rogier A. Kievit (2021) Raincloud plots: a multi-platform tool for robust data visualization: version 2
+#' @references Joachim Schork (2021) Ridgeline Plots in R (3 Examples)
 #'
 #' @export
 create_density_ridge_plot <- function(
