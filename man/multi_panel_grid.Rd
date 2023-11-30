@@ -31,7 +31,7 @@ high then this argument should just be assigned the value 10.}
 \item{display_plot}{A logical that if TRUE will display the plot.}
 }
 \value{
-A TableGrob object if \code{display_plot} is FALSE.
+A ggplot2 object if \code{display_plot} is FALSE.
 }
 \description{
 Function creates a figure with title and arranges multiple plots/grobs
@@ -42,11 +42,6 @@ and \code{gtable} packages. As an example of defining the \code{layout} argument
 for each plot and "cols" defines the column number for each plot. If we have
 two plots with both plots on a single row then "rows" = c(1,1) and "cols"
 = c(1,2).
-}
-\details{
-if \code{display_plot} is TRUE then the plots will be displayed. If \code{display_plot} is FALSE then
-the function returns a plot object which can be displayed from the console by entering
-\code{grid::grid.draw(plot object)}
 }
 \author{
 Rick Dean

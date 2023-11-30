@@ -42,7 +42,7 @@ build_plot <- function(id, dt, islands){
     pts_fill = "blue",
     pts_shape = 22,
     pts_stroke = 1.7,
-    line_pts_size = 1.5,
+    line_width = 1.5,
     line_type = "solid",
     line_pts_color = "red",
     line_pts_alpha = 0.5,

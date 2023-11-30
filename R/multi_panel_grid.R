@@ -9,10 +9,6 @@
 #'  two plots with both plots on a single row then "rows" = c(1,1) and "cols"
 #'  = c(1,2).
 #'
-#' if \code{display_plot} is TRUE then the plots will be displayed. If \code{display_plot} is FALSE then
-#' the function returns a plot object which can be displayed from the console by entering
-#' \code{grid::grid.draw(plot object)}
-#'
 #' @param layout A named list containing a list for plot objects or grobs "plots", row locations "rows" vector,
 #'  column locations "cols" vector. This argument is required.
 #' @param col_widths A numeric vector of each column's widths in centimeters. Note that if there are two
@@ -31,11 +27,12 @@
 #' @importFrom grid grid.draw
 #' @importFrom gtable gtable
 #' @importFrom gtable gtable_add_grob
+#' @importFrom ggplotify as.ggplot
 #' @import ggplot2
 #'
 #' @author Rick Dean
 #'
-#' @return A TableGrob object if \code{display_plot} is FALSE.
+#' @return A ggplot2 object if \code{display_plot} is FALSE.
 #'
 #' @export
 multi_panel_grid <- function (
@@ -105,11 +102,12 @@ multi_panel_grid <- function (
     )
   }
 
+  # Display plot table?
+  a_plot <- ggplotify::as.ggplot(plots_table)
   if(display_plot){
-    grid::grid.newpage()
-    grid::grid.draw(plots_table)
+    a_plot
   }else{
-    return(plots_table)
+    return(a_plot)
   }
 }
 
