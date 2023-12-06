@@ -87,15 +87,13 @@ disp_mpg_plot <- RplotterPkg::create_scatter_plot(
 layout <- list(
    plots = list(hp_mpg_plot, wt_mpg_plot, disp_mpg_plot, car_stats_table_grob),
    rows = c(1, 1, 1, 2),
-   cols = c(1, 2, 3, list(1:3))
+   cols = c(1, 2, 3, 2)
 )
 
 # with the layout, produce a multi-paneled graphic
-multi_plot <- RplotterPkg::multi_panel_grid(
+RplotterPkg::multi_panel_grid(
+  do_grid = TRUE,
   layout = layout,
-  col_widths = c(5,5,5.6),
-  row_heights = c(5,2),
-  title = "MPG Measures",
-  subtitle = "Motor Trend Car Road Tests (32 observations)",
-  display_plot = TRUE
+  cell_width = 12,
+  cell_height = 9
 )

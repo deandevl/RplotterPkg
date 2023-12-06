@@ -2,14 +2,17 @@
 % Please edit documentation in R/multi_panel_grid.R
 \name{multi_panel_grid}
 \alias{multi_panel_grid}
-\title{Arranges a group of ggplot2 plots or grid::grobs into multiple panels.}
+\title{Arranges a group of ggplot2 plots or grid::grob's into multiple panels.}
 \usage{
 multi_panel_grid(
   layout,
-  col_widths = c(8, 8),
-  row_heights = c(8, 8),
   title = NULL,
-  title_fontsz = 14,
+  title_fontsz = 22,
+  plot_titles = NULL,
+  y_tick_width = 0.5,
+  cell_width = 8,
+  cell_height = 8,
+  do_grid = FALSE,
   display_plot = TRUE
 )
 }
@@ -17,26 +20,46 @@ multi_panel_grid(
 \item{layout}{A named list containing a list for plot objects or grobs "plots", row locations "rows" vector,
 column locations "cols" vector. This argument is required.}
 
-\item{col_widths}{A numeric vector of each column's widths in centimeters. Note that if there are two
-columns 8 centimeters wide then the argument should be \code{c(8,8)}.}
-
-\item{row_heights}{A numeric vector of each row's heights in centimeters. Note that if there are two
-rows 10 centimeters high then the argument should be \code{c(10,10)}. If we have one row 10 centimeters
-high then this argument should just be assigned the value 10.}
-
 \item{title}{A string that sets the title of the figure.}
 
 \item{title_fontsz}{A numeric that sets the title's font size. The default is 14.}
 
-\item{display_plot}{A logical that if TRUE will display the plot.}
+\item{plot_titles}{A character vector with the same length as the number of plot objects that defines
+each of their titles.}
+
+\item{y_tick_width}{A numeric that sets the width of the vertical column containing the y axis tick labeling.
+The default is 0.5 cm and may be increased when a wider labeling is needed.}
+
+\item{cell_width}{A numeric that sets the cell widths in the gtable in cm}
+
+\item{cell_height}{A numeric that sets the cell widths in the gtable in cm}
+
+\item{do_grid}{A logical which if TRUE will arrange the plot objects in a straight row/column order without considering
+their scale and label components.}
+
+\item{display_plot}{A logical that if TRUE will display the plot, otherwise a ggplot2 object is returned.}
 }
 \value{
 A ggplot2 object if \code{display_plot} is FALSE.
 }
 \description{
 Function creates a figure with title and arranges multiple plots/grobs
-across a given number of rows and columns. The function depends on the \code{grid}
-and \code{gtable} packages. As an example of defining the \code{layout} argument,
+across a given number of rows and columns. The function depends on the \code{grid},
+\code{gtable}, and \code{ggplotify} packages.
+}
+\details{
+The function goes beyond just placing a group of plots across a grid of rows and columns.
+It is somewhat opinionated in favor of common titling/labeling and scaling
+that make sense for all the plots and provide the ability to compare. The function has a
+\code{title} parameter that is assumed appropriate for all the plots--any titles/subtitles
+among the plots themselves will be removed.  The first left y-axis
+scaling the function comes across will be used for all the plots. Similarly the first bottom
+x-axis scaling the function comes across will be assumed appropriate for all the plots. The
+first legend that is found is assumed right for all the plots and will be placed at the top
+in a horizontal direction. Of course none of these sub-elements among the plots need to exist
+and you are back to simply a grid of plots.
+
+As an example of defining the \code{layout} argument,
 \code{layout} has three named elements: "plots", "rows", and "cols".
 "plots" is a list() of ggplot2 plot objects; "rows" defines the row number
 for each plot and "cols" defines the column number for each plot. If we have

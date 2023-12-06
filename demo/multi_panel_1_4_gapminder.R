@@ -1,5 +1,8 @@
+library(data.table)
 library(ggplot2)
+library(ggplotify)
 library(rlang)
+library(grid)
 library(magrittr)
 library(purrr)
 library(gapminder)
@@ -15,19 +18,6 @@ str(gapminder_dt)
 years <- levels(gapminder_dt$year)
 
 build_plot <- function(id, dt, years){
-  y_title <- NULL
-  hide_y_tics <- FALSE
-  if(id == 1){
-    y_title  <- "Population"
-  }else {
-    hide_y_tics <- TRUE
-  }
-
-  show_legend <- F
-  if(id == 4){
-    show_legend <- T
-  }
-
   plot_dt <- dt[year == years[[id]], ]
 
   aplot <- RplotterPkg::create_scatter_plot(
@@ -40,11 +30,10 @@ build_plot <- function(id, dt, years){
     y_limits = c(0, 400),
     y_major_breaks = seq(from = 0, to = 400, by = 50),
     subtitle = years[[id]],
+    title = "Life Expectancy Across Continents",
     x_title = "Life Expectancy",
-    y_title = y_title,
-    hide_y_tics = hide_y_tics,
+    y_title = "Population",
     pts_size = 5,
-    show_legend = show_legend,
     legend_key_width = 0.8,
     legend_key_height = 0.6,
     show_minor_grids = F,
@@ -54,20 +43,22 @@ build_plot <- function(id, dt, years){
 }
 
 plot_lst <- purrr::map(1:4,
-                       build_plot,
-                       dt = gapminder_dt,
-                       years = years
+  build_plot,
+  dt = gapminder_dt,
+  years = years
 )
 
 layout <- list(
   plots = plot_lst,
+  # rows = c(1,1,2,2),
+  # cols = c(1,2,1,2)
   rows = c(1, 1, 1, 1),
   cols = c(1, 2, 3, 4)
 )
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(8.2, 7.8, 7.8, 10.6),
-  row_heights = 10,
-  title = "Life expectancy vs population(millions) across continents"
+  title = "Life expectancy vs population(millions) across continents",
+  plot_titles = c("1952","1972","1992","2002"),
+  cell_height = 12
 )

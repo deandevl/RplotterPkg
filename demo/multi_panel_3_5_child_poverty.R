@@ -23,13 +23,6 @@ states <- levels(child_poverty_dt$State)
 
 # Define a function for creating a plot
 build_plot <- function(id, dt, states){
-  y_title <- NULL
-  hide_y_tics <- FALSE
-  if(id == 1){
-    y_title  <- "% Child Poverty"
-  }else {
-    hide_y_tics <- TRUE
-  }
   state <- states[[id]]
   plot_dt <- dt[State == state,]
 
@@ -37,10 +30,9 @@ build_plot <- function(id, dt, states){
     df = plot_dt,
     aes_x = "High_School",
     aes_y = "Child_Poverty",
-    subtitle = state,
     x_title = "% HS Diploma",
-    y_title = y_title,
-    hide_y_tics = hide_y_tics,
+    y_title = "% Child Poverty",
+    subtitle = state,
     x_limits = c(40,90),
     x_major_breaks = seq(40,90,10),
     y_limits = c(0,60),
@@ -52,9 +44,9 @@ build_plot <- function(id, dt, states){
 }
 
 plot_lst <- purrr::map(1:5,
-                        build_plot,
-                        dt = child_poverty_dt,
-                        states = states
+  build_plot,
+  dt = child_poverty_dt,
+  states = states
 )
 
 # Summarize the child poverty across the states by creating a graphic summary table
@@ -71,18 +63,24 @@ child_poverty_table <- RplotterPkg::create_table_graphic(
 )
 
 # Create a text caption grob
-caption_text_grob <- grid::textGrob(label = "There appears to be a relationship between adult education and child poverty", gp = grid::gpar(col = "black", fontsize = 14, fontface = 2))
+caption_text_grob <- grid::textGrob(label = "Adult Education and Child Poverty", gp = grid::gpar(col = "black", fontsize = 12, fontface = 2))
 
 # Create a layout that describes the placement of the above plots, table, and caption
 layout <- list(
-  plots = list(child_poverty_table, plot_lst[["IL"]], plot_lst[["IN"]], plot_lst[["MI"]], plot_lst[["OH"]], plot_lst[["WI"]], caption_text_grob), # plot/grob objects to display
+  plots = list(
+    child_poverty_table,
+    plot_lst[[1]],
+    plot_lst[[2]],
+    plot_lst[[3]],
+    plot_lst[[4]],
+    plot_lst[[5]],
+    caption_text_grob), # plot/grob objects to display
   rows = c(1, 2, 2, 2, 2, 2, 3),
-  cols = c(list(1:5), 1, 2, 3, 4, 5, list(1:5))
+  cols = c(3, 1, 2, 3, 4, 5, 3)
 )
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(6.4, 5.8, 5.8, 5.8, 5.8),
-  row_heights = c(7.5, 7.4, 2),
-  title = "Child Poverty vs Adult Education in counties across midwest states"
+  do_grid = TRUE,
+  cell_width = 8
 )

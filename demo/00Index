@@ -27,6 +27,7 @@ multi_panel_1_6_child_poverty   multipanel 1 x 6 on child poverty variables
 multi_panel_2_2_religions       multipanel 2 x 2 on religion variables
 multi_panel_3_2_midwest         multipanel 3 x 2 on midwest variables
 multi_panel_3_5_child_poverty   multipanel 3 x 5 on child poverty variables
+multi_panel_us_map              multipanel of 2 US maps showing computer presence
 percentile_table                percentile table for infant mortality
 range_penguins                  range plot on penguin variables
 scatter_color_gapminder         scatter plot of aes color of life-exp across years

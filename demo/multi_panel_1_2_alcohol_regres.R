@@ -34,7 +34,6 @@ reduced_plot <- RplotterPkg::create_scatter_plot(
   df = plot_df,
   aes_x = "Alcohol",
   aes_y = "Strength",
-  subtitle = paste0("Reduced Model: strength ~ mean(strength); SSE = ",round(reduced_ss,digits = 2)),
   x_title = "Alcohol",
   y_title = "Strength",
   rot_y_tic_label = T,
@@ -46,11 +45,7 @@ full_plot <- RplotterPkg::create_scatter_plot(
   df = plot_df,
   aes_x = "Alcohol",
   aes_y = "Strength",
-  subtitle = paste0("Full Model: strength ~ alcohol; SSE = ",round(full_ss, digits = 2)),
-  rot_y_tic_label = T,
-  x_title = "Alcohol",
-  y_title = NULL,
-  hide_y_tics = T
+  rot_y_tic_label = T
 ) + geom_line(aes(x = Alcohol, y = Strength_F), color="red")
 
 layout <- list(
@@ -61,8 +56,12 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(15.4,15),
-  row_heights = 14,
-  title = "Reduced and Full Model of Alcohol vs Strength"
+  plot_titles = c(
+    paste0("Reduced Model: strength ~ mean(strength); SSE = ",round(reduced_ss,digits = 2)),
+    paste0("Full Model: strength ~ alcohol; SSE = ",round(full_ss, digits = 2))
+  ),
+  title = "Reduced and Full Model of Alcohol vs Strength",
+  cell_width = 14,
+  cell_height = 12
 )
 

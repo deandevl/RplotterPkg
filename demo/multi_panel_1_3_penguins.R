@@ -18,14 +18,6 @@ str(penguins_stats_dt)
 islands <- levels(penguins_stats_dt$island)
 
 build_plot <- function(id, dt, islands){
-  y_title <-  NULL
-  hide_y_tics <- FALSE
-  if(id == 1) {
-    y_title <- "Body Mass(g)"
-  }else {
-    hide_y_tics <- TRUE
-  }
-
   plot_dt <- dt[island == islands[[id]], ]
 
   aplot <- RplotterPkg::create_range_plot(
@@ -34,10 +26,8 @@ build_plot <- function(id, dt, islands){
     aes_y = "avg_body_mass",
     aes_y_min = "min_body_mass",
     aes_y_max = "max_body_mass",
-    subtitle = islands[[id]],
     x_title = "Species",
-    y_title = y_title,
-    hide_y_tics = hide_y_tics,
+    y_title = "Body Mass(g)",
     rot_y_tic_label = T,
     pts_fill = "blue",
     pts_shape = 22,
@@ -54,10 +44,11 @@ build_plot <- function(id, dt, islands){
   return(aplot)
 }
 
-plot_lst <- purrr::map(1:3,
-                       build_plot,
-                       dt = penguins_stats_dt,
-                       islands = islands
+plot_lst <- purrr::map(
+  1:3,
+  build_plot,
+  dt = penguins_stats_dt,
+  islands = islands
 )
 
 layout <- list(
@@ -68,9 +59,11 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(9, 8, 8),
-  row_heights = 10,
-  title = "Average and Range of Penguins Body Mass(g) by Island/Species"
+  title = "Average and Range of Penguins Body Mass(g) by Island/Species",
+  plot_titles = c("Biscoe","Dream","Torgersen"),
+  y_tick_width = 1,
+  cell_width = 10,
+  cell_height = 12
 )
 
 

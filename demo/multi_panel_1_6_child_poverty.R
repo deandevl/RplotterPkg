@@ -14,28 +14,22 @@ child_poverty_dt <- data.table::as.data.table(ggplot2::midwest) %>%
 variables <- c("HS_Diploma", "College", "Professioinal", "White", "Black", "Asian")
 
 build_plot <- function(id, dt, variables){
-  y_title <- NULL
-  hide_y_tics <- FALSE
-  if(id == 1){
-    y_title <- "% Child Poverty"
-  }else {
-    hide_y_tics <- TRUE
-  }
-
   aplot <- RplotterPkg::create_scatter_plot(
     df = dt,
     aes_x = variables[[id]],
     aes_y = "Child_Poverty",
-    subtitle = variables[[id]],
-    y_title = y_title,
-    hide_y_tics = hide_y_tics,
+    y_title = "% Child Poverty",
     show_minor_grids = F,
     silent_NA_warning = T
   )
   return(aplot)
 }
 
-plot_lst <- purrr::map(1:6, build_plot, dt = child_poverty_dt, variables = variables)
+plot_lst <- purrr::map(1:6,
+  build_plot,
+  dt = child_poverty_dt,
+  variables = variables
+)
 
 layout <- list(
   plots = plot_lst,
@@ -45,8 +39,9 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(7.4, 6.5, 6.5, 6.5, 6.5, 6.5),
-  row_heights = 10,
-  title = "Midwest Child Poverty Across Percent Population Segments"
+  title = "Midwest Child Poverty Across Percent Population Segments",
+  plot_titles = c("HS_Diploma", "College", "Professioinal", "White", "Black", "Asian"),
+  cell_width = 6,
+  cell_height = 12
 )
 

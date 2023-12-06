@@ -24,22 +24,12 @@ str(trees_z_long_dt)
 measures <- c("Girth_z", "Height_z", "Volume_z")
 
 build_plot <- function(id, dt, measures){
-  y_title <- NULL
-  hide_y_tics <- FALSE
-  if(id == 1){
-    y_title <- "Count"
-  }else{
-    hide_y_tics <- TRUE
-  }
-
   plot_dt <- dt[variable == measures[[id]], ]
 
   aplot <- RplotterPkg::create_histogram_plot(
     df = plot_dt,
     aes_x = "Measure",
-    subtitle = measures[[id]],
-    y_title = y_title,
-    hide_y_tics = hide_y_tics,
+    y_title = "Count",
     bar_color = "black",
     bar_fill = "green",
     bar_labels = T,
@@ -53,9 +43,9 @@ build_plot <- function(id, dt, measures){
 }
 
 plot_lst <- purrr::map(1:3,
-                       build_plot,
-                       dt = trees_z_long_dt,
-                       measures = measures
+  build_plot,
+  dt = trees_z_long_dt,
+  measures = measures
 )
 
 layout <- list(
@@ -66,7 +56,8 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths =  c(8.4, 8, 8),
-  row_heights = 8,
-  title = "Girth, Height, Volume of data(trees)"
+  title = "Girth, Height, Volume of data(trees)",
+  plot_titles = c("Girth_z", "Height_z", "Volume_z"),
+  cell_width = 12,
+  cell_height = 16
 )

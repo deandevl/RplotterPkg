@@ -16,14 +16,6 @@ str(mpg_dt)
 classes <- levels(mpg_dt$class)
 
 build_plot <- function(id, dt, classes){
-  x_title <- NULL
-  hide_x_tics <- FALSE
-  if(id == 2){
-    x_title  <- "City MPG"
-  }else {
-    hide_x_tics <- TRUE
-  }
-
   plot_dt <- dt[class == classes[[id]], ]
 
   aplot <- RplotterPkg::create_scatter_plot(
@@ -34,10 +26,8 @@ build_plot <- function(id, dt, classes){
     #position = ggplot2::position_jitter(width = 1.2, height = 1.2),
     pts_size = 3.0,
     pts_fill = "gold",
-    subtitle = classes[[id]],
-    x_title = x_title,
+    x_title = "City MPG",
     y_title = "Highway MPG",
-    hide_x_tics = hide_x_tics,
     x_limits = c(10, 35),
     x_major_breaks = seq(from = 10, to = 35, by = 5),
     y_limits = c(20, 45),
@@ -48,10 +38,11 @@ build_plot <- function(id, dt, classes){
   return(aplot)
 }
 
-plot_lst <- purrr::map(1:2,
-                       build_plot,
-                       dt = mpg_dt,
-                       classes = classes
+plot_lst <- purrr::map(
+  1:2,
+  build_plot,
+  dt = mpg_dt,
+  classes = classes
 )
 
 layout <- list(
@@ -62,8 +53,9 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = 30,
-  row_heights = c(9, 9),
   title = "City vs Highway MPG Across Compacts",
+  plot_titles = c("Subcompact","Compact"),
+  cell_width = 24,
+  cell_height = 12
 )
 

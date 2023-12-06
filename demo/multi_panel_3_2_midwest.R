@@ -8,10 +8,6 @@ library(RplotterPkg)
 variables <-  c("percwhite", "percblack", "perchsd", "percollege", "percadultpoverty", "percchildbelowpovert")
 
 build_plot <- function(id, df, variables){
-  y_title <- NULL
-  if(id == 1 | id == 3 | id == 5){
-    y_title <- "Density"
-  }
   variable <- variables[id]
   plot_df <- data.frame(
     x = df[[variable]]
@@ -20,21 +16,20 @@ build_plot <- function(id, df, variables){
   aplot <- RplotterPkg::create_density_plot(
     df = plot_df,
     aes_x = "x",
-    subtitle = variable,
     rot_y_tic_label = T,
     show_minor_grids = F,
     x_title = NULL,
-    y_title = y_title
+    y_title = "Density"
   )
 
   return(aplot)
 }
 
 plot_lst <- purrr::map(1:6,
-                       build_plot,
-                       df = ggplot2::midwest,
-                       variables = variables
-                       )
+  build_plot,
+  df = ggplot2::midwest,
+  variables = variables
+)
 
 layout <- list(
   plots = plot_lst,
@@ -44,7 +39,9 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(10.4,10),
-  row_heights = c(7.5, 7.5, 7.5),
-  title = "Density Distributions for Selected ggplot2::midwest % Variables"
+  title = "Density Distributions for Selected ggplot2::midwest % Variables",
+  plot_titles = c("percwhite", "percblack", "perchsd", "percollege", "percadultpoverty", "percchildbelowpovert"),
+  y_tick_width = 1,
+  cell_width = 14,
+  cell_height = 6
 )

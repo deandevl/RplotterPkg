@@ -16,24 +16,14 @@ str(percent_religion_dt)
 regions <- levels(percent_religion_dt$bigregion)
 
 build_plot <- function(id, dt, regions){
-  hide_y_tics <- FALSE
-  if(id == 1 | id == 3){
-    y_title <-  "Percent"
-  }else {
-    y_title <- NULL
-    hide_y_tics <- TRUE
-  }
-
   plot_dt <- dt[bigregion == regions[[id]],]
 
   aplot <- RplotterPkg::create_bar_plot(
     df = plot_dt,
     aes_x = "Religion",
     aes_y = "Percent",
-    subtitle = regions[[id]],
     x_title = "Religion",
-    y_title = y_title,
-    hide_y_tics = hide_y_tics,
+    y_title = "Percent",
     rot_y_tic_label = T,
     bar_fill = "lightblue",
     y_limits = c(0.0, 70.0),
@@ -44,10 +34,10 @@ build_plot <- function(id, dt, regions){
 }
 
 plot_lst <- purrr::map(1:4,
-                       build_plot,
-                       dt = percent_religion_dt,
-                       regions = regions
-                       )
+  build_plot,
+  dt = percent_religion_dt,
+  regions = regions
+)
 
 layout <- list(
   plots = plot_lst,
@@ -57,9 +47,10 @@ layout <- list(
 
 RplotterPkg::multi_panel_grid(
   layout = layout,
-  col_widths = c(10.4,10),
-  row_heights = c(9,9),
-  title = "Percent of religions across US regions"
+  title = "Percent of religions across US regions",
+  plot_titles = c("Northeast","Midwest","South","West"),
+  cell_width = 12,
+  cell_height = 10
 )
 
 
