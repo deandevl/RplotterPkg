@@ -193,21 +193,21 @@ multi_panel_grid <- function (
   heights <- NULL
   if(!do_grid){
     if(is.null(legend_grob) & is.null(title_grob)){
-      # only plot titles,plots,x-axis, x-axis title
+      # only (plot titles,plots),x-axis, x-axis title
       heights <- grid::unit(c(rep(c(1,cell_height),max_rows),0.5,0.7), c(rep(c("cm","cm"),max_rows),"cm","cm"))
       start_row <- 0
     }else if(is.null(legend_grob) & !is.null(title_grob)){
-      # only title,plot titles,plots,x-axis, x-axis title
+      # only title,(plot titles,plots),x-axis, x-axis title
       heights <- grid::unit(c(1,rep(c(1,cell_height),max_rows),0.5,0.7), c("cm",rep(c("cm","cm"),max_rows),"cm","cm"))
       start_row <- 1
     }else if(!is.null(legend_grob) & is.null(title_grob)){
-      # only legend,plot titles,plots,x-axis, x-axis title
+      # only legend,(plot titles,plots),x-axis, x-axis title
       heights <- grid::unit(c(1,rep(c(1,cell_height),max_rows),0.5,0.7), c("cm",rep(c("cm","cm"),max_rows),"cm","cm"))
       start_row <- 1
     }else if(!is.null(legend_grob) & !is.null(title_grob)){
-      # the whole thing: title,legend,plot titles,plots,x-axis, x-axis title
-      heights <- grid::unit(c(1,1,rep(c(1,cell_height),max_rows),0.5,0.7), c("cm","cm",rep(c("cm","cm"),max_rows),"cm","cm"))
-      start_row <- 2
+      # the whole thing: title,legend,(plot titles,plots),x-axis, x-axis title
+      heights <- grid::unit(c(1,0.5,1,rep(c(1,cell_height),max_rows),0.5,0.7), c("cm","cm","cm",rep(c("cm","cm"),max_rows),"cm","cm"))
+      start_row <- 3
     }
   }else{
     heights <- grid::unit(rep(cell_height, max_rows), rep("cm", max_rows))
@@ -280,7 +280,7 @@ multi_panel_grid <- function (
       plots_table <- gtable::gtable_add_grob(
         x = plots_table,
         grobs = legend_grob,
-        t = 2,
+        t = 3,
         l = 1,
         r = start_col + 2*max_cols
       )
