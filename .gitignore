@@ -122,3 +122,4 @@ fabric.properties
 
 .Rbuildignore
 RplotterPkg.Rproj
+R/.Rprofile

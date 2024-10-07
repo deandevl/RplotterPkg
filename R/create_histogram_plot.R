@@ -328,24 +328,7 @@ create_histogram_plot <- function(
   }
 
   # --------------------x/y axis titles----------------------------
-  if(is.null(x_title)) {
-      aplot <- aplot +
-        theme(
-          axis.title.x = element_blank()
-        )
-    }else{
-      aplot <- aplot +
-        labs(x = x_title)
-    }
-    if(is.null(y_title)) {
-      aplot <- aplot +
-        theme(
-          axis.title.y = element_blank()
-        )
-    }else{
-      aplot <- aplot +
-        labs(y = y_title)
-    }
+  aplot <- aplot + ylab(y_title) + xlab(x_title)
 
   # -----------------------hide x/y axis tics?----------------------
   if(hide_x_tics){

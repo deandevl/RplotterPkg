@@ -7,7 +7,7 @@
 multi_panel_grid(
   layout,
   title = NULL,
-  title_fontsz = 22,
+  title_fontsz = 14,
   plot_titles = NULL,
   y_tick_width = 0.5,
   cell_width = 8,

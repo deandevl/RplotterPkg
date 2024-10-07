@@ -18,7 +18,7 @@ religions_count_plot <- RplotterPkg::create_bar_plot(
   title = "General Social Survey, 2016",
   x_title = "Religion",
   y_title = "Count",
-  y_limit = c(0, 1500),
+  y_limits = c(0, 1500),
   y_major_breaks = seq(from = 0, to = 1500, by = 250)
 )
 

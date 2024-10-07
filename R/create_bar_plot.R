@@ -268,11 +268,6 @@ create_bar_plot <- function(
       )
   }
 
-  # ------------------Are we flipping the bars?---------------------
-  if(do_coord_flip){
-    aplot <- aplot + coord_flip()
-  }
-
   # -------------------Are we labeling the bars--------------------
   if(bar_labels){
     hjust <- 0.0
@@ -323,53 +318,36 @@ create_bar_plot <- function(
   }else{
     rot_y_tic_angle <- 90
   }
-  aplot <- aplot +
-    theme(
-      axis.text.x = element_text(size = axis_text_size, color = "black"),
-      axis.title.x = element_text(size = axis_text_size + 2, color = "black"),
-      axis.text.y = element_text(size = axis_text_size, color = "black", angle = rot_y_tic_angle),
-      axis.title.y = element_text(size = axis_text_size + 2, color = "black")
-    )
+  # aplot <- aplot +
+  #   theme(
+  #     axis.text.x = element_text(size = axis_text_size, color = "black"),
+  #     axis.title.x = element_text(size = axis_text_size + 2, color = "black"),
+  #     axis.text.y = element_text(size = axis_text_size, color = "black", angle = rot_y_tic_angle),
+  #     axis.title.y = element_text(size = axis_text_size + 2, color = "black")
+  #   )
   if(rot_x_tic_angle > 0){
     aplot <- aplot +
       theme(axis.text.x = element_text(angle = rot_x_tic_angle, hjust = 1.0))
   }
 
   # --------------------x/y axis titles----------------------------
-  if(is.null(x_title)) {
-      aplot <- aplot +
-        theme(
-          axis.title.x = element_blank()
-        )
-    }else{
-      aplot <- aplot +
-        labs(x = x_title)
-    }
-    if(is.null(y_title)) {
-      aplot <- aplot +
-        theme(
-          axis.title.y = element_blank()
-        )
-    }else{
-      aplot <- aplot +
-        labs(y = y_title)
-    }
+  aplot <- aplot + ylab(y_title) + xlab(x_title)
 
    # -----------------------hide x/y axis tics?----------------------
-    if(hide_x_tics){
-      aplot <- aplot +
-        theme(
-          axis.text.x = element_blank(),
-          axis.ticks.x = element_blank()
-        )
-    }
-    if(hide_y_tics){
-      aplot <- aplot +
-        theme(
-          axis.text.y = element_blank(),
-          axis.ticks.y = element_blank()
-        )
-    }
+  if(hide_x_tics){
+    aplot <- aplot +
+      theme(
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()
+      )
+  }
+  if(hide_y_tics){
+    aplot <- aplot +
+      theme(
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()
+      )
+  }
 
   # -------------------legend related parameters---------------------------
   if(!show_legend){
@@ -395,6 +373,12 @@ create_bar_plot <- function(
     print(aplot)
     grDevices::dev.off()
   }
+
+  # ------------------Are we flipping the bars?---------------------
+  if(do_coord_flip){
+    aplot <- aplot + coord_flip()
+  }
+
 
   return(aplot)
 }
