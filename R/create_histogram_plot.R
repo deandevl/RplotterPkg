@@ -30,7 +30,7 @@
 #' @param bar_fill A string that sets the fill color attribute for the bars.
 #' @param bar_color A string that sets the outline color attribute for the bars.
 #' @param bar_alpha A numeric that set the alpha component attribute to \code{bar_color}.
-#' @param bar_size A numeric that sets the outline thickness of the bars.
+#' @param bar_lwd A numeric that sets the bar's outline line width attribute.
 #' @param x_limits A numeric 2 element vector or function that sets the minimum and maximum for the x axis.  Use NA to
 #'  refer to the existing minimum and maximum.
 #' @param x_major_breaks A numeric vector or function that sets the major tic locations along the x axis.
@@ -104,7 +104,7 @@ create_histogram_plot <- function(
     bar_fill = NA,
     bar_color = "black",
     bar_alpha = 1.0,
-    bar_size = 1.0,
+    bar_lwd = 1.0,
     x_limits = NULL,
     x_major_breaks = waiver(),
     x_minor_breaks = waiver(),
@@ -155,7 +155,7 @@ create_histogram_plot <- function(
     list(
       fill = bar_fill,
       color = bar_color,
-      size = bar_size,
+      lwd = bar_lwd,
       alpha = bar_alpha
     )
   )

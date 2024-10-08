@@ -3,11 +3,10 @@ library(here)
 library(data.table)
 library(ggplot2)
 library(magrittr)
-library(RregressPkg)
 library(RplotterPkg)
 
 #  Read in the 2018 ANES pilot study for Donald Trump:
-data_path <- file.path(here::here(), "demos/data/therms18.rda")
+data_path <- file.path(here::here(), "demo/data/therms18.rda")
 load(data_path)
 
 therms_dt <- data.table::as.data.table(Therms18) %>%

@@ -10,7 +10,7 @@ religions_count_plot <- RplotterPkg::create_bar_plot(
   aes_x = "religion",
   do_coord_flip = T,
   bar_fill = "green",
-  bar_size = 1.5,
+  bar_lwd = 1.5,
   bar_width = 0.5,
   order_bars = "desc",
   bar_labels = T,

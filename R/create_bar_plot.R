@@ -26,7 +26,7 @@
 #' @param bar_fill A string that sets the fill color attribute for the bars.
 #' @param bar_color A string that sets the outline color attribute for the bars.
 #' @param bar_alpha A numeric that sets the alpha component attribute to \code{bar_color}.
-#' @param bar_size A numeric that sets the outline thickness attribute of the bars.
+#' @param bar_lwd A numeric that sets the bar's outline line width attribute.
 #' @param bar_width A numeric that sets the width attribute of the bars.
 #' @param x_major_breaks If \code{aes_x} is numeric then this parameter is a numeric vector that defines the major
 #'  breaks/intervals for the x axis.  Interval labels are created and their respective counts are displayed.
@@ -93,7 +93,7 @@ create_bar_plot <- function(
     bar_fill = NA,
     bar_color = "black",
     bar_alpha = 1.0,
-    bar_size = 1.0,
+    bar_lwd = 1.0,
     bar_width = NULL,
     x_major_breaks = NULL,
     y_limits = NULL,
@@ -137,7 +137,7 @@ create_bar_plot <- function(
     list(
       fill = bar_fill,
       color = bar_color,
-      size = bar_size,
+      lwd = bar_lwd,
       alpha = bar_alpha
     )
   )
@@ -147,7 +147,7 @@ create_bar_plot <- function(
     list(
       fill = bar_fill,
       color = bar_color,
-      size = bar_size,
+      lwd = bar_lwd,
       alpha = bar_alpha
     )
   )
@@ -318,13 +318,13 @@ create_bar_plot <- function(
   }else{
     rot_y_tic_angle <- 90
   }
-  # aplot <- aplot +
-  #   theme(
-  #     axis.text.x = element_text(size = axis_text_size, color = "black"),
-  #     axis.title.x = element_text(size = axis_text_size + 2, color = "black"),
-  #     axis.text.y = element_text(size = axis_text_size, color = "black", angle = rot_y_tic_angle),
-  #     axis.title.y = element_text(size = axis_text_size + 2, color = "black")
-  #   )
+  aplot <- aplot +
+    theme(
+      axis.text.x = element_text(size = axis_text_size, color = "black"),
+      axis.title.x = element_text(size = axis_text_size + 2, color = "black"),
+      axis.text.y = element_text(size = axis_text_size, color = "black", angle = rot_y_tic_angle),
+      axis.title.y = element_text(size = axis_text_size + 2, color = "black")
+    )
   if(rot_x_tic_angle > 0){
     aplot <- aplot +
       theme(axis.text.x = element_text(angle = rot_x_tic_angle, hjust = 1.0))

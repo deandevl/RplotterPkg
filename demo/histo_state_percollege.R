@@ -21,7 +21,7 @@ create_histogram_plot(
   x_title = "Percollege",
   y_title = "Count",
   bar_color = "white",
-  bar_size = 1.5,
+  bar_lwd = 1.5,
   title = "Distribution of Counties Percent in College",
   subtitle = "Counties from Ohio and Wisconsin"
 ) +

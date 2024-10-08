@@ -15,8 +15,12 @@ happy_religion_plot <- RplotterPkg::create_bar_plot(
   aes_fill = "religion",
   position = "dodge",
   rot_y_tic_label = T,
+  bar_color = "black",
+  bar_lwd = 2,
+  bar_width = 0.8,
   x_title = "Happiness",
-  y_title = "Count"
+  y_title = "Count",
+  axis_text_size = 16
 ) +
 ggplot2::scale_fill_discrete(
   type = RColorBrewer::brewer.pal(n = 9, name = "Set1")

@@ -14,7 +14,7 @@ RplotterPkg::create_histogram_plot(
   x_title = "Area",
   y_title = "Count",
   bar_color = "white",
-  bar_size = 2.0,
+  bar_lwd = 2.0,
   bar_fill = "brown",
   do_coord_flip = TRUE,
   bar_labels = TRUE,
