@@ -363,6 +363,11 @@ create_bar_plot <- function(
       )
   }
 
+  # ------------------Are we flipping the bars?---------------------
+  if(do_coord_flip){
+    aplot <- aplot + coord_flip()
+  }
+
   # -----------------save the plot as a png file?------------------
   if(!is.null(png_file_path)){
     grDevices::png(
@@ -373,12 +378,6 @@ create_bar_plot <- function(
     print(aplot)
     grDevices::dev.off()
   }
-
-  # ------------------Are we flipping the bars?---------------------
-  if(do_coord_flip){
-    aplot <- aplot + coord_flip()
-  }
-
 
   return(aplot)
 }
