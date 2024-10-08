@@ -73,15 +73,18 @@ multi_panel_grid <- function (
   for(i in seq_along(layout[["plots"]])){
     plots_v[[i]] <- layout[["plots"]][[i]]
   }
+
   # Common legend?--find any legends among "plots"
   legend_grob <- NULL
   if(!do_grid){
     for(i in seq_along(plots_v)){
       plots_v[[i]] <- plots_v[[i]] + theme(legend.direction = "horizontal")
-      a_grob <- get_grob_component(
+
+      a_grob <- RplotterPkg::get_grob_component(
         a_plot = plots_v[[i]],
         component_name = "guide-box"
       )
+
       if(!is.null(a_grob) & is.null(legend_grob)) {
         legend_grob <- a_grob
         plots_v[[i]] <- plots_v[[i]] + theme(legend.position = "none")
@@ -89,6 +92,7 @@ multi_panel_grid <- function (
       plots_v[[i]] <- plots_v[[i]] + theme(legend.position = "none")
     }
   }
+
   # Are we doing a title?
   title_grob <- NULL
   if(!is.null(title)){
@@ -99,7 +103,7 @@ multi_panel_grid <- function (
   xtitle_grob <- NULL
   if(!do_grid){
     for(i in seq_along(plots_v)){
-      a_grob <- get_grob_component(
+      a_grob <- RplotterPkg::get_grob_component(
         a_plot = plots_v[[i]],
         component_name = "xlab-b"
       )
@@ -116,7 +120,7 @@ multi_panel_grid <- function (
   xaxis_grob <- NULL
   if(!do_grid){
     for(i in seq_along(plots_v)){
-      a_grob <- get_grob_component(
+      a_grob <- RplotterPkg::get_grob_component(
         a_plot = plots_v[[i]],
         component_name = "axis-b"
       )
@@ -134,7 +138,7 @@ multi_panel_grid <- function (
   yaxis_grob <- NULL
   if(!do_grid){
     for(i in seq_along(plots_v)){
-      a_grob <- get_grob_component(
+      a_grob <- RplotterPkg::get_grob_component(
         a_plot = plots_v[[i]],
         component_name = "axis-l"
       )
@@ -152,7 +156,7 @@ multi_panel_grid <- function (
   ytitle_grob <- NULL
   if(!do_grid){
     for(i in seq_along(plots_v)){
-      a_grob <- get_grob_component(
+      a_grob <- RplotterPkg::get_grob_component(
         a_plot = plots_v[[i]],
         component_name = "ylab-l"
       )
@@ -169,7 +173,7 @@ multi_panel_grid <- function (
   panels_grob_v <- vector(mode = "list", length = length(layout[["plots"]]))
   if(!do_grid){
     for(i in seq_along(plots_v)){
-      a_grob <- get_grob_component(
+      a_grob <- RplotterPkg::get_grob_component(
         a_plot = plots_v[[i]],
         component_name = "panel"
       )

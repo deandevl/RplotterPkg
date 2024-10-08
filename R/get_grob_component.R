@@ -22,7 +22,8 @@ get_grob_component <- function(a_plot, component_name){
   matched_grob <- NULL
 
   if(length(grob_idx) != 0){
-    matched_grob <- gt_grobs[[grob_idx]]
+    #matched_grob <- gt_grobs[[grob_idx]]
+    matched_grob <- gt_grobs[[grob_idx[1]]]
   }
 
   return(matched_grob)
