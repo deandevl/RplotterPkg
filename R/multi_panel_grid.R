@@ -25,7 +25,7 @@
 #' @param layout A named list containing a list for plot objects or grobs "plots", row locations "rows" vector,
 #'  column locations "cols" vector. This argument is required.
 #' @param title A string that sets the title of the figure.
-#' @param title_fontsz A numeric that sets the title's font size. The default is 14.
+#' @param title_fontsz A numeric that sets the title's font size. The default is 20.
 #' @param plot_titles A character vector with the same length as the number of plot objects that defines
 #'   each of their titles.
 #' @param y_tick_width A numeric that sets the width of the vertical column containing the y axis tick labeling.
@@ -54,7 +54,7 @@
 multi_panel_grid <- function (
   layout,
   title = NULL,
-  title_fontsz = 14,
+  title_fontsz = 20,
   plot_titles = NULL,
   y_tick_width = 0.5,
   cell_width = 8,

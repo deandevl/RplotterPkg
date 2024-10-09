@@ -1,5 +1,6 @@
 library(data.table)
 library(palmerpenguins)
+library(magrittr)
 library(RplotterPkg)
 
 data(penguins, package = "palmerpenguins")
@@ -60,6 +61,7 @@ layout <- list(
 RplotterPkg::multi_panel_grid(
   layout = layout,
   title = "Average and Range of Penguins Body Mass(g) by Island/Species",
+  title_fontsz = 24,
   plot_titles = c("Biscoe","Dream","Torgersen"),
   y_tick_width = 1,
   cell_width = 10,
