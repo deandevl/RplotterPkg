@@ -44,3 +44,4 @@ stick_births                    stick plot of births across the years
 symmetry_plot                   symmetry plot of farm counts across US states
 table_employees                 table of employee information
 table_graphic_cars              graphic table of car statistics
+waffle_chart                    presents proportions in a waffle chart
