@@ -18,5 +18,5 @@ RplotterPkg::create_bar_plot(
   bar_alpha = 0.6,
   x_title = "Infant Mortality Rate(per 1000)",
   y_title = "Frequency",
-  rot_y_tic_label = T
+  rot_y_tic_label = TRUE
 )

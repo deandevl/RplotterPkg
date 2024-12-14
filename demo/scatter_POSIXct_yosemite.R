@@ -20,7 +20,7 @@ RplotterPkg::create_scatter_plot(
   df = yosemite_dt,
   aes_x = "time_alt",
   aes_y = "y",
-  rot_y_tic_label = T,
+  rot_y_tic_label = TRUE,
   title = "Yosemite Tempertures",
   subtitle = "Every 5 minutes on 2017-05-01 for 10 hours",
   x_title = "Time Hr:Min",

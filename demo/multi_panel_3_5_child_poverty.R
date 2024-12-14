@@ -37,8 +37,8 @@ build_plot <- function(id, dt, states){
     x_major_breaks = seq(40,90,10),
     y_limits = c(0,60),
     y_major_breaks = seq(0,60,10),
-    show_minor_grids = F,
-    silent_NA_warning = T
+    show_minor_grids = FALSE,
+    silent_NA_warning = TRUE
   )
   return(aplot)
 }
@@ -59,7 +59,7 @@ child_poverty_table <- RplotterPkg::create_table_graphic(
   table_width = 8,
   title = "Mean Percent of Child Poverty Across Midwest Counties",
   show_row_names = FALSE,
-  display_plot = F
+  display_plot = FALSE
 )
 
 # Create a text caption grob

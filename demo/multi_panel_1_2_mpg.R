@@ -32,8 +32,8 @@ build_plot <- function(id, dt, classes){
     x_major_breaks = seq(from = 10, to = 35, by = 5),
     y_limits = c(20, 45),
     y_major_breaks = seq(from = 20, to = 45, by = 5),
-    show_minor_grids = F,
-    silent_NA_warning = T
+    show_minor_grids = FALSE,
+    silent_NA_warning = TRUE
   )
   return(aplot)
 }

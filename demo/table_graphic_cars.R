@@ -48,7 +48,7 @@ hp_mpg_plot <- RplotterPkg::create_scatter_plot(
   y_title = "Miles Per Gallon",
   x_limits = c(50, 350),
   x_major_breaks = seq(50,350,50),
-  show_legend = F
+  show_legend = FALSE
 )
 
 # create a scatter plot object of wt vs mpg
@@ -63,7 +63,7 @@ wt_mpg_plot <- RplotterPkg::create_scatter_plot(
   y_title = NULL,
   x_major_breaks = seq(1,6,1),
   y_labels = NULL,
-  show_legend = F
+  show_legend = FALSE
 )
 
 # create a scatter plot object of disp vs mpg
@@ -78,7 +78,7 @@ disp_mpg_plot <- RplotterPkg::create_scatter_plot(
   x_major_breaks = seq(50,500,50),
   y_title = NULL,
   y_labels = NULL,
-  show_legend = T,
+  show_legend = TRUE,
   legend_key_width = 0.75,
   legend_key_height = 0.85
 )

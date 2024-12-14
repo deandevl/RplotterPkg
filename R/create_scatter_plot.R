@@ -295,7 +295,7 @@ create_scatter_plot <- function(
       ggrepel::geom_text_repel(
         data = df,
         aes(label = !!sym(aes_label)),
-        na.rm = T,
+        na.rm = TRUE,
         max.overlaps = Inf,
         color = aes_label_color,
         size = aes_label_size,

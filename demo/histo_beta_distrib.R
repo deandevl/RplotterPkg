@@ -21,7 +21,7 @@ RplotterPkg::create_histogram_plot(
   subtitle = "Source: ANES' 2018 Pilot Study",
   bar_fill = "blue",
   bar_alpha = 0.5,
-  rot_y_tic_label = T,
+  rot_y_tic_label = TRUE,
   x_major_breaks = seq(0,100,10),
   y_limits = c(0,500),
   y_major_breaks = seq(0,500,100)

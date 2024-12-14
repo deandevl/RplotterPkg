@@ -163,7 +163,7 @@ create_box_plot <- function(
     # Takes values of aes_y and returns TRUE/FALSE boolean vector if a certain point is an outlier or not
     # Function also takes in a coefficient
     check_outlier <- function(v, coef = 1.5){
-      quantiles <- stats::quantile(v, probs = c(0.25, 0.75), na.rm = T)
+      quantiles <- stats::quantile(v, probs = c(0.25, 0.75), na.rm = TRUE)
       IQR <- quantiles[2] - quantiles[1]
       result <- v < (quantiles[1] - coef * IQR) | v > (quantiles[2] + coef * IQR)
       return(result)
@@ -218,7 +218,7 @@ create_box_plot <- function(
     aplot <- aplot +
       ggrepel::geom_text_repel(
         aes(label = !!sym(aes_label)),
-        na.rm = T,
+        na.rm = TRUE,
         max.overlaps = Inf,
         color = aes_label_color,
         min.segment.length = unit(0, 'lines'),
@@ -269,19 +269,19 @@ create_box_plot <- function(
   # --------------------panel and grids---------------------
   aplot <- aplot +
     theme(
-      panel.background = element_rect(fill = panel_color, color = panel_border_color, size = 2)
+      panel.background = element_rect(fill = panel_color, color = panel_border_color, linewidth = 2)
     )
 
   if(show_major_grids){
     aplot <- aplot +
       theme(
-        panel.grid.major = element_line(size = 0.2, linetype = "solid", color = "gray90")
+        panel.grid.major = element_line(linewidth = 0.2, linetype = "solid", color = "gray90")
       )
   }
   if(show_minor_grids){
     aplot <- aplot +
       theme(
-        panel.grid.minor = element_line(size = 0.2, linetype = "solid", color = "gray90")
+        panel.grid.minor = element_line(linewidth = 0.2, linetype = "solid", color = "gray90")
       )
   }
 

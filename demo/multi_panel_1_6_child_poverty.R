@@ -19,8 +19,8 @@ build_plot <- function(id, dt, variables){
     aes_x = variables[[id]],
     aes_y = "Child_Poverty",
     y_title = "% Child Poverty",
-    show_minor_grids = F,
-    silent_NA_warning = T
+    show_minor_grids = FALSE,
+    silent_NA_warning = TRUE
   )
   return(aplot)
 }

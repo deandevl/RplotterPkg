@@ -24,10 +24,10 @@ RplotterPkg::create_range_plot(
   aes_y_max = "max_body_mass",
   title = "Average and Range of Penguins Body Mass(g) by Species",
   subtitle = "Source: palmerpenguins",
-  center_titles = T,
+  center_titles = TRUE,
   x_title = "Species",
   y_title = "Body Mass(g)",
-  rot_y_tic_label = T,
+  rot_y_tic_label = TRUE,
   pts_fill = "blue",
   pts_shape = 22,
   pts_stroke = 1.7,
@@ -38,7 +38,7 @@ RplotterPkg::create_range_plot(
   line_pts_alpha = 0.5,
   y_limits = c(2500, 7000),
   y_major_breaks = seq(2500,7000,500),
-  show_major_grids = T,
-  show_minor_grids = F,
-  do_coord_flip = T
+  show_major_grids = TRUE,
+  show_minor_grids = FALSE,
+  do_coord_flip = TRUE
 )

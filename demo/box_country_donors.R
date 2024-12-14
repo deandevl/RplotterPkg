@@ -31,6 +31,6 @@ RplotterPkg::create_box_plot(
   rot_y_tic_label = TRUE,
   ol_color = "red",
   ol_size = 1.5,
-  silent_NA_warning = T
+  silent_NA_warning = TRUE
  # png_file_path = file.path(here::here(),"plots.png")
 )

@@ -17,7 +17,7 @@ create_histogram_plot(
   x_major_breaks = seq(0,50,2),
   y_limits = c(0, 30),
   y_major_breaks = seq(from = 0, to = 30, by =5),
-  show_minor_grids = F,
+  show_minor_grids = FALSE,
   x_title = "Percollege",
   y_title = "Count",
   bar_color = "white",

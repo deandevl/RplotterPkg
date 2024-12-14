@@ -220,7 +220,7 @@ create_density_plot <- function(
           xend = quantiles[[i]],
           yend = densities[[i]]$y[[densities_n]],
           color = area_quantile_line_color,
-          size = 1.4
+          linewidth = 1.4
         )
         # annotate quantile value above segment
         aplot <- aplot +
@@ -307,19 +307,19 @@ create_density_plot <- function(
   # --------------------panel and grids---------------------
   aplot <- aplot +
     theme(
-      panel.background = element_rect(fill = panel_color, color = panel_border_color, size = 2)
+      panel.background = element_rect(fill = panel_color, color = panel_border_color, linewidth = 2)
     )
 
   if(show_major_grids){
     aplot <- aplot +
       theme(
-        panel.grid.major = element_line(size = 0.5, linetype = "solid", color = "gray")
+        panel.grid.major = element_line(linewidth = 0.5, linetype = "solid", color = "gray")
       )
   }
   if(show_minor_grids){
     aplot <- aplot +
       theme(
-        panel.grid.minor = element_line(size = 0.5, linetype = "solid", color = "gray")
+        panel.grid.minor = element_line(linewidth = 0.5, linetype = "solid", color = "gray")
       )
   }
 

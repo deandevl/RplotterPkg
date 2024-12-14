@@ -76,7 +76,7 @@ RplotterPkg::create_heatmap(
   caption = "Source: U.S. Census Bureau and U.S. Department of Housing and Urban Developmet",
   x_title = "Month",
   y_title = "Year",
-  rot_y_tic_label = T
+  rot_y_tic_label = TRUE
 ) +
 ggplot2::scale_fill_gradientn(
   colors = RColorBrewer::brewer.pal(n = 9, name = "YlOrRd"),

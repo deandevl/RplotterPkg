@@ -14,9 +14,9 @@ weights_plot <- RplotterPkg::create_bar_plot(
   x_title = "Name",
   y_title = "Weight",
   bar_fill = "red",
-  bar_labels = T,
+  bar_labels = TRUE,
   order_bars = "desc",
-  rot_y_tic_label = T
+  rot_y_tic_label = TRUE
 )
 
 weights_plot

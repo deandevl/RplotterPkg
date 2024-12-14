@@ -29,7 +29,7 @@ build_plot <- function(id, dt, islands){
     aes_y_max = "max_body_mass",
     x_title = "Species",
     y_title = "Body Mass(g)",
-    rot_y_tic_label = T,
+    rot_y_tic_label = TRUE,
     pts_fill = "blue",
     pts_shape = 22,
     pts_stroke = 1.7,
@@ -39,8 +39,8 @@ build_plot <- function(id, dt, islands){
     line_pts_alpha = 0.5,
     y_limits = c(2500, 7000),
     y_major_breaks = seq(2500,7000,500),
-    show_major_grids = T,
-    show_minor_grids = F
+    show_major_grids = TRUE,
+    show_minor_grids = FALSE
   )
   return(aplot)
 }

@@ -24,7 +24,7 @@ build_plot <- function(id, dt, regions){
     aes_y = "Percent",
     x_title = "Religion",
     y_title = "Percent",
-    rot_y_tic_label = T,
+    rot_y_tic_label = TRUE,
     bar_fill = "lightblue",
     y_limits = c(0.0, 70.0),
     y_major_breaks = seq(from = 0, to = 70, by = 10)

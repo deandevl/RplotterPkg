@@ -14,7 +14,7 @@ ozone_plot <- RplotterPkg::create_density_plot(
   plot_obs_jitter = TRUE,
   density_fill = "green",
   density_alpha = 0.5,
-  silent_NA_warning = T
+  silent_NA_warning = TRUE
 )
 
 ozone_plot

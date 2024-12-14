@@ -36,7 +36,7 @@ reduced_plot <- RplotterPkg::create_scatter_plot(
   aes_y = "Strength",
   x_title = "Alcohol",
   y_title = "Strength",
-  rot_y_tic_label = T,
+  rot_y_tic_label = TRUE,
   bold_y = reduced_ols,
   bold_y_color = "red"
 )
@@ -45,7 +45,7 @@ full_plot <- RplotterPkg::create_scatter_plot(
   df = plot_df,
   aes_x = "Alcohol",
   aes_y = "Strength",
-  rot_y_tic_label = T
+  rot_y_tic_label = TRUE
 ) + geom_line(aes(x = Alcohol, y = Strength_F), color="red")
 
 layout <- list(

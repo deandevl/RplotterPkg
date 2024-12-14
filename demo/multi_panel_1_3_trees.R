@@ -32,7 +32,7 @@ build_plot <- function(id, dt, measures){
     y_title = "Count",
     bar_color = "black",
     bar_fill = "green",
-    bar_labels = T,
+    bar_labels = TRUE,
     bar_label_size = 3,
     binwidth = 0.5,
     x_limits = c(-3.0,4.0),

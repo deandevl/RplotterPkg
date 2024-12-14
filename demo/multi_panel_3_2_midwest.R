@@ -16,8 +16,8 @@ build_plot <- function(id, df, variables){
   aplot <- RplotterPkg::create_density_plot(
     df = plot_df,
     aes_x = "x",
-    rot_y_tic_label = T,
-    show_minor_grids = F,
+    rot_y_tic_label = TRUE,
+    show_minor_grids = FALSE,
     x_title = NULL,
     y_title = "Density"
   )

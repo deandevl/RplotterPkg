@@ -58,7 +58,7 @@ stem_leaf_display <- function(
     Max = max_val,
     trim.outliers = outliers,
     depths = depths,
-    printresult = F
+    printresult = FALSE
   )
 
   col_widths <- rep(col_width, length(var_names) + 1)
@@ -102,7 +102,7 @@ stem_leaf_display <- function(
       Max = max_val,
       trim.outliers = outliers,
       depths = depths,
-      printresult = F
+      printresult = FALSE
     )
 
     for(ii in seq_along(var_stem_leaf_lst$stem)){

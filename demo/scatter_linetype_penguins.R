@@ -26,9 +26,9 @@ RplotterPkg::create_scatter_plot(
   aes_linetype = "Species",
   title = "Mean Flipper Length by Species Across the Years",
   x_major_breaks = c(2007,2008,2009),
-  show_minor_grids = F,
+  show_minor_grids = FALSE,
   panel_border_color = "green",
-  connect = T
+  connect = TRUE
 ) +
 ggplot2::guides(
   linetype = guide_legend(

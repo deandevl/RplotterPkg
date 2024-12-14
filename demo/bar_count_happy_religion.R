@@ -14,7 +14,7 @@ happy_religion_plot <- RplotterPkg::create_bar_plot(
   aes_x = "happy",
   aes_fill = "religion",
   position = "dodge",
-  rot_y_tic_label = T,
+  rot_y_tic_label = TRUE,
   bar_color = "black",
   bar_lwd = 2,
   bar_width = 0.8,

@@ -15,7 +15,7 @@ religion_happy_percent_plot <- RplotterPkg::create_bar_plot(
   aes_y = "Percent",
   aes_fill = "happy",
   position = "dodge",
-  rot_y_tic_label = T,
+  rot_y_tic_label = TRUE,
   x_title = "Religion",
   y_title = "Percent"
 )

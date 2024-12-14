@@ -43,7 +43,7 @@ RplotterPkg::create_scatter_plot(
   aes_fill = "Continent",
   aes_color = "Continent",
   pts_size = 5,
-  connect = T,
+  connect = TRUE,
   x_limits = c(as.Date("1950-01-01"), as.Date("2010-01-01")),
   x_major_date_breaks = "5 year",
   x_date_labels = "%Y",

@@ -37,7 +37,7 @@ build_plot <- function(id, dt, years){
     legend_key_width = 0.8,
     legend_key_height = 0.6,
     show_minor_grids = F,
-    silent_NA_warning = T
+    silent_NA_warning = TRUE
   )
   return(aplot)
 }
