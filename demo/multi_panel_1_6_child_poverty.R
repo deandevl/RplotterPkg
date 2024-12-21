@@ -1,14 +1,13 @@
 library(ggplot2)
 library(rlang)
-library(magrittr)
 library(purrr)
 library(RplotterPkg)
 
-child_poverty_dt <- data.table::as.data.table(ggplot2::midwest) %>%
-    data.table::setnames(.,
+child_poverty_dt <- data.table::as.data.table(ggplot2::midwest) |>
+    data.table::setnames(
       old = c("percchildbelowpovert", "perchsd", "percollege", "percprof", "percwhite", "percblack", "percasian"),
-      new = c("Child_Poverty", "HS_Diploma", "College", "Professioinal", "White", "Black", "Asian")) %>%
-    .[, .(Child_Poverty, HS_Diploma, College, Professioinal, White, Black, Asian)]
+      new = c("Child_Poverty", "HS_Diploma", "College", "Professioinal", "White", "Black", "Asian")) |>
+    _[, .(Child_Poverty, HS_Diploma, College, Professioinal, White, Black, Asian)]
 
 
 variables <- c("HS_Diploma", "College", "Professioinal", "White", "Black", "Asian")

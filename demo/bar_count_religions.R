@@ -5,7 +5,7 @@ library(socviz)
 library(ggrepel)
 library(RplotterPkg)
 
-religions_count_plot <- RplotterPkg::create_bar_plot(
+RplotterPkg::create_bar_plot(
   df = socviz::gss_sm,
   aes_x = "religion",
   do_coord_flip = TRUE,
@@ -21,5 +21,3 @@ religions_count_plot <- RplotterPkg::create_bar_plot(
   y_limits = c(0, 1500),
   y_major_breaks = seq(from = 0, to = 1500, by = 250)
 )
-
-religions_count_plot

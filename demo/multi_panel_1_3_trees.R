@@ -1,13 +1,12 @@
 library(data.table)
 library(ggplot2)
 library(rlang)
-library(magrittr)
 library(datasets)
 library(purrr)
 library(RplotterPkg)
 
-trees_z_dt <- data.table::as.data.table(datasets::trees) %>%
-  .[ ,`:=`(
+trees_z_dt <- data.table::as.data.table(datasets::trees) |>
+  _[ ,`:=`(
       Girth_z = (Girth - mean(Girth))/sd(Girth),
       Height_z = (Height - mean(Height))/sd(Height),
       Volume_z = (Volume - mean(Volume))/sd(Volume)

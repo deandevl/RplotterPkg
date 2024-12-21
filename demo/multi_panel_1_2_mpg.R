@@ -1,15 +1,14 @@
 library(data.table)
 library(ggplot2)
 library(rlang)
-library(magrittr)
 library(purrr)
 library(ggrepel)
 library(RplotterPkg)
 
-mpg_dt <- data.table::as.data.table(ggplot2::mpg) %>%
-  .[class == "subcompact" | class == "compact"] %>%
-  .[, .(class, model, hwy, cty, manufacturer, displ)] %>%
-  .[, `:=`(class = as.factor(class), car = paste0(model,"_",displ))]
+mpg_dt <- data.table::as.data.table(ggplot2::mpg) |>
+  _[class == "subcompact" | class == "compact"] |>
+  _[, .(class, model, hwy, cty, manufacturer, displ)] |>
+  _[, `:=`(class = as.factor(class), car = paste0(model,"_",displ))]
 
 str(mpg_dt)
 

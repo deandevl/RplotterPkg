@@ -2,7 +2,6 @@ library(ggplot2)
 library(RColorBrewer)
 library(rlang)
 library(data.table)
-library(magrittr)
 library(gapminder)
 library(RplotterPkg)
 
@@ -10,9 +9,9 @@ library(RplotterPkg)
 # Set  with value of "Oceania" as "Asia"
 gapminder_dt <- data.table::as.data.table(gapminder::gapminder)
 gapminder_dt$continent <- as.character(gapminder_dt$continent)
-gapminder_2007_dt <- gapminder_dt[year == 2007,] %>%
-  .[, continent_2 := ifelse(continent == "Oceania", "Asia", continent)] %>%
-  .[, continent_2 := as.factor(continent_2)]
+gapminder_2007_dt <- gapminder_dt[year == 2007,] |>
+  _[, continent_2 := ifelse(continent == "Oceania", "Asia", continent)] |>
+  _[, continent_2 := as.factor(continent_2)]
 
 str(gapminder_2007_dt)
 

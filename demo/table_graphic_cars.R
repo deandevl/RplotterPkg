@@ -2,14 +2,13 @@ library(grid)
 library(gtable)
 library(rlang)
 library(data.table)
-library(magrittr)
 library(tibble)
 library(ggplot2)
 library(RplotterPkg)
 
 # create a summary data frame of mtcars
-car_stats_dt <- data.table::as.data.table(mtcars) %>%
-  .[, .(
+car_stats_dt <- data.table::as.data.table(mtcars) |>
+  _[, .(
     N = .N,
     mean_mpg = round(mean(mpg),2),
     mean_hp = round(mean(hp),2),
@@ -33,9 +32,9 @@ car_stats_table_grob <- RplotterPkg::create_table_graphic(
 grid::grid.draw(car_stats_table_grob)
 
 # define a data frame for mtcars for creating a scatter plot
-mtcars_dt <- data.table::as.data.table(mtcars) %>%
-  .[, cyl := as.factor(cyl)] %>%
-  data.table::setnames(., old = "cyl", new = "Cylinder")
+mtcars_dt <- data.table::as.data.table(mtcars) |>
+  _[, cyl := as.factor(cyl)] |>
+  data.table::setnames(old = "cyl", new = "Cylinder")
 
 # create a scatter plot object of hp vs mpg
 hp_mpg_plot <- RplotterPkg::create_scatter_plot(

@@ -12,7 +12,7 @@ data_df <- data.frame(
 
 # Create a density plot of the random data with area shading
 #    at cumulative probabilities of 2.5% and 97.5%:
-random_normal_plot <- RplotterPkg::create_density_plot(
+RplotterPkg::create_density_plot(
   df = data_df,
   aes_x = "x",
   title = "Random Normal Distribution",
@@ -28,5 +28,3 @@ random_normal_plot <- RplotterPkg::create_density_plot(
   area_colors = c("green", "gray"),
   area_quantile_line_color = "blue"
 )
-
-random_normal_plot

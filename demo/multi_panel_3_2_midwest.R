@@ -1,7 +1,6 @@
 library(data.table)
 library(ggplot2)
 library(rlang)
-library(magrittr)
 library(purrr)
 library(RplotterPkg)
 

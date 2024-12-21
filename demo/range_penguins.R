@@ -1,12 +1,11 @@
 library(data.table)
-library(magrittr)
 library(palmerpenguins)
 library(RplotterPkg)
 
 data(penguins, package = "palmerpenguins")
 
-penguins_dt <- data.table::as.data.table(penguins) %>%
-  na.omit(.)
+penguins_dt <- data.table::as.data.table(penguins) |>
+  na.omit()
 
 penguins_stats_dt <- penguins_dt[, .(
   avg_body_mass = mean(body_mass_g),

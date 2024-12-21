@@ -61,6 +61,7 @@
 #'   The default is "black".
 #'
 #' @import ggplot2
+#' @importFrom stats median
 #'
 #' @return A plot object
 #'

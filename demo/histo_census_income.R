@@ -1,7 +1,6 @@
 library(RcensusPkg)
 library(usmap)
 library(data.table)
-library(magrittr)
 library(ggplot2)
 library(rlang)
 library(RplotterPkg)
@@ -20,7 +19,7 @@ var_desc_dt <- RcensusPkg::get_variable_names(
 
 
 # Call `Rcensus::get_vintage_data()`
-# Get the median age and income for households across Georgia counties in 2019:
+# Get the median income for households across Georgia counties in 2019:
 ga_fips <- usmap::fips("GA")
 ga_dt <- RcensusPkg::get_vintage_data(
   dataset = "acs/acs5",
@@ -32,8 +31,8 @@ ga_dt <- RcensusPkg::get_vintage_data(
 
 
 # Do some minor wrangling:
-ga_dt <- data.table::setnames(ga_dt, old = "B19013_001E", new = "medinc") %>% # relabel column
-  .[, medinc := as.numeric(medinc)]  # set as numeric
+ga_dt <- data.table::setnames(ga_dt, old = "B19013_001E", new = "medinc") |>  # relabel column
+  _[, medinc := as.numeric(medinc)]  # set as numeric
 
 # Plot the median income in a histogram
 RplotterPkg::create_histogram_plot(

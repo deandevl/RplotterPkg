@@ -1,17 +1,16 @@
 library(data.table)
 library(ggplot2)
-library(magrittr)
 library(purrr)
 library(RplotterPkg)
 
 # Create a data frame that focuses on the percent of child poverty
 #  across 5 midwest states and their counties
 
-child_poverty_dt <- data.table::as.data.table(ggplot2::midwest) %>%
-  .[, .(state, county, perchsd, percchildbelowpovert)] %>%
-  .[, state := as.factor(state)] %>%
-  data.table::setorderv(., cols = "percchildbelowpovert", order = -1) %>%
-  data.table::setnames(., old = c("state", "perchsd", "percchildbelowpovert"),
+child_poverty_dt <- data.table::as.data.table(ggplot2::midwest) |>
+  _[, .(state, county, perchsd, percchildbelowpovert)] |>
+  _[, state := as.factor(state)] |>
+  data.table::setorderv(cols = "percchildbelowpovert", order = -1) |>
+  data.table::setnames(old = c("state", "perchsd", "percchildbelowpovert"),
                        new = c("State", "High_School", "Child_Poverty"))
 
 str(child_poverty_dt)
@@ -50,9 +49,9 @@ plot_lst <- purrr::map(1:5,
 )
 
 # Summarize the child poverty across the states by creating a graphic summary table
-mean_child_poverty_dt <- child_poverty_dt[, .(N = .N,  Mean_Child_Poverty = unlist(lapply(.SD, mean))), by = State, .SDcols = "Child_Poverty"] %>%
-.[, Mean_Child_Poverty := round(Mean_Child_Poverty, 2)] %>%
-data.table::setorderv(., cols = c("Mean_Child_Poverty"), order = -1)
+mean_child_poverty_dt <- child_poverty_dt[, .(N = .N,  Mean_Child_Poverty = unlist(lapply(.SD, mean))), by = State, .SDcols = "Child_Poverty"] |>
+_[, Mean_Child_Poverty := round(Mean_Child_Poverty, 2)] |>
+data.table::setorderv(cols = c("Mean_Child_Poverty"), order = -1)
 
 child_poverty_table <- RplotterPkg::create_table_graphic(
   df = mean_child_poverty_dt,

@@ -3,15 +3,14 @@ library(ggplot2)
 library(ggplotify)
 library(rlang)
 library(grid)
-library(magrittr)
 library(purrr)
 library(gapminder)
 library(RplotterPkg)
 
-gapminder_dt <- data.table::as.data.table(gapminder::gapminder) %>%
-  .[year %in% c(1952, 1972, 1992, 2002) & continent %in% c("Africa", "Americas", "Asia", "Europe")] %>%
-  droplevels(.) %>%
-  .[, `:=`(year = as.factor(year), pop = pop/1e+6)]
+gapminder_dt <- data.table::as.data.table(gapminder::gapminder) |>
+  _[year %in% c(1952, 1972, 1992, 2002) & continent %in% c("Africa", "Americas", "Asia", "Europe")] |>
+  droplevels() |>
+  _[, `:=`(year = as.factor(year), pop = pop/1e+6)]
 
 str(gapminder_dt)
 

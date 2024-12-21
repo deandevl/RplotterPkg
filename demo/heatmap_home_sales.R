@@ -1,5 +1,4 @@
 library(data.table)
-library(magrittr)
 library(rlang)
 library(ggplot2)
 library(forcats)
@@ -40,8 +39,8 @@ str(dt)
 # Set a data.table with 687 dates to be binded to sales_dt
 dates_dt <- data.table::data.table(
   per_idx = 1:687,
-  date=seq.Date(from = as.Date("1963-01-01"), by = "1 month", length.out = 687)) %>%
-  data.table::setkey(., "per_idx")
+  date=seq.Date(from = as.Date("1963-01-01"), by = "1 month", length.out = 687)) |>
+  data.table::setkey("per_idx")
 str(dates_dt)
 
 # Bind dt with dates_dt with the common key "per_idx"
@@ -49,8 +48,8 @@ data_dt <- dt[dates_dt]
 
 # We will be looking at housing sales where "cat_idx" equals 1.
 # Get housing sales and select "val" and "date"
-sales_dt <- data_dt[cat_idx == 1 & dt_idx == 1 & geo_idx == 1, .(val, date)] %>%
-  data.table::setnames(., old = "val", new = "Sales")
+sales_dt <- data_dt[cat_idx == 1 & dt_idx == 1 & geo_idx == 1, .(val, date)] |>
+  data.table::setnames(old = "val", new = "Sales")
 str(sales_dt)
 
 # Add month and year columns

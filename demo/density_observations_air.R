@@ -2,9 +2,8 @@ library(ggplot2)
 library(rlang)
 library(data.table)
 library(RplotterPkg)
-library(magrittr)
 
-ozone_plot <- RplotterPkg::create_density_plot(
+RplotterPkg::create_density_plot(
   df = datasets::airquality,
   aes_x = "Ozone",
   rot_y_tic_label = TRUE,
@@ -16,5 +15,3 @@ ozone_plot <- RplotterPkg::create_density_plot(
   density_alpha = 0.5,
   silent_NA_warning = TRUE
 )
-
-ozone_plot

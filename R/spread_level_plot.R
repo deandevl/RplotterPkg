@@ -28,6 +28,7 @@
 #'
 #' @import ggplot2
 #' @importFrom data.table as.data.table
+#' @importFrom stats lm
 #'
 #' @return A named list object with a data.table and ggplot2 scatter plot.
 #'

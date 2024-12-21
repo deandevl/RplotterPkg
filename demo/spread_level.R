@@ -2,13 +2,12 @@ library(here)
 library(data.table)
 library(ggplot2)
 library(ggrepel)
-library(magrittr)
 library(RplotterPkg)
 
 # Read the data: baseball homeruns from years 1900 to 2000
 data_path <- file.path(here(), "demo", "data", "homeruns_2000.txt")
-homeruns_dt <- data.table::fread(data_path) %>%
-  .[, YEARS := as.factor(YEARS)]
+homeruns_dt <- data.table::fread(data_path) |>
+  _[, YEARS := as.factor(YEARS)]
 
 # Show the boxplot of homeruns for each YEARS levels
 RplotterPkg::create_box_plot(

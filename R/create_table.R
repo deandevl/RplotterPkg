@@ -94,7 +94,7 @@ create_table <- function(
     data = x,
     rowname_col = rowname_col,
     caption = caption
-  ) %>%
+  ) |>
   tab_header(
     title = title,
     subtitle = subtitle
@@ -102,18 +102,18 @@ create_table <- function(
 
   # overall table options-- scroll bars,container width/height,table width
   ## scroll bars
-  table_gt <- table_gt %>%
+  table_gt <- table_gt |>
     tab_options(
       container.overflow.x = hor_scroll_bar,
       container.overflow.y = ver_scroll_bar,
     )
   ## container width,height
   if(!is.null(container_width_px)){
-    table_gt <- table_gt %>%
+    table_gt <- table_gt |>
       tab_options(container.width = gt::px(container_width_px))
   }
   if(!is.null(container_height_px)){
-    table_gt <- table_gt %>%
+    table_gt <- table_gt |>
       tab_options(container.width = gt::px(container_height_px))
   }
 
@@ -128,14 +128,14 @@ create_table <- function(
 
     formula_lst <- purrr::map2(cols, pix, make_col_formula)
 
-    table_gt <- table_gt %>%
+    table_gt <- table_gt |>
       cols_width(.list = unlist(formula_lst))
   }
 
   #header labeling
   ## relabel column headings
   if(!is.null(col_label_lst)){
-    table_gt <-  table_gt %>%
+    table_gt <-  table_gt |>
       cols_label(.list = col_label_lst)
   }
   ## show thick line below header row?
@@ -148,7 +148,7 @@ create_table <- function(
 
   # column decimals
   if(!is.null(decimals_lst)){
-    table_gt <-  table_gt %>%
+    table_gt <-  table_gt |>
       fmt_number(
         columns = decimals_lst$cols,
         decimals = decimals_lst$decimal
@@ -157,13 +157,13 @@ create_table <- function(
 
   # source note
   if(!is.null(source_note)){
-    table_gt <-  table_gt %>%
+    table_gt <-  table_gt |>
       tab_source_note(
         source_note = md(source_note)
       )
   }
   ## source note formatting
-  table_gt <- table_gt %>%
+  table_gt <- table_gt |>
     tab_options(
       source_notes.font.size = "xx-small"
     )
@@ -171,7 +171,7 @@ create_table <- function(
   # footnotes
   ## title footnote
   if(!is.null(title) & !is.null(footnote_title)){
-    table_gt <- table_gt %>%
+    table_gt <- table_gt |>
       tab_footnote(
         footnote = footnote_title,
         locations = cells_title(groups = "title")
@@ -179,7 +179,7 @@ create_table <- function(
   }
   ## column head footnotes
   if(!is.null(footnote_col_head_lst)){
-    table_gt <- table_gt %>%
+    table_gt <- table_gt |>
       tab_footnote(
         footnote = footnote_col_head_lst$footnote,
         locations = cells_column_labels(columns = footnote_col_head_lst$col)
@@ -187,21 +187,21 @@ create_table <- function(
   }
   ## table body footnotes
   if(!is.null(footnote_body_lst)){
-    table_gt <- table_gt %>%
+    table_gt <- table_gt |>
       tab_footnote (
         footnote = footnote_body_lst$footnote,
         locations = cells_body(columns = footnote_body_lst$col, rows = footnote_body_lst$row)
       )
   }
   ## formatting footnotes
-  table_gt <- table_gt %>%
+  table_gt <- table_gt |>
     tab_options(
       footnotes.font.size = "xx-small"
     )
 
   # tab_style
   ## style for body cells--fontsize
-  table_gt <- table_gt %>%
+  table_gt <- table_gt |>
     tab_style(
       style = cell_text(size = "xx-small"),
       locations = cells_body(columns = everything(), rows = everything())
@@ -210,7 +210,7 @@ create_table <- function(
   header_style_lst <- list(
     cell_text(weight = "bold", size = "small")
   )
-  table_gt <- table_gt %>%
+  table_gt <- table_gt |>
     tab_style(
       style = header_style_lst,
       locations = cells_column_labels(columns = everything())

@@ -1,12 +1,11 @@
 library(ggplot2)
 library(data.table)
 library(rlang)
-library(magrittr)
 library(RColorBrewer)
 library(RplotterPkg)
 
-oh_wis_df <- data.table::as.data.table(ggplot2::midwest) %>%
-  .[state %in% c("OH", "WI"), .(state, percollege)]
+oh_wis_df <- data.table::as.data.table(ggplot2::midwest) |>
+  _[state %in% c("OH", "WI"), .(state, percollege)]
 
 create_histogram_plot(
   df = oh_wis_df,

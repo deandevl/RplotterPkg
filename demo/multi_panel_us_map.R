@@ -6,7 +6,6 @@ library(purrr)
 library(sf)
 library(ggplot2)
 library(RColorBrewer)
-library(magrittr)
 library(here)
 library(RspatialPkg)
 library(RcensusPkg)
@@ -20,14 +19,14 @@ acs1_computers_data_2013_dt <- RcensusPkg::get_vintage_data(
   vars = c("DP02_0150E", "DP02_0151PE", "DP02_0152PE"),
   region = "state:*"
 )
-acs1_computers_data_2013_dt <- acs1_computers_data_2013_dt %>%
+acs1_computers_data_2013_dt <- acs1_computers_data_2013_dt |>
   data.table::setnames(
     old = c("NAME", "DP02_0150E", "DP02_0151PE", "DP02_0152PE"),
-    new = c("State", "Total", "ComputerPresent", "BroadbandPresent")) %>%
-  .[, .(GEOID, State, Total, ComputerPresent, BroadbandPresent)] %>%
-  .[, `:=`(Total = as.numeric(Total), ComputerPresent = as.numeric(ComputerPresent),
-           BroadbandPresent = as.numeric(BroadbandPresent))] %>%
-  .[order(State)]
+    new = c("State", "Total", "ComputerPresent", "BroadbandPresent")) |>
+  _[, .(GEOID, State, Total, ComputerPresent, BroadbandPresent)] |>
+  _[, `:=`(Total = as.numeric(Total), ComputerPresent = as.numeric(ComputerPresent),
+           BroadbandPresent = as.numeric(BroadbandPresent))] |>
+  _[order(State)]
 
 
 acs1_computers_data_2021_dt <- RcensusPkg::get_vintage_data(
@@ -36,11 +35,11 @@ acs1_computers_data_2021_dt <- RcensusPkg::get_vintage_data(
   vars = c("DP02_0152E", "DP02_0153PE", "DP02_0154PE"),
   region = "state:*"
 )
-acs1_computers_data_2021_dt <- acs1_computers_data_2021_dt %>%
+acs1_computers_data_2021_dt <- acs1_computers_data_2021_dt |>
   data.table::setnames(
     old = c("NAME", "DP02_0152E", "DP02_0153PE", "DP02_0154PE"),
-    new = c("State", "Total", "ComputerPresent", "BroadbandPresent")) %>%
-  .[, `:=`(Total = as.numeric(Total), ComputerPresent = as.numeric(ComputerPresent),
+    new = c("State", "Total", "ComputerPresent", "BroadbandPresent")) |>
+  _[, `:=`(Total = as.numeric(Total), ComputerPresent = as.numeric(ComputerPresent),
            BroadbandPresent = as.numeric(BroadbandPresent))]
 
 computers_2013_lst <- RcensusPkg::plot_us_data(

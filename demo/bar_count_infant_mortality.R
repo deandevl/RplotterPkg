@@ -1,13 +1,12 @@
 library(data.table)
 library(ggplot2)
-library(magrittr)
 library(here)
 library(RplotterPkg)
 
 data_path <- file.path(here(), "demo", "data", "UnitedNations.txt")
-un_dt <- data.table::fread(data_path) %>%
-  .[, .(infantMortality)] %>%
-  na.omit(.)
+un_dt <- data.table::fread(data_path) |>
+  _[, .(infantMortality)] |>
+  na.omit()
 infant_mortality_intervals <- seq(0,170,by=10)
 
 RplotterPkg::create_bar_plot(

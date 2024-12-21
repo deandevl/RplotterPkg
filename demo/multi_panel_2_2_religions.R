@@ -2,14 +2,13 @@ library(data.table)
 library(socviz)
 library(ggplot2)
 library(rlang)
-library(magrittr)
 library(purrr)
 library(RplotterPkg)
 
-percent_religion_dt <- data.table::as.data.table(socviz::gss_sm) %>%
-  .[!is.na(religion) & !is.na(happy)] %>%
-  .[, list(N = .N),   by = list(bigregion, religion)] %>%
-  .[, list(N = N, Religion = religion,  Total = sum(N), Percent = N/sum(N) * 100), by = bigregion]
+percent_religion_dt <- data.table::as.data.table(socviz::gss_sm) |>
+  _[!is.na(religion) & !is.na(happy)] |>
+  _[, list(N = .N),   by = list(bigregion, religion)] |>
+  _[, list(N = N, Religion = religion,  Total = sum(N), Percent = N/sum(N) * 100), by = bigregion]
 
 str(percent_religion_dt)
 

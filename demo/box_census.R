@@ -2,7 +2,6 @@ library(usmap)
 library(data.table)
 library(ggplot2)
 library(ggrepel)
-library(magrittr)
 library(RcensusPkg)
 library(RplotterPkg)
 
@@ -34,25 +33,24 @@ ga_dt <- RcensusPkg::get_vintage_data(
 ga_dt <- ga_dt[, .(NAME,GEOID,B19013_001E,B01002_001E)]
 # Reshape from wide to long
 ga_long_dt <- RcensusPkg::wide_to_long(
-  dt = ga_dt,
-  do_est = TRUE
+  dt = ga_dt
 )
 # Redefine values in "variable" column
 # Set "estimate" column as numeric
-ga_long_dt <- ga_long_dt[, variable := ifelse(variable == "B19013_001", "medinc", "medage")]  %>%
-  .[, estimate := as.numeric(estimate)]
+ga_inc_age_dt <- ga_long_dt[, variable := fifelse(variable == "B19013_001E", "medinc", "medage")] |>
+  _[, estimate := as.numeric(estimate)]
 
 # Reshape from long to wide form
 # Split "NAME" to "County" and "State" columns
 ga_wide_dt <- RcensusPkg::long_to_wide(
-  dt = ga_long_dt,
+  dt = ga_inc_age_dt,
   parameter_col = "variable",
   value_col = "estimate"
-) %>%
-  .[, c("County", "State") := data.table::tstrsplit(NAME, ",")]
+) |>
+  _[, c("County", "State") := data.table::tstrsplit(NAME, ",")]
 
 # Plot the median income in a box plot:
-ga_income_box_plot <- RplotterPkg::create_box_plot(
+RplotterPkg::create_box_plot(
   df = ga_wide_dt,
   aes_y = "medinc",
   aes_label = "County",
@@ -62,4 +60,3 @@ ga_income_box_plot <- RplotterPkg::create_box_plot(
   subtitle = "Source: Census Bureau 2015-2019 ACS (acs/acs5)",
   y_title = "Median Income ($)"
 )
-ga_income_box_plot

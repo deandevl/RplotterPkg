@@ -1,11 +1,10 @@
 library(ggplot2)
 library(ggrepel)
 library(data.table)
-library(magrittr)
 library(RplotterPkg)
 
-mtcars_dt <- data.table::as.data.table(mtcars) %>%
-  .[,car_name := rownames(mtcars)]
+mtcars_dt <- data.table::as.data.table(mtcars) |>
+  _[,car_name := rownames(mtcars)]
 
 RplotterPkg::create_scatter_plot(
   df = mtcars_dt,

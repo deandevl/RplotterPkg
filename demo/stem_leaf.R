@@ -1,14 +1,13 @@
 library(data.table)
 library(here)
-library(magrittr)
 library(aplpack)
 library(RplotterPkg)
 
 # ----------------------Women in Boston marathon---------------------
 # read the Boston marathon ages/times for women
 data_path <- file.path(here(), "demo", "data", "boston_marathon.txt")
-marthon_dt <- data.table::fread(data_path) %>%
-  na.omit(.)
+marathon_dt <- data.table::fread(data_path) |>
+  na.omit()
 
 # stem and leaf for marathon times of women across ages
 marathon_times_lst <- list(

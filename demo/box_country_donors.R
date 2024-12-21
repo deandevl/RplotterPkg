@@ -1,6 +1,5 @@
 library(ggplot2)
 library(data.table)
-library(magrittr)
 library(ggrepel)
 library(socviz)
 library(here)
@@ -8,9 +7,9 @@ library(RplotterPkg)
 
 str(socviz::organdata)
 
-organdata_dt <- data.table::as.data.table(socviz::organdata) %>%
-  .[, country := as.factor(country)] %>%
-  na.omit(.)
+organdata_dt <- data.table::as.data.table(socviz::organdata) |>
+  _[, country := as.factor(country)] |>
+  na.omit()
 
 RplotterPkg::create_box_plot(
   df = organdata_dt,

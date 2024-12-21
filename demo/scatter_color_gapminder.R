@@ -1,6 +1,5 @@
 library(data.table)
 library(gapminder)
-library(magrittr)
 library(anytime)
 library(ggplot2)
 library(RColorBrewer)
@@ -9,12 +8,12 @@ library(RplotterPkg)
 str(gapminder::gapminder)
 
 # Set  with value of "Oceania" as "Asia"
-gapminder_dt <- data.table::as.data.table(gapminder::gapminder) %>%
-  .[, continent := as.character(continent)] %>%
-  .[, continent_2 := ifelse(continent == "Oceania", "Asia", continent)] %>%
-  .[, continent_2 := as.factor(continent_2)] %>%
-  .[, year := as.character(year)] %>%
-  .[, year := anytime::anydate(year)]
+gapminder_dt <- data.table::as.data.table(gapminder::gapminder) |>
+  _[, continent := as.character(continent)] |>
+  _[, continent_2 := ifelse(continent == "Oceania", "Asia", continent)] |>
+  _[, continent_2 := as.factor(continent_2)] |>
+  _[, year := as.character(year)] |>
+  _[, year := anytime::anydate(year)]
 
 # Group by "year" and "continent_2" and compute the mean "lifeExp"
 gapminder_mean_lifeExp_dt <- gapminder_dt[,

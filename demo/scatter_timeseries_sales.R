@@ -8,7 +8,7 @@ library(RplotterPkg)
 sales_ts_path <- file.path(here::here(), "demo", "data", "USVsales_ts.rda")
 load(sales_ts_path)
 
-USVSales_dt <- RtsaPkg::tsObj_to_dt(series = USVSales) %>%
+USVSales_dt <- RtsaPkg::tsObj_to_dt(series = USVSales) |>
   data.table::setnames(old = c("time","value"), new = c("Date","USVSales"))
 
 RplotterPkg::create_scatter_plot(

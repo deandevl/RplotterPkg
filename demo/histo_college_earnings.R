@@ -1,7 +1,6 @@
 library(ggplot2)
 library(data.table)
 library(rlang)
-library(magrittr)
 library(causaldata)
 library(RplotterPkg)
 
@@ -15,9 +14,9 @@ ratiovec <- function(n,top){
   return(v)
 }
 
-scorecard_dt <- data.table::as.data.table(scorecard) %>%
-  .[, .(earnings_med)] %>%
-  na.omit(.)
+scorecard_dt <- data.table::as.data.table(scorecard) |>
+  _[, .(earnings_med)] |>
+  na.omit()
 
 RplotterPkg::create_histogram_plot(
   df = scorecard_dt,

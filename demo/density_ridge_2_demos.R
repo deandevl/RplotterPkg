@@ -3,22 +3,21 @@ library(grid)
 library(gtable)
 library(ggplot2)
 library(data.table)
-library(magrittr)
 library(usmap)
 library(RcensusPkg)
 library(RplotterPkg)
 
 # -----------First demo: Ridge plot densities for midwest variables
-dt <- data.table::setDT(ggplot2::midwest) %>%
-  .[, .(perchsd, percollege, percprof, percwhite, percblack, percasian)] %>%
+dt <- data.table::setDT(ggplot2::midwest) |>
+  _[, .(perchsd, percollege, percprof, percwhite, percblack, percasian)] |>
   data.table::setnames(
     old = c("perchsd", "percollege", "percprof", "percwhite", "percblack", "percasian"),
     new = c("HS Diploma", "College Edu", "Prof Deg", "White", "Black", "Asian")
   )
 
-midwest_ridge_plot <- RplotterPkg::create_density_ridge_plot(
+RplotterPkg::create_density_ridge_plot(
   df = dt,
-  bw = "SJ",
+  bw = "sj",
   variables = c("HS Diploma", "College Edu", "Prof Deg", "White", "Black", "Asian"),
   title = "Percent Distribution Among Midwest Counties",
   x_limits = c(0, 100),
@@ -64,12 +63,12 @@ for(a_fips in tract_fips){
 }
 
 # Do some simple data wrangling
-home_vals_dt <- home_vals_dt[order(county,tract)] %>%  # order by county, tract numbers
-  .[, c("tract_str", "county_str", "state_str") := tstrsplit(NAME, ",", fixed = TRUE)] %>%   # split NAME string into tract,county,state
-  data.table::setnames(old = c("B25077_001E", "B25077_001M"), new = c("estimate", "moe")) %>% # rename columns
-  .[, estimate := as.numeric(estimate)] %>%  # set as numeric
-  .[estimate > 0] %>%   # filter rows for only positive values
-  .[, list(GEOID, state_str, estimate), by = county_str]  # select variables, aggregate
+home_vals_dt <- home_vals_dt[order(county,tract)] |>   # order by county, tract numbers
+  _[, c("tract_str", "county_str", "state_str") := tstrsplit(NAME, ",", fixed = TRUE)] |>    # split NAME string into tract,county,state
+  data.table::setnames(old = c("B25077_001E", "B25077_001M"), new = c("estimate", "moe")) |>  # rename columns
+  _[, estimate := as.numeric(estimate)] |>   # set as numeric
+  _[estimate > 0] |>    # filter rows for only positive values
+  _[, list(GEOID, state_str, estimate), by = county_str]  # select variables, aggregate
 
 
 # Reshape home_vals_dt to a "wide" format
