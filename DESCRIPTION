@@ -1,16 +1,29 @@
 Package: RplotterPkg
 Type: Package
-Title: What the Package Does (Title Case)
+Title: R Plotting Functions Using ggplot2
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Rick", "Dean",
+      email = "deanr3@bardstown.com",
       role = c("aut", "cre")
     )
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+Description: Makes it easy to produce everyday ggplot2 
+  charts in a functional way without an extensive "tree"
+  implementation. The package includes over 15 functions
+  for the production and arrangement of basic graphing.
+License: MIT + file LICENSE
+URL: https://github.com/deandevl/RplotterPkg
+BugReports: https://github.com/deandevl/RplotterPkg/issues
+Depends:R (>= 4.4.2)
+Imports: 
+  ggplot2 (>= 3.5.1)
+  data.table (>= 1.16.4)
+  rlang (>= 1.1.4)
+Suggests:
+  RColorBrewer
 Encoding: UTF-8
+Language: en-US
 LazyData: true
+RoxygenNote: 7.3.2
