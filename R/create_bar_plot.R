@@ -63,20 +63,16 @@
 #' @param png_width_height A numeric vector that sets the width and height of the png image in pixels. The
 #'  default is c(480,480).  There are 37.8 pixels in a centimeter.
 #'
-#' @return A ggplot2 plot object.
+#' @return A ggplot class object.
 #'
 #' @examples
 #' library(ggplot2)
 #' library(data.table)
-#' library(socviz)
 #' library(RColorBrewer)
 #' library(RplotterPkg)
 #'
-#' religion_happy_dt <- data.table::as.data.table(socviz::gss_sm) |>
-#'  _[!is.na(religion) & !is.na(happy), .(happy, religion)]
-#'
 #' RplotterPkg::create_bar_plot(
-#'   df = religion_happy_dt,
+#'   df = RplotterPkg::religion,
 #'   aes_x = "happy",
 #'   aes_fill = "religion",
 #'   position = "dodge",
@@ -99,7 +95,7 @@
 #'
 #' @export
 create_bar_plot <- function(
-    df,
+    df = NULL,
     aes_x = NULL,
     aes_y = NULL,
     aes_color = NULL,
@@ -145,6 +141,12 @@ create_bar_plot <- function(
     silent_NA_warning = FALSE,
     png_file_path = NULL,
     png_width_height = c(480,480)) {
+
+  N <- count <- . <- ..aes_x <- NULL
+
+  if(is.null(df)){
+    stop("The dataframe(df) is a required parameter")
+  }
 
   if(is.null(aes_x)){
     stop("aes_x is a required argument.")

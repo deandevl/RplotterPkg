@@ -5,7 +5,7 @@
 \title{create_bar_plot}
 \usage{
 create_bar_plot(
-  df,
+  df = NULL,
   aes_x = NULL,
   aes_y = NULL,
   aes_color = NULL,
@@ -161,7 +161,7 @@ a png image of the plot.}
 default is c(480,480).  There are 37.8 pixels in a centimeter.}
 }
 \value{
-A ggplot2 plot object.
+A ggplot class object.
 }
 \description{
 Function wraps ggplot2 geom_bar and geom_col to creates a bar plot.
@@ -169,15 +169,11 @@ Function wraps ggplot2 geom_bar and geom_col to creates a bar plot.
 \examples{
 library(ggplot2)
 library(data.table)
-library(socviz)
 library(RColorBrewer)
 library(RplotterPkg)
 
-religion_happy_dt <- data.table::as.data.table(socviz::gss_sm) |>
- _[!is.na(religion) & !is.na(happy), .(happy, religion)]
-
 RplotterPkg::create_bar_plot(
-  df = religion_happy_dt,
+  df = RplotterPkg::religion,
   aes_x = "happy",
   aes_fill = "religion",
   position = "dodge",
