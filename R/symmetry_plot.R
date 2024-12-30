@@ -13,7 +13,7 @@
 #' skewed, the points fall above the line.
 #'
 #' Function returns a ggplot2 plot object of x/y scatter point distances from the median. Options are provided
-#' for axis scaling and point labelling.
+#' for axis scaling and point labeling.
 #'
 #' @param df The target data frame from which the distance from the median are plotted.
 #' @param var_name A string that sets the variable name of interest from \code{df}. This is a required parameter.

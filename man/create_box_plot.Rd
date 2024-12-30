@@ -152,7 +152,7 @@ The default is "black".}
 \item{ol_alpha}{A numeric that sets the outlier alpha for color.}
 
 \item{order_by_median}{A string which will order the plot of \code{aes_x} factor levels/categories by the \code{aes_y} medians.
-Acceptable values are "asc" or "desc". Note that the optional argument \code{aes_x} must not be NULL.}
+Acceptable values are \code{asc} or \code{desc}. Note that the optional argument \code{aes_x} must not be NULL.}
 
 \item{silent_NA_warning}{A logical that controls the appearance of a console warning when Na's
 are removed.}

@@ -147,7 +147,7 @@ symmetric. If the data is left-skewed, then the points fall below the line. If t
 skewed, the points fall above the line.
 
 Function returns a ggplot2 plot object of x/y scatter point distances from the median. Options are provided
-for axis scaling and point labelling.
+for axis scaling and point labeling.
 }
 \examples{
 library(ggplot2)

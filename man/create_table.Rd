@@ -54,7 +54,7 @@ The string can contain R markdown/html style syntax.}
 
 \item{hor_scroll_bar}{A logical that controls the appearance of the horizontal scroll bar.}
 
-\item{ver_scroll_bar}{A logical that controls the appearance of the veritical scroll bar.}
+\item{ver_scroll_bar}{A logical that controls the appearance of the vertical scroll bar.}
 
 \item{decimals_lst}{A list that describes the decimals for one or more table columns. The list should
   have the following key-value pairs:

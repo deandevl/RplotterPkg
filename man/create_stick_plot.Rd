@@ -121,9 +121,9 @@ Use NA to refer to the existing minimum and maximum.}
 
 \item{line_alpha}{A numeric value that sets the degree of color alpha attribute for the lines.}
 
-\item{show_major_grids}{A logical that controls the appearence of major grids.}
+\item{show_major_grids}{A logical that controls the appearance of major grids.}
 
-\item{show_minor_grids}{A logical that controls the appearence of minor grids.}
+\item{show_minor_grids}{A logical that controls the appearance of minor grids.}
 
 \item{panel_color}{A string in hexidecimal or color name that sets the plot panel's color.
 The default is "white".}
@@ -131,7 +131,7 @@ The default is "white".}
 \item{panel_border_color}{A string in hexidecimal or color name that sets the plot panel's border color.
 The default is "black".}
 
-\item{show_legend}{A logical that controls the appearence of the legend.}
+\item{show_legend}{A logical that controls the appearance of the legend.}
 
 \item{legend_pos}{A string that sets the legend position. Acceptable values are
 "top", "bottom", "left", "right".}

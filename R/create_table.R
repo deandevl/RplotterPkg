@@ -22,7 +22,7 @@
 #' @param source_note A string located at the bottom of the table that notes the table's source.
 #'   The string can contain R markdown/html style syntax.
 #' @param hor_scroll_bar A logical that controls the appearance of the horizontal scroll bar.
-#' @param ver_scroll_bar A logical that controls the appearance of the veritical scroll bar.
+#' @param ver_scroll_bar A logical that controls the appearance of the vertical scroll bar.
 #' @param decimals_lst A list that describes the decimals for one or more table columns. The list should
 #'   have the following key-value pairs:
 #' \enumerate{

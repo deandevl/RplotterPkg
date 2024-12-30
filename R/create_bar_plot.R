@@ -14,7 +14,7 @@
 #'  \code{identity}(overlap) or \code{stack}.
 #' @param title A string that sets the overall title.
 #' @param subtitle A string that sets the overall subtitle.
-#' @param caption A string that sets the captiion.
+#' @param caption A string that sets the caption.
 #' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
 #' @param x_title A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.
 #' @param y_title A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.
@@ -37,7 +37,7 @@
 #' @param y_labels A character vector with the same length as \code{y_major_breaks}, that labels the major tics.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
 #' @param do_coord_flip A logical which if \code{TRUE} will flip the x and y axis'.
-#' @param order_bars A string which will order the bars in a specific direction. Acceptable values are "asc" or "desc"
+#' @param order_bars A string which will order the bars in a specific direction. Acceptable values are \code{asc} or \code{desc}
 #' @param bar_labels A logical which if \code{TRUE} will label each bar with its value.
 #' @param bar_label_sz A numeric that sets the size of the label.
 #' @param bar_label_color A string that sets the label's color.

@@ -48,7 +48,7 @@
 #' @param show_major_grids A logical that controls the appearance of major grids.
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
 #' @param order_by_median A string which will order the plot of \code{aes_x} factor levels/categories by the \code{aes_y} medians.
-#'  Acceptable values are "asc" or "desc". Note that the optional argument \code{aes_x} must not be NULL.
+#'  Acceptable values are \code{asc} or \code{desc}. Note that the optional argument \code{aes_x} must not be NULL.
 #' @param ol_color A string that sets the outlier color.
 #' @param ol_fill A string that sets the outlier fill.
 #' @param ol_size A numeric that set the outlier size.

@@ -43,13 +43,13 @@
 #' @param line_width A numeric value that sets the width of lines.
 #' @param line_type A string that sets the linetype. The default is "solid".
 #' @param line_alpha A numeric value that sets the degree of color alpha attribute for the lines.
-#' @param show_major_grids A logical that controls the appearence of major grids.
-#' @param show_minor_grids A logical that controls the appearence of minor grids.
+#' @param show_major_grids A logical that controls the appearance of major grids.
+#' @param show_minor_grids A logical that controls the appearance of minor grids.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
 #'   The default is "white".
 #' @param panel_border_color A string in hexidecimal or color name that sets the plot panel's border color.
 #'   The default is "black".
-#' @param show_legend A logical that controls the appearence of the legend.
+#' @param show_legend A logical that controls the appearance of the legend.
 #' @param legend_pos A string that sets the legend position. Acceptable values are
 #'  "top", "bottom", "left", "right".
 #' @param legend_key_width A numeric that sets the legend width in cm.

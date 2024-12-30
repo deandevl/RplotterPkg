@@ -1,6 +1,6 @@
 #' @title stem_leaf_display
 #'
-#' @description Function is a wrapper around aplpack::stem.leaf that provides one or more stem and leaf display(s).
+#' @description Function is a wrapper around \code{aplpack::stem.leaf} that provides one or more stem and leaf display(s).
 #'
 #' Function accepts a named list of numeric vectors from which stem and leaf displays
 #'   are provided.

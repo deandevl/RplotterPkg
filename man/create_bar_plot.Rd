@@ -74,7 +74,7 @@ If \code{aes_y} is not NULL, the bar heights represent this parameter's values a
 
 \item{subtitle}{A string that sets the overall subtitle.}
 
-\item{caption}{A string that sets the captiion.}
+\item{caption}{A string that sets the caption.}
 
 \item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
 
@@ -117,7 +117,7 @@ Use NA to refer to the existing minimum and maximum.}
 
 \item{do_coord_flip}{A logical which if \code{TRUE} will flip the x and y axis'.}
 
-\item{order_bars}{A string which will order the bars in a specific direction. Acceptable values are "asc" or "desc"}
+\item{order_bars}{A string which will order the bars in a specific direction. Acceptable values are \code{asc} or \code{desc}}
 
 \item{bar_labels}{A logical which if \code{TRUE} will label each bar with its value.}
 

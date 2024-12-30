@@ -53,7 +53,7 @@ decrease this value for smaller font sizes and longer stem values.}
 A TableGrob object if \code{display_grob} is FALSE.
 }
 \description{
-Function is a wrapper around aplpack::stem.leaf that provides one or more stem and leaf display(s).
+Function is a wrapper around \code{aplpack::stem.leaf} that provides one or more stem and leaf display(s).
 
 Function accepts a named list of numeric vectors from which stem and leaf displays
   are provided.

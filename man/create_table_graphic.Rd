@@ -61,7 +61,7 @@ A grob object. Note that if \code{display_plot} is set to
 \description{
 Function creates a graphic table from a data frame.
  Function creates a simple, non-scrollable static table to be laid out with other ggplot2 graphics.  The
- functoin is based on \code{grid} along with the \code{gtable} package.  Use \code{plot()} to draw the returned grob object or
+ function is based on \code{grid} along with the \code{gtable} package.  Use \code{plot()} to draw the returned grob object or
  use \code{RplotterPkg::multi_panel_grid()} to incorporate it with other ggplot2 plot objects.
 
  For estimating the overall height of the table consider that each row of the table is 0.2 inches high, .54 inches for heading and
