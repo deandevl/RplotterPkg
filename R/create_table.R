@@ -1,7 +1,7 @@
 #' @title create_table
 #'
 #' @description Function wraps the gt package for creating tables from a data.frame object.
-#'   Function incorporates the \href{https://cran.r-project.org/web/packages/gt/index.html}{gt}
+#'   Function incorporates the \href{https://cran.r-project.org/package=gt}{gt}
 #'   package to create tables primarily for R Markdown/Quarto documents.  The function offers a
 #'   quick alternative if just limited styling and formatting are required.
 #'
