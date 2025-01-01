@@ -30,16 +30,20 @@ Imports:
   aplpack (>= 1.3.5),
   methods (>= 4.4.2)
 Suggests:
-    knitr,
-    RColorBrewer,
-    rmarkdown,
+    knitr (>= 1.49),
+    RColorBrewer (>= 1.1-3),
+    rmarkdown (>= 2.29),
     testthat (>= 3.0.0),
     here (>= 1.0.1),
     socviz (>= 1.2),
     tsbox (>= 0.4.1),
     gapminder (>= 0.3.0),
     palmerpenguins (>= 0.1.1),
-    fs (>= 1.6.5)
+    spData (>= 2.3.3),
+    sf (>= 1.0-19),
+    raster (>= 3.6-30),
+    elevatr (>= 0.99.0),
+    maps (>= 3.4.1)
 Encoding: UTF-8
 Language: en-US
 LazyData: true

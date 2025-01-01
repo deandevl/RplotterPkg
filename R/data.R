@@ -194,3 +194,50 @@
 #' @source \href{https://www.fangraphs.com}{Fangraphs}
 #'
 "spinrates"
+
+#' world_coffee data
+#'
+#' World coffee production by country (in thousands of 60 kg bags)
+#'   is joined with a simple feature of country geometries via their
+#'   common parameter `name_long`.
+#'
+#' @format  Special feature object (class sf) with columns:
+#' \describe{
+#'   \item{name_long}{character long name of country}
+#'   \item{coffee_production_2017}{numeric of coffee production of 60 kg bags}
+#'   \item{geom}{the sfc_MULTIPOLYGON country geometries}
+#' }
+#' @source \code{spData::coffee_data} and \code{spData::world}
+#'
+"world_coffee"
+
+#' kentucky_counties data
+#'
+#' A simple feature object with the boundary geometries for nine
+#' southeast Kentucky counties.
+#' .
+#'
+#' @format Special feature object (class sf) with columns:
+#' \describe{
+#'   \item{ID}{character giving the name of the county}
+#'   \item{geom}{MULTIPOLYGON of the Kentucky county boundary}
+#' }
+#' @source \code{maps::map()}
+#'
+"kentucky_counties"
+
+#' kentucky_elevation data
+#'
+#' Tiled raster elevation data(in meters) converted to a data frame,
+#' covering the southeast region of Kentucky.
+#'
+#' @format Data frame with columns:
+#' \describe{
+#'   \item{x}{numeric longitude of the elevation}
+#'   \item{y}{numeric latitude of the elevation}
+#'   \item{elevation}{the elevation in meters}
+#' }
+#' @source \code{elevatr::get_elev_raster()} and the
+#' Amazon Web Services Terrain Tiles service.
+#'
+"kentucky_elevation"
