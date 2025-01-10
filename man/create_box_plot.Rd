@@ -5,13 +5,12 @@
 \title{create_box_plot}
 \usage{
 create_box_plot(
-  df,
+  df = NULL,
   aes_x = NULL,
   aes_y = NULL,
   aes_color = NULL,
   aes_fill = NULL,
   aes_label = NULL,
-  aes_label_color = "black",
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -29,9 +28,8 @@ create_box_plot(
   y_limits = NULL,
   y_major_breaks = waiver(),
   y_minor_breaks = waiver(),
-  y_labels = waiver(),
-  y_decimals = NULL,
-  y_scientific = NULL,
+  y_decimals = 0,
+  y_scientific = FALSE,
   axis_text_size = 11,
   do_coord_flip = FALSE,
   show_legend = TRUE,
@@ -70,8 +68,6 @@ Multiple box plots will be displayed along the x axis if this argument is set.}
 \item{aes_label}{Sets the variable name from \code{df} whose value will to be displayed corresponding
 to the \code{aes_y} outliers.}
 
-\item{aes_label_color}{A string that sets the color of outlier labels.}
-
 \item{title}{A string that sets the overall title.}
 
 \item{subtitle}{A string that sets the overall subtitle}
@@ -107,8 +103,6 @@ Use NA to refer to the existing minimum and maximum.}
 \item{y_major_breaks}{A numeric vector or function that defines the exact major tic locations along the y axis.}
 
 \item{y_minor_breaks}{A numeric vector or function that defines the exact minor tic locations along the y axis.}
-
-\item{y_labels}{A character vector with the same length as \code{y_major_breaks}, that labels the major tics.}
 
 \item{y_decimals}{A numeric that sets the number of decimal places for y-tic labels.}
 
@@ -172,7 +166,6 @@ Function wraps around ggplot2 geom_boxplot to create a box plot.
 \examples{
 library(ggplot2)
 library(data.table)
-library(ggrepel)
 library(RplotterPkg)
 
 RplotterPkg::create_box_plot(
@@ -180,7 +173,6 @@ RplotterPkg::create_box_plot(
   aes_x = "country",
   aes_y = "donors",
   aes_label = "donors",
-  aes_label_color = "red",
   order_by_median = "desc",
   y_limits = c(5,35),
   y_major_breaks = seq(5, 35, 5),
@@ -188,13 +180,12 @@ RplotterPkg::create_box_plot(
   subtitle = "Showing outlier rates",
   x_title = "Country",
   y_title = "Donor Rate",
+  do_coord_flip = TRUE,
   box_color = "purple",
   box_line_width = 0.8,
-  rot_x_tic_angle = 40,
   rot_y_tic_label = TRUE,
   ol_color = "red",
-  ol_size = 1.5,
-  silent_NA_warning = TRUE,
+  ol_size = 1.5
 )
 
 }

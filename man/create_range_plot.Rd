@@ -141,12 +141,11 @@ default is c(480,480).  There are 37.8 pixels in a centimeter.}
 A ggplot class object.
 }
 \description{
-Function wraps ggplot2 geom_pointrange to produce x/y plot of numeric ranges.
+Function wraps \code{ggplot2::geom_pointrange} to produce x/y plot of numeric ranges.
  Function returns a ggplot2 plot object displaying the individual
  spread or vertical interval/range for a collection of x/y pairs of points.
 }
 \examples{
-library(data.table)
 library(ggplot2)
 library(RplotterPkg)
 

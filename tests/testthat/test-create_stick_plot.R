@@ -1,9 +1,5 @@
 
-test_that("The required dataframe/aes_x/aes_y parameters are submitted and
-  a .png file of the plot is created.", {
-
-  plot_file <- "stick_plot.png"
-
+test_that("create_stick_plot() aes_x aes_y", {
   a_plot <- RplotterPkg::create_stick_plot(
     df = RplotterPkg::air_passengers,
     aes_x = "time",
@@ -17,11 +13,16 @@ test_that("The required dataframe/aes_x/aes_y parameters are submitted and
     rot_y_tic_label = TRUE,
     show_minor_grids = FALSE,
     bold_y = 0.0,
-    png_file_path = plot_file
+    png_file_path = tempfile()
   )
-  show(a_plot)
-
   expect_true(is.ggplot(a_plot))
-  expect_true(file.exists(plot_file))
-  file.remove(plot_file)
+  vdiffr::expect_doppelganger("create_stick_plot() aes_x aes_y", a_plot)
+  expect_no_error(ggplot_build(a_plot))
+})
+
+test_that("create_stick_plot() error if aes_x or aes_y parameters are NULL",{
+  expect_error(RplotterPkg::create_stick_plot(
+    df = RplotterPkg::air_passengers,
+    aes_x = "time"
+  ))
 })

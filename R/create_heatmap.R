@@ -9,7 +9,7 @@
 #' @param aes_x The x axis variable name from \code{df}. This is a required discrete numeric,
 #'  Date/POSIXct variable.
 #' @param aes_y The y axis variable name from \code{df}. This is a required discrete numeric.
-#' @param aes_label Sets the variable name from \code{df} as the required source for the tile's text.
+#' @param aes_label Sets the variable name from \code{df} as the source for the tile's text.
 #' @param aes_color The discrete/continuous variable name from \code{df} for the aesthetic mapping for color.
 #' @param aes_fill The discrete/continuous variable name from \code{df} for the aesthetic mapping for fill.
 #' @param aes_size The variable name from \code{df} for the aesthetic mapping for size.
@@ -78,8 +78,9 @@
 #' @return A ggplot class object.
 #'
 #' @examples
-#' #' library(ggplot2)
+#' library(ggplot2)
 #' library(data.table)
+#' library(methods)
 #' library(RplotterPkg)
 #'
 #' RplotterPkg::create_heatmap(

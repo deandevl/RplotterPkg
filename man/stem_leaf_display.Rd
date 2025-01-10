@@ -16,8 +16,7 @@ stem_leaf_display(
   col_width = 4,
   row_height = 0.5,
   font_sz = 11,
-  heading_color = "black",
-  display_grob = TRUE
+  heading_color = "black"
 )
 }
 \arguments{
@@ -33,12 +32,12 @@ stem_leaf_display(
 
 \item{max_val}{Optional numeric that sets the largest non-outlying value.}
 
-\item{outliers}{A logical which if TRUE (the default), outliers are placed on LO and HI stems}
+\item{outliers}{A logical which if \code{TRUE} (the default), outliers are placed on LO and HI stems}
 
-\item{depths}{A logical which if TRUE (the default), print a column of "depths" to the left of the stems}
+\item{depths}{A logical which if \code{TRUE} (the default), print a column of "depths" to the left of the stems}
 
 \item{col_width}{A numeric that sets the display column widths in cm. The default is 4, which
-works when \code{depths} is FALSE. You may need to increase this value to avoid cutting off wide leaf values.}
+works when \code{depths} is \code{FALSE}. You may need to increase this value to avoid cutting off wide leaf values.}
 
 \item{row_height}{A numeric that sets the display row height in cm. The default is 0.5. You may need to
 decrease this value for smaller font sizes and longer stem values.}
@@ -46,11 +45,9 @@ decrease this value for smaller font sizes and longer stem values.}
 \item{font_sz}{A numeric that sets the display's font size. The default is 11.}
 
 \item{heading_color}{A string that sets the heading's color in name or hex. The default is "black".}
-
-\item{display_grob}{A logical that if TRUE (the default) will display the TableGrob.}
 }
 \value{
-A TableGrob object if \code{display_grob} is FALSE.
+A ggplot2 class object
 }
 \description{
 Function is a wrapper around \code{aplpack::stem.leaf} that provides one or more stem and leaf display(s).
@@ -59,8 +56,12 @@ Function accepts a named list of numeric vectors from which stem and leaf displa
   are provided.
 }
 \examples{
-library(RplotterPkg)
+library(grid)
+library(gtable)
+library(ggplotify)
+library(ggplot2)
 library(aplpack)
+library(RplotterPkg)
 
 # stem and leaf for marathon times of women across ages
 marathon_times_lst <- list(
@@ -71,13 +72,10 @@ marathon_times_lst <- list(
   "age_60" = RplotterPkg::boston_marathon[age == 60,]$time
 )
 # display stem and leaf of women times across ages
-table_grob <- RplotterPkg::stem_leaf_display(
+RplotterPkg::stem_leaf_display(
   x = marathon_times_lst,
   title = "Women times(min) in Boston marathon",
-  heading_color = "#FF5500",
-  display_grob = FALSE
+  heading_color = "#FF5500"
 )
-grid::grid.newpage()
-grid::grid.draw(table_grob)
 
 }

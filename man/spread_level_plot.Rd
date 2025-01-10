@@ -31,9 +31,9 @@ with multiple levels.}
 
 \item{factor_var}{A required string that names the factor variable from \code{df}.}
 
-\item{plot_line_fit}{A logical which if TRUE plots a line fit between median and spread values.}
+\item{plot_line_fit}{A logical which if \code{TRUE} plots a line fit between median and spread values.}
 
-\item{plot_log10}{A logical which if TRUE will plot log10 values of median versus spread
+\item{plot_log10}{A logical which if \code{TRUE} will plot log10 values of median versus spread
 instead of raw values.}
 
 \item{title}{A string that sets the plot title.}
@@ -58,10 +58,10 @@ the exact major tic locations along the x axis.}
 
 \item{y_major_breaks}{A numeric vector or function that defines the exact major tic locations along the y axis.}
 
-\item{label_pts}{A logical which if TRUE will label the plot points.}
+\item{label_pts}{A logical which if \code{TRUE} will label the plot points.}
 }
 \value{
-A named list object with a data.table and ggplot2 scatter plot.
+A list object with a data.table and ggplot2 scatter plot.
 }
 \description{
 Function produces a scatter plot of median versus spread across a variable's
@@ -75,7 +75,6 @@ Function produces a scatter plot of median versus spread across a variable's
 library(here)
 library(data.table)
 library(ggplot2)
-library(ggrepel)
 library(RplotterPkg)
 
 spread_level_lst <- RplotterPkg::spread_level_plot(

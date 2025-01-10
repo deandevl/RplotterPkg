@@ -1,6 +1,5 @@
 
-test_that("check that the 'layout' parameter is a list with elements
-  'plots', 'cols', 'rows'", {
+test_that("multi_panel_grid()", {
 
   years <- levels(RplotterPkg::gapminder_data$year)
 
@@ -47,11 +46,10 @@ test_that("check that the 'layout' parameter is a list with elements
     layout = layout,
     title = "Life expectancy vs population(millions) across continents",
     plot_titles = c("1952","1972","1992","2002"),
-    cell_height = 12,
-    display_plot = FALSE
+    cell_height = 12
   )
-  show(a_plot)
 
-  layout_names <- names(layout)
-  expect_identical(layout_names, c("plots", "rows", "cols"))
+  expect_true(is.ggplot(a_plot))
+  vdiffr::expect_doppelganger("multi_panel_grid()", a_plot)
+  expect_no_error(ggplot_build(a_plot))
 })

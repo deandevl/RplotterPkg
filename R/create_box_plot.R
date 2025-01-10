@@ -10,7 +10,6 @@
 #' @param aes_fill Sets the variable name from \code{df} for the aesthetic mapping for fill.
 #' @param aes_label Sets the variable name from \code{df} whose value will to be displayed corresponding
 #'  to the \code{aes_y} outliers.
-#' @param aes_label_color A string that sets the color of outlier labels.
 #' @param title A string that sets the overall title.
 #' @param subtitle A string that sets the overall subtitle
 #' @param caption A string that sets the plot caption
@@ -30,7 +29,6 @@
 #'  Use NA to refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
 #' @param y_minor_breaks A numeric vector or function that defines the exact minor tic locations along the y axis.
-#' @param y_labels A character vector with the same length as \code{y_major_breaks}, that labels the major tics.
 #' @param y_decimals A numeric that sets the number of decimal places for y-tic labels.
 #' @param y_scientific A logical which if TRUE will put the y-tic labels in scientific notation.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
@@ -67,7 +65,6 @@
 #' @examples
 #' library(ggplot2)
 #' library(data.table)
-#' library(ggrepel)
 #' library(RplotterPkg)
 #'
 #' RplotterPkg::create_box_plot(
@@ -75,7 +72,6 @@
 #'   aes_x = "country",
 #'   aes_y = "donors",
 #'   aes_label = "donors",
-#'   aes_label_color = "red",
 #'   order_by_median = "desc",
 #'   y_limits = c(5,35),
 #'   y_major_breaks = seq(5, 35, 5),
@@ -83,29 +79,26 @@
 #'   subtitle = "Showing outlier rates",
 #'   x_title = "Country",
 #'   y_title = "Donor Rate",
+#'   do_coord_flip = TRUE,
 #'   box_color = "purple",
 #'   box_line_width = 0.8,
-#'   rot_x_tic_angle = 40,
 #'   rot_y_tic_label = TRUE,
 #'   ol_color = "red",
-#'   ol_size = 1.5,
-#'   silent_NA_warning = TRUE,
+#'   ol_size = 1.5
 #' )
 #'
 #' @importFrom data.table as.data.table
 #' @importFrom rlang sym
-#' @importFrom ggrepel geom_text_repel
 #' @import ggplot2
 #'
 #' @export
 create_box_plot <- function(
-    df,
+    df = NULL,
     aes_x = NULL,
     aes_y = NULL,
     aes_color = NULL,
     aes_fill = NULL,
     aes_label = NULL,
-    aes_label_color = "black",
     title = NULL,
     subtitle = NULL,
     caption = NULL,
@@ -123,9 +116,8 @@ create_box_plot <- function(
     y_limits = NULL,
     y_major_breaks = waiver(),
     y_minor_breaks = waiver(),
-    y_labels = waiver(),
-    y_decimals = NULL,
-    y_scientific = NULL,
+    y_decimals = 0,
+    y_scientific = FALSE,
     axis_text_size = 11,
     do_coord_flip = FALSE,
     show_legend = TRUE,
@@ -158,11 +150,6 @@ create_box_plot <- function(
     stop("aes_y is a required argument.")
   }
 
-  aes_x_is_null <- FALSE
-  if(is.null(aes_x)){
-    aes_x_is_null <- TRUE
-  }
-
   if(!is.null(aes_fill)){
     aes_fill <- rlang::sym(aes_fill)
   }
@@ -185,7 +172,9 @@ create_box_plot <- function(
   dt <- data.table::as.data.table(df)
 
   # If aes_x is undefined, then add an "x" column for doing a single boxplot
-  if(aes_x_is_null){
+  aes_x_is_undefined <- FALSE
+  if(is.null(aes_x)){
+    aes_x_is_undefined <- TRUE
     aes_x <- "x"
     dt[, x := 0]
   }
@@ -198,7 +187,9 @@ create_box_plot <- function(
     check_outlier <- function(v, coef = 1.5){
       quantiles <- stats::quantile(v, probs = c(0.25, 0.75), na.rm = TRUE)
       IQR <- quantiles[2] - quantiles[1]
-      result <- v < (quantiles[1] - coef * IQR) | v > (quantiles[2] + coef * IQR)
+      lower_limit <- quantiles[1] - coef * IQR
+      upper_limit <- quantiles[2] + coef * IQR
+      result <- v < lower_limit | v > upper_limit
       return(result)
     }
     # ---Apply the function to dt (df converted to data.table) to create an "outliers" column
@@ -248,15 +239,20 @@ create_box_plot <- function(
 
   # -----------------Are we labeling the points?----------------
   if(!is.null(aes_label)){
+    hjust <- 0.0
+    vjust <- -0.3
+    if(do_coord_flip){
+      hjust <- -0.1
+      vjust <- 0.0
+    }
     aplot <- aplot +
-      ggrepel::geom_text_repel(
-        aes(label = !!sym(aes_label)),
-        na.rm = TRUE,
-        max.overlaps = Inf,
-        color = aes_label_color,
-        min.segment.length = unit(0, 'lines'),
-        nudge_x = 0.1,
-        nudge_y = 0.1
+      ggplot2::geom_text(
+        aes(
+          label = !!sym(aes_label),
+          hjust = hjust,
+          vjust = vjust
+        ),
+        na.rm = TRUE
       )
   }
 
@@ -278,7 +274,7 @@ create_box_plot <- function(
   aplot <- aplot + labs(title = title, subtitle = subtitle, caption = caption)
 
   # --------------------x/y axis titles----------------------------
-  if(!aes_x_is_null){
+  if(!is.null(aes_x)){
     if(is.null(x_title)) {
       aplot <- aplot +
       theme(
@@ -319,32 +315,12 @@ create_box_plot <- function(
   }
 
   # ---y axis scaling
-  # ---define function for formatting decimals
-  fmt_decimals <- function(decimals=0, sci=FALSE){
-    function(x) {format(x,nsmall = decimals,scientific=sci)}
-  }
-  if(!is.null(y_decimals) | !is.null(y_scientific)){
-    if(is.null(y_decimals)){
-      y_decimals <- 0
-    }
-    if(is.null(y_scientific)){
-      y_scientific <- FALSE
-    }
-
-    aplot <- aplot + scale_y_continuous(
-      limits = y_limits,
-      breaks = y_major_breaks,
-      minor_breaks = y_minor_breaks,
-      labels = fmt_decimals(y_decimals, y_scientific)
-    )
-  }else {
-    aplot <- aplot + scale_y_continuous(
-      limits = y_limits,
-      breaks = y_major_breaks,
-      minor_breaks = y_minor_breaks,
-      labels = y_labels
-    )
-  }
+  aplot <- aplot + scale_y_continuous(
+    limits = y_limits,
+    breaks = y_major_breaks,
+    minor_breaks = y_minor_breaks,
+    labels = function(x) {format(x,nsmall = y_decimals,scientific=y_scientific)}
+  )
 
   # -------------------rotate/size tic labels--------------------
   if(rot_y_tic_label){
@@ -356,7 +332,7 @@ create_box_plot <- function(
     theme(
       axis.text.x = element_text(size = axis_text_size, color = "black"),
       axis.title.x = element_text(size = axis_text_size + 2, color = "black"),
-      axis.text.y = element_text(size = axis_text_size, color = "black"),
+      axis.text.y = element_text(size = axis_text_size, color = "black", angle = rot_y_tic_angle),
       axis.title.y = element_text(size = axis_text_size + 2, color = "black")
     )
   if(rot_x_tic_angle > 0){
@@ -381,7 +357,7 @@ create_box_plot <- function(
   }
 
   # If aes_x is NULL then remove x axis title, tic text, ticks
-  if(aes_x_is_null){
+  if(aes_x_is_undefined){
     if(!do_coord_flip){
       aplot <- aplot +
         theme(

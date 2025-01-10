@@ -173,7 +173,7 @@ create_raster_plot <- function(
   # --------------------panel and grids---------------------
   aplot <- aplot +
     theme(
-      panel.background = element_rect(fill = panel_color, color = panel_border_color, size = 2)
+      panel.background = element_rect(fill = panel_color, color = panel_border_color, linewidth = 2)
     )
 
   # --------------------x/y axis titles------------------------

@@ -5,8 +5,6 @@ test_that("The returned list object is not NULL", {
   ) +
     ggplot2::geom_point(aes(x = mpg, y = wt, color = cyl), size = 3)
 
-  show(mtcars_plot)
-
   legend_right <- RplotterPkg::get_grob_component(
     a_plot = mtcars_plot,
     component_name = "guide-box-right"

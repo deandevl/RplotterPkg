@@ -1,5 +1,5 @@
 
-test_that("The required dataframe parameter is submitted", {
+test_that("create_table()", {
   a_table <- RplotterPkg::create_table(
     df = RplotterPkg::people,
     container_width_px = 500,
@@ -28,7 +28,6 @@ test_that("The required dataframe parameter is submitted", {
       row = c(1,2)
     )
   )
-  show(a_table)
-
-  expect_identical(class(a_table), c("gt_tbl","list"))
+  expect_s3_class(a_table, "gt_tbl")
+  expect_type(a_table, "list")
 })

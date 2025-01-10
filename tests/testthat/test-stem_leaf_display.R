@@ -1,5 +1,5 @@
 
-test_that("Parameter 'x' is a list and required", {
+test_that("stem_leaf_display()", {
 
 # ----------------------Women in Boston marathon---------------------
   # stem and leaf for marathon times of women across ages
@@ -11,15 +11,13 @@ test_that("Parameter 'x' is a list and required", {
     "age_60" = RplotterPkg::boston_marathon[age == 60,]$time
   )
   # display stem and leaf of women times across ages
-  table_grob <- RplotterPkg::stem_leaf_display(
+  a_plot <- RplotterPkg::stem_leaf_display(
     x = marathon_times_lst,
     title = "Women times(min) in Boston marathon",
-    heading_color = "#FF5500",
-    display_grob = FALSE
+    heading_color = "#FF5500"
   )
-  grid::grid.newpage()
-  grid::grid.draw(table_grob)
 
-  expect_true(!is.null(marathon_times_lst))
-  expect_true(is.list(marathon_times_lst))
+  expect_true(is.ggplot(a_plot))
+  vdiffr::expect_doppelganger("stem_leaf_display()", a_plot)
+  expect_no_error(ggplot_build(a_plot))
 })

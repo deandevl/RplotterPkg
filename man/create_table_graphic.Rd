@@ -18,8 +18,7 @@ create_table_graphic(
   title = NULL,
   title_font_sz = 16,
   show_row_names = TRUE,
-  row_names_width = 0.5,
-  display_plot = TRUE
+  row_names_width = 0.5
 )
 }
 \arguments{
@@ -50,19 +49,14 @@ create_table_graphic(
 \item{show_row_names}{A logical that controls the appearance of row names in the data frame.}
 
 \item{row_names_width}{The width of the column for row names in inches.}
-
-\item{display_plot}{A logical that if TRUE will display the plot}
 }
 \value{
-A grob object. Note that if \code{display_plot} is set to
- \code{FALSE}, then to produce graphical output you must use
- \code{grid::grid.draw()} on the returned grob object.
+A ggplot class object.
 }
 \description{
-Function creates a graphic table from a data frame.
+Function creates a ggplot2 graphic table from a data frame.
  Function creates a simple, non-scrollable static table to be laid out with other ggplot2 graphics.  The
- function is based on \code{grid} along with the \code{gtable} package.  Use \code{plot()} to draw the returned grob object or
- use \code{RplotterPkg::multi_panel_grid()} to incorporate it with other ggplot2 plot objects.
+ function is based on \code{grid} along with the \code{gtable} package.
 
  For estimating the overall height of the table consider that each row of the table is 0.2 inches high, .54 inches for heading and
  if a title is defined then add an additional 0.5 inches.
@@ -70,6 +64,7 @@ Function creates a graphic table from a data frame.
 \examples{
 library(grid)
 library(gtable)
+library(ggplotify)
 library(RplotterPkg)
 
 RplotterPkg::create_table_graphic(

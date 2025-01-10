@@ -1,9 +1,8 @@
 #' @title create_table_graphic
 #'
-#' @description Function creates a graphic table from a data frame.
+#' @description Function creates a ggplot2 graphic table from a data frame.
 #'  Function creates a simple, non-scrollable static table to be laid out with other ggplot2 graphics.  The
-#'  function is based on \code{grid} along with the \code{gtable} package.  Use \code{plot()} to draw the returned grob object or
-#'  use \code{RplotterPkg::multi_panel_grid()} to incorporate it with other ggplot2 plot objects.
+#'  function is based on \code{grid} along with the \code{gtable} package.
 #'
 #'  For estimating the overall height of the table consider that each row of the table is 0.2 inches high, .54 inches for heading and
 #'  if a title is defined then add an additional 0.5 inches.
@@ -22,15 +21,13 @@
 #' @param title_font_sz Font size of the title.
 #' @param show_row_names A logical that controls the appearance of row names in the data frame.
 #' @param row_names_width The width of the column for row names in inches.
-#' @param display_plot A logical that if TRUE will display the plot
 #'
-#' @return A grob object. Note that if \code{display_plot} is set to
-#'  \code{FALSE}, then to produce graphical output you must use
-#'  \code{grid::grid.draw()} on the returned grob object.
+#' @return A ggplot class object.
 #'
 #' @examples
 #' library(grid)
 #' library(gtable)
+#' library(ggplotify)
 #' library(RplotterPkg)
 #'
 #' RplotterPkg::create_table_graphic(
@@ -50,6 +47,7 @@
 #' @importFrom grid unit
 #' @importFrom grid grid.draw
 #' @importFrom grid grobTree
+#' @importFrom ggplotify as.ggplot
 #'
 #' @export
 create_table_graphic <- function(
@@ -66,8 +64,7 @@ create_table_graphic <- function(
   title = NULL,
   title_font_sz = 16,
   show_row_names = TRUE,
-  row_names_width = 0.5, # in "inches"
-  display_plot = TRUE
+  row_names_width = 0.5 # in "inches"
 ){
 
   if(is.null(df)){
@@ -163,12 +160,8 @@ create_table_graphic <- function(
     }
   }
 
-  if(display_plot){
-    # grid::grid.draw(graphic_table, recording = FALSE)
-    plot(graphic_table)
-  }
-
-  return(graphic_table)
+  a_plot <- ggplotify::as.ggplot(graphic_table)
+  return(a_plot)
 }
 # define a function for creating a cell grob
 make_cell_grob <- function(

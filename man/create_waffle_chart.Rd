@@ -9,60 +9,47 @@ create_waffle_chart(
   name_col = NULL,
   prop_col = NULL,
   title = NULL,
-  background_color = "yellow",
-  cell_fill = "purple",
-  cell_color = "black",
-  cell_nonfill = "white",
-  cell_alpha = 1,
-  line_width = 1
+  select_fill = "brown",
+  default_fill = "lightgray"
 )
 }
 \arguments{
 \item{x}{Either a dataframe or a vector of named integer proportions.}
 
-\item{name_col}{If *x* is a dataframe, the column name having the variable names.}
+\item{name_col}{If \code{x} is a dataframe, a required string setting the column name having the variable names.}
 
-\item{prop_col}{If *x* is a dataframe, the column name having the variable proportions.}
+\item{prop_col}{If \code{x} is a dataframe, a required string setting the column name having the variable proportions.}
 
-\item{title}{A main title for the chart.}
+\item{title}{A string that sets the main title for the chart.}
 
-\item{background_color}{A string that sets the background color.}
+\item{select_fill}{A string that sets the fill color for tiles with proportion values.}
 
-\item{cell_fill}{A string that sets the cell fill color.}
-
-\item{cell_color}{A string that sets the cell boundary line color.}
-
-\item{cell_nonfill}{A string that sets the non-cell fill color.}
-
-\item{cell_alpha}{A numeric that sets the cell's fill alpha.}
-
-\item{line_width}{A numeric that sets the line width among the cells}
+\item{default_fill}{A string that sets the fill color for tiles without proportion values.}
 }
 \value{
-A ggplot class object
+A ggplot2 class object
 }
 \description{
-Function creates a "waffle" chart that displays percentages for multiple categorical variables.
-  For more information on "waffle" charts see \href{https://baryon.be/uncommon-chart-types-waffle-charts/}{What is a waffle chart}.
+Function creates a "waffle" chart that displays percentages for multiple variables.
+The chart is similar to a heatmap with a 10 by 10 array of tiles (each representing one percent) that
+are colored to the extent of the variable's proportion value.
+For more information on "waffle" charts see \href{https://baryon.be/uncommon-chart-types-waffle-charts/}{What is a waffle chart}.
 }
 \examples{
 library(grid)
+library(gtable)
+library(ggplotify)
+library(ggplot2)
 library(RplotterPkg)
 
 proportions_v <- c(
-  var1=10, var2=40, var3=20, var4=50, var5=5,
-  var6=30, var7=10, var8=67, var9=42, var10=33,
-  var11=7, var12=35, var13=22, var14=90, var15=43
+var1=10,var2=40,var3=20, var4=50, var5=5,
+var6=30, var7=10, var8=67, var9=42, var10=33,
+var11=7, var12=35,var13=22, var14=90
 )
-
-RplotterPkg::create_waffle_chart(
+create_waffle_chart(
   x = proportions_v,
-  title = "Test For 15 Proportion Variables",
-  cell_color = "white",
-  cell_fill = "brown",
-  cell_nonfill = "lightgray",
-  cell_alpha = 0.5,
-  line_width = 4
+  title = "Test For 14 Proportion Variables"
 )
 
 }

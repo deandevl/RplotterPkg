@@ -66,7 +66,6 @@
 #'
 #' @examples
 #' library(ggplot2)
-#' library(ggrepel)
 #' library(RplotterPkg)
 #'
 #' RplotterPkg::symmetry_plot(

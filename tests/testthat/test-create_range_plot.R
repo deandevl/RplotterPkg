@@ -1,9 +1,5 @@
 
-test_that("The required dataframe/aes_x/aes_y parameters are submitted and
-  a .png file of the plot is created.", {
-
-  plot_file <- "range_plot.png"
-
+test_that("create_range_plot() aes_x aes_y aes_y_min aes_y_max", {
   a_plot <- RplotterPkg::create_range_plot(
     df = RplotterPkg::penguins_stats,
     aes_x = "species",
@@ -29,11 +25,27 @@ test_that("The required dataframe/aes_x/aes_y parameters are submitted and
     show_major_grids = TRUE,
     show_minor_grids = FALSE,
     do_coord_flip = TRUE,
-    png_file_path = plot_file
+    png_file_path = tempfile()
   )
-  show(a_plot)
-
   expect_true(is.ggplot(a_plot))
-  expect_true(file.exists(plot_file))
-  file.remove(plot_file)
+  vdiffr::expect_doppelganger("create_range_plot() aes_x aes_y aes_y_min aes_y_max", a_plot)
+  expect_no_error(ggplot_build(a_plot))
+})
+
+test_that("create_range_plot() error if aes_x aes_y are NULL",{
+  expect_error(
+    RplotterPkg::create_range_plot(
+      df = RplotterPkg::penguins_stats
+    )
+  )
+})
+
+test_that("create_range_plot() error if aes_y_min aes_y_max are NULL",{
+  expect_error(
+    RplotterPkg::create_range_plot(
+      df = RplotterPkg::penguins_stats,
+      aes_x = "species",
+      aes_y = "avg_body_mass"
+    )
+  )
 })

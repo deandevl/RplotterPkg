@@ -2,7 +2,7 @@
 #'
 #' @description Arranges a group of ggplot2 plots or grid::grob's into multiple panels.
 #'
-#'   Function creates a figure with title and arranges multiple plots/grobs
+#'   Function creates a figure with title and arranges multiple plots/\code{grob}s
 #'   across a given number of rows and columns. The function depends on the \code{grid},
 #'   \code{gtable}, and \code{ggplotify} packages.
 #'
@@ -17,14 +17,14 @@
 #'   in a horizontal direction. Of course none of these sub-elements among the plots need to exist
 #'   and you are back to simply a grid of plots.
 #'
-#'   As an example of defining the \code{layout} argument,
+#'   As an example of defining the \code{layout} list argument,
 #'   \code{layout} has three named elements: "plots", "rows", and "cols".
-#'   "plots" is a list() of ggplot2 plot objects; "rows" defines the row number
+#'   "plots" is a list of ggplot2 plot objects; "rows" defines the row number
 #'   for each plot and "cols" defines the column number for each plot. If we have
 #'   two plots with both plots on a single row then "rows" = c(1,1) and "cols"
 #'   = c(1,2).
 #'
-#' @param layout A named list containing a list for plot objects or grobs "plots", row locations "rows" vector,
+#' @param layout A list containing a list for plot objects or \code{grob} "plots", row locations "rows" vector,
 #'  column locations "cols" vector. This argument is required.
 #' @param title A string that sets the title of the figure.
 #' @param title_fontsz A numeric that sets the title's font size. The default is 20.
@@ -32,19 +32,20 @@
 #'   each of their titles.
 #' @param y_tick_width A numeric that sets the width of the vertical column containing the y axis tick labeling.
 #'   The default is 0.5 cm and may be increased when a wider labeling is needed.
-#' @param cell_width A numeric that sets the cell widths in the gtable in cm
-#' @param cell_height A numeric that sets the cell widths in the gtable in cm
+#' @param cell_width A numeric that sets the cell widths in the \code{gtable} in cm
+#' @param cell_height A numeric that sets the cell widths in the \code{gtable} in cm
 #' @param do_grid A logical which if TRUE will arrange the plot objects in a straight row/column order without considering
 #'   their scale and label components.
-#' @param display_plot A logical that if TRUE will display the plot, otherwise a ggplot2 object is returned.
 #'
-#' @return A ggplot2 object if \code{display_plot} is FALSE.
+#' @return A ggplot2 class object
 #'
 #' @examples
 #' library(ggplot2)
 #' library(ggplotify)
 #' library(rlang)
 #' library(grid)
+#' library(gtable)
+#' library(ggplotify)
 #' library(purrr)
 #' library(RplotterPkg)
 #'
@@ -108,8 +109,7 @@ multi_panel_grid <- function (
   y_tick_width = 0.5,
   cell_width = 8,
   cell_height = 8,
-  do_grid = FALSE,
-  display_plot = TRUE) {
+  do_grid = FALSE) {
 
   title_grob <- NULL
   max_rows <- max(layout$rows)
@@ -448,12 +448,7 @@ multi_panel_grid <- function (
     }
   }
 
-  # Display plot table?
   a_plot <- ggplotify::as.ggplot(plots_table)
-  if(display_plot){
-    a_plot
-  }else{
-    return(a_plot)
-  }
+  return(a_plot)
 }
 

@@ -241,3 +241,17 @@
 #' Amazon Web Services Terrain Tiles service.
 #'
 "kentucky_elevation"
+
+#' states data
+#'
+#' Consolidation of data into one dataframe for the "South" region.
+#'
+#' @format Data frame for "South" region:
+#' \describe{
+#'   \item{State}{charactter state name}
+#'   \item{Income}{numeric state income}
+#'   \item{Murder}{numeric state murder rate}
+#' }
+#' @source \code{datasets::state_name, state_region, state_x77}
+#'
+"states"

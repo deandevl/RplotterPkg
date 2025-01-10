@@ -1,9 +1,5 @@
 
-test_that("The required dataframe/aes_x/aes_y parameters are submitted and
-  a .png file of the plot is created.", {
-
-  plot_file <- "heatmap_plot.png"
-
+test_that("create_heatmap() aes_x aes_y aes_fill aes_label", {
   a_plot <- RplotterPkg::create_heatmap(
     df = RplotterPkg::spinrates,
     aes_x = "velocity",
@@ -15,7 +11,7 @@ test_that("The required dataframe/aes_x/aes_y parameters are submitted and
     x_title = "Velocity",
     y_title = "Spinrate",
     rot_y_tic_label = TRUE,
-    png_file_path = plot_file
+    png_file_path = tempfile()
   ) +
   ggplot2::scale_fill_gradientn(
     colors = RColorBrewer::brewer.pal(n = 9, name = "YlOrRd"),
@@ -26,9 +22,15 @@ test_that("The required dataframe/aes_x/aes_y parameters are submitted and
       ticks.colour = "black"
     )
   )
-  show(a_plot)
 
   expect_true(is.ggplot(a_plot))
-  expect_true(file.exists(plot_file))
-  file.remove(plot_file)
+  vdiffr::expect_doppelganger("create_heatmap() aes_x aes_y aes_fill aes_label", a_plot)
+  expect_no_error(ggplot_build(a_plot))
+})
+
+test_that("create_heatmap() error if aes_x or aes_y parameters are NULL",{
+  expect_error(RplotterPkg::create_heatmap(
+    df = RplotterPkg::spinrates,
+    aes_x = "velocity"
+  ))
 })

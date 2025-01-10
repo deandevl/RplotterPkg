@@ -11,8 +11,8 @@
 #'   with multiple levels.
 #' @param meas_var A required string that names the measure variable from \code{df}.
 #' @param factor_var A required string that names the factor variable from \code{df}.
-#' @param plot_line_fit A logical which if TRUE plots a line fit between median and spread values.
-#' @param plot_log10 A logical which if TRUE will plot log10 values of median versus spread
+#' @param plot_line_fit A logical which if \code{TRUE} plots a line fit between median and spread values.
+#' @param plot_log10 A logical which if \code{TRUE} will plot log10 values of median versus spread
 #'   instead of raw values.
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
@@ -26,15 +26,14 @@
 #'  the exact major tic locations along the x axis.
 #' @param y_limits A numeric 2 element vector that sets the minimum and maximum for the y axis.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
-#' @param label_pts A logical which if TRUE will label the plot points.
+#' @param label_pts A logical which if \code{TRUE} will label the plot points.
 #'
-#' @return A named list object with a data.table and ggplot2 scatter plot.
+#' @return A list object with a data.table and ggplot2 scatter plot.
 #'
 #' @examples
 #' library(here)
 #' library(data.table)
 #' library(ggplot2)
-#' library(ggrepel)
 #' library(RplotterPkg)
 #'
 #' spread_level_lst <- RplotterPkg::spread_level_plot(

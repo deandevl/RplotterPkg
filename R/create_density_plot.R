@@ -5,9 +5,9 @@
 #'  from \code{\link{density}} for the Kernel Density Estimation (KDE). See the \code{\link{density}} help page
 #'  for more information.
 #'
-#' @param df A data frame that contains a numeric vector from which to estimate the KDE along with possible variables
+#' @param df A required data frame that contains a numeric column from which to estimate the KDE along with possible variables
 #'  for setting \code{aes_color} and \code{aes_fill} (see below).
-#' @param aes_x The variable from \code{df} from which to estimate the KDE. This argument is required.
+#' @param aes_x A required string that sets the variable of \code{df} from which to estimate the KDE.
 #' @param aes_color Sets the variable name from \code{df} for the aesthetic mapping for color.
 #' @param aes_fill Sets the variable name from \code{df} for the aesthetic mapping for fill.
 #' @param bw  A string or numeric that sets the smoothing bandwidth to be used with the KDE function.
@@ -48,7 +48,6 @@
 #' @param plot_obs A logical which if \code{TRUE} plots a line for each observation along the axis margin.
 #' @param plot_obs_len A numeric that sets the length of the \code{plot_obs} lines.
 #' @param plot_obs_color A string that sets the color of the \code{plot_obs} lines.
-#' @param plot_obs_jitter A logical which if \code{TRUE} will add a slight horizontal adjustment to overlapping observations.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
 #'   The default is "white".
 #' @param panel_border_color A string in hexidecimal or color name that sets the plot panel's border color.
@@ -87,11 +86,12 @@
 #'   rot_y_tic_label = TRUE,
 #'   x_limits = c(-40,200),
 #'   x_major_breaks = seq(-40,200,20),
+#'   title = "Ozone Air Quality",
+#'   x_title = "Ozone",
+#'   y_title = "Density",
 #'   plot_obs = TRUE,
-#'   plot_obs_jitter = TRUE,
 #'   density_fill = "green",
-#'   density_alpha = 0.5,
-#'   silent_NA_warning = TRUE
+#'   density_alpha = 0.5
 #' )
 #'
 #' @importFrom data.table as.data.table
@@ -100,7 +100,7 @@
 #'
 #' @export
 create_density_plot <- function(
-    df,
+    df = NULL,
     aes_x = NULL,
     aes_color = NULL,
     aes_fill = NULL,
@@ -137,7 +137,6 @@ create_density_plot <- function(
     plot_obs = FALSE,
     plot_obs_len = 0.02,
     plot_obs_color = "black",
-    plot_obs_jitter = FALSE,
     panel_color = "white",
     panel_border_color = "black",
     show_legend = TRUE,
@@ -152,7 +151,7 @@ create_density_plot <- function(
     png_file_path = NULL,
     png_width_height = c(480,480)){
 
-  na.rm <- x <- y <- NULL
+  x <- y <- NULL
 
   if(!is.data.frame(df)){
     stop("df must be a dataframe")
@@ -203,20 +202,20 @@ create_density_plot <- function(
       adjust = adjust,
       kernel = kernel,
       n = n,
-      na.rm = na.rm
+      na.rm = TRUE
     )
     density_df <- data.table::data.table(
       x = a_density$x,
       y = a_density$y
     )
     if(length(cum_prob) == 1){
-      quantiles <- stats::quantile(dt[[aes_x]], probs = cum_prob)
+      quantiles <- stats::quantile(dt[[aes_x]], probs = cum_prob, na.rm = TRUE)
       subset_1 <- subset(density_df, x < quantiles[[1]])
       subset_2 <- subset(density_df, x >= quantiles[[1]])
       densities <- list(subset_1, subset_2)
       areas <- c(cum_prob, 1 - cum_prob)
-    }else{
-      quantiles <- stats::quantile(dt[[aes_x]], probs = cum_prob)
+    }else {
+      quantiles <- stats::quantile(dt[[aes_x]], probs = cum_prob, na.rm = TRUE)
       subset_1 <- subset(density_df, x < quantiles[[1]])
       subset_2 <- subset(density_df, x >= quantiles[[1]] & x < quantiles[[2]])
       subset_3 <- subset(density_df, x >= quantiles[[2]])
@@ -290,23 +289,14 @@ create_density_plot <- function(
     )
     # Are we plotting observations below the x axis
     if(plot_obs){
-      if(plot_obs_jitter){
-        aplot <- aplot +
-          geom_rug(
-            aes(y = 0),
-            position = position_jitter(height = 0),
-            color = plot_obs_color,
-            length = grid::unit(plot_obs_len, "npc"))
-      } else {
-        aplot <- aplot +
-          geom_rug(
-            aes(y = 0),
-            position = "identity",
-            color = plot_obs_color,
-            length = grid::unit(plot_obs_len, "npc"))
-      }
+      aplot <- aplot +
+        geom_rug(
+          aes(y = 0),
+          position = "identity",
+          color = plot_obs_color,
+          length = grid::unit(plot_obs_len, "npc")
+        )
     }
-
   }
 
   # -------------------Additional ggplot2 components------------------------

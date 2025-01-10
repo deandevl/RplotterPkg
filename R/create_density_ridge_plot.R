@@ -5,12 +5,8 @@
 #'  from \code{\link{density}} for the Kernel Density Estimation (KDE). See the \code{\link{density}} help page
 #'  for more information.
 #'
-#' if \code{display_plot} is TRUE then the plots will be displayed. If \code{display_plot} is FALSE then
-#' the function returns a class ggplot object which can be displayed from the console by entering
-#' \code{grid::grid.draw(plot object)}
-#'
 #' @param df The source data frame from which the densities are plotted.
-#' @param variables A vector that names the x axis variables from \code{df} for plotting their densities.
+#' @param variables A required string vector that names the x axis variables from \code{df} for plotting their densities.
 #' @param plot_heights A numeric that sets the plot height in centimeters for each variable in \code{variables}.
 #'   The default is 3.5 centimeters in height for each plot.
 #' @param plot_widths A numeric that sets the plot width in centimeters for each variable in \code{variables}.
@@ -42,13 +38,15 @@
 #' @param y_minor_breaks A numeric vector or function that sets the minor tic locations along the y axis.
 #' @param y_show_axis A logical which if TRUE will display the y-axis density for each variable.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
-#' @param display_plot A logical that if TRUE will display the plot.
 #'
-#' @return A TableGrob class object.
+#' @return A ggplot class object.
 #'
 #' @examples
 #' library(ggplot2)
 #' library(data.table)
+#' library(grid)
+#' library(gtable)
+#' library(ggplotify)
 #' library(RplotterPkg)
 #'
 #' RplotterPkg::create_density_ridge_plot(
@@ -59,8 +57,7 @@
 #'   x_limits = c(0, 100),
 #'   x_major_breaks = seq(0, 100, 10),
 #'   density_fill = "blue",
-#'   density_alpha = 0.5,
-#'   display_plot = TRUE
+#'   density_alpha = 0.5
 #' )
 #'
 #' @importFrom data.table as.data.table
@@ -70,6 +67,7 @@
 #' @importFrom grid unit
 #' @importFrom gtable gtable
 #' @importFrom gtable gtable_add_grob
+#' @importFrom ggplotify as.ggplot
 #' @import ggplot2
 #'
 #' @references Micah Allen,Davide Poggiali,Kirstie Whitaker,Tom Rhys Marshall,
@@ -103,8 +101,7 @@ create_density_ridge_plot <- function(
   y_major_breaks = waiver(),
   y_minor_breaks = waiver(),
   y_show_axis = FALSE,
-  axis_text_size = 11,
-  display_plot = TRUE){
+  axis_text_size = 11){
 
   if(!is.data.frame(df)){
     stop("df must be a dataframe")
@@ -254,9 +251,6 @@ create_density_ridge_plot <- function(
     idx <- idx + 1
   }
 
-  if(display_plot){
-    grid::grid.newpage()
-    grid::grid.draw(plots_table)
-  }
-  return(plots_table)
+  a_plot <- ggplotify::as.ggplot(plots_table)
+  return(a_plot)
 }

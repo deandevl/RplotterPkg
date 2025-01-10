@@ -47,7 +47,6 @@ create_histogram_plot(
   plot_obs = FALSE,
   plot_obs_len = 0.02,
   plot_obs_color = "black",
-  plot_obs_jitter = FALSE,
   show_major_grids = TRUE,
   show_minor_grids = TRUE,
   show_legend = TRUE,
@@ -65,7 +64,7 @@ create_histogram_plot(
 \arguments{
 \item{df}{The target data frame for the bar chart.}
 
-\item{aes_x}{Sets the x axis continuous variable name from \code{df}. This argument is required.}
+\item{aes_x}{A required string that sets the x axis continuous variable name from \code{df}.}
 
 \item{aes_color}{Sets the variable name from \code{df} for the aesthetic mapping for color.}
 
@@ -154,8 +153,6 @@ refer to the existing minimum and maximum.}
 
 \item{plot_obs_color}{A string that sets the color of the \code{plot_obs} lines.}
 
-\item{plot_obs_jitter}{A logical which if \code{TRUE} will add a slight horizontal adjustment to overlapping observations.}
-
 \item{show_major_grids}{A logical that controls the appearance of major grids.}
 
 \item{show_minor_grids}{A logical that controls the appearance of minor grids.}
@@ -200,8 +197,8 @@ library(rlang)
 library(RplotterPkg)
 
 RplotterPkg::create_histogram_plot(
-  df = ggplot2::midwest,
-  aes_x = "area",
+  df = RplotterPkg::midwest,
+  aes_x = "Area",
   binwidth = 0.01,
   x_limits = c(0.0, 0.11),
   x_major_breaks = seq(0.0, 0.11, 0.01),

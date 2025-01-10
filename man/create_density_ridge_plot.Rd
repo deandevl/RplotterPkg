@@ -30,14 +30,13 @@ create_density_ridge_plot(
   y_major_breaks = waiver(),
   y_minor_breaks = waiver(),
   y_show_axis = FALSE,
-  axis_text_size = 11,
-  display_plot = TRUE
+  axis_text_size = 11
 )
 }
 \arguments{
 \item{df}{The source data frame from which the densities are plotted.}
 
-\item{variables}{A vector that names the x axis variables from \code{df} for plotting their densities.}
+\item{variables}{A required string vector that names the x axis variables from \code{df} for plotting their densities.}
 
 \item{plot_heights}{A numeric that sets the plot height in centimeters for each variable in \code{variables}.
 The default is 3.5 centimeters in height for each plot.}
@@ -93,25 +92,22 @@ refer to the existing minimum and maximum.}
 \item{y_show_axis}{A logical which if TRUE will display the y-axis density for each variable.}
 
 \item{axis_text_size}{A numeric that sets the font size along the axis'. Default is 11.}
-
-\item{display_plot}{A logical that if TRUE will display the plot.}
 }
 \value{
-A TableGrob class object.
+A ggplot class object.
 }
 \description{
 Function creates ggplot2 based plots stacked vertically (also known as ridge or raincloud plots).
  The function's density arguments mirror most of the arguments available
  from \code{\link{density}} for the Kernel Density Estimation (KDE). See the \code{\link{density}} help page
  for more information.
-
-if \code{display_plot} is TRUE then the plots will be displayed. If \code{display_plot} is FALSE then
-the function returns a class ggplot object which can be displayed from the console by entering
-\code{grid::grid.draw(plot object)}
 }
 \examples{
 library(ggplot2)
 library(data.table)
+library(grid)
+library(gtable)
+library(ggplotify)
 library(RplotterPkg)
 
 RplotterPkg::create_density_ridge_plot(
@@ -122,8 +118,7 @@ RplotterPkg::create_density_ridge_plot(
   x_limits = c(0, 100),
   x_major_breaks = seq(0, 100, 10),
   density_fill = "blue",
-  density_alpha = 0.5,
-  display_plot = TRUE
+  density_alpha = 0.5
 )
 
 }

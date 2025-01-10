@@ -4,7 +4,7 @@
 #'   offers one of four ways of setting the number of bins.
 #'
 #' @param df The target data frame for the bar chart.
-#' @param aes_x Sets the x axis continuous variable name from \code{df}. This argument is required.
+#' @param aes_x A required string that sets the x axis continuous variable name from \code{df}.
 #' @param aes_color Sets the variable name from \code{df} for the aesthetic mapping for color.
 #' @param aes_fill Sets the variable name from \code{df} for the aesthetic mapping for fill.
 #' @param position A string that sets the bar positions.  Acceptable values are \code{dodge, dodge2}(side by side), \code{identity}(overlap) or \code{stack}.
@@ -52,7 +52,6 @@
 #' @param plot_obs A logical which if \code{TRUE} plots a line for each observation along the axis margin.
 #' @param plot_obs_len A numeric that sets the length of the \code{plot_obs} lines.
 #' @param plot_obs_color A string that sets the color of the \code{plot_obs} lines.
-#' @param plot_obs_jitter A logical which if \code{TRUE} will add a slight horizontal adjustment to overlapping observations.
 #' @param show_major_grids A logical that controls the appearance of major grids.
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
@@ -81,8 +80,8 @@
 #' library(RplotterPkg)
 #'
 #' RplotterPkg::create_histogram_plot(
-#'   df = ggplot2::midwest,
-#'   aes_x = "area",
+#'   df = RplotterPkg::midwest,
+#'   aes_x = "Area",
 #'   binwidth = 0.01,
 #'   x_limits = c(0.0, 0.11),
 #'   x_major_breaks = seq(0.0, 0.11, 0.01),
@@ -151,7 +150,6 @@ create_histogram_plot <- function(
     plot_obs = FALSE,
     plot_obs_len = 0.02,
     plot_obs_color = "black",
-    plot_obs_jitter = FALSE,
     show_major_grids = TRUE,
     show_minor_grids = TRUE,
     show_legend = TRUE,
@@ -252,14 +250,10 @@ create_histogram_plot <- function(
 
   # ---Are we plotting observations?---------------------------------------
   if(plot_obs){
-    if(plot_obs_jitter){
-      aplot <- aplot +
-        geom_rug(aes(y = 0), position = position_jitter(height = 0), color = plot_obs_color, length = grid::unit(plot_obs_len, "npc"))
-    } else {
-      aplot <- aplot +
-        geom_rug(aes(y = 0), position = "identity", color = plot_obs_color, length = grid::unit(plot_obs_len, "npc"))
-    }
+    aplot <- aplot +
+      geom_rug(aes(y = 0), position = "identity", color = plot_obs_color, length = grid::unit(plot_obs_len, "npc"))
   }
+
   # -------------------Additional ggplot2 components------------------------
   # ----------------------title and subtitle-----------------
   if(center_titles) {

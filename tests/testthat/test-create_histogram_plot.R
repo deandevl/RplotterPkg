@@ -1,9 +1,5 @@
 
-test_that("The required dataframe/aes_x parameters are submitted and
-  a .png file of the plot is created.", {
-
-  plot_file <- "histo_plot.png"
-
+test_that("create_histogram_plot() aes_x", {
   a_plot <- RplotterPkg::create_histogram_plot(
     df = RplotterPkg::midwest,
     aes_x = "Area",
@@ -25,11 +21,37 @@ test_that("The required dataframe/aes_x parameters are submitted and
     silent_NA_warning = TRUE,
     plot_obs = TRUE,
     plot_obs_color = "darkorange",
-    png_file_path = plot_file
+    png_file_path = tempfile()
   )
-  show(a_plot)
 
   expect_true(is.ggplot(a_plot))
-  expect_true(file.exists(plot_file))
-  file.remove(plot_file)
+  vdiffr::expect_doppelganger("create_histogram_plot() aes_x", a_plot)
+  expect_no_error(ggplot_build(a_plot))
+})
+
+test_that("create_histogram_plot() aes_x aes_fill aes_color", {
+  a_plot <- RplotterPkg::create_histogram_plot(
+    df = datasets::InsectSprays,
+    aes_x = "count",
+    aes_color = "spray",
+    aes_fill = "spray",
+    title = "Counts of Insects from Insecticide Treatments",
+    x_title = "Insect Counts",
+    y_title = "Count",
+    position = "dodge",
+    bin_breaks = seq(from = 0, to = 30, by = 5),
+    x_major_breaks = seq(from = 0, to = 30, by = 5),
+    y_limits = c(0, 12),
+    y_major_breaks = seq(from = 0, to = 12, by = 2)
+  )
+
+  expect_true(is.ggplot(a_plot))
+  vdiffr::expect_doppelganger("create_histogram_plot() aes_x aes_fill aes_color", a_plot)
+  expect_no_error(ggplot_build(a_plot))
+})
+
+test_that("create_histogram_plot() error if aes_x parameter is NULL",{
+  expect_error(RplotterPkg::create_histogram_plot(
+    df = RplotterPkg::midwest
+  ))
 })

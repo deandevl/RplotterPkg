@@ -1,5 +1,6 @@
 #' @title create_range_plot
-#' @description Function wraps ggplot2 geom_pointrange to produce x/y plot of numeric ranges.
+#'
+#' @description Function wraps \code{ggplot2::geom_pointrange} to produce x/y plot of numeric ranges.
 #'  Function returns a ggplot2 plot object displaying the individual
 #'  spread or vertical interval/range for a collection of x/y pairs of points.
 #'
@@ -62,7 +63,6 @@
 #' @return A ggplot class object.
 #'
 #' @examples
-#' library(data.table)
 #' library(ggplot2)
 #' library(RplotterPkg)
 #'
@@ -146,12 +146,8 @@ create_range_plot <- function(
     stop("Both aes_y_min and aes_y_max are required arguments.")
   }
 
-  if(!is.null(aes_y_min)){
-    aes_y_min <- rlang::sym(aes_y_min)
-  }
-  if(!is.null(aes_y_max)){
-    aes_y_max <- rlang::sym(aes_y_max)
-  }
+  aes_y_min <- rlang::sym(aes_y_min)
+  aes_y_max <- rlang::sym(aes_y_max)
 
   # -----------------Set geom attribute default values---------------
   ggplot2::update_geom_defaults(

@@ -3,8 +3,7 @@
 #' @description Function wraps ggplot2 geom_bar and geom_col to creates a bar plot.
 #'
 #' @param df The target data frame for the bar chart.
-#' @param aes_x Sets the x axis discrete variable name from \code{df}. This variable must be a factor
-#'   and is required..
+#' @param aes_x A required string that sets the x axis discrete variable name from \code{df}.
 #' @param aes_y Sets the y axis numeric variable name from \code{df}. If this variable is NULL
 #'   the bar heights will be proportional to the number of cases in the levels of \code{aes_x}.
 #'   If \code{aes_y} is not NULL, the bar heights represent this parameter's values across the \code{aes_x} levels.
@@ -76,9 +75,9 @@
 #'   aes_x = "happy",
 #'   aes_fill = "religion",
 #'   position = "dodge",
+#'   title = "Happy Religions",
+#'   center_titles = TRUE,
 #'   rot_y_tic_label = TRUE,
-#'   bar_color = "black",
-#'   bar_lwd = 2,
 #'   bar_width = 0.8,
 #'   x_title = "Happiness",
 #'   y_title = "Count",
@@ -114,7 +113,7 @@ create_bar_plot <- function(
     bar_fill = NA,
     bar_color = "black",
     bar_alpha = 1.0,
-    bar_lwd = 1.0,
+    bar_lwd = 0.7,
     bar_width = NULL,
     x_major_breaks = NULL,
     y_limits = NULL,
@@ -142,7 +141,7 @@ create_bar_plot <- function(
     png_file_path = NULL,
     png_width_height = c(480,480)) {
 
-  N <- count <- . <- ..aes_x <- NULL
+  N <- count <- . <- NULL
 
   if(is.null(df)){
     stop("The dataframe(df) is a required parameter")
@@ -220,7 +219,7 @@ create_bar_plot <- function(
 
   # Is x_major_breaks defined?
   if(!is.null(x_major_breaks)){
-    breaks_data_v <- dt[, ..aes_x][[1]]
+    breaks_data_v <- dt[[aes_x]]
     dt[, cut := cut(x = breaks_data_v, breaks = x_major_breaks, ordered_result = T)]
     aes_x <- "cut"
   }

@@ -185,19 +185,14 @@ library(RplotterPkg)
 # map country coffee production over country geometries
 RplotterPkg::create_sf_plot(
   sf = spData::world,
-  title = "World Coffee Production",
+  title = "World Coffee Production 2017",
   subtitle = "Source: spData::coffee_data",
-  center_titles = TRUE,
-  hide_x_tics = TRUE,
-  hide_y_tics = TRUE,
   panel_color = "white",
   panel_border_color = "white",
 ) |>
   RplotterPkg::create_sf_plot(
     sf = RplotterPkg::world_coffee,
     aes_fill = "coffee_production_2017",
-    subtitle = "Coffee Production for 2017",
-    center_titles = TRUE,
     scale_breaks = seq(0,3000,250),
     scale_labels = seq(0,3000,250),
     scale_limits = c(0,3000),

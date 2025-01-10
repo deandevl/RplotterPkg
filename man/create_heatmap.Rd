@@ -67,7 +67,7 @@ Date/POSIXct variable.}
 
 \item{aes_y}{The y axis variable name from \code{df}. This is a required discrete numeric.}
 
-\item{aes_label}{Sets the variable name from \code{df} as the required source for the tile's text.}
+\item{aes_label}{Sets the variable name from \code{df} as the source for the tile's text.}
 
 \item{aes_color}{The discrete/continuous variable name from \code{df} for the aesthetic mapping for color.}
 
@@ -191,8 +191,9 @@ Function returns a ggplot2 x/y plot of a pair of discrete variables. Instead of 
   magnitude as an array of cells in two dimensions.
 }
 \examples{
-#' library(ggplot2)
+library(ggplot2)
 library(data.table)
+library(methods)
 library(RplotterPkg)
 
 RplotterPkg::create_heatmap(

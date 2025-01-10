@@ -24,7 +24,7 @@ create_bar_plot(
   bar_fill = NA,
   bar_color = "black",
   bar_alpha = 1,
-  bar_lwd = 1,
+  bar_lwd = 0.7,
   bar_width = NULL,
   x_major_breaks = NULL,
   y_limits = NULL,
@@ -56,8 +56,7 @@ create_bar_plot(
 \arguments{
 \item{df}{The target data frame for the bar chart.}
 
-\item{aes_x}{Sets the x axis discrete variable name from \code{df}. This variable must be a factor
-and is required..}
+\item{aes_x}{A required string that sets the x axis discrete variable name from \code{df}.}
 
 \item{aes_y}{Sets the y axis numeric variable name from \code{df}. If this variable is NULL
 the bar heights will be proportional to the number of cases in the levels of \code{aes_x}.
@@ -177,9 +176,9 @@ RplotterPkg::create_bar_plot(
   aes_x = "happy",
   aes_fill = "religion",
   position = "dodge",
+  title = "Happy Religions",
+  center_titles = TRUE,
   rot_y_tic_label = TRUE,
-  bar_color = "black",
-  bar_lwd = 2,
   bar_width = 0.8,
   x_title = "Happiness",
   y_title = "Count",
