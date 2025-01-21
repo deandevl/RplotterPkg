@@ -6,10 +6,11 @@ Authors@R: c(
     person(
       "Rick", "Dean",
       email = "deanr3@bardstown.com",
-      role = c("aut", "cre"),
-      comment = c(ORCID = "0009-0005-8086-8436", doi = "10.5281/zenodo.14633283")
+      role = c("aut", "cre", "cph"),
+      comment = c(ORCID = "0009-0005-8086-8436", <doi:10.5281/zenodo.14633283>)
     )
   )
+Maintainer: Rick Dean <deanr3@bardstown.com>  
 Description: Makes it easy to produce everyday 'ggplot2' 
   charts in a functional way without an extensive "tree"
   implementation. The package includes over 15 functions

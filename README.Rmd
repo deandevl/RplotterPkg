@@ -35,7 +35,7 @@ The following script shows how simple it is to create a standard scatter plot.  
 Other functions for plots are available including multi_panel, spread_level, stem_leaf, and symmetry.
 
 Additional examples showing heatmap, waffle, and stem_leaf are
-available [here](https://rplotterpkg-examples.netlify.app/).
+available [here](https://rplotterpkg-ex.netlify.app/).
 
 ```{r message=FALSE, fig.width=10}
 library(ggplot2)

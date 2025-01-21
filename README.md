@@ -29,7 +29,7 @@ Other functions for plots are available including multi_panel,
 spread_level, stem_leaf, and symmetry.
 
 Additional examples showing heatmap, waffle, and stem_leaf are available
-[here](https://rplotterpkg-examples.netlify.app/).
+[here](https://rplotterpkg-ex.netlify.app/).
 
 ``` r
 library(ggplot2)
