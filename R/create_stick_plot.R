@@ -7,37 +7,37 @@
 #' @param df The required target data frame from which the "stick" lines are drawn.
 #' @param base_val A numeric that sets the base value from which the "stick" originates.
 #'  The default value is 0.
-#' @param aes_x Sets the x axis variable name from \code{df}.  Can be a numeric/Date/POSIXct variable and is required.
-#' @param aes_y Sets the y axis variable name from \code{df} and controls the height of
+#' @param aes_x Sets the x axis variable name from 'df'.  Can be a numeric/Date/POSIXct variable and is required.
+#' @param aes_y Sets the y axis variable name from 'df' and controls the height of
 #'  individual "sticks". The argument is required
-#' @param aes_color Sets the variable name from \code{df} for the aesthetic mapping for color.
+#' @param aes_color Sets the variable name from 'df' for the aesthetic mapping for color.
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
 #' @param caption A string that sets the plot caption
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
-#' @param x_title A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.
-#' @param y_title A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.
+#' @param x_title A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.
+#' @param y_title A string that sets the y axis title. If \code{NULL} (the default) then the y axis title does not appear.
 #' @param hide_x_tics A logical that controls the appearance of the x axis tics.
 #' @param hide_y_tics A logical that controls the appearance of the y axis tics.
 #' @param rot_x_tic_angle A numeric that sets the angle of rotation for the x tic labels. When x tic labels are long,
 #'  a value of 40 for this argument usually works well.
 #' @param rot_y_tic_label A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.
-#' @param x_limits Depending on the class of \code{aes_x}, a numeric/Date/POSIXct 2 element vector that sets the minimum
+#' @param x_limits Depending on the class of 'aes_x', a numeric/Date/POSIXct 2 element vector that sets the minimum
 #'  and maximum for the x axis. Use NA to refer to the existing minimum and maximum.
-#' @param x_major_breaks Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that
+#' @param x_major_breaks Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that
 #'  defines the exact major tic locations along the x axis.
-#' @param x_minor_breaks Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+#' @param x_minor_breaks Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 #'  the exact minor tic locations along the x axis.
-#' @param x_labels A character vector with the same length as \code{x_major_breaks}, that labels the major tics.
-#' @param x_major_date_breaks If the class of \code{aes_x} is Date/POSIXct, a string containing the number and date
-#'  unit for major breaks. \code{"1 year"}, \code{"4 sec"}, \code{"3 month"}, \code{"2 week"}.
-#' @param x_date_labels If the class of \code{aes_x} is Date/POSIXct, a string containing the format codes, the
+#' @param x_labels A character vector with the same length as 'x_major_breaks', that labels the major tics.
+#' @param x_major_date_breaks If the class of 'aes_x' is Date/POSIXct, a string containing the number and date
+#'  unit for major breaks. Examples: "1 year", "4 sec", "3 month", "2 week".
+#' @param x_date_labels If the class of 'aes_x' is Date/POSIXct, a string containing the format codes, the
 #'  strftime format, for the date. Examples: \code{\%Y-\%m}, \code{\%Y/\%b/\%d}, \code{\%H-\%M-\%S}
 #' @param y_limits A numeric 2 element vector that sets the minimum and  maximum for the y axis.
 #'  Use NA to refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
 #' @param y_minor_breaks A numeric vector or function that defines the exact minor tic locations along the y axis.
-#' @param y_labels A character vector with the same length as \code{y_major_breaks}, that labels the major tics.
+#' @param y_labels A character vector with the same length as 'y_major_breaks', that labels the major tics.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
 #' @param line_color A string that sets the color attribute of the lines.
 #' @param line_width A numeric value that sets the width of lines.

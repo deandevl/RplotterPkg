@@ -48,7 +48,7 @@ symmetry_plot(
 \arguments{
 \item{df}{The target data frame from which the distance from the median are plotted.}
 
-\item{var_name}{A string that sets the variable name of interest from \code{df}. This is a required parameter.}
+\item{var_name}{A string that sets the variable name of interest from 'df'. This is a required parameter.}
 
 \item{position}{A string or function that does a slight adjustment to overlapping points.  Typical values are
 "jitter" or \code{position_jitter(width = 0.1, height = 0.1)}.}
@@ -59,11 +59,11 @@ symmetry_plot(
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default) then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default) then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} (the default) then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -72,7 +72,7 @@ symmetry_plot(
 \item{rot_x_tic_angle}{A numeric that sets the angle of rotation for the x tic labels. When x tic labels are long,
 a value of 40 for this argument usually works well.}
 
-\item{rot_y_tic_label}{A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.}
+\item{rot_y_tic_label}{A logical which if \code{TRUE} rotates the y tic labels 90 degrees for enhanced readability.}
 
 \item{x_limits}{Sets the minimum and maximum for the x axis.}
 
@@ -82,7 +82,7 @@ the exact major tic locations along the x axis.}
 \item{x_minor_breaks}{A numeric vector or function that defines
 the exact minor tic locations along the x axis.}
 
-\item{x_labels}{A character vector with the same length as \code{x_major_breaks}, that labels the major tics.}
+\item{x_labels}{A character vector with the same length as 'x_major_breaks', that labels the major tics.}
 
 \item{y_limits}{A numeric 2 element vector that sets the minimum and maximum for the y axis.}
 
@@ -90,18 +90,18 @@ the exact minor tic locations along the x axis.}
 
 \item{y_minor_breaks}{A numeric vector or function that defines the exact minor tic locations along the y axis.}
 
-\item{y_labels}{A character vector with the same length as \code{y_major_breaks}, that labels the major tics.}
+\item{y_labels}{A character vector with the same length as 'y_major_breaks', that labels the major tics.}
 
 \item{x_y_decimals}{A two element numeric vector that set the number of decimals for the x and y tic labels.}
 
-\item{x_y_scientific}{A two element logical vector that if TRUE uses scientific notation for the x and y tic labels.}
+\item{x_y_scientific}{A two element logical vector that if \code{TRUE} uses scientific notation for the x and y tic labels.}
 
 \item{axis_text_size}{A numeric that sets the font size along the axis'. Default is 11.}
 
 \item{pts_fill}{A string that sets the fill color attribute of the points.}
 
-\item{pts_shape}{A numeric integer that sets the shape attribute of the points. Typical values are 21 \dQuote{circle},
-22 \dQuote{square}, 23 \dQuote{diamond}, 24 \dQuote{up triangle}, 25 \dQuote{down triangle}.}
+\item{pts_shape}{A numeric integer that sets the shape attribute of the points. Typical values are 21 "circle",
+22 "square", 23 "diamond", 24 "up triangle", 25 "down triangle".}
 
 \item{pts_stroke}{A numeric that sets the drawing stroke  width attribute for a point shape.}
 
@@ -117,8 +117,8 @@ the exact minor tic locations along the x axis.}
 
 \item{line_alpha}{A numeric that sets the alpha of the symmetry line.}
 
-\item{line_linetype}{A string that sets the symmetry line type \code{twodash, solid, longdash, dotted, dotdash,
-dashed, blank}.}
+\item{line_linetype}{A string that sets the symmetry line type "twodash", "solid", "longdash", "dotted", "dotdash",
+"dashed", "blank".}
 
 \item{show_major_grids}{A logical that controls the appearance of major grids.}
 

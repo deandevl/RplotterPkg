@@ -4,54 +4,55 @@
 #'   offers one of four ways of setting the number of bins.
 #'
 #' @param df The target data frame for the bar chart.
-#' @param aes_x A required string that sets the x axis continuous variable name from \code{df}.
-#' @param aes_color Sets the variable name from \code{df} for the aesthetic mapping for color.
-#' @param aes_fill Sets the variable name from \code{df} for the aesthetic mapping for fill.
-#' @param position A string that sets the bar positions.  Acceptable values are \code{dodge, dodge2}(side by side), \code{identity}(overlap) or \code{stack}.
+#' @param aes_x A required string that sets the x axis continuous variable name from 'df'.
+#' @param aes_color Sets the variable name from 'df' for the aesthetic mapping for color.
+#' @param aes_fill Sets the variable name from 'df' for the aesthetic mapping for fill.
+#' @param position A string that sets the bar positions.  Acceptable values are "dodge", "dodge2"(side by side),
+#'   "identity"(overlap) or "stack".
 #' @param title A string that sets the overall title.
 #' @param subtitle A string that sets the overall subtitle.
 #' @param caption A string that sets the plot caption
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
-#' @param x_title A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.
-#' @param y_title A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.
+#' @param x_title A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.
+#' @param y_title A string that sets the y axis title. If \code{NULL} (the default) then the y axis title does not appear.
 #' @param hide_x_tics A logical that controls the appearance of the x axis tics.
 #' @param hide_y_tics A logical that controls the appearance of the y axis tics.
 #' @param rot_x_tic_angle A numeric that sets the angle of rotation for the x tic labels. When x tic labels are long,
 #'  a value of 40 for this argument usually works well.
 #' @param rot_y_tic_label A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.
-#' @param bins An integer that sets the number of bins of the histogram. Is overridden by a non-null value for either \code{binwidth},
-#'  \code{bin_breaks} or \code{bins_class}. Default is 20.
-#' @param binwidth A numeric that sets the number of bins based on this value.  If \code{aes_x} is a
-#'  date variable then \code{binwidth} is the number of days and if a time variable then \code{binwidth} is
+#' @param bins An integer that sets the number of bins of the histogram. Is overridden by a non-null value for either 'binwidth',
+#'  'bin_breaks' or 'bins_class'. Default is 20.
+#' @param binwidth A numeric that sets the number of bins based on this value.  If 'aes_x' is a
+#'  date variable then 'binwidth' is the number of days and if a time variable then 'binwidth' is
 #'  the number of seconds.
 #' @param bin_breaks A numeric vector that sets the number of bins by giving the bin boundaries explicitly.
 #' @param bin_class A character string that sets the number of bins by selecting one of three types of formulas. Acceptable values are
 #'  "Sturges", "Scott", or "FD".
 #' @param bar_fill A string that sets the fill color attribute for the bars.
 #' @param bar_color A string that sets the outline color attribute for the bars.
-#' @param bar_alpha A numeric that set the alpha component attribute to \code{bar_color}.
+#' @param bar_alpha A numeric that set the alpha component attribute to 'bar_color'.
 #' @param bar_lwd A numeric that sets the bar's outline line width attribute.
 #' @param x_limits A numeric 2 element vector or function that sets the minimum and maximum for the x axis.  Use NA to
 #'  refer to the existing minimum and maximum.
 #' @param x_major_breaks A numeric vector or function that sets the major tic locations along the x axis.
 #' @param x_minor_breaks A numeric vector or function that sets the minor tic locations along the x axis.
-#' @param x_labels A character vector or function giving x axis tic labels.  Must be the same length as \code{x_breaks}.
+#' @param x_labels A character vector or function giving x axis tic labels.  Must be the same length as 'x_major_breaks'.
 #' @param x_decimals A numeric that sets the number of decimal places for x-tic labels.
-#' @param x_scientific A logical which if TRUE will put the x-tic labels in scientific notation.
+#' @param x_scientific A logical which if \code{TRUE} will put the x-tic labels in scientific notation.
 #' @param x_log10 A logical which if \code{TRUE} will use a log10 scale for the x axis.
 #' @param y_limits A numeric 2 element vector or function that sets the minimum and maximum for the y axis.  Use NA to
 #'  refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that sets the major tic locations along the y axis.
 #' @param y_minor_breaks A numeric vector or function that sets the minor tic locations along the y axis.
-#' @param y_labels A character vector or function giving y axis tic labels.  Must be the same length as \code{y_breaks}.
+#' @param y_labels A character vector or function giving y axis tic labels.  Must be the same length as 'y_major_breaks'.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
 #' @param do_coord_flip A logical which if TRUE will flip the x and y axis'.
 #' @param bar_labels A logical which if \code{TRUE} will label each bar with its value.
 #' @param bar_label_size A numeric that sets the size of the bar labels
 #' @param bar_label_color A string that sets the color of the bar labels
 #' @param plot_obs A logical which if \code{TRUE} plots a line for each observation along the axis margin.
-#' @param plot_obs_len A numeric that sets the length of the \code{plot_obs} lines.
-#' @param plot_obs_color A string that sets the color of the \code{plot_obs} lines.
+#' @param plot_obs_len A numeric that sets the length of the 'plot_obs' lines.
+#' @param plot_obs_color A string that sets the color of the 'plot_obs' lines.
 #' @param show_major_grids A logical that controls the appearance of major grids.
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.

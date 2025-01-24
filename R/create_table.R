@@ -10,10 +10,10 @@
 #' @param subtitle A string that sets the table's subtitle. The string can contain R markdown/html style syntax.
 #' @param container_width_px A numeric that sets the overall container width in pixels.
 #' @param container_height_px A numeric that sets the overall container height in pixels.
-#' @param rowname_col The column name from \code{x} to use as row captions to be placed
+#' @param rowname_col The column name from 'df' to use as row captions to be placed
 #'   in the display table stub.
 #' @param col_label_lst A list that resets the table's column labels. The list's key is the old label
-#'   and the value is the new label. Initially the old labels will be \code{x}'s column names.
+#'   and the value is the new label. Initially the old labels will be 'df's column names.
 #' @param col_width_lst A list that sets the table's column widths. The list's key is a column's index
 #'   number and value is the column width in pixels. Both the key and value are strings.
 #' @param header_line A logical which if TRUE will place a bold, thick line between the header row and table body.
@@ -26,7 +26,7 @@
 #' @param decimals_lst A list that describes the decimals for one or more table columns. The list should
 #'   have the following key-value pairs:
 #' \enumerate{
-#'   \item cols = (an integer vector of column indices from \code{x})
+#'   \item cols = (an integer vector of column indices from 'df')
 #'   \item decimal = (an integer that defines the number of decimals for the column(s))
 #' }
 #' @param footnote_title A string at the bottom of the table that footnotes the table's title.

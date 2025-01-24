@@ -27,9 +27,9 @@ spread_level_plot(
 \item{df}{The required target data frame with a measure variable and a factor variable
 with multiple levels.}
 
-\item{meas_var}{A required string that names the measure variable from \code{df}.}
+\item{meas_var}{A required string that names the measure variable from 'df'.}
 
-\item{factor_var}{A required string that names the factor variable from \code{df}.}
+\item{factor_var}{A required string that names the factor variable from 'df'.}
 
 \item{plot_line_fit}{A logical which if \code{TRUE} plots a line fit between median and spread values.}
 
@@ -42,11 +42,11 @@ instead of raw values.}
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} then the y axis title does not appear.}
 
 \item{x_limits}{A numeric 2 element vector that sets the minimum
 and maximum for the x axis.}

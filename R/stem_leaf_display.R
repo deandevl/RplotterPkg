@@ -14,7 +14,7 @@
 #' @param outliers A logical which if \code{TRUE} (the default), outliers are placed on LO and HI stems
 #' @param depths A logical which if \code{TRUE} (the default), print a column of "depths" to the left of the stems
 #' @param col_width A numeric that sets the display column widths in cm. The default is 4, which
-#'   works when \code{depths} is \code{FALSE}. You may need to increase this value to avoid cutting off wide leaf values.
+#'   works when 'depths' is \code{FALSE}. You may need to increase this value to avoid cutting off wide leaf values.
 #' @param row_height A numeric that sets the display row height in cm. The default is 0.5. You may need to
 #'   decrease this value for smaller font sizes and longer stem values.
 #' @param font_sz A numeric that sets the display's font size. The default is 11.

@@ -15,14 +15,16 @@
 #' @param cell_color Color of the cells foreground.
 #' @param cell_fill Color of the cells background.
 #' @param cell_font_sz Font size of the cells.
-#' @param cell_just An string that sets justification of the cell content. Acceptable values are \dQuote{left} and \dQuote{right} and \dQuote{center}.
+#' @param cell_just An string that sets justification of the cell content. Acceptable values are "left" and "right" and "center".
 #' @param cell_hor_pos A numeric that sets the starting horizontal location of text in a cell. Acceptable range from 0.0 to 1.0.
 #' @param title A string that sets the table title.
 #' @param title_font_sz Font size of the title.
 #' @param show_row_names A logical that controls the appearance of row names in the data frame.
 #' @param row_names_width The width of the column for row names in inches.
+#' @param return_gtable A logical which if \code{TRUE} returns a gtable/grob of the table.
+#'   The default is to return a ggplot class object.
 #'
-#' @return A ggplot class object.
+#' @return A gtable or ggplot class object.
 #'
 #' @examples
 #' library(grid)
@@ -64,7 +66,8 @@ create_table_graphic <- function(
   title = NULL,
   title_font_sz = 16,
   show_row_names = TRUE,
-  row_names_width = 0.5 # in "inches"
+  row_names_width = 0.5, # in "inches",
+  return_gtable = FALSE
 ){
 
   if(is.null(df)){
@@ -159,9 +162,12 @@ create_table_graphic <- function(
       )
     }
   }
-
-  a_plot <- ggplotify::as.ggplot(graphic_table)
-  return(a_plot)
+  if(return_gtable){
+    return(graphic_table)
+  }else {
+    a_plot <- ggplotify::as.ggplot(graphic_table)
+    return(a_plot)
+  }
 }
 # define a function for creating a cell grob
 make_cell_grob <- function(

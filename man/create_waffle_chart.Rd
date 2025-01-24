@@ -16,9 +16,9 @@ create_waffle_chart(
 \arguments{
 \item{x}{Either a dataframe or a vector of named integer proportions.}
 
-\item{name_col}{If \code{x} is a dataframe, a required string setting the column name having the variable names.}
+\item{name_col}{If 'x' is a dataframe, a required string setting the column name having the variable names.}
 
-\item{prop_col}{If \code{x} is a dataframe, a required string setting the column name having the variable proportions.}
+\item{prop_col}{If 'x' is a dataframe, a required string setting the column name having the variable proportions.}
 
 \item{title}{A string that sets the main title for the chart.}
 

@@ -6,8 +6,8 @@
 #' For more information on "waffle" charts see \href{https://baryon.be/uncommon-chart-types-waffle-charts/}{What is a waffle chart}.
 #'
 #' @param x Either a dataframe or a vector of named integer proportions.
-#' @param name_col If \code{x} is a dataframe, a required string setting the column name having the variable names.
-#' @param prop_col If \code{x} is a dataframe, a required string setting the column name having the variable proportions.
+#' @param name_col If 'x' is a dataframe, a required string setting the column name having the variable names.
+#' @param prop_col If 'x' is a dataframe, a required string setting the column name having the variable proportions.
 #' @param title A string that sets the main title for the chart.
 #' @param select_fill A string that sets the fill color for tiles with proportion values.
 #' @param default_fill A string that sets the fill color for tiles without proportion values.

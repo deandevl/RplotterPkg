@@ -47,18 +47,18 @@ create_range_plot(
 \arguments{
 \item{df}{The target data frame from which the point ranges are plotted.}
 
-\item{aes_x}{Sets the x axis variable name from \code{df}.
-It is a required factor type variable that is associated with \code{aes_y}.}
+\item{aes_x}{Sets the x axis variable name from 'df'.
+It is a required factor type variable that is associated with 'aes_y'.}
 
-\item{aes_y}{Sets a y axis variable name from \code{df}.
+\item{aes_y}{Sets a y axis variable name from 'df'.
 These are the required numeric values that defines the location of the range
 on the y axis.}
 
-\item{aes_y_min}{A string that sets a y axis variable name from \code{df}.
+\item{aes_y_min}{A string that sets a y axis variable name from 'df'.
 These are the required numerics that defines the minimum values for the range
 of \code{aes_y}.}
 
-\item{aes_y_max}{A string that sets a y axis variable name from \code{df}.
+\item{aes_y_max}{A string that sets a y axis variable name from 'df'.
 These are the required numerics that defines the maximum values for the range
 of \code{aes_y}.}
 
@@ -68,12 +68,12 @@ of \code{aes_y}.}
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title}
-and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title'
+and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default)  then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} (the default)  then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -100,13 +100,13 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{pts_fill}{A string that sets the fill color of the points.}
 
-\item{pts_shape}{A numeric integer that sets the shape of the points. Typical values are 21 \dQuote{circle},
-22 \dQuote{square}, 23 \dQuote{diamond}, 24 \dQuote{up triangle}, 25 \dQuote{down triangle}.}
+\item{pts_shape}{A numeric integer that sets the shape of the points. Typical values are 21 "circle",
+22 "square", 23 "diamond", 24 "up triangle", 25 "down triangle".}
 
 \item{pts_stroke}{A numeric that sets the drawing width for a point shape.}
 
-\item{line_type}{A string that sets range line type \code{twodash, solid, longdash, dotted, dotdash,
-dashed, blank}.}
+\item{line_type}{A string that sets range line type "twodash", "solid", "longdash", "dotted", "dotdash",
+"dashed", "blank".}
 
 \item{line_width}{A numeric that sets the width of the lines.}
 

@@ -13,12 +13,12 @@
 #'
 #' @param sf A simple features object of class "sf".
 #' @param gg A base ggplot2 object wherein this ggplot2's geom_sf object is layered on.
-#' @param aes_color The variable name from \code{sf} for the dependent aesthetic mapping for color.
-#' @param aes_fill The variable name from \code{sf} for the dependent aesthetic mapping for fill.
+#' @param aes_color The variable name from 'sf' for the dependent aesthetic mapping for color.
+#' @param aes_fill The variable name from 'sf' for the dependent aesthetic mapping for fill.
 #'   If the variable is a discrete factor, see ggplot2::scale_fill_manual() for appropriate scaling values.
 #'   If the variable is continuous, see ggplot2::scale_fill_gradientn().
-#' @param aes_size The variable name from \code{sf} for the dependent aesthetic mapping for point size.
-#' @param aes_text The variable name from \code{sf} for the dependent aesthetic mapping for text labeling.
+#' @param aes_size The variable name from 'sf' for the dependent aesthetic mapping for point size.
+#' @param aes_text The variable name from 'sf' for the dependent aesthetic mapping for text labeling.
 #' @param text_size A numeric value that sets the size of aesthetic mapping of text (i.e. aes_text)
 #' @param text_color A string that sets the color of aesthetic mapping of text color (i.e. aes_text)
 #' @param text_fontface A string that sets the fontface of aesthetic mapping of text fontface (i.e. aes_text).
@@ -29,9 +29,9 @@
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
 #' @param caption A string that sets the plot caption
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
-#' @param x_title A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.
-#' @param y_title A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.
+#' @param x_title A string that sets the x axis title. If \code{NULL} (the default)  then the x axis title does not appear.
+#' @param y_title A string that sets the y axis title. If \code{NULL} (the default)  then the y axis title does not appear.
 #' @param hide_x_tics A logical that controls the appearance of the x axis tics.
 #' @param hide_y_tics A logical that controls the appearance of the y axis tics.
 #' @param xlim A numeric vector pair of longitudinal values for zooming in/out the mapping
@@ -42,8 +42,9 @@
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
 #'   The default is NULL and takes on ggplot2's default gray..
 #' @param panel_border_color A string in hexidecimal or color name that sets the plot panel's border color.
-#'   The default is "black". Set it to NA to eliminate the border rectangle entirely.
-#' @param panel_expand A logical which if TRUE, expands the plot panel and potentially hides the tics. The default is FALSE.
+#'   The default is "black". Set it to \code{NA} to eliminate the border rectangle entirely.
+#' @param panel_expand A logical which if TRUE, expands the plot panel and potentially hides the tics.
+#'   The default is \code{FALSE}.
 #' @param sf_color A string that sets the color attribute of the sf.
 #' @param sf_fill A string that sets the fill color attribute of the sf.
 #' @param sf_stroke A numeric that sets the drawing stroke width attribute for a sf point geometry.
@@ -51,14 +52,14 @@
 #' @param sf_size A numeric value that sets the size attribute for scaling points.
 #' @param sf_linewidth A numeric value that sets the line width of POLYGON, LINESTRING geometries.
 #' @param sf_alpha A numeric value that sets the alpha level attribute of point and line geometries..
-#' @param inherit_aes A logical which if FALSE the aesthetics are not combined with other overlapping geoms.
-#' @param na_rm A logical which if TRUE, missing observations are removed. If FALSE, the default,
+#' @param inherit_aes A logical which if \code{FALSE} the aesthetics are not combined with other overlapping geoms.
+#' @param na_rm A logical which if \code{TRUE}, missing observations are removed. If FALSE, the default,
 #'   missing observations are removed with a warning.
 #' @param scale_breaks A string/numeric vector that defines the scale breaks.
 #' @param scale_values A string/numeric vector that defines the possible values.
 #' @param scale_limits A string/numeric vector that defines the scale limits.
 #' @param scale_labels An optional string vector that defines the scale labels. Vector must be the same length
-#' as \code{scale_breaks}.
+#' as 'scale_breaks'.
 #' @param scale_colors Vector of colors to use for n-color gradient.
 #' @param scale_na_value A string that sets the color for missing values.
 #' @param own_scale A logical which if TRUE, then your own scaling may be appended to the plot without using the above

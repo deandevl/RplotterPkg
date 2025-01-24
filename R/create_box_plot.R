@@ -3,19 +3,19 @@
 #' @description Function wraps around ggplot2 geom_boxplot to create a box plot.
 #'
 #' @param df The target data frame for the density chart.
-#' @param aes_x An optional factor variable name from \code{df} that sets the x axis variable.
+#' @param aes_x An optional factor variable name from 'df' that sets the x axis variable.
 #'   Multiple box plots will be displayed along the x axis if this argument is set.
-#' @param aes_y A required variable name from \code{df} that sets the y axis variable.
-#' @param aes_color Sets the variable name from \code{df} for the aesthetic mapping for color.
-#' @param aes_fill Sets the variable name from \code{df} for the aesthetic mapping for fill.
-#' @param aes_label Sets the variable name from \code{df} whose value will to be displayed corresponding
-#'  to the \code{aes_y} outliers.
+#' @param aes_y A required variable name from 'df' that sets the y axis variable.
+#' @param aes_color Sets the variable name from 'df' for the aesthetic mapping for color.
+#' @param aes_fill Sets the variable name from 'df' for the aesthetic mapping for fill.
+#' @param aes_label Sets the variable name from 'df' whose value will to be displayed corresponding
+#'  to the 'aes_y' outliers.
 #' @param title A string that sets the overall title.
 #' @param subtitle A string that sets the overall subtitle
 #' @param caption A string that sets the plot caption
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
-#' @param x_title A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.
-#' @param y_title A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.
+#' @param x_title A string that sets the x axis title. If \code{NULL} (the default)  then the x axis title does not appear.
+#' @param y_title A string that sets the y axis title. If \code{NULL} (the default)  then the y axis title does not appear.
 #' @param hide_x_tics A logical that controls the appearance of the x axis tics.
 #' @param hide_y_tics A logical that controls the appearance of the y axis tics.
 #' @param rot_x_tic_angle A numeric that sets the angle of rotation for the x tic labels. When x tic labels are long,
@@ -24,15 +24,15 @@
 #' @param box_fill A string that sets the fill color attribute for the box plot.
 #' @param box_color A string that sets the color attribute for the box plot.
 #' @param box_line_width A numeric that sets the size attribute of the box line width.
-#' @param box_alpha A numeric that set the alpha component attribute to \code{box_color}.
+#' @param box_alpha A numeric that set the alpha component attribute to 'box_color'.
 #' @param y_limits A numeric 2 element vector that sets the minimum and maximum for the y axis.
-#'  Use NA to refer to the existing minimum and maximum.
+#'  Use \code{NA} to refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
 #' @param y_minor_breaks A numeric vector or function that defines the exact minor tic locations along the y axis.
 #' @param y_decimals A numeric that sets the number of decimal places for y-tic labels.
-#' @param y_scientific A logical which if TRUE will put the y-tic labels in scientific notation.
+#' @param y_scientific A logical which if \code{TRUE} will put the y-tic labels in scientific notation.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
-#' @param do_coord_flip A logical which if TRUE will flip the x and y axis'.
+#' @param do_coord_flip A logical which if \code{TRUE} will flip the x and y axis'.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
 #'   The default is "white".
 #' @param panel_border_color A string in hexidecimal or color name that sets the plot panel's border color.
@@ -45,8 +45,8 @@
 #' @param legend_key_backgrd A string that sets the legend's background color. The default is "white".
 #' @param show_major_grids A logical that controls the appearance of major grids.
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
-#' @param order_by_median A string which will order the plot of \code{aes_x} factor levels/categories by the \code{aes_y} medians.
-#'  Acceptable values are \code{asc} or \code{desc}. Note that the optional argument \code{aes_x} must not be NULL.
+#' @param order_by_median A string which will order the plot of 'aes_x' factor levels/categories by the 'aes_y' medians.
+#'  Acceptable values are "asc" or "desc". Note that the optional argument 'aes_x' must not be \code{NULL}.
 #' @param ol_color A string that sets the outlier color.
 #' @param ol_fill A string that sets the outlier fill.
 #' @param ol_size A numeric that set the outlier size.

@@ -6,17 +6,17 @@
 #'  for more information.
 #'
 #' @param df The source data frame from which the densities are plotted.
-#' @param variables A required string vector that names the x axis variables from \code{df} for plotting their densities.
-#' @param plot_heights A numeric that sets the plot height in centimeters for each variable in \code{variables}.
+#' @param variables A required string vector that names the x axis variables from 'df' for plotting their densities.
+#' @param plot_heights A numeric that sets the plot height in centimeters for each variable in 'variables'.
 #'   The default is 3.5 centimeters in height for each plot.
-#' @param plot_widths A numeric that sets the plot width in centimeters for each variable in \code{variables}.
+#' @param plot_widths A numeric that sets the plot width in centimeters for each variable in 'variables'.
 #'   The default is 24 centimeters in width for each plot.
 #' @param bw  A string or numeric that sets the smoothing bandwidth to be used with the KDE function.
-#' @param adjust A numeric that adjusts \code{bw} since the actual bandwidth is computed as \code{adjust*bw}.
+#' @param adjust A numeric that adjusts 'bw' since the actual bandwidth is computed as \code{adjust*bw}.
 #' @param kernel A string that set the type of Kernel Density Estimation (KDE). Acceptable values are "gaussian",
 #'  "rectangular", "triangular", "epanechnikov", "biweight", "cosine" or "optcosine".
 #' @param n The number of equally spaced points at which the density is to be estimated. This should be a power of two.
-#' @param na.rm A logical which if \code{TRUE}, missing values are removed from \code{df}. If \code{FALSE} any missing
+#' @param na.rm A logical which if \code{TRUE}, missing values are removed from 'df'. If \code{FALSE} any missing
 #'  values cause an error.
 #' @param title A string that sets the overall title.
 #' @param title_fontsz A numeric that sets the title's font size. The default is 14.
@@ -26,12 +26,12 @@
 #' @param density_linewdth A numeric that sets the density line width.
 #' @param density_color A string that sets the color for the density line.
 #' @param density_fill A string that sets the color for the density fill.
-#' @param density_alpha A numeric that sets the alpha value for \code{density_fill}.
+#' @param density_alpha A numeric that sets the alpha value for 'density_fill'.
 #' @param x_limits A numeric 2 element vector or function that sets the minimum and maximum for the x axis. Use NA to
 #'  refer to the existing minimum and maximum.
 #' @param x_major_breaks A numeric vector or function that sets the major tic locations along the x axis.
 #' @param x_minor_breaks A numeric vector or function that sets the minor tic locations along the x axis.
-#' @param x_labels A character vector or function giving x axis tic labels.  Must be the same length as \code{x_breaks}.
+#' @param x_labels A character vector or function giving x axis tic labels.  Must be the same length as 'x_major_breaks'.
 #' @param y_limits A numeric 2 element vector or function that sets the minimum and maximum for the y axis.  Use NA to
 #'  refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that sets the major tic locations along the y axis.

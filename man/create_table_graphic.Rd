@@ -18,7 +18,8 @@ create_table_graphic(
   title = NULL,
   title_font_sz = 16,
   show_row_names = TRUE,
-  row_names_width = 0.5
+  row_names_width = 0.5,
+  return_gtable = FALSE
 )
 }
 \arguments{
@@ -38,7 +39,7 @@ create_table_graphic(
 
 \item{cell_font_sz}{Font size of the cells.}
 
-\item{cell_just}{An string that sets justification of the cell content. Acceptable values are \dQuote{left} and \dQuote{right} and \dQuote{center}.}
+\item{cell_just}{An string that sets justification of the cell content. Acceptable values are "left" and "right" and "center".}
 
 \item{cell_hor_pos}{A numeric that sets the starting horizontal location of text in a cell. Acceptable range from 0.0 to 1.0.}
 
@@ -49,9 +50,12 @@ create_table_graphic(
 \item{show_row_names}{A logical that controls the appearance of row names in the data frame.}
 
 \item{row_names_width}{The width of the column for row names in inches.}
+
+\item{return_gtable}{A logical which if \code{TRUE} returns a gtable/grob of the table.
+The default is to return a ggplot class object.}
 }
 \value{
-A ggplot class object.
+A gtable or ggplot class object.
 }
 \description{
 Function creates a ggplot2 graphic table from a data frame.

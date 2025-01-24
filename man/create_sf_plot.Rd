@@ -60,15 +60,15 @@ create_sf_plot(
 
 \item{gg}{A base ggplot2 object wherein this ggplot2's geom_sf object is layered on.}
 
-\item{aes_color}{The variable name from \code{sf} for the dependent aesthetic mapping for color.}
+\item{aes_color}{The variable name from 'sf' for the dependent aesthetic mapping for color.}
 
-\item{aes_fill}{The variable name from \code{sf} for the dependent aesthetic mapping for fill.
+\item{aes_fill}{The variable name from 'sf' for the dependent aesthetic mapping for fill.
 If the variable is a discrete factor, see ggplot2::scale_fill_manual() for appropriate scaling values.
 If the variable is continuous, see ggplot2::scale_fill_gradientn().}
 
-\item{aes_size}{The variable name from \code{sf} for the dependent aesthetic mapping for point size.}
+\item{aes_size}{The variable name from 'sf' for the dependent aesthetic mapping for point size.}
 
-\item{aes_text}{The variable name from \code{sf} for the dependent aesthetic mapping for text labeling.}
+\item{aes_text}{The variable name from 'sf' for the dependent aesthetic mapping for text labeling.}
 
 \item{text_size}{A numeric value that sets the size of aesthetic mapping of text (i.e. aes_text)}
 
@@ -89,11 +89,11 @@ Acceptable values: "plain", "bold", "italic", "bold.italic". The default is "pla
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default)  then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} (the default)  then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -112,9 +112,10 @@ The default is NULL and takes on ggplot2's default white.}
 The default is NULL and takes on ggplot2's default gray..}
 
 \item{panel_border_color}{A string in hexidecimal or color name that sets the plot panel's border color.
-The default is "black". Set it to NA to eliminate the border rectangle entirely.}
+The default is "black". Set it to \code{NA} to eliminate the border rectangle entirely.}
 
-\item{panel_expand}{A logical which if TRUE, expands the plot panel and potentially hides the tics. The default is FALSE.}
+\item{panel_expand}{A logical which if TRUE, expands the plot panel and potentially hides the tics.
+The default is \code{FALSE}.}
 
 \item{sf_color}{A string that sets the color attribute of the sf.}
 
@@ -130,9 +131,9 @@ The default is "black". Set it to NA to eliminate the border rectangle entirely.
 
 \item{sf_alpha}{A numeric value that sets the alpha level attribute of point and line geometries..}
 
-\item{inherit_aes}{A logical which if FALSE the aesthetics are not combined with other overlapping geoms.}
+\item{inherit_aes}{A logical which if \code{FALSE} the aesthetics are not combined with other overlapping geoms.}
 
-\item{na_rm}{A logical which if TRUE, missing observations are removed. If FALSE, the default,
+\item{na_rm}{A logical which if \code{TRUE}, missing observations are removed. If FALSE, the default,
 missing observations are removed with a warning.}
 
 \item{scale_breaks}{A string/numeric vector that defines the scale breaks.}
@@ -142,7 +143,7 @@ missing observations are removed with a warning.}
 \item{scale_limits}{A string/numeric vector that defines the scale limits.}
 
 \item{scale_labels}{An optional string vector that defines the scale labels. Vector must be the same length
-as \code{scale_breaks}.}
+as 'scale_breaks'.}
 
 \item{scale_colors}{Vector of colors to use for n-color gradient.}
 

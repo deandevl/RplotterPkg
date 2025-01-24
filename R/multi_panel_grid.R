@@ -9,7 +9,7 @@
 #'   The function goes beyond just placing a group of plots across a grid of rows and columns.
 #'   It is somewhat opinionated in favor of common titling/labeling and scaling
 #'   that make sense for all the plots and provide the ability to compare. The function has a
-#'   \code{title} parameter that is assumed appropriate for all the plots--any titles/subtitles
+#'   'title' parameter that is assumed appropriate for all the plots--any titles/subtitles
 #'   among the plots themselves will be removed.  The first left y-axis
 #'   scaling the function comes across will be used for all the plots. Similarly the first bottom
 #'   x-axis scaling the function comes across will be assumed appropriate for all the plots. The

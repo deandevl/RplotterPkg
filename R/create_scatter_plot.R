@@ -5,46 +5,46 @@
 #'  variable/non-variable dependent aesthetics.
 #'
 #' @param df The target data frame from which the scatter points are plotted.
-#' @param aes_x The x axis variable name from \code{df}. This is a required discrete factor, continuous numeric,
+#' @param aes_x The x axis variable name from 'df'. This is a required discrete factor, continuous numeric,
 #'  or Date/POSIXct variable.
-#' @param aes_y The y axis variable name from \code{df}. This is a required discrete factor or continuous numeric.
-#' @param aes_color The variable name from \code{df} for the variable dependent aesthetic mapping for color.
-#' @param aes_fill The variable name from \code{df} for the variable dependent aesthetic mapping for fill.
-#' @param aes_size The variable name from \code{df} for the variable dependent aesthetic mapping for size.
-#' @param aes_alpha The variable name from \code{df} for the variable dependent aesthetic mapping for alpha.
-#' @param aes_linetype The variable name from \code{df} for the variable dependent aesthetic mapping for linetype.
-#' @param aes_label The variable name from \code{df} for the variable dependent aesthetic mapping for labeling.
+#' @param aes_y The y axis variable name from 'df'. This is a required discrete factor or continuous numeric.
+#' @param aes_color The variable name from df' for the variable dependent aesthetic mapping for color.
+#' @param aes_fill The variable name from 'df' for the variable dependent aesthetic mapping for fill.
+#' @param aes_size The variable name from 'df' for the variable dependent aesthetic mapping for size.
+#' @param aes_alpha The variable name from 'df' for the variable dependent aesthetic mapping for alpha.
+#' @param aes_linetype The variable name from 'df' for the variable dependent aesthetic mapping for linetype.
+#' @param aes_label The variable name from 'df' for the variable dependent aesthetic mapping for labeling.
 #' @param aes_label_color A string that sets the color of labels.
 #' @param aes_label_size A numeric that sets the size of labels.
 #' @param aes_label_nudge_x A numeric that nudges the label's horizontal position.
 #' @param aes_label_nudge_y A numeric that nudges the label's vertical position.
-#' @param aes_CI_lwr Sets the column from \code{df} for the lower confidence interval with reference to the x or y axis.
-#' @param aes_CI_upr Sets the column from \code{df} for the upper confidence interval with reference to the x or y axis.
+#' @param aes_CI_lwr Sets the column from 'df' for the lower confidence interval with reference to the x or y axis.
+#' @param aes_CI_upr Sets the column from 'df' for the upper confidence interval with reference to the x or y axis.
 #' @param position A string or function that does a slight adjustment to overlapping points.  Typical values are
 #'  "jitter" or \code{position_jitter(width = 0.1, height = 0.1)}.
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
 #' @param caption A string that sets the plot caption
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
-#' @param x_title A string that sets the x axis title. If NULL (the default) then the x axis title does not appear.
-#' @param y_title A string that sets the y axis title. If NULL (the default) then the y axis title does not appear.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.
+#' @param x_title A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.
+#' @param y_title A string that sets the y axis title. If\code{NULL} (the default) then the y axis title does not appear.
 #' @param hide_x_tics A logical that controls the appearance of the x axis tics.
 #' @param hide_y_tics A logical that controls the appearance of the y axis tics.
 #' @param rot_x_tic_angle A numeric that sets the angle of rotation for the x tic labels. When x tic labels are long,
 #'  a value of 40 for this argument usually works well.
 #' @param rot_y_tic_label A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.
-#' @param x_limits Depending on the class of \code{aes_x}, a numeric/Date/POSIXct 2 element vector that sets the minimum
+#' @param x_limits Depending on the class of 'aes_x', a numeric/Date/POSIXct 2 element vector that sets the minimum
 #'  and maximum for the x axis. Use NA to refer to the existing minimum and maximum.
-#' @param x_major_breaks Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+#' @param x_major_breaks Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 #'  the exact major tic locations along the x axis.
-#' @param x_minor_breaks Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+#' @param x_minor_breaks Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 #'  the exact minor tic locations along the x axis.
-#' @param x_labels A character vector with the same length as \code{x_major_breaks}, that labels the major tics.
-#' @param x_major_date_breaks If the class of \code{aes_x} is Date/POSIXct, a string containing the number and date unit
-#'  for major breaks. \code{"1 year"}, \code{"4 sec"}, \code{"3 month"}, \code{"2 week"}.
-#' @param x_minor_date_breaks If the class of \code{aes_x} is Date/POSIXct, a string containing the number and date unit
+#' @param x_labels A character vector with the same length as 'x_major_breaks', that labels the major tics.
+#' @param x_major_date_breaks If the class of 'aes_x' is Date/POSIXct, a string containing the number and date unit
+#'  for major breaks. Examples: "1 year", "4 sec", "3 month", "2 week".
+#' @param x_minor_date_breaks If the class of 'aes_x' is Date/POSIXct, a string containing the number and date unit
 #'  for minor breaks.
-#' @param x_date_labels If the class of \code{aes_x} is Date/POSIXct, a string containing the format codes, the strftime
+#' @param x_date_labels If the class of 'aes_x' is Date/POSIXct, a string containing the format codes, the strftime
 #'  format, for the date.
 #'  Examples: \code{\%Y-\%m}, \code{\%Y/\%b/\%d}, \code{\%H-\%M-\%S}
 #' @param x_log10 A logical which if \code{TRUE} will use a log10 scale for the x axis.
@@ -52,24 +52,24 @@
 #'  Use \code{NA} to refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
 #' @param y_minor_breaks A numeric vector or function that defines the exact minor tic locations along the y axis.
-#' @param y_labels A character vector with the same length as \code{y_major_breaks}, that labels the major tics.
+#' @param y_labels A character vector with the same length as 'y_major_breaks', that labels the major tics.
 #' @param y_log10 A logical which if \code{TRUE} will use a log10 scale for the y axis.
 #' @param x_y_decimals A two element numeric vector that set the number of decimals for the x and y tic labels.
 #' @param x_y_scientific A two element logical vector that if TRUE uses scientific notation for the x and y tic labels.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
-#' @param show_pts A logical which if FALSE will plot only the lines if \code{connect} is TRUE.
+#' @param show_pts A logical which if \code{FALSE} will plot only the lines if 'connect' is \code{TRUE}.
 #' @param pts_color A string that sets the color attribute of the points.
 #' @param pts_fill A string that sets the fill color attribute of the points.
-#' @param pts_shape A numeric integer that sets the shape attribute of the points. Typical values are 21 \dQuote{circle},
-#'  22 \dQuote{square}, 23 \dQuote{diamond}, 24 \dQuote{up triangle}, 25 \dQuote{down triangle}.
+#' @param pts_shape A numeric integer that sets the shape attribute of the points. Typical values are 21 "circle",
+#'  22 "square", 23 "diamond", 24 "up triangle", 25 "down triangle".
 #' @param pts_stroke A numeric that sets the drawing stroke  width attribute for a point shape.
 #' @param pts_size A numeric value that sets the size attribute of the points.
 #' @param pts_line_alpha A numeric value that sets the alpha level attribute of points and connected lines.
 #' @param connect A logical which if \code{TRUE} then points will be connected with a line.
-#' @param line_width A numeric value that sets the width of lines if \code{connect} is TRUE.
-#' @param line_color A string that sets the color of the lines if \code{connect} is TRUE.
-#' @param connect_linetype A string that sets line type \code{twodash, solid, longdash, dotted, dotdash,
-#'  dashed, blank} if \code{connect} is TRUE.
+#' @param line_width A numeric value that sets the width of lines if 'connect' is TRUE.
+#' @param line_color A string that sets the color of the lines if 'connect' is TRUE.
+#' @param connect_linetype A string that sets line type "twodash", "solid", "longdash", "dotted", "dotdash",
+#'  "dashed", "blank" if 'connect' is \code{TRUE}.
 #' @param show_major_grids A logical that controls the appearance of major grids.
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
@@ -83,12 +83,12 @@
 #' @param legend_key_height A numeric that sets the legend height in cm.
 #' @param legend_key_backgrd A string that sets the legend's background color.
 #' @param bold_y A numeric that sets the y-intercept for plotting a bold horizontal line.
-#' @param bold_y_color A string that sets the color of \code{bold_y}.
-#' @param bold_y_linetype A string that set the linetype of \code{bold_y}.
+#' @param bold_y_color A string that sets the color of 'bold_y'.
+#' @param bold_y_linetype A string that set the linetype of 'bold_y'.
 #' @param CI_dir A string that sets the axis orientation of the confidence intervals. Acceptable values are "x" or "y".
-#' @param CI_show_line A logical that if TRUE shows lower/upper confidence lines.
-#' @param CI_show_errorbar A logical that if TRUE shows error bars between \code{aes_y} and lower/upper confidence lines.
-#' @param CI_show_ribbon A logical that if TRUE shows a filled ribbon between the lower/upper confidence lines.
+#' @param CI_show_line A logical that if \code{TRUE} shows lower/upper confidence lines.
+#' @param CI_show_errorbar A logical that if \code{TRUE} shows error bars between 'aes_y' and lower/upper confidence lines.
+#' @param CI_show_ribbon A logical that if \code{TRUE} shows a filled ribbon between the lower/upper confidence lines.
 #' @param CI_line_color A string that sets the lower/upper confidence line colors.
 #' @param CI_line_width A numeric that sets the lower/upper confidence line widths.
 #' @param CI_linetype A string that sets the linetype for lower/upper confidence lines.

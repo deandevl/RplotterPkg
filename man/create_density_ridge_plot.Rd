@@ -36,24 +36,24 @@ create_density_ridge_plot(
 \arguments{
 \item{df}{The source data frame from which the densities are plotted.}
 
-\item{variables}{A required string vector that names the x axis variables from \code{df} for plotting their densities.}
+\item{variables}{A required string vector that names the x axis variables from 'df' for plotting their densities.}
 
-\item{plot_heights}{A numeric that sets the plot height in centimeters for each variable in \code{variables}.
+\item{plot_heights}{A numeric that sets the plot height in centimeters for each variable in 'variables'.
 The default is 3.5 centimeters in height for each plot.}
 
-\item{plot_widths}{A numeric that sets the plot width in centimeters for each variable in \code{variables}.
+\item{plot_widths}{A numeric that sets the plot width in centimeters for each variable in 'variables'.
 The default is 24 centimeters in width for each plot.}
 
 \item{bw}{A string or numeric that sets the smoothing bandwidth to be used with the KDE function.}
 
-\item{adjust}{A numeric that adjusts \code{bw} since the actual bandwidth is computed as \code{adjust*bw}.}
+\item{adjust}{A numeric that adjusts 'bw' since the actual bandwidth is computed as \code{adjust*bw}.}
 
 \item{kernel}{A string that set the type of Kernel Density Estimation (KDE). Acceptable values are "gaussian",
 "rectangular", "triangular", "epanechnikov", "biweight", "cosine" or "optcosine".}
 
 \item{n}{The number of equally spaced points at which the density is to be estimated. This should be a power of two.}
 
-\item{na.rm}{A logical which if \code{TRUE}, missing values are removed from \code{df}. If \code{FALSE} any missing
+\item{na.rm}{A logical which if \code{TRUE}, missing values are removed from 'df'. If \code{FALSE} any missing
 values cause an error.}
 
 \item{title}{A string that sets the overall title.}
@@ -71,7 +71,7 @@ a value of 40 for this argument usually works well.}
 
 \item{density_fill}{A string that sets the color for the density fill.}
 
-\item{density_alpha}{A numeric that sets the alpha value for \code{density_fill}.}
+\item{density_alpha}{A numeric that sets the alpha value for 'density_fill'.}
 
 \item{x_limits}{A numeric 2 element vector or function that sets the minimum and maximum for the x axis. Use NA to
 refer to the existing minimum and maximum.}
@@ -80,7 +80,7 @@ refer to the existing minimum and maximum.}
 
 \item{x_minor_breaks}{A numeric vector or function that sets the minor tic locations along the x axis.}
 
-\item{x_labels}{A character vector or function giving x axis tic labels.  Must be the same length as \code{x_breaks}.}
+\item{x_labels}{A character vector or function giving x axis tic labels.  Must be the same length as 'x_major_breaks'.}
 
 \item{y_limits}{A numeric 2 element vector or function that sets the minimum and maximum for the y axis.  Use NA to
 refer to the existing minimum and maximum.}

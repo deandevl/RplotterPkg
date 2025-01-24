@@ -37,7 +37,7 @@ stem_leaf_display(
 \item{depths}{A logical which if \code{TRUE} (the default), print a column of "depths" to the left of the stems}
 
 \item{col_width}{A numeric that sets the display column widths in cm. The default is 4, which
-works when \code{depths} is \code{FALSE}. You may need to increase this value to avoid cutting off wide leaf values.}
+works when 'depths' is \code{FALSE}. You may need to increase this value to avoid cutting off wide leaf values.}
 
 \item{row_height}{A numeric that sets the display row height in cm. The default is 0.5. You may need to
 decrease this value for smaller font sizes and longer stem values.}

@@ -59,25 +59,25 @@ create_density_plot(
 }
 \arguments{
 \item{df}{A required data frame that contains a numeric column from which to estimate the KDE along with possible variables
-for setting \code{aes_color} and \code{aes_fill} (see below).}
+for setting 'aes_color' and 'aes_fill' (see below).}
 
-\item{aes_x}{A required string that sets the variable of \code{df} from which to estimate the KDE.}
+\item{aes_x}{A required string that sets the variable of 'df' from which to estimate the KDE.}
 
-\item{aes_color}{Sets the variable name from \code{df} for the aesthetic mapping for color.}
+\item{aes_color}{Sets the variable name from 'df' for the aesthetic mapping for color.}
 
-\item{aes_fill}{Sets the variable name from \code{df} for the aesthetic mapping for fill.}
+\item{aes_fill}{Sets the variable name from 'df' for the aesthetic mapping for fill.}
 
 \item{bw}{A string or numeric that sets the smoothing bandwidth to be used with the KDE function.}
 
-\item{adjust}{A numeric that adjusts \code{bw} since the actual bandwidth is computed as \code{adjust*bw}.}
+\item{adjust}{A numeric that adjusts 'bw' since the actual bandwidth is computed as \code{adjust*bw}.}
 
 \item{kernel}{A string that set the type of Kernel Density Estimation (KDE). Acceptable values are "gaussian",
 "rectangular", "triangular", "epanechnikov", "biweight", "cosine" or "optcosine".}
 
 \item{n}{The number of equally spaced points at which the density is to be estimated. This should be a power of two.}
 
-\item{position}{A string that sets the position.  Acceptable values are \code{identity} which overlays or
-\code{stack} which stacks.}
+\item{position}{A string that sets the position.  Acceptable values are "identity" which overlays or
+"stack" which stacks.}
 
 \item{title}{A string that sets the overall title.}
 
@@ -85,11 +85,11 @@ for setting \code{aes_color} and \code{aes_fill} (see below).}
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default)  then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} (the default)  then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -106,7 +106,7 @@ a value of 40 for this argument usually works well.}
 
 \item{density_fill}{A string that sets the fill color attribute for the area under the density line.}
 
-\item{density_alpha}{A numeric that sets the alpha attribute value for \code{density_fill}.}
+\item{density_alpha}{A numeric that sets the alpha attribute value for 'density_fill'.}
 
 \item{x_limits}{A numeric 2 element vector or function that sets the minimum and maximum for the x axis. Use NA to
 refer to the existing minimum and maximum.}
@@ -115,7 +115,7 @@ refer to the existing minimum and maximum.}
 
 \item{x_minor_breaks}{A numeric vector or function that sets the minor tic locations along the x axis.}
 
-\item{x_labels}{A character vector or function giving x axis tic labels.  Must be the same length as \code{x_breaks}.}
+\item{x_labels}{A character vector or function giving x axis tic labels.  Must be the same length as 'x_breaks'.}
 
 \item{y_limits}{A numeric 2 element vector or function that sets the minimum and maximum for the y axis.  Use NA to
 refer to the existing minimum and maximum.}
@@ -124,7 +124,7 @@ refer to the existing minimum and maximum.}
 
 \item{y_minor_breaks}{A numeric vector or function that sets the minor tic locations along the y axis.}
 
-\item{y_labels}{A character vector or function giving y axis tic labels.  Must be the same length as \code{y_breaks}.}
+\item{y_labels}{A character vector or function giving y axis tic labels.  Must be the same length as 'y_breaks'.}
 
 \item{axis_text_size}{A numeric that sets the font size along the axis'. Default is 11.}
 
@@ -134,9 +134,9 @@ refer to the existing minimum and maximum.}
 
 \item{plot_obs}{A logical which if \code{TRUE} plots a line for each observation along the axis margin.}
 
-\item{plot_obs_len}{A numeric that sets the length of the \code{plot_obs} lines.}
+\item{plot_obs_len}{A numeric that sets the length of the 'plot_obs' lines.}
 
-\item{plot_obs_color}{A string that sets the color of the \code{plot_obs} lines.}
+\item{plot_obs_color}{A string that sets the color of the 'plot_obs' lines.}
 
 \item{panel_color}{A string in hexidecimal or color name that sets the plot panel's color.
 The default is "white".}
@@ -159,11 +159,11 @@ The default is "black".}
 are removed.}
 
 \item{cum_prob}{A one or two element numeric vector for defining cumulative probabilities which divide the density plot area. The
-values are probabilities with values within 0.0 to 1.0.  If for example with a cumulative probability \code{cum_prob} of .95, then the density is divided
+values are probabilities with values within 0.0 to 1.0.  If for example with a cumulative probability 'cum_prob' of .95, then the density is divided
 into two probability areas of 95% and 5% with the dividing quantile value labeled. Similarly if two cumulative probabilities are submitted,
 then three areas are defined.}
 
-\item{area_colors}{A string vector that sets the color of each area defined by \code{cum_prob}.}
+\item{area_colors}{A string vector that sets the color of each area defined by 'cum_prob'.}
 
 \item{area_quantile_line_color}{A string that sets the vertical line color at quantile locations that divide the areas defined
 by \code{cum_prob}.}

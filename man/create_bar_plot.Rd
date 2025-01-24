@@ -56,18 +56,18 @@ create_bar_plot(
 \arguments{
 \item{df}{The target data frame for the bar chart.}
 
-\item{aes_x}{A required string that sets the x axis discrete variable name from \code{df}.}
+\item{aes_x}{A required string that sets the x axis discrete variable name from 'df'.}
 
-\item{aes_y}{Sets the y axis numeric variable name from \code{df}. If this variable is NULL
-the bar heights will be proportional to the number of cases in the levels of \code{aes_x}.
-If \code{aes_y} is not NULL, the bar heights represent this parameter's values across the \code{aes_x} levels.}
+\item{aes_y}{Sets the y axis numeric variable name from 'df'. If this variable is \code{NULL}
+the bar heights will be proportional to the number of cases in the levels of 'aes_x'.
+If 'aes_y' is not \code{NULL}, the bar heights represent this parameter's values across the 'aes_x' levels.}
 
-\item{aes_color}{Sets the variable name from \code{df} for the aesthetic mapping for color.}
+\item{aes_color}{Sets the variable name from 'df' for the aesthetic mapping for color.}
 
-\item{aes_fill}{Sets the variable name from \code{df} for the aesthetic mapping for fill.}
+\item{aes_fill}{Sets the variable name from 'df' for the aesthetic mapping for fill.}
 
-\item{position}{A string that sets the bar positions.  Acceptable values are \code{dodge}(side by side),
-\code{identity}(overlap) or \code{stack}.}
+\item{position}{A string that sets the bar positions.  Acceptable values are "dodge"(side by side),
+"identity"(overlap) or "stack".}
 
 \item{title}{A string that sets the overall title.}
 
@@ -75,11 +75,11 @@ If \code{aes_y} is not NULL, the bar heights represent this parameter's values a
 
 \item{caption}{A string that sets the caption.}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} (the default) then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -94,29 +94,29 @@ a value of 40 for this argument usually works well.}
 
 \item{bar_color}{A string that sets the outline color attribute for the bars.}
 
-\item{bar_alpha}{A numeric that sets the alpha component attribute to \code{bar_color}.}
+\item{bar_alpha}{A numeric that sets the alpha component attribute to 'bar_color'.}
 
 \item{bar_lwd}{A numeric that sets the bar's outline line width attribute.}
 
 \item{bar_width}{A numeric that sets the width attribute of the bars.}
 
-\item{x_major_breaks}{If \code{aes_x} is numeric then this parameter is a numeric vector that defines the major
-breaks/intervals for the x axis.  Interval labels are created and their respective counts are displayed.}
+\item{x_major_breaks}{If 'aes_x' is numeric then this parameter is a numeric vector that defines the major
+breaks/intervals for the x axis. Interval labels are created and their respective counts are displayed.}
 
 \item{y_limits}{A numeric 2 element vector that sets the minimum and maximum for the y axis.
-Use NA to refer to the existing minimum and maximum.}
+Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{y_major_breaks}{A numeric vector or function that defines the exact major tic locations along the y axis.}
 
 \item{y_minor_breaks}{A numeric vector or function that defines the exact minor tic locations along the y axis.}
 
-\item{y_labels}{A character vector with the same length as \code{y_major_breaks}, that labels the major tics.}
+\item{y_labels}{A character vector with the same length as 'y_major_breaks', that labels the major tics.}
 
 \item{axis_text_size}{A numeric that sets the font size along the axis'. Default is 11.}
 
 \item{do_coord_flip}{A logical which if \code{TRUE} will flip the x and y axis'.}
 
-\item{order_bars}{A string which will order the bars in a specific direction. Acceptable values are \code{asc} or \code{desc}}
+\item{order_bars}{A string which will order the bars in a specific direction. Acceptable values are "asc" or "desc"}
 
 \item{bar_labels}{A logical which if \code{TRUE} will label each bar with its value.}
 

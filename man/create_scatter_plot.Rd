@@ -88,22 +88,22 @@ create_scatter_plot(
 \arguments{
 \item{df}{The target data frame from which the scatter points are plotted.}
 
-\item{aes_x}{The x axis variable name from \code{df}. This is a required discrete factor, continuous numeric,
+\item{aes_x}{The x axis variable name from 'df'. This is a required discrete factor, continuous numeric,
 or Date/POSIXct variable.}
 
-\item{aes_y}{The y axis variable name from \code{df}. This is a required discrete factor or continuous numeric.}
+\item{aes_y}{The y axis variable name from 'df'. This is a required discrete factor or continuous numeric.}
 
-\item{aes_color}{The variable name from \code{df} for the variable dependent aesthetic mapping for color.}
+\item{aes_color}{The variable name from df' for the variable dependent aesthetic mapping for color.}
 
-\item{aes_fill}{The variable name from \code{df} for the variable dependent aesthetic mapping for fill.}
+\item{aes_fill}{The variable name from 'df' for the variable dependent aesthetic mapping for fill.}
 
-\item{aes_size}{The variable name from \code{df} for the variable dependent aesthetic mapping for size.}
+\item{aes_size}{The variable name from 'df' for the variable dependent aesthetic mapping for size.}
 
-\item{aes_alpha}{The variable name from \code{df} for the variable dependent aesthetic mapping for alpha.}
+\item{aes_alpha}{The variable name from 'df' for the variable dependent aesthetic mapping for alpha.}
 
-\item{aes_linetype}{The variable name from \code{df} for the variable dependent aesthetic mapping for linetype.}
+\item{aes_linetype}{The variable name from 'df' for the variable dependent aesthetic mapping for linetype.}
 
-\item{aes_label}{The variable name from \code{df} for the variable dependent aesthetic mapping for labeling.}
+\item{aes_label}{The variable name from 'df' for the variable dependent aesthetic mapping for labeling.}
 
 \item{aes_label_color}{A string that sets the color of labels.}
 
@@ -113,9 +113,9 @@ or Date/POSIXct variable.}
 
 \item{aes_label_nudge_y}{A numeric that nudges the label's vertical position.}
 
-\item{aes_CI_lwr}{Sets the column from \code{df} for the lower confidence interval with reference to the x or y axis.}
+\item{aes_CI_lwr}{Sets the column from 'df' for the lower confidence interval with reference to the x or y axis.}
 
-\item{aes_CI_upr}{Sets the column from \code{df} for the upper confidence interval with reference to the x or y axis.}
+\item{aes_CI_upr}{Sets the column from 'df' for the upper confidence interval with reference to the x or y axis.}
 
 \item{position}{A string or function that does a slight adjustment to overlapping points.  Typical values are
 "jitter" or \code{position_jitter(width = 0.1, height = 0.1)}.}
@@ -126,11 +126,11 @@ or Date/POSIXct variable.}
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default) then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default) then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If\code{NULL} (the default) then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -141,24 +141,24 @@ a value of 40 for this argument usually works well.}
 
 \item{rot_y_tic_label}{A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.}
 
-\item{x_limits}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct 2 element vector that sets the minimum
+\item{x_limits}{Depending on the class of 'aes_x', a numeric/Date/POSIXct 2 element vector that sets the minimum
 and maximum for the x axis. Use NA to refer to the existing minimum and maximum.}
 
-\item{x_major_breaks}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+\item{x_major_breaks}{Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 the exact major tic locations along the x axis.}
 
-\item{x_minor_breaks}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+\item{x_minor_breaks}{Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 the exact minor tic locations along the x axis.}
 
-\item{x_labels}{A character vector with the same length as \code{x_major_breaks}, that labels the major tics.}
+\item{x_labels}{A character vector with the same length as 'x_major_breaks', that labels the major tics.}
 
-\item{x_major_date_breaks}{If the class of \code{aes_x} is Date/POSIXct, a string containing the number and date unit
-for major breaks. \code{"1 year"}, \code{"4 sec"}, \code{"3 month"}, \code{"2 week"}.}
+\item{x_major_date_breaks}{If the class of 'aes_x' is Date/POSIXct, a string containing the number and date unit
+for major breaks. Examples: "1 year", "4 sec", "3 month", "2 week".}
 
-\item{x_minor_date_breaks}{If the class of \code{aes_x} is Date/POSIXct, a string containing the number and date unit
+\item{x_minor_date_breaks}{If the class of 'aes_x' is Date/POSIXct, a string containing the number and date unit
 for minor breaks.}
 
-\item{x_date_labels}{If the class of \code{aes_x} is Date/POSIXct, a string containing the format codes, the strftime
+\item{x_date_labels}{If the class of 'aes_x' is Date/POSIXct, a string containing the format codes, the strftime
 format, for the date.
 Examples: \code{\%Y-\%m}, \code{\%Y/\%b/\%d}, \code{\%H-\%M-\%S}}
 
@@ -171,7 +171,7 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{y_minor_breaks}{A numeric vector or function that defines the exact minor tic locations along the y axis.}
 
-\item{y_labels}{A character vector with the same length as \code{y_major_breaks}, that labels the major tics.}
+\item{y_labels}{A character vector with the same length as 'y_major_breaks', that labels the major tics.}
 
 \item{y_log10}{A logical which if \code{TRUE} will use a log10 scale for the y axis.}
 
@@ -181,12 +181,12 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{axis_text_size}{A numeric that sets the font size along the axis'. Default is 11.}
 
-\item{show_pts}{A logical which if FALSE will plot only the lines if \code{connect} is TRUE.}
+\item{show_pts}{A logical which if \code{FALSE} will plot only the lines if 'connect' is \code{TRUE}.}
 
 \item{pts_fill}{A string that sets the fill color attribute of the points.}
 
-\item{pts_shape}{A numeric integer that sets the shape attribute of the points. Typical values are 21 \dQuote{circle},
-22 \dQuote{square}, 23 \dQuote{diamond}, 24 \dQuote{up triangle}, 25 \dQuote{down triangle}.}
+\item{pts_shape}{A numeric integer that sets the shape attribute of the points. Typical values are 21 "circle",
+22 "square", 23 "diamond", 24 "up triangle", 25 "down triangle".}
 
 \item{pts_stroke}{A numeric that sets the drawing stroke  width attribute for a point shape.}
 
@@ -198,12 +198,12 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{connect}{A logical which if \code{TRUE} then points will be connected with a line.}
 
-\item{line_width}{A numeric value that sets the width of lines if \code{connect} is TRUE.}
+\item{line_width}{A numeric value that sets the width of lines if 'connect' is TRUE.}
 
-\item{line_color}{A string that sets the color of the lines if \code{connect} is TRUE.}
+\item{line_color}{A string that sets the color of the lines if 'connect' is TRUE.}
 
-\item{connect_linetype}{A string that sets line type \code{twodash, solid, longdash, dotted, dotdash,
-dashed, blank} if \code{connect} is TRUE.}
+\item{connect_linetype}{A string that sets line type "twodash", "solid", "longdash", "dotted", "dotdash",
+"dashed", "blank" if 'connect' is \code{TRUE}.}
 
 \item{show_major_grids}{A logical that controls the appearance of major grids.}
 
@@ -228,17 +228,17 @@ The default is "black".}
 
 \item{bold_y}{A numeric that sets the y-intercept for plotting a bold horizontal line.}
 
-\item{bold_y_color}{A string that sets the color of \code{bold_y}.}
+\item{bold_y_color}{A string that sets the color of 'bold_y'.}
 
-\item{bold_y_linetype}{A string that set the linetype of \code{bold_y}.}
+\item{bold_y_linetype}{A string that set the linetype of 'bold_y'.}
 
 \item{CI_dir}{A string that sets the axis orientation of the confidence intervals. Acceptable values are "x" or "y".}
 
-\item{CI_show_line}{A logical that if TRUE shows lower/upper confidence lines.}
+\item{CI_show_line}{A logical that if \code{TRUE} shows lower/upper confidence lines.}
 
-\item{CI_show_errorbar}{A logical that if TRUE shows error bars between \code{aes_y} and lower/upper confidence lines.}
+\item{CI_show_errorbar}{A logical that if \code{TRUE} shows error bars between 'aes_y' and lower/upper confidence lines.}
 
-\item{CI_show_ribbon}{A logical that if TRUE shows a filled ribbon between the lower/upper confidence lines.}
+\item{CI_show_ribbon}{A logical that if \code{TRUE} shows a filled ribbon between the lower/upper confidence lines.}
 
 \item{CI_line_color}{A string that sets the lower/upper confidence line colors.}
 

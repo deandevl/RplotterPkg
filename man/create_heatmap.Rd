@@ -62,22 +62,22 @@ create_heatmap(
 \arguments{
 \item{df}{The target data frame from which the heatmap is plotted.}
 
-\item{aes_x}{The x axis variable name from \code{df}. This is a required discrete numeric,
+\item{aes_x}{The x axis variable name from 'df'. This is a required discrete numeric,
 Date/POSIXct variable.}
 
-\item{aes_y}{The y axis variable name from \code{df}. This is a required discrete numeric.}
+\item{aes_y}{The y axis variable name from 'df'. This is a required discrete numeric.}
 
-\item{aes_label}{Sets the variable name from \code{df} as the source for the tile's text.}
+\item{aes_label}{Sets the variable name from 'df' as the source for the tile's text.}
 
-\item{aes_color}{The discrete/continuous variable name from \code{df} for the aesthetic mapping for color.}
+\item{aes_color}{The discrete/continuous variable name from 'df' for the aesthetic mapping for color.}
 
-\item{aes_fill}{The discrete/continuous variable name from \code{df} for the aesthetic mapping for fill.}
+\item{aes_fill}{The discrete/continuous variable name from 'df' for the aesthetic mapping for fill.}
 
-\item{aes_size}{The variable name from \code{df} for the aesthetic mapping for size.}
+\item{aes_size}{The variable name from 'df' for the aesthetic mapping for size.}
 
-\item{aes_width}{The variable name from \code{df} for the aesthetic mapping for width.}
+\item{aes_width}{The variable name from 'df' for the aesthetic mapping for width.}
 
-\item{aes_height}{The variable name from \code{df} for the aesthetic mapping for height.}
+\item{aes_height}{The variable name from 'df' for the aesthetic mapping for height.}
 
 \item{tile_sz}{A numeric that sets the tile's size width attribute in millimeters.}
 
@@ -100,11 +100,11 @@ Date/POSIXct variable.}
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} (the default) then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -115,24 +115,24 @@ a value of 40 for this argument usually works well.}
 
 \item{rot_y_tic_label}{A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.}
 
-\item{x_limits}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct 2 element vector that sets the minimum
+\item{x_limits}{Depending on the class of 'aes_x', a numeric/Date/POSIXct 2 element vector that sets the minimum
 and maximum for the x axis. Use NA to refer to the existing minimum and maximum.}
 
-\item{x_major_breaks}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+\item{x_major_breaks}{Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 the exact major tic locations along the x axis.}
 
-\item{x_minor_breaks}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+\item{x_minor_breaks}{Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 the exact minor tic locations along the x axis.}
 
-\item{x_labels}{A character vector with the same length as \code{x_major_breaks}, that labels the major tics.}
+\item{x_labels}{A character vector with the same length as 'x_major_breaks', that labels the major tics.}
 
-\item{x_major_date_breaks}{If the class of \code{aes_x} is Date/POSIXct, a string containing the number and date unit
-for major breaks. \code{"1 year"}, \code{"4 sec"}, \code{"3 month"}, \code{"2 week"}.}
+\item{x_major_date_breaks}{If the class of 'aes_x' is Date/POSIXct, a string containing the number and date unit
+for major breaks. Examples: "1 year", "4 sec", "3 month", "2 week".}
 
-\item{x_minor_date_breaks}{If the class of \code{aes_x} is Date/POSIXct, a string containing the number and date unit
+\item{x_minor_date_breaks}{If the class of 'aes_x' is Date/POSIXct, a string containing the number and date unit
 for minor breaks.}
 
-\item{x_date_labels}{If the class of \code{aes_x} is Date/POSIXct, a string containing the format codes, the strftime
+\item{x_date_labels}{If the class of 'aes_x' is Date/POSIXct, a string containing the format codes, the strftime
 format, for the date.
 Examples: \code{\%Y-\%m}, \code{\%Y/\%b/\%d}, \code{\%H-\%M-\%S}}
 
@@ -145,7 +145,7 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{y_minor_breaks}{A numeric vector or function that defines the exact minor tic locations along the y axis.}
 
-\item{y_labels}{A character vector with the same length as \code{y_major_breaks}, that labels the major tics.}
+\item{y_labels}{A character vector with the same length as 'y_major_breaks', that labels the major tics.}
 
 \item{y_log10}{A logical which if \code{TRUE} will use a log10 scale for the y axis.}
 

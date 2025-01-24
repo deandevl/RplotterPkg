@@ -35,11 +35,11 @@ create_table(
 
 \item{container_height_px}{A numeric that sets the overall container height in pixels.}
 
-\item{rowname_col}{The column name from \code{x} to use as row captions to be placed
+\item{rowname_col}{The column name from 'df' to use as row captions to be placed
 in the display table stub.}
 
 \item{col_label_lst}{A list that resets the table's column labels. The list's key is the old label
-and the value is the new label. Initially the old labels will be \code{x}'s column names.}
+and the value is the new label. Initially the old labels will be 'df's column names.}
 
 \item{col_width_lst}{A list that sets the table's column widths. The list's key is a column's index
 number and value is the column width in pixels. Both the key and value are strings.}
@@ -59,7 +59,7 @@ The string can contain R markdown/html style syntax.}
 \item{decimals_lst}{A list that describes the decimals for one or more table columns. The list should
   have the following key-value pairs:
 \enumerate{
-  \item cols = (an integer vector of column indices from \code{x})
+  \item cols = (an integer vector of column indices from 'df')
   \item decimal = (an integer that defines the number of decimals for the column(s))
 }}
 

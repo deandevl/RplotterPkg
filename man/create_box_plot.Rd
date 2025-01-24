@@ -56,17 +56,17 @@ create_box_plot(
 \arguments{
 \item{df}{The target data frame for the density chart.}
 
-\item{aes_x}{An optional factor variable name from \code{df} that sets the x axis variable.
+\item{aes_x}{An optional factor variable name from 'df' that sets the x axis variable.
 Multiple box plots will be displayed along the x axis if this argument is set.}
 
-\item{aes_y}{A required variable name from \code{df} that sets the y axis variable.}
+\item{aes_y}{A required variable name from 'df' that sets the y axis variable.}
 
-\item{aes_color}{Sets the variable name from \code{df} for the aesthetic mapping for color.}
+\item{aes_color}{Sets the variable name from 'df' for the aesthetic mapping for color.}
 
-\item{aes_fill}{Sets the variable name from \code{df} for the aesthetic mapping for fill.}
+\item{aes_fill}{Sets the variable name from 'df' for the aesthetic mapping for fill.}
 
-\item{aes_label}{Sets the variable name from \code{df} whose value will to be displayed corresponding
-to the \code{aes_y} outliers.}
+\item{aes_label}{Sets the variable name from 'df' whose value will to be displayed corresponding
+to the 'aes_y' outliers.}
 
 \item{title}{A string that sets the overall title.}
 
@@ -74,11 +74,11 @@ to the \code{aes_y} outliers.}
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default)  then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} (the default)  then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -95,10 +95,10 @@ a value of 40 for this argument usually works well.}
 
 \item{box_line_width}{A numeric that sets the size attribute of the box line width.}
 
-\item{box_alpha}{A numeric that set the alpha component attribute to \code{box_color}.}
+\item{box_alpha}{A numeric that set the alpha component attribute to 'box_color'.}
 
 \item{y_limits}{A numeric 2 element vector that sets the minimum and maximum for the y axis.
-Use NA to refer to the existing minimum and maximum.}
+Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{y_major_breaks}{A numeric vector or function that defines the exact major tic locations along the y axis.}
 
@@ -106,11 +106,11 @@ Use NA to refer to the existing minimum and maximum.}
 
 \item{y_decimals}{A numeric that sets the number of decimal places for y-tic labels.}
 
-\item{y_scientific}{A logical which if TRUE will put the y-tic labels in scientific notation.}
+\item{y_scientific}{A logical which if \code{TRUE} will put the y-tic labels in scientific notation.}
 
 \item{axis_text_size}{A numeric that sets the font size along the axis'. Default is 11.}
 
-\item{do_coord_flip}{A logical which if TRUE will flip the x and y axis'.}
+\item{do_coord_flip}{A logical which if \code{TRUE} will flip the x and y axis'.}
 
 \item{show_legend}{A logical that controls the appearance of the legend.}
 
@@ -145,8 +145,8 @@ The default is "black".}
 
 \item{ol_alpha}{A numeric that sets the outlier alpha for color.}
 
-\item{order_by_median}{A string which will order the plot of \code{aes_x} factor levels/categories by the \code{aes_y} medians.
-Acceptable values are \code{asc} or \code{desc}. Note that the optional argument \code{aes_x} must not be NULL.}
+\item{order_by_median}{A string which will order the plot of 'aes_x' factor levels/categories by the 'aes_y' medians.
+Acceptable values are "asc" or "desc". Note that the optional argument 'aes_x' must not be \code{NULL}.}
 
 \item{silent_NA_warning}{A logical that controls the appearance of a console warning when Na's
 are removed.}

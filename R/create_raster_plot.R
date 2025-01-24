@@ -8,15 +8,15 @@
 #'  ggplot2 text labeling and axis scaling.
 #'
 #' @param df The required data.frame derived from a raster file (such as *.tiff) to be plotted.
-#' @param aes_x The required name of aesthetic variable from \code{df} for the x dimension.
-#' @param aes_y The required name of aesthetic variable from \code{df} for the y dimension.
-#' @param aes_color The variable name from \code{df} for the attribute dependent aesthetic mapping for color.
-#' @param aes_fill The variable name from \code{df} for the attribute dependent aesthetic mapping for fill.
+#' @param aes_x The required name of aesthetic variable from 'df' for the x dimension.
+#' @param aes_y The required name of aesthetic variable from 'df' for the y dimension.
+#' @param aes_color The variable name from 'df' for the attribute dependent aesthetic mapping for color.
+#' @param aes_fill The variable name from 'df' for the attribute dependent aesthetic mapping for fill.
 #' @param interpolate A logical which if TRUE interpolate linearly.
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
 #' @param caption A string that sets the plot caption
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.
 #' @param x_title A string that sets the x axis title. If NULL (the default) then the x axis title does not appear.
 #' @param y_title A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.
 #' @param hide_x_tics A logical that controls the appearance of the x axis tics.
@@ -25,18 +25,18 @@
 #'   The default is "white".
 #' @param panel_border_color A string in hexidecimal or color name that sets the plot panel's border color.
 #'   The default is "black".
-#' @param x_limits Depending on the class of \code{aes_x}, a numeric/Date/POSIXct 2 element vector that sets the minimum
-#'  and maximum for the x axis. Use NA to refer to the existing minimum and maximum.
-#' @param x_major_breaks Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+#' @param x_limits Depending on the class of 'aes_x', a numeric/Date/POSIXct 2 element vector that sets the minimum
+#'  and maximum for the x axis. Use \code{NA} to refer to the existing minimum and maximum.
+#' @param x_major_breaks Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 #'  the exact major tic locations along the x axis.
-#' @param x_minor_breaks Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+#' @param x_minor_breaks Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 #'  the exact minor tic locations along the x axis.
-#' @param x_labels A character vector with the same length as \code{x_major_breaks}, that labels the major tics.
+#' @param x_labels A character vector with the same length as 'x_major_breaks', that labels the major tics.
 #' @param y_limits A numeric 2 element vector that sets the minimum and  maximum for the y axis.
 #'  Use \code{NA} to refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
 #' @param y_minor_breaks A numeric vector or function that defines the exact minor tic locations along the y axis.
-#' @param y_labels A character vector with the same length as \code{y_major_breaks}, that labels the major tics.
+#' @param y_labels A character vector with the same length as 'y_major_breaks', that labels the major tics.
 #' @param scale_breaks A string/numeric vector that defines the scale breaks.
 #' @param scale_values A string/numeric vector that defines the possible values.
 #' @param scale_limits A string/numeric vector that defines the scale limits.
@@ -44,7 +44,7 @@
 #' as \code{scale_breaks}.
 #' @param scale_colors Vector of colors to use for n-color gradient.
 #' @param scale_na_value A string that sets the color for missing values.
-#' @param own_scale A logical which if TRUE, then your own scaling may be appended to the plot without using the above
+#' @param own_scale A logical which if \code{TRUE}, then your own scaling may be appended to the plot without using the above
 #'   scale_* parameters.
 #' @param show_legend A logical that controls the appearance of the legend.
 #' @param legend_pos A string that sets the legend position. Acceptable values are

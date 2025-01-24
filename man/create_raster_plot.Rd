@@ -46,13 +46,13 @@ create_raster_plot(
 \arguments{
 \item{df}{The required data.frame derived from a raster file (such as *.tiff) to be plotted.}
 
-\item{aes_x}{The required name of aesthetic variable from \code{df} for the x dimension.}
+\item{aes_x}{The required name of aesthetic variable from 'df' for the x dimension.}
 
-\item{aes_y}{The required name of aesthetic variable from \code{df} for the y dimension.}
+\item{aes_y}{The required name of aesthetic variable from 'df' for the y dimension.}
 
-\item{aes_color}{The variable name from \code{df} for the attribute dependent aesthetic mapping for color.}
+\item{aes_color}{The variable name from 'df' for the attribute dependent aesthetic mapping for color.}
 
-\item{aes_fill}{The variable name from \code{df} for the attribute dependent aesthetic mapping for fill.}
+\item{aes_fill}{The variable name from 'df' for the attribute dependent aesthetic mapping for fill.}
 
 \item{interpolate}{A logical which if TRUE interpolate linearly.}
 
@@ -62,7 +62,7 @@ create_raster_plot(
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
 \item{x_title}{A string that sets the x axis title. If NULL (the default) then the x axis title does not appear.}
 
@@ -78,16 +78,16 @@ The default is "white".}
 \item{panel_border_color}{A string in hexidecimal or color name that sets the plot panel's border color.
 The default is "black".}
 
-\item{x_limits}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct 2 element vector that sets the minimum
-and maximum for the x axis. Use NA to refer to the existing minimum and maximum.}
+\item{x_limits}{Depending on the class of 'aes_x', a numeric/Date/POSIXct 2 element vector that sets the minimum
+and maximum for the x axis. Use \code{NA} to refer to the existing minimum and maximum.}
 
-\item{x_major_breaks}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+\item{x_major_breaks}{Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 the exact major tic locations along the x axis.}
 
-\item{x_minor_breaks}{Depending on the class of \code{aes_x}, a numeric/Date/POSIXct vector or function that defines
+\item{x_minor_breaks}{Depending on the class of 'aes_x', a numeric/Date/POSIXct vector or function that defines
 the exact minor tic locations along the x axis.}
 
-\item{x_labels}{A character vector with the same length as \code{x_major_breaks}, that labels the major tics.}
+\item{x_labels}{A character vector with the same length as 'x_major_breaks', that labels the major tics.}
 
 \item{y_limits}{A numeric 2 element vector that sets the minimum and  maximum for the y axis.
 Use \code{NA} to refer to the existing minimum and maximum.}
@@ -96,7 +96,7 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{y_minor_breaks}{A numeric vector or function that defines the exact minor tic locations along the y axis.}
 
-\item{y_labels}{A character vector with the same length as \code{y_major_breaks}, that labels the major tics.}
+\item{y_labels}{A character vector with the same length as 'y_major_breaks', that labels the major tics.}
 
 \item{scale_breaks}{A string/numeric vector that defines the scale breaks.}
 
@@ -111,7 +111,7 @@ as \code{scale_breaks}.}
 
 \item{scale_na_value}{A string that sets the color for missing values.}
 
-\item{own_scale}{A logical which if TRUE, then your own scaling may be appended to the plot without using the above
+\item{own_scale}{A logical which if \code{TRUE}, then your own scaling may be appended to the plot without using the above
 scale_* parameters.}
 
 \item{show_legend}{A logical that controls the appearance of the legend.}

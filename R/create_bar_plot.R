@@ -3,20 +3,20 @@
 #' @description Function wraps ggplot2 geom_bar and geom_col to creates a bar plot.
 #'
 #' @param df The target data frame for the bar chart.
-#' @param aes_x A required string that sets the x axis discrete variable name from \code{df}.
-#' @param aes_y Sets the y axis numeric variable name from \code{df}. If this variable is NULL
-#'   the bar heights will be proportional to the number of cases in the levels of \code{aes_x}.
-#'   If \code{aes_y} is not NULL, the bar heights represent this parameter's values across the \code{aes_x} levels.
-#' @param aes_color Sets the variable name from \code{df} for the aesthetic mapping for color.
-#' @param aes_fill Sets the variable name from \code{df} for the aesthetic mapping for fill.
-#' @param position A string that sets the bar positions.  Acceptable values are \code{dodge}(side by side),
-#'  \code{identity}(overlap) or \code{stack}.
+#' @param aes_x A required string that sets the x axis discrete variable name from 'df'.
+#' @param aes_y Sets the y axis numeric variable name from 'df'. If this variable is \code{NULL}
+#'   the bar heights will be proportional to the number of cases in the levels of 'aes_x'.
+#'   If 'aes_y' is not \code{NULL}, the bar heights represent this parameter's values across the 'aes_x' levels.
+#' @param aes_color Sets the variable name from 'df' for the aesthetic mapping for color.
+#' @param aes_fill Sets the variable name from 'df' for the aesthetic mapping for fill.
+#' @param position A string that sets the bar positions.  Acceptable values are "dodge"(side by side),
+#'  "identity"(overlap) or "stack".
 #' @param title A string that sets the overall title.
 #' @param subtitle A string that sets the overall subtitle.
 #' @param caption A string that sets the caption.
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
-#' @param x_title A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.
-#' @param y_title A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.
+#' @param x_title A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.
+#' @param y_title A string that sets the y axis title. If \code{NULL} (the default) then the y axis title does not appear.
 #' @param hide_x_tics A logical that controls the appearance of the x axis tics.
 #' @param hide_y_tics A logical that controls the appearance of the y axis tics.
 #' @param rot_x_tic_angle A numeric that sets the angle of rotation for the x tic label. When x tic labels are long,
@@ -24,19 +24,19 @@
 #' @param rot_y_tic_label A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.
 #' @param bar_fill A string that sets the fill color attribute for the bars.
 #' @param bar_color A string that sets the outline color attribute for the bars.
-#' @param bar_alpha A numeric that sets the alpha component attribute to \code{bar_color}.
+#' @param bar_alpha A numeric that sets the alpha component attribute to 'bar_color'.
 #' @param bar_lwd A numeric that sets the bar's outline line width attribute.
 #' @param bar_width A numeric that sets the width attribute of the bars.
-#' @param x_major_breaks If \code{aes_x} is numeric then this parameter is a numeric vector that defines the major
-#'  breaks/intervals for the x axis.  Interval labels are created and their respective counts are displayed.
+#' @param x_major_breaks If 'aes_x' is numeric then this parameter is a numeric vector that defines the major
+#'  breaks/intervals for the x axis. Interval labels are created and their respective counts are displayed.
 #' @param y_limits A numeric 2 element vector that sets the minimum and maximum for the y axis.
-#'  Use NA to refer to the existing minimum and maximum.
+#'  Use \code{NA} to refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
 #' @param y_minor_breaks A numeric vector or function that defines the exact minor tic locations along the y axis.
-#' @param y_labels A character vector with the same length as \code{y_major_breaks}, that labels the major tics.
+#' @param y_labels A character vector with the same length as 'y_major_breaks', that labels the major tics.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
 #' @param do_coord_flip A logical which if \code{TRUE} will flip the x and y axis'.
-#' @param order_bars A string which will order the bars in a specific direction. Acceptable values are \code{asc} or \code{desc}
+#' @param order_bars A string which will order the bars in a specific direction. Acceptable values are "asc" or "desc"
 #' @param bar_labels A logical which if \code{TRUE} will label each bar with its value.
 #' @param bar_label_sz A numeric that sets the size of the label.
 #' @param bar_label_color A string that sets the label's color.

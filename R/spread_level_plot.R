@@ -9,17 +9,17 @@
 #'
 #' @param df The required target data frame with a measure variable and a factor variable
 #'   with multiple levels.
-#' @param meas_var A required string that names the measure variable from \code{df}.
-#' @param factor_var A required string that names the factor variable from \code{df}.
+#' @param meas_var A required string that names the measure variable from 'df'.
+#' @param factor_var A required string that names the factor variable from 'df'.
 #' @param plot_line_fit A logical which if \code{TRUE} plots a line fit between median and spread values.
 #' @param plot_log10 A logical which if \code{TRUE} will plot log10 values of median versus spread
 #'   instead of raw values.
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
 #' @param caption A string that sets the plot caption
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.
-#' @param x_title A string that sets the x axis title. If NULL then the x axis title does not appear.
-#' @param y_title A string that sets the y axis title. If NULL then the y axis title does not appear.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.
+#' @param x_title A string that sets the x axis title. If \code{NULL} then the x axis title does not appear.
+#' @param y_title A string that sets the y axis title. If \code{NULL} then the y axis title does not appear.
 #' @param x_limits A numeric 2 element vector that sets the minimum
 #'  and maximum for the x axis.
 #' @param x_major_breaks A numeric vector or function that defines

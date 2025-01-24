@@ -64,13 +64,14 @@ create_histogram_plot(
 \arguments{
 \item{df}{The target data frame for the bar chart.}
 
-\item{aes_x}{A required string that sets the x axis continuous variable name from \code{df}.}
+\item{aes_x}{A required string that sets the x axis continuous variable name from 'df'.}
 
-\item{aes_color}{Sets the variable name from \code{df} for the aesthetic mapping for color.}
+\item{aes_color}{Sets the variable name from 'df' for the aesthetic mapping for color.}
 
-\item{aes_fill}{Sets the variable name from \code{df} for the aesthetic mapping for fill.}
+\item{aes_fill}{Sets the variable name from 'df' for the aesthetic mapping for fill.}
 
-\item{position}{A string that sets the bar positions.  Acceptable values are \code{dodge, dodge2}(side by side), \code{identity}(overlap) or \code{stack}.}
+\item{position}{A string that sets the bar positions.  Acceptable values are "dodge", "dodge2"(side by side),
+"identity"(overlap) or "stack".}
 
 \item{title}{A string that sets the overall title.}
 
@@ -78,11 +79,11 @@ create_histogram_plot(
 
 \item{caption}{A string that sets the plot caption}
 
-\item{center_titles}{A logical which if \code{TRUE} centers both the \code{title} and \code{subtitle}.}
+\item{center_titles}{A logical which if \code{TRUE} centers both the 'title' and 'subtitle'.}
 
-\item{x_title}{A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.}
+\item{x_title}{A string that sets the x axis title. If \code{NULL} (the default) then the x axis title does not appear.}
 
-\item{y_title}{A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.}
+\item{y_title}{A string that sets the y axis title. If \code{NULL} (the default) then the y axis title does not appear.}
 
 \item{hide_x_tics}{A logical that controls the appearance of the x axis tics.}
 
@@ -93,11 +94,11 @@ a value of 40 for this argument usually works well.}
 
 \item{rot_y_tic_label}{A logical which if TRUE rotates the y tic labels 90 degrees for enhanced readability.}
 
-\item{bins}{An integer that sets the number of bins of the histogram. Is overridden by a non-null value for either \code{binwidth},
-\code{bin_breaks} or \code{bins_class}. Default is 20.}
+\item{bins}{An integer that sets the number of bins of the histogram. Is overridden by a non-null value for either 'binwidth',
+'bin_breaks' or 'bins_class'. Default is 20.}
 
-\item{binwidth}{A numeric that sets the number of bins based on this value.  If \code{aes_x} is a
-date variable then \code{binwidth} is the number of days and if a time variable then \code{binwidth} is
+\item{binwidth}{A numeric that sets the number of bins based on this value.  If 'aes_x' is a
+date variable then 'binwidth' is the number of days and if a time variable then 'binwidth' is
 the number of seconds.}
 
 \item{bin_breaks}{A numeric vector that sets the number of bins by giving the bin boundaries explicitly.}
@@ -109,7 +110,7 @@ the number of seconds.}
 
 \item{bar_color}{A string that sets the outline color attribute for the bars.}
 
-\item{bar_alpha}{A numeric that set the alpha component attribute to \code{bar_color}.}
+\item{bar_alpha}{A numeric that set the alpha component attribute to 'bar_color'.}
 
 \item{bar_lwd}{A numeric that sets the bar's outline line width attribute.}
 
@@ -120,11 +121,11 @@ refer to the existing minimum and maximum.}
 
 \item{x_minor_breaks}{A numeric vector or function that sets the minor tic locations along the x axis.}
 
-\item{x_labels}{A character vector or function giving x axis tic labels.  Must be the same length as \code{x_breaks}.}
+\item{x_labels}{A character vector or function giving x axis tic labels.  Must be the same length as 'x_major_breaks'.}
 
 \item{x_decimals}{A numeric that sets the number of decimal places for x-tic labels.}
 
-\item{x_scientific}{A logical which if TRUE will put the x-tic labels in scientific notation.}
+\item{x_scientific}{A logical which if \code{TRUE} will put the x-tic labels in scientific notation.}
 
 \item{x_log10}{A logical which if \code{TRUE} will use a log10 scale for the x axis.}
 
@@ -135,7 +136,7 @@ refer to the existing minimum and maximum.}
 
 \item{y_minor_breaks}{A numeric vector or function that sets the minor tic locations along the y axis.}
 
-\item{y_labels}{A character vector or function giving y axis tic labels.  Must be the same length as \code{y_breaks}.}
+\item{y_labels}{A character vector or function giving y axis tic labels.  Must be the same length as 'y_major_breaks'.}
 
 \item{axis_text_size}{A numeric that sets the font size along the axis'. Default is 11.}
 
@@ -149,9 +150,9 @@ refer to the existing minimum and maximum.}
 
 \item{plot_obs}{A logical which if \code{TRUE} plots a line for each observation along the axis margin.}
 
-\item{plot_obs_len}{A numeric that sets the length of the \code{plot_obs} lines.}
+\item{plot_obs_len}{A numeric that sets the length of the 'plot_obs' lines.}
 
-\item{plot_obs_color}{A string that sets the color of the \code{plot_obs} lines.}
+\item{plot_obs_color}{A string that sets the color of the 'plot_obs' lines.}
 
 \item{show_major_grids}{A logical that controls the appearance of major grids.}
 

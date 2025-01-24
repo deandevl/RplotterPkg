@@ -7,7 +7,7 @@ Authors@R: c(
       "Rick", "Dean",
       email = "deanr3@bardstown.com",
       role = c("aut", "cre", "cph"),
-      comment = c(ORCID = "0009-0005-8086-8436", <doi:10.5281/zenodo.14633283>)
+      comment = c(ORCID = "0009-0005-8086-8436")
     )
   )
 Maintainer: Rick Dean <deanr3@bardstown.com>  

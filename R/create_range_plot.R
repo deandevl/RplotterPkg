@@ -5,24 +5,24 @@
 #'  spread or vertical interval/range for a collection of x/y pairs of points.
 #'
 #' @param df The target data frame from which the point ranges are plotted.
-#' @param aes_x Sets the x axis variable name from \code{df}.
-#'  It is a required factor type variable that is associated with \code{aes_y}.
-#' @param aes_y Sets a y axis variable name from \code{df}.
+#' @param aes_x Sets the x axis variable name from 'df'.
+#'  It is a required factor type variable that is associated with 'aes_y'.
+#' @param aes_y Sets a y axis variable name from 'df'.
 #'  These are the required numeric values that defines the location of the range
 #'  on the y axis.
-#' @param aes_y_min A string that sets a y axis variable name from \code{df}.
+#' @param aes_y_min A string that sets a y axis variable name from 'df'.
 #'  These are the required numerics that defines the minimum values for the range
 #'  of \code{aes_y}.
-#' @param aes_y_max A string that sets a y axis variable name from \code{df}.
+#' @param aes_y_max A string that sets a y axis variable name from 'df'.
 #'  These are the required numerics that defines the maximum values for the range
 #'  of \code{aes_y}.
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
 #' @param caption A string that sets the plot caption
-#' @param center_titles A logical which if \code{TRUE} centers both the \code{title}
-#'  and \code{subtitle}.
-#' @param x_title A string that sets the x axis title. If NULL (the default)  then the x axis title does not appear.
-#' @param y_title A string that sets the y axis title. If NULL (the default)  then the y axis title does not appear.
+#' @param center_titles A logical which if \code{TRUE} centers both the 'title'
+#'  and 'subtitle'.
+#' @param x_title A string that sets the x axis title. If \code{NULL} (the default)  then the x axis title does not appear.
+#' @param y_title A string that sets the y axis title. If \code{NULL} (the default)  then the y axis title does not appear.
 #' @param hide_x_tics A logical that controls the appearance of the x axis tics.
 #' @param hide_y_tics A logical that controls the appearance of the y axis tics.
 #' @param rot_x_tic_angle A numeric that sets the angle of rotation for the x tic labels.
@@ -37,11 +37,11 @@
 #' @param y_log10 A logical which if \code{TRUE} will use a log10 scale for the y axis.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
 #' @param pts_fill A string that sets the fill color of the points.
-#' @param pts_shape A numeric integer that sets the shape of the points. Typical values are 21 \dQuote{circle},
-#'  22 \dQuote{square}, 23 \dQuote{diamond}, 24 \dQuote{up triangle}, 25 \dQuote{down triangle}.
+#' @param pts_shape A numeric integer that sets the shape of the points. Typical values are 21 "circle",
+#'  22 "square", 23 "diamond", 24 "up triangle", 25 "down triangle".
 #' @param pts_stroke A numeric that sets the drawing width for a point shape.
-#' @param line_type A string that sets range line type \code{twodash, solid, longdash, dotted, dotdash,
-#'  dashed, blank}.
+#' @param line_type A string that sets range line type "twodash", "solid", "longdash", "dotted", "dotdash",
+#'  "dashed", "blank".
 #' @param line_width A numeric that sets the width of the lines.
 #' @param fatten_pts A multiplicative numeric that sets the size of points(diameter).
 #' @param line_pts_color A string that sets the color of the range lines and outlines of the points.
