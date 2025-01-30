@@ -6,4 +6,4 @@
 ^README\.Rmd$
 ^\.github$
 ^CRAN-SUBMISSION$
-
+[.]svg$

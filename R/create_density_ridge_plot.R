@@ -57,7 +57,9 @@
 #'   x_limits = c(0, 100),
 #'   x_major_breaks = seq(0, 100, 10),
 #'   density_fill = "blue",
-#'   density_alpha = 0.5
+#'   density_alpha = 0.5,
+#'   plot_heights = 2.5,
+#'   plot_widths = 18
 #' )
 #'
 #' @importFrom data.table as.data.table

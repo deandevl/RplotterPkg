@@ -5,11 +5,7 @@
 \alias{homeruns_2000}
 \title{homeruns_2000 data}
 \format{
-Data frame with columns:
-\describe{
-  \item{YEARS}{numeric years for baseball teams from 1900 to 2000}
-  \item{HOMERUNS}{numeric of total homeruns for a baseball team}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 210 rows and 2 columns.
 }
 \source{
 \href{https://github.com/bayesball/LearnEDAfunctions}{LearnEDAfunctions}
@@ -22,5 +18,10 @@ Team home run numbers for different seasons. The
 raw tab delimited data (\code{homeruns_2000.txt}) is read by
 \code{data.table::fread()} to produce a data frame with numeric
 columns for "YEARS" and "HOMERUNS".
+
+\tabular{ll}{
+  \strong{YEARS} \tab numeric years for baseball teams from 1900 to 2000 \cr
+  \strong{HOMERUNS} \tab numeric of total homeruns for a baseball team
+}
 }
 \keyword{datasets}

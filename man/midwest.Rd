@@ -5,15 +5,7 @@
 \alias{midwest}
 \title{midwest data}
 \format{
-Data frame with columns:
-\describe{
-  \item{HS_Diploma}{numeric percent high school diploma}
-  \item{College_Edu}{numeric percent college educated}
-  \item{Prof_Deg}{percentage professional degree}
-  \item{White}{percent white}
-  \item{Black}{percent black}
-  \item{Asian}{percent asian}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 437 rows and 7 columns.
 }
 \source{
 \code{ggplot2::midwest}
@@ -25,5 +17,14 @@ midwest
 From the \code{ggplot2::midwest} dataset, selects for midwest counties
 percent high school diploma, percent college educated, percentage professional
 degree, percent white, percent black, percent asian.
+
+\tabular{ll}{
+  \strong{HS_Diploma} \tab numeric percent high school diploma \cr
+  \strong{College_Edu} \tab numeric percent college educated \cr
+  \strong{Prof_Deg} \tab percentage professional degree \cr
+  \strong{White} \tab percent white \cr
+  \strong{Black} \tab percent black \cr
+  \strong{Asian} \tab percent asian
+}
 }
 \keyword{datasets}

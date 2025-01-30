@@ -5,11 +5,7 @@
 \alias{religion}
 \title{religion data}
 \format{
-Data frame with columns:
-\describe{
-  \item{happy}{general happiness}
-  \item{religion}{religion in six categories}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 2844 rows and 2 columns.
 }
 \source{
 \code{socviz::gss_sm}
@@ -20,5 +16,10 @@ religion
 \description{
 From the \code{socviz::gss_sm} dataset General Social Survey, 2016,
 a sub-data frame was created from the "happy" and "religion" variables.
+
+\tabular{ll}{
+  \strong{happy} \tab general happiness \cr
+  \strong{religion} \tab religion in six categories
+}
 }
 \keyword{datasets}

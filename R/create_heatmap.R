@@ -93,7 +93,8 @@
 #'   title = "Likelihood of swinging and missing on a fastball",
 #'   x_title = "Velocity",
 #'   y_title = "Spinrate",
-#'   rot_y_tic_label = TRUE,
+#'   label_sz = 5,
+#'   rot_y_tic_label = TRUE
 #') +
 #'  ggplot2::scale_fill_gradientn(
 #'    colors = RColorBrewer::brewer.pal(n = 9, name = "YlOrRd"),

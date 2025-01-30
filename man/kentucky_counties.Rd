@@ -5,11 +5,7 @@
 \alias{kentucky_counties}
 \title{kentucky_counties data}
 \format{
-Special feature object (class sf) with columns:
-\describe{
-  \item{ID}{character giving the name of the county}
-  \item{geom}{MULTIPOLYGON of the Kentucky county boundary}
-}
+An object of class \code{sf} (inherits from \code{data.table}, \code{data.frame}) with 9 rows and 2 columns.
 }
 \source{
 \code{maps::map()}
@@ -21,5 +17,10 @@ kentucky_counties
 A simple feature object with the boundary geometries for nine
 southeast Kentucky counties.
 .
+
+\tabular{ll}{
+  \strong{ID} \tab character giving the name of the county \cr
+  \strong{geom} \tab MULTIPOLYGON of the Kentucky county boundary
+}
 }
 \keyword{datasets}

@@ -5,12 +5,7 @@
 \alias{states}
 \title{states data}
 \format{
-Data frame for "South" region:
-\describe{
-  \item{State}{charactter state name}
-  \item{Income}{numeric state income}
-  \item{Murder}{numeric state murder rate}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 16 rows and 3 columns.
 }
 \source{
 \code{datasets::state_name, state_region, state_x77}
@@ -20,5 +15,11 @@ states
 }
 \description{
 Consolidation of data into one dataframe for the "South" region.
+
+\tabular{ll}{
+  \strong{State} \tab character state name \cr
+  \strong{Income} \tab numeric state income \cr
+  \strong{Murder} \tab numeric state murder rate
+}
 }
 \keyword{datasets}

@@ -5,14 +5,7 @@
 \alias{car_stats}
 \title{car_stats data}
 \format{
-Data frame with columns:
-\describe{
-  \item{N}{numeric of group's total observations}
-  \item{mean_mpg}{numeric of group's mean mpg}
-  \item{mean_hp}{numeric of group's mean horsepower}
-  \item{mean_wt}{numeric of group's mean weight}
-  \item{mean_disp}{numeric of group's mean displacment}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 3 rows and 6 columns.
 }
 \source{
 \code{datasets::mtcars}
@@ -23,5 +16,13 @@ car_stats
 \description{
 From \code{datasets::mtcars} produces statistics for N and the means of
 "mpg", "hp", "wt", "disp" variables grouped by "cyl".
+
+\tabular{ll}{
+  \strong{N} \tab numeric of group's total observations \cr
+  \strong{mean_mpg} \tab numeric of group's mean mpg \cr
+  \strong{mean_hp} \tab numeric of group's mean horsepower \cr
+  \strong{mean_wt} \tab numeric of group's mean weight \cr
+  \strong{mean_disp} \tab numeric of group's mean displacment
+}
 }
 \keyword{datasets}

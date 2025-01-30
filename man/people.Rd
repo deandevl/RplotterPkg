@@ -5,15 +5,7 @@
 \alias{people}
 \title{people data}
 \format{
-Data frame with columns:
-\describe{
-  \item{col_0}{numeric random numbers for ids'}
-  \item{col_1}{character first names}
-  \item{col_2}{character last names}
-  \item{col_3}{numeric ages}
-  \item{col_4}{character addresses}
-  \item{col_5}{character spouse's first name}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 4 rows and 6 columns.
 }
 \source{
 R coding with \code{data.table::data.table()}
@@ -24,5 +16,14 @@ people
 \description{
 A made-up data frame with generic column names and mix of
 numeric and character data.
+
+\tabular{ll}{
+  \strong{col_0} \tab numeric random numbers for ids \cr
+  \strong{col_1} \tab character first names \cr
+  \strong{col_2} \tab character last names \cr
+  \strong{col_3} \tab numeric ages \cr
+  \strong{col_4} \tab character addresses \cr
+  \strong{col_5} \tab character spouse's first name
+}
 }
 \keyword{datasets}

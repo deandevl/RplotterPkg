@@ -5,11 +5,7 @@
 \alias{air_passengers}
 \title{air_passengers data}
 \format{
-Data frame with columns:
-\describe{
-  \item{time}{Date with format 1949-01-01}
-  \item{value}{numeric number of passengers in thousands}
-}
+An object of class \code{data.frame} with 144 rows and 2 columns.
 }
 \source{
 \code{datasets::AirPassengers}
@@ -21,5 +17,10 @@ air_passengers
 Data where the base \code{datasets::AirPassengers} monthly time
   series of international airline passenger numbers 1949-1960 was converted to
   a data frame using \code{tsbox::ts_df(datasets::AirPassengers)}.
+
+\tabular{ll}{
+  \strong{time} \tab Date with format 1949-01-01 \cr
+  \strong{value} \tab numeric number of passengers in thousands
+}
 }
 \keyword{datasets}

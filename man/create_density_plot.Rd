@@ -42,6 +42,9 @@ create_density_plot(
   plot_obs = FALSE,
   plot_obs_len = 0.02,
   plot_obs_color = "black",
+  bold_x = NULL,
+  bold_x_color = "black",
+  bold_x_linetype = "dashed",
   panel_color = "white",
   panel_border_color = "black",
   show_legend = TRUE,
@@ -137,6 +140,12 @@ refer to the existing minimum and maximum.}
 \item{plot_obs_len}{A numeric that sets the length of the 'plot_obs' lines.}
 
 \item{plot_obs_color}{A string that sets the color of the 'plot_obs' lines.}
+
+\item{bold_x}{A numeric that sets the x-intercept for plotting a bold vertical line.}
+
+\item{bold_x_color}{A string that sets the color of 'bold_x'.}
+
+\item{bold_x_linetype}{A string that set the linetype of 'bold_x'.}
 
 \item{panel_color}{A string in hexidecimal or color name that sets the plot panel's color.
 The default is "white".}

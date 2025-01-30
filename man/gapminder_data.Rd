@@ -5,13 +5,7 @@
 \alias{gapminder_data}
 \title{gapminder_data}
 \format{
-Data frame with columns:
-\describe{
-  \item{year}{numeric factor as 1952, 1972, 1992, 2002}
-  \item{pop}{population in units of 1e+6}
-  \item{continent}{factor with 4 levels}
-  \item{lifeExp}{life expectancy at birth, in years}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 560 rows and 6 columns.
 }
 \source{
 \code{gapminder::gapminder}
@@ -23,5 +17,12 @@ gapminder_data
 Based on \code{gapminder::gapminder} dataset, selects 10 year intervals
 and 4 continents.  The "year" variable is defined as a factor and the "pop"
 variable is divided by 1e+6.
+
+\tabular{ll}{
+  \strong{year} \tab numeric factor as 1952, 1972, 1992, 2002 \cr
+  \strong{pop} \tab population in units of 1e+6 \cr
+  \strong{continent} \tab factor with 4 levels \cr
+  \strong{lifeExp} \tab life expectancy at birth, in years
+}
 }
 \keyword{datasets}

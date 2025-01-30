@@ -5,17 +5,14 @@
 #'  spread or vertical interval/range for a collection of x/y pairs of points.
 #'
 #' @param df The target data frame from which the point ranges are plotted.
-#' @param aes_x Sets the x axis variable name from 'df'.
-#'  It is a required factor type variable that is associated with 'aes_y'.
+#' @param orientation A string that sets the axis on which the range should run along.
+#'  Acceptable values are either "x" (the default) or "y".
+#' @param aes_x Sets the x axis numeric variable name from 'df'.
 #' @param aes_y Sets a y axis variable name from 'df'.
-#'  These are the required numeric values that defines the location of the range
-#'  on the y axis.
-#' @param aes_y_min A string that sets a y axis variable name from 'df'.
-#'  These are the required numerics that defines the minimum values for the range
-#'  of \code{aes_y}.
-#' @param aes_y_max A string that sets a y axis variable name from 'df'.
-#'  These are the required numerics that defines the maximum values for the range
-#'  of \code{aes_y}.
+#' @param aes_min A string that sets a numeric variable from 'df' that defines
+#'  the minimum values for the range.
+#' @param aes_max A string that sets a numeric variable from 'df' that defines
+#'  the maximum values for the range.
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
 #' @param caption A string that sets the plot caption
@@ -29,21 +26,27 @@
 #'  When x tic labels are long, a value of 40 for this argument usually works well.
 #' @param rot_y_tic_label A logical which if TRUE rotates the y tic labels 90 degrees
 #'  for enhanced readability.
+#' @param x_limits A numeric 2 element vector that sets the minimum and  maximum for the x axis.
+#'  Use \code{NA} to refer to the existing minimum and maximum.
+#' @param x_major_breaks A numeric vector or function that defines the exact major tic locations along the x axis.
+#' @param x_minor_breaks A numeric vector or function that defines the exact minor tic locations along the x axis.
+#' @param x_labels A character vector with the same length as 'x_major_breaks', that labels the major tics.
+#' @param x_log10 A logical which if \code{TRUE} will use a log10 scale for the x axis.
 #' @param y_limits A numeric 2 element vector that sets the minimum and  maximum for the y axis.
 #'  Use \code{NA} to refer to the existing minimum and maximum.
 #' @param y_major_breaks A numeric vector or function that defines the exact major tic locations along the y axis.
 #' @param y_minor_breaks A numeric vector or function that defines the exact minor tic locations along the y axis.
-#' @param y_labels A character vector with the same length as \code{y_major_breaks}, that labels the major tics.
+#' @param y_labels A character vector with the same length as 'y_major_breaks', that labels the major tics.
 #' @param y_log10 A logical which if \code{TRUE} will use a log10 scale for the y axis.
 #' @param axis_text_size A numeric that sets the font size along the axis'. Default is 11.
 #' @param pts_fill A string that sets the fill color of the points.
 #' @param pts_shape A numeric integer that sets the shape of the points. Typical values are 21 "circle",
 #'  22 "square", 23 "diamond", 24 "up triangle", 25 "down triangle".
 #' @param pts_stroke A numeric that sets the drawing width for a point shape.
+#' @param pts_size A numeric that sets the point size.
 #' @param line_type A string that sets range line type "twodash", "solid", "longdash", "dotted", "dotdash",
 #'  "dashed", "blank".
 #' @param line_width A numeric that sets the width of the lines.
-#' @param fatten_pts A multiplicative numeric that sets the size of points(diameter).
 #' @param line_pts_color A string that sets the color of the range lines and outlines of the points.
 #' @param line_pts_alpha A numeric value that sets the alpha level of points.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
@@ -52,7 +55,12 @@
 #'   The default is "black".
 #' @param show_major_grids A logical that controls the appearance of major grids.
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
-#' @param do_coord_flip A logical which if \code{TRUE} will flip the x and y axis'.
+#' @param bold_x A numeric that sets the x-intercept for plotting a bold vertical line.
+#' @param bold_x_color A string that sets the color of 'bold_x'.
+#' @param bold_x_linetype A string that set the linetype of 'bold_x'.
+#' @param bold_y A numeric that sets the y-intercept for plotting a bold horizontal line.
+#' @param bold_y_color A string that sets the color of 'bold_y'.
+#' @param bold_y_linetype A string that set the linetype of 'bold_y'.
 #' @param silent_NA_warning A logical that controls the appearance of a console warning when Na's
 #' are removed.
 #' @param png_file_path A character string with the directory and file name to produce
@@ -68,29 +76,27 @@
 #'
 #' RplotterPkg::create_range_plot(
 #'   df = RplotterPkg::penguins_stats,
-#'   aes_x = "species",
-#'   aes_y = "avg_body_mass",
-#'   aes_y_min = "min_body_mass",
-#'   aes_y_max = "max_body_mass",
+#'   orientation = "x",
+#'   aes_x = "avg_body_mass",
+#'   aes_y = "species",,
+#'   aes_min = "min_body_mass",
+#'   aes_max = "max_body_mass",
 #'   title = "Average and Range of Penguins Body Mass(g) by Species",
 #'   subtitle = "Source: palmerpenguins",
 #'   center_titles = TRUE,
-#'   x_title = "Species",
-#'   y_title = "Body Mass(g)",
-#'   rot_y_tic_label = TRUE,
+#'   x_title = "Body Mass(g)",
+#'   y_title = "Species",
 #'   pts_fill = "blue",
 #'   pts_shape = 22,
 #'   pts_stroke = 1.7,
 #'   line_width = 1.5,
-#'   fatten_pts = 6,
 #'   line_type = "solid",
 #'   line_pts_color = "red",
 #'   line_pts_alpha = 0.5,
-#'   y_limits = c(2500, 7000),
-#'   y_major_breaks = seq(2500,7000,500),
+#'   x_limits = c(2500, 7000),
+#'   x_major_breaks = seq(2500,7000,500),
 #'   show_major_grids = TRUE,
-#'   show_minor_grids = FALSE,
-#'   do_coord_flip = TRUE
+#'   show_minor_grids = FALSE
 #' )
 #'
 #' @importFrom rlang sym
@@ -99,10 +105,11 @@
 #' @export
 create_range_plot <- function(
     df = NULL,
+    orientation = "x",
     aes_x = NULL,
     aes_y = NULL,
-    aes_y_min = NULL,
-    aes_y_max = NULL,
+    aes_min = NULL,
+    aes_max = NULL,
     title = NULL,
     subtitle = NULL,
     caption = NULL,
@@ -113,6 +120,11 @@ create_range_plot <- function(
     hide_y_tics = FALSE,
     rot_x_tic_angle = 0,
     rot_y_tic_label = FALSE,
+    x_limits = NULL,
+    x_major_breaks = waiver(),
+    x_minor_breaks = waiver(),
+    x_labels = waiver(),
+    x_log10 = FALSE,
     y_limits = NULL,
     y_major_breaks = waiver(),
     y_minor_breaks = waiver(),
@@ -122,16 +134,21 @@ create_range_plot <- function(
     pts_fill = "white",
     pts_shape = 21,
     pts_stroke = 1,
+    pts_size = 2,
     line_type = "solid",
     line_width = 1,
-    fatten_pts = 4,
     line_pts_color = "black",
     line_pts_alpha = 1.0,
     panel_color = "white",
     panel_border_color = "black",
     show_major_grids = TRUE,
     show_minor_grids = TRUE,
-    do_coord_flip = FALSE,
+    bold_x = NULL,
+    bold_x_color = "black",
+    bold_x_linetype = "dashed",
+    bold_y = NULL,
+    bold_y_color = "black",
+    bold_y_linetype = "dashed",
     silent_NA_warning = FALSE,
     png_file_path = NULL,
     png_width_height = c(480,480)
@@ -140,41 +157,65 @@ create_range_plot <- function(
     stop("The dataframe(df) is a required parameter")
   }
   if(is.null(aes_x) | is.null(aes_y)){
-    stop("Both aes_x and aes_y are required arguments.")
+    stop("Both aes_x and aes_y are required parameters.")
   }
-  if(is.null(aes_y_min) | is.null(aes_y_max)){
-    stop("Both aes_y_min and aes_y_max are required arguments.")
+  if(is.null(aes_min) | is.null(aes_max)){
+    stop("Both aes_min and aes_max are required parameters.")
   }
-
-  aes_y_min <- rlang::sym(aes_y_min)
-  aes_y_max <- rlang::sym(aes_y_max)
 
   # -----------------Set geom attribute default values---------------
   ggplot2::update_geom_defaults(
-    "pointrange",
+    "point",
     list(
       fill = pts_fill,
       shape = pts_shape,
       stroke = pts_stroke,
+      size = pts_size,
+      color = line_pts_color,
+      alpha = line_pts_alpha
+    )
+  )
+  ggplot2::update_geom_defaults(
+    "linerange",
+    list(
       color = line_pts_color,
       linewidth = line_width,
-      fatten = fatten_pts,
       alpha = line_pts_alpha,
       linetype = line_type
     )
   )
-
   # -------------------Define the main ggplot2 plot object/geoms-----------
-  aplot <- ggplot(data = df) +
-    geom_pointrange(
+  aplot <- ggplot(data = df)
+  aplot <- aplot +
+    geom_point(
       aes(
         x = !!sym(aes_x),
         y = !!sym(aes_y),
-        ymin = !!aes_y_min,
-        ymax = !!aes_y_max
       ),
       na.rm = silent_NA_warning
     )
+
+  if(orientation == "x"){
+    aplot <- aplot +
+      geom_linerange(
+        aes(
+          y = !!sym(aes_y),
+          xmin = !!sym(aes_min),
+          xmax = !!sym(aes_max)
+        ),
+        na.rm = silent_NA_warning
+      )
+  }else if(orientation == "y"){
+    aplot <- aplot +
+      geom_linerange(
+        aes(
+          x = !!sym(aes_x),
+          ymin = !!sym(aes_min),
+          ymax = !!sym(aes_max)
+        ),
+        na.rm = silent_NA_warning
+      )
+  }
 
   # -------------------Additional ggplot2 components------------------------
   # ----------------------title and subtitle-----------------
@@ -210,11 +251,6 @@ create_range_plot <- function(
       theme(
         panel.grid.minor = element_line(linewidth = 0.5, linetype = "solid", color = "gray")
       )
-  }
-
-  # Are we flipping axes?
-  if(do_coord_flip){
-    aplot <- aplot + coord_flip()
   }
 
   # -------------------rotate/size tic labels--------------------
@@ -255,21 +291,39 @@ create_range_plot <- function(
         labs(y = y_title)
     }
 
-  # -------------------y axis tic scales------------------
-  if(y_log10){
-    aplot <- aplot + scale_y_log10(
-      limits = y_limits,
-      breaks = y_major_breaks,
-      minor_breaks = y_minor_breaks,
-      labels = y_labels
-    )
-  } else {
-    aplot <- aplot + scale_y_continuous(
-      limits = y_limits,
-      breaks = y_major_breaks,
-      minor_breaks = y_minor_breaks,
-      labels = y_labels
-    )
+  # -------------------x/y axis tic scales------------------
+  if(orientation == "y") {
+    if(y_log10){
+      aplot <- aplot + scale_y_log10(
+        limits = y_limits,
+        breaks = y_major_breaks,
+        minor_breaks = y_minor_breaks,
+        labels = y_labels
+      )
+    } else {
+      aplot <- aplot + scale_y_continuous(
+        limits = y_limits,
+        breaks = y_major_breaks,
+        minor_breaks = y_minor_breaks,
+        labels = y_labels
+      )
+    }
+  }else if(orientation == "x"){
+    if(x_log10){
+      aplot <- aplot + scale_x_log10(
+        limits = x_limits,
+        breaks = x_major_breaks,
+        minor_breaks = x_minor_breaks,
+        labels = x_labels
+      )
+    } else {
+      aplot <- aplot + scale_x_continuous(
+        limits = x_limits,
+        breaks = x_major_breaks,
+        minor_breaks = x_minor_breaks,
+        labels = x_labels
+      )
+    }
   }
 
   # -----------------------hide x/y axis tics?----------------------
@@ -298,5 +352,14 @@ create_range_plot <- function(
     grDevices::dev.off()
   }
 
+  # -------------add bold vertical/horizontal line if requested------------
+  if(!is.null(bold_x)) {
+    aplot <- aplot +
+      geom_vline(data = df, aes(xintercept = bold_x), lwd = 1, linetype = bold_x_linetype, color = bold_x_color)
+  }
+  if(!is.null(bold_y)) {
+    aplot <- aplot +
+      geom_hline(data = df, aes(yintercept = bold_y), lwd = 1, linetype = bold_y_linetype, color = bold_y_color)
+  }
   return(aplot)
 }

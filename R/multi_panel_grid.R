@@ -6,36 +6,41 @@
 #'   across a given number of rows and columns. The function depends on the \code{grid},
 #'   \code{gtable}, and \code{ggplotify} packages.
 #'
-#'   The function goes beyond just placing a group of plots across a grid of rows and columns.
-#'   It is somewhat opinionated in favor of common titling/labeling and scaling
-#'   that make sense for all the plots and provide the ability to compare. The function has a
-#'   'title' parameter that is assumed appropriate for all the plots--any titles/subtitles
-#'   among the plots themselves will be removed.  The first left y-axis
-#'   scaling the function comes across will be used for all the plots. Similarly the first bottom
-#'   x-axis scaling the function comes across will be assumed appropriate for all the plots. The
-#'   first legend that is found is assumed right for all the plots and will be placed at the top
-#'   in a horizontal direction. Of course none of these sub-elements among the plots need to exist
-#'   and you are back to simply a grid of plots.
+#' @details
+#'  The function has two modes of layout: a grid and a non-grid. In the grid layout, each plot
+#'  submitted will be laid out "as-is" with no manipulation of labels, legends, or axis'.
 #'
-#'   As an example of defining the \code{layout} list argument,
-#'   \code{layout} has three named elements: "plots", "rows", and "cols".
-#'   "plots" is a list of ggplot2 plot objects; "rows" defines the row number
-#'   for each plot and "cols" defines the column number for each plot. If we have
-#'   two plots with both plots on a single row then "rows" = c(1,1) and "cols"
-#'   = c(1,2).
+#'  For the non-grid layout, the function goes beyond just placing a group of plots across a
+#'  grid of rows and columns. It is somewhat opinionated in favor of common titling/labeling and scaling
+#'  that make sense for all the plots and provide the ability to compare. The function has a
+#'  'title' parameter that is assumed appropriate for all the plots--any titles/subtitles
+#'  among the plots themselves will be removed.  The first left y-axis
+#'  scaling the function comes across will be used for all the plots. Similarly the first bottom
+#'  x-axis scaling the function comes across will be assumed appropriate for all the plots. The
+#'  first legend that is found is assumed right for all the plots and will be placed at the top
+#'  in a horizontal direction. Of course none of these sub-elements among the plots need to exist
+#'  and you are back to simply a grid of plots.
+#'
+#'  As an example of defining the 'layout' list argument,
+#'  'layout' has three named elements: "plots", "rows", and "cols".
+#'  "plots" is a list of ggplot2 plot objects; "rows" defines the row number
+#'  for each plot and "cols" defines the column number for each plot. If we have
+#'  two plots with both plots on a single row then "rows" = c(1,1) and "cols"
+#'  = c(1,2).
 #'
 #' @param layout A list containing a list for plot objects or \code{grob} "plots", row locations "rows" vector,
 #'  column locations "cols" vector. This argument is required.
 #' @param title A string that sets the title of the figure.
 #' @param title_fontsz A numeric that sets the title's font size. The default is 20.
 #' @param plot_titles A character vector with the same length as the number of plot objects that defines
-#'   each of their titles.
+#'   each of their titles. The parameter is used only if 'do_grid' is \code{FALSE}.
 #' @param y_tick_width A numeric that sets the width of the vertical column containing the y axis tick labeling.
 #'   The default is 0.5 cm and may be increased when a wider labeling is needed.
 #' @param cell_width A numeric that sets the cell widths in the \code{gtable} in cm
 #' @param cell_height A numeric that sets the cell widths in the \code{gtable} in cm
-#' @param do_grid A logical which if TRUE will arrange the plot objects in a straight row/column order without considering
-#'   their scale and label components.
+#' @param do_grid A logical which if \code{TRUE} will arrange the plot objects according to 'layout' without considering
+#'   their scale and label components. You define the axis scaling, titling, etc for each
+#'   individual plot object.
 #'
 #' @return A ggplot2 class object
 #'
@@ -412,14 +417,20 @@ multi_panel_grid <- function (
     if(!is.null(plot_titles)){
       for(i in 1:max_rows){
         for(ii in 1:max_cols){
-          a_title <- plot_titles[[(i-1)*max_cols + ii]]
-          plot_title_grob <- grid::textGrob(label = a_title, gp = grid::gpar(col = "black", fontsize = 14, fontface = 2L))
-          plots_table <- gtable::gtable_add_grob(
-            x = plots_table,
-            grobs = plot_title_grob,
-            t = start_row + i * 2 - 1,
-            l = start_col + ii * 2 - 1
-          )
+          idx <- (i-1)*max_cols + ii
+          if(idx <= length(plot_titles)){
+            a_title <- plot_titles[[idx]]
+            plot_title_grob <- grid::textGrob(
+              label = a_title,
+              gp = grid::gpar(col = "black", fontsize = 14, fontface = 2L)
+            )
+            plots_table <- gtable::gtable_add_grob(
+              x = plots_table,
+              grobs = plot_title_grob,
+              t = start_row + i * 2 - 1,
+              l = start_col + ii * 2 - 1
+            )
+          }
         }
       }
     }
@@ -429,12 +440,15 @@ multi_panel_grid <- function (
   if(!do_grid){
     for(i in 1:max_rows){
       for(ii in 1:max_cols){
-        plots_table <- gtable::gtable_add_grob(
-          x = plots_table,
-          grobs = panels_grob_v[[(i-1)*max_cols + ii]],
-          t = start_row + i * 2,
-          l = start_col + ii * 2 - 1
-        )
+        idx <- (i-1)*max_cols + ii
+        if(idx <= length(panels_grob_v)){
+          plots_table <- gtable::gtable_add_grob(
+            x = plots_table,
+            grobs = panels_grob_v[[idx]],
+            t = start_row + i * 2,
+            l = start_col + ii * 2 - 1
+          )
+        }
       }
     }
   }else{

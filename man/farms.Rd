@@ -5,11 +5,7 @@
 \alias{farms}
 \title{farms data}
 \format{
-Data frame with columns:
-\describe{
-  \item{state}{character as a state abbreviation}
-  \item{count}{numeric of state's total farm count}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 50 rows and 2 columns.
 }
 \source{
 \href{https://github.com/bayesball/LearnEDAfunctions}{LearnEDAfunctions}
@@ -22,5 +18,10 @@ Number of farms in the states of the U.S. The
 raw tab delimited data (\code{farms.txt}) is read by
 \code{data.table::fread()} to produce a data frame with columns
 for "state" and "count".
+
+\tabular{ll}{
+  \strong{state} \tab character as a state abbreviation \cr
+  \strong{count} \tab numeric of state's total farm count
+}
 }
 \keyword{datasets}

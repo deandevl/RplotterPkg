@@ -5,11 +5,7 @@
 \alias{organdata}
 \title{organdata data}
 \format{
-Data frame with columns:
-\describe{
-  \item{country}{character country name}
-  \item{donors}{Organ Donation rate per million population}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 204 rows and 2 columns.
 }
 \source{
 \code{socviz::organdata}
@@ -21,5 +17,10 @@ organdata
 From the \code{socviz::organdata} dataset two variables are
 selected: Organ Donation rate per million population and
 country.
+
+\tabular{ll}{
+  \strong{country} \tab character country name \cr
+  \strong{donors} \tab Organ Donation rate per million population
+}
 }
 \keyword{datasets}

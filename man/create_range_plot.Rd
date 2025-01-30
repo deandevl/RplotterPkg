@@ -6,10 +6,11 @@
 \usage{
 create_range_plot(
   df = NULL,
+  orientation = "x",
   aes_x = NULL,
   aes_y = NULL,
-  aes_y_min = NULL,
-  aes_y_max = NULL,
+  aes_min = NULL,
+  aes_max = NULL,
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -20,6 +21,11 @@ create_range_plot(
   hide_y_tics = FALSE,
   rot_x_tic_angle = 0,
   rot_y_tic_label = FALSE,
+  x_limits = NULL,
+  x_major_breaks = waiver(),
+  x_minor_breaks = waiver(),
+  x_labels = waiver(),
+  x_log10 = FALSE,
   y_limits = NULL,
   y_major_breaks = waiver(),
   y_minor_breaks = waiver(),
@@ -29,16 +35,21 @@ create_range_plot(
   pts_fill = "white",
   pts_shape = 21,
   pts_stroke = 1,
+  pts_size = 2,
   line_type = "solid",
   line_width = 1,
-  fatten_pts = 4,
   line_pts_color = "black",
   line_pts_alpha = 1,
   panel_color = "white",
   panel_border_color = "black",
   show_major_grids = TRUE,
   show_minor_grids = TRUE,
-  do_coord_flip = FALSE,
+  bold_x = NULL,
+  bold_x_color = "black",
+  bold_x_linetype = "dashed",
+  bold_y = NULL,
+  bold_y_color = "black",
+  bold_y_linetype = "dashed",
   silent_NA_warning = FALSE,
   png_file_path = NULL,
   png_width_height = c(480, 480)
@@ -47,20 +58,18 @@ create_range_plot(
 \arguments{
 \item{df}{The target data frame from which the point ranges are plotted.}
 
-\item{aes_x}{Sets the x axis variable name from 'df'.
-It is a required factor type variable that is associated with 'aes_y'.}
+\item{orientation}{A string that sets the axis on which the range should run along.
+Acceptable values are either "x" (the default) or "y".}
 
-\item{aes_y}{Sets a y axis variable name from 'df'.
-These are the required numeric values that defines the location of the range
-on the y axis.}
+\item{aes_x}{Sets the x axis numeric variable name from 'df'.}
 
-\item{aes_y_min}{A string that sets a y axis variable name from 'df'.
-These are the required numerics that defines the minimum values for the range
-of \code{aes_y}.}
+\item{aes_y}{Sets a y axis variable name from 'df'.}
 
-\item{aes_y_max}{A string that sets a y axis variable name from 'df'.
-These are the required numerics that defines the maximum values for the range
-of \code{aes_y}.}
+\item{aes_min}{A string that sets a numeric variable from 'df' that defines
+the minimum values for the range.}
+
+\item{aes_max}{A string that sets a numeric variable from 'df' that defines
+the maximum values for the range.}
 
 \item{title}{A string that sets the plot title.}
 
@@ -85,6 +94,17 @@ When x tic labels are long, a value of 40 for this argument usually works well.}
 \item{rot_y_tic_label}{A logical which if TRUE rotates the y tic labels 90 degrees
 for enhanced readability.}
 
+\item{x_limits}{A numeric 2 element vector that sets the minimum and  maximum for the x axis.
+Use \code{NA} to refer to the existing minimum and maximum.}
+
+\item{x_major_breaks}{A numeric vector or function that defines the exact major tic locations along the x axis.}
+
+\item{x_minor_breaks}{A numeric vector or function that defines the exact minor tic locations along the x axis.}
+
+\item{x_labels}{A character vector with the same length as 'x_major_breaks', that labels the major tics.}
+
+\item{x_log10}{A logical which if \code{TRUE} will use a log10 scale for the x axis.}
+
 \item{y_limits}{A numeric 2 element vector that sets the minimum and  maximum for the y axis.
 Use \code{NA} to refer to the existing minimum and maximum.}
 
@@ -92,7 +112,7 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{y_minor_breaks}{A numeric vector or function that defines the exact minor tic locations along the y axis.}
 
-\item{y_labels}{A character vector with the same length as \code{y_major_breaks}, that labels the major tics.}
+\item{y_labels}{A character vector with the same length as 'y_major_breaks', that labels the major tics.}
 
 \item{y_log10}{A logical which if \code{TRUE} will use a log10 scale for the y axis.}
 
@@ -105,12 +125,12 @@ Use \code{NA} to refer to the existing minimum and maximum.}
 
 \item{pts_stroke}{A numeric that sets the drawing width for a point shape.}
 
+\item{pts_size}{A numeric that sets the point size.}
+
 \item{line_type}{A string that sets range line type "twodash", "solid", "longdash", "dotted", "dotdash",
 "dashed", "blank".}
 
 \item{line_width}{A numeric that sets the width of the lines.}
-
-\item{fatten_pts}{A multiplicative numeric that sets the size of points(diameter).}
 
 \item{line_pts_color}{A string that sets the color of the range lines and outlines of the points.}
 
@@ -126,7 +146,17 @@ The default is "black".}
 
 \item{show_minor_grids}{A logical that controls the appearance of minor grids.}
 
-\item{do_coord_flip}{A logical which if \code{TRUE} will flip the x and y axis'.}
+\item{bold_x}{A numeric that sets the x-intercept for plotting a bold vertical line.}
+
+\item{bold_x_color}{A string that sets the color of 'bold_x'.}
+
+\item{bold_x_linetype}{A string that set the linetype of 'bold_x'.}
+
+\item{bold_y}{A numeric that sets the y-intercept for plotting a bold horizontal line.}
+
+\item{bold_y_color}{A string that sets the color of 'bold_y'.}
+
+\item{bold_y_linetype}{A string that set the linetype of 'bold_y'.}
 
 \item{silent_NA_warning}{A logical that controls the appearance of a console warning when Na's
 are removed.}
@@ -151,29 +181,27 @@ library(RplotterPkg)
 
 RplotterPkg::create_range_plot(
   df = RplotterPkg::penguins_stats,
-  aes_x = "species",
-  aes_y = "avg_body_mass",
-  aes_y_min = "min_body_mass",
-  aes_y_max = "max_body_mass",
+  orientation = "x",
+  aes_x = "avg_body_mass",
+  aes_y = "species",,
+  aes_min = "min_body_mass",
+  aes_max = "max_body_mass",
   title = "Average and Range of Penguins Body Mass(g) by Species",
   subtitle = "Source: palmerpenguins",
   center_titles = TRUE,
-  x_title = "Species",
-  y_title = "Body Mass(g)",
-  rot_y_tic_label = TRUE,
+  x_title = "Body Mass(g)",
+  y_title = "Species",
   pts_fill = "blue",
   pts_shape = 22,
   pts_stroke = 1.7,
   line_width = 1.5,
-  fatten_pts = 6,
   line_type = "solid",
   line_pts_color = "red",
   line_pts_alpha = 0.5,
-  y_limits = c(2500, 7000),
-  y_major_breaks = seq(2500,7000,500),
+  x_limits = c(2500, 7000),
+  x_major_breaks = seq(2500,7000,500),
   show_major_grids = TRUE,
-  show_minor_grids = FALSE,
-  do_coord_flip = TRUE
+  show_minor_grids = FALSE
 )
 
 }

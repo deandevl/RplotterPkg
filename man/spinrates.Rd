@@ -5,13 +5,7 @@
 \alias{spinrates}
 \title{spinrates data}
 \format{
-Data frame with columns:
-\describe{
-  \item{id}{character giving the observation id}
-  \item{velocity}{numeric average velocity of the ball}
-  \item{spinrate}{character factor with 12 levels}
-  \item{swing_miss}{numeric rate of swing and miss}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 168 rows and 4 columns.
 }
 \source{
 \href{https://www.fangraphs.com}{Fangraphs}
@@ -24,5 +18,12 @@ From the raw data file \code{spinrates.csv} the comma delimited data
 was converted to a data frame using \code{data.table::fread()}.
 The data are baseball percent "swing and miss" with their respective average
 ball velocity and levels of spinrate.
+
+\tabular{ll}{
+  \strong{id} \tab character giving the observation id \cr
+  \strong{velocity} \tab numeric average velocity of the ball \cr
+  \strong{spinrate} \tab character factor with 12 levels \cr
+  \strong{swing_miss} \tab numeric rate of swing and miss \cr
+}
 }
 \keyword{datasets}

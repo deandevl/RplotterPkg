@@ -91,6 +91,8 @@ Function wraps the gt package for creating tables from a data.frame object.
 }
 \examples{
 library(gt)
+library(glue)
+library(purrr)
 library(RplotterPkg)
 
 RplotterPkg::create_table(

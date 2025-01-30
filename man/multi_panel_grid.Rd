@@ -24,7 +24,7 @@ column locations "cols" vector. This argument is required.}
 \item{title_fontsz}{A numeric that sets the title's font size. The default is 20.}
 
 \item{plot_titles}{A character vector with the same length as the number of plot objects that defines
-each of their titles.}
+each of their titles. The parameter is used only if 'do_grid' is \code{FALSE}.}
 
 \item{y_tick_width}{A numeric that sets the width of the vertical column containing the y axis tick labeling.
 The default is 0.5 cm and may be increased when a wider labeling is needed.}
@@ -33,8 +33,9 @@ The default is 0.5 cm and may be increased when a wider labeling is needed.}
 
 \item{cell_height}{A numeric that sets the cell widths in the \code{gtable} in cm}
 
-\item{do_grid}{A logical which if TRUE will arrange the plot objects in a straight row/column order without considering
-their scale and label components.}
+\item{do_grid}{A logical which if \code{TRUE} will arrange the plot objects according to 'layout' without considering
+their scale and label components. You define the axis scaling, titling, etc for each
+individual plot object.}
 }
 \value{
 A ggplot2 class object
@@ -45,24 +46,28 @@ Arranges a group of ggplot2 plots or grid::grob's into multiple panels.
   Function creates a figure with title and arranges multiple plots/\code{grob}s
   across a given number of rows and columns. The function depends on the \code{grid},
   \code{gtable}, and \code{ggplotify} packages.
+}
+\details{
+The function has two modes of layout: a grid and a non-grid. In the grid layout, each plot
+ submitted will be laid out "as-is" with no manipulation of labels, legends, or axis'.
 
-  The function goes beyond just placing a group of plots across a grid of rows and columns.
-  It is somewhat opinionated in favor of common titling/labeling and scaling
-  that make sense for all the plots and provide the ability to compare. The function has a
-  'title' parameter that is assumed appropriate for all the plots--any titles/subtitles
-  among the plots themselves will be removed.  The first left y-axis
-  scaling the function comes across will be used for all the plots. Similarly the first bottom
-  x-axis scaling the function comes across will be assumed appropriate for all the plots. The
-  first legend that is found is assumed right for all the plots and will be placed at the top
-  in a horizontal direction. Of course none of these sub-elements among the plots need to exist
-  and you are back to simply a grid of plots.
+ For the non-grid layout, the function goes beyond just placing a group of plots across a
+ grid of rows and columns. It is somewhat opinionated in favor of common titling/labeling and scaling
+ that make sense for all the plots and provide the ability to compare. The function has a
+ 'title' parameter that is assumed appropriate for all the plots--any titles/subtitles
+ among the plots themselves will be removed.  The first left y-axis
+ scaling the function comes across will be used for all the plots. Similarly the first bottom
+ x-axis scaling the function comes across will be assumed appropriate for all the plots. The
+ first legend that is found is assumed right for all the plots and will be placed at the top
+ in a horizontal direction. Of course none of these sub-elements among the plots need to exist
+ and you are back to simply a grid of plots.
 
-  As an example of defining the \code{layout} list argument,
-  \code{layout} has three named elements: "plots", "rows", and "cols".
-  "plots" is a list of ggplot2 plot objects; "rows" defines the row number
-  for each plot and "cols" defines the column number for each plot. If we have
-  two plots with both plots on a single row then "rows" = c(1,1) and "cols"
-  = c(1,2).
+ As an example of defining the 'layout' list argument,
+ 'layout' has three named elements: "plots", "rows", and "cols".
+ "plots" is a list of ggplot2 plot objects; "rows" defines the row number
+ for each plot and "cols" defines the column number for each plot. If we have
+ two plots with both plots on a single row then "rows" = c(1,1) and "cols"
+ = c(1,2).
 }
 \examples{
 library(ggplot2)

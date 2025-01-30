@@ -79,6 +79,7 @@
 #'   center_titles = TRUE,
 #'   rot_y_tic_label = TRUE,
 #'   bar_width = 0.8,
+#'   order_bars = "desc",
 #'   x_title = "Happiness",
 #'   y_title = "Count",
 #'   axis_text_size = 16

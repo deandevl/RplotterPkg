@@ -5,11 +5,7 @@
 \alias{boston_marathon}
 \title{boston_marathon data}
 \format{
-Data frame with columns:
-\describe{
-  \item{age}{numeric age from 20 to 60}
-  \item{time}{numeric marathon time}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 109 rows and 2 columns.
 }
 \source{
 \href{https://github.com/bayesball/LearnEDAfunctions}{LearnEDAfunctions}
@@ -22,5 +18,10 @@ Boston Marathon completion times of women of different ages. The
 raw tab delimited data (\code{boston_marathon.txt}) is read by
 \code{data.table::fread()} to produce a data frame with columns
 for women's "age" and marathon "time" in minutes.
+
+\tabular{ll}{
+  \strong{age} \tab numeric age from 20 to 60 \cr
+  \strong{time} \tab numeric marathon time
+}
 }
 \keyword{datasets}

@@ -53,6 +53,9 @@
 #' @param plot_obs A logical which if \code{TRUE} plots a line for each observation along the axis margin.
 #' @param plot_obs_len A numeric that sets the length of the 'plot_obs' lines.
 #' @param plot_obs_color A string that sets the color of the 'plot_obs' lines.
+#' @param bold_x A numeric that sets the x-intercept for plotting a bold vertical line.
+#' @param bold_x_color A string that sets the color of 'bold_x'.
+#' @param bold_x_linetype A string that set the linetype of 'bold_x'.
 #' @param show_major_grids A logical that controls the appearance of major grids.
 #' @param show_minor_grids A logical that controls the appearance of minor grids.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
@@ -151,6 +154,9 @@ create_histogram_plot <- function(
     plot_obs = FALSE,
     plot_obs_len = 0.02,
     plot_obs_color = "black",
+    bold_x = NULL,
+    bold_x_color = "black",
+    bold_x_linetype = "dashed",
     show_major_grids = TRUE,
     show_minor_grids = TRUE,
     show_legend = TRUE,
@@ -370,6 +376,12 @@ create_histogram_plot <- function(
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank()
       )
+  }
+
+  # -------------add bold vertical line if requested------------
+  if(!is.null(bold_x)) {
+    aplot <- aplot +
+      geom_vline(data = df, aes(xintercept = bold_x), lwd = 1, linetype = bold_x_linetype, color = bold_x_color)
   }
 
   # -------------------legend related parameters---------------------------

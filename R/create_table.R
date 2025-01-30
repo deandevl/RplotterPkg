@@ -48,6 +48,8 @@
 #'
 #' @examples
 #' library(gt)
+#' library(glue)
+#' library(purrr)
 #' library(RplotterPkg)
 #'
 #' RplotterPkg::create_table(

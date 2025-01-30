@@ -5,12 +5,7 @@
 \alias{kentucky_elevation}
 \title{kentucky_elevation data}
 \format{
-Data frame with columns:
-\describe{
-  \item{x}{numeric longitude of the elevation}
-  \item{y}{numeric latitude of the elevation}
-  \item{elevation}{the elevation in meters}
-}
+An object of class \code{data.frame} with 609 rows and 3 columns.
 }
 \source{
 \code{elevatr::get_elev_raster()} and the
@@ -22,5 +17,11 @@ kentucky_elevation
 \description{
 Tiled raster elevation data(in meters) converted to a data frame,
 covering the southeast region of Kentucky.
+
+\tabular{ll}{
+  \strong{x} \tab numeric longitude of the elevation \cr
+  \strong{y} \tab numeric latitude of the elevation \cr
+  \strong{elevation} \tab the elevation in meters
+}
 }
 \keyword{datasets}

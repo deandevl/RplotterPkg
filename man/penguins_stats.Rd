@@ -5,12 +5,7 @@
 \alias{penguins_stats}
 \title{penguins_stats data}
 \format{
-Data frame with columns:
-\describe{
-  \item{avg_body_mass}{numeric species average body mass}
-  \item{min_body_mass}{numeric species minimum body mass}
-  \item{max_body_mass}{numeric species maximum body mass}
-}
+An object of class \code{data.table} (inherits from \code{data.frame}) with 3 rows and 4 columns.
 }
 \source{
 \code{palmerpenguins:penguins}
@@ -22,5 +17,11 @@ penguins_stats
 The \code{palmerpenguins:penguins} dataset is grouped by the variable
 "species" and a data frame is produced with statistics for
 average, minimum and maximum body mass.
+
+\tabular{ll}{
+  \strong{avg_body_mass} \tab numeric species average body mass \cr
+  \strong{min_body_mass} \tab numeric species minimum body mass \cr
+  \strong{max_body_mass} \tab numeric species maximum body mass
+}
 }
 \keyword{datasets}
