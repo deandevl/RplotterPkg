@@ -1,9 +1,11 @@
-## R CMD check results
+## Resubmission
 
-0 errors | 0 warnings | 0 note
+This is a resubmission. In this version I have:
 
-* This is a new release.
+* separated namespace tests in all tests in the testthat folder.
 
-## urlchecker returned 'All URLs are correct!'
+* 'create_range_plot' function received an "orientation" parameter to better control 
+either a horizontal or vertical range for points. Axis scaling is modified in
+accordance with the selection.
 
-## Updated DESCRIPTION file
+* 1 Note from devtools::check_win_devl() -- corrected in DESCRIPTION file

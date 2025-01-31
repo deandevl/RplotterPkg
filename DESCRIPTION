@@ -1,7 +1,7 @@
 Package: RplotterPkg
 Type: Package
 Title: R Plotting Functions Using 'ggplot2'
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(
     person(
       "Rick", "Dean",
@@ -10,7 +10,6 @@ Authors@R: c(
       comment = c(ORCID = "0009-0005-8086-8436")
     )
   )
-Maintainer: Rick Dean <deanr3@bardstown.com>  
 Description: Makes it easy to produce everyday 'ggplot2' 
   charts in a functional way without an extensive "tree"
   implementation. The package includes over 15 functions
