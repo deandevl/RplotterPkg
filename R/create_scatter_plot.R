@@ -377,9 +377,9 @@ create_scatter_plot <- function(
   aplot <- aplot +
     theme(
       axis.text.x = element_text(size = axis_text_size, color = "black"),
-      axis.title.x = element_text(size = axis_text_size + 2, color = "black"),
+      axis.title.x = element_text(size = axis_text_size + 4, color = "black"),
       axis.text.y = element_text(size = axis_text_size, color = "black", angle = rot_y_tic_angle),
-      axis.title.y = element_text(size = axis_text_size + 2, color = "black")
+      axis.title.y = element_text(size = axis_text_size + 4, color = "black")
     )
   if(rot_x_tic_angle > 0){
     aplot <- aplot +

@@ -57,10 +57,10 @@ create_stick_plot(
 \item{base_val}{A numeric that sets the base value from which the "stick" originates.
 The default value is 0.}
 
-\item{aes_x}{Sets the x axis variable name from 'df'.  Can be a numeric/Date/POSIXct variable and is required.}
+\item{aes_x}{The required x axis variable name from 'df'. Can be a continuous numeric/Date/POSIXct or discrete factor variable.}
 
-\item{aes_y}{Sets the y axis variable name from 'df' and controls the height of
-individual "sticks". The argument is required}
+\item{aes_y}{The required y axis numeric variable name from 'df' and controls the height of
+individual "sticks".}
 
 \item{aes_color}{Sets the variable name from 'df' for the aesthetic mapping for color.}
 

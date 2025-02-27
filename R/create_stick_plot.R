@@ -7,9 +7,9 @@
 #' @param df The required target data frame from which the "stick" lines are drawn.
 #' @param base_val A numeric that sets the base value from which the "stick" originates.
 #'  The default value is 0.
-#' @param aes_x Sets the x axis variable name from 'df'.  Can be a numeric/Date/POSIXct variable and is required.
-#' @param aes_y Sets the y axis variable name from 'df' and controls the height of
-#'  individual "sticks". The argument is required
+#' @param aes_x The required x axis variable name from 'df'. Can be a continuous numeric/Date/POSIXct or discrete factor variable.
+#' @param aes_y The required y axis numeric variable name from 'df' and controls the height of
+#'  individual "sticks".
 #' @param aes_color Sets the variable name from 'df' for the aesthetic mapping for color.
 #' @param title A string that sets the plot title.
 #' @param subtitle A string that sets the plot subtitle.
