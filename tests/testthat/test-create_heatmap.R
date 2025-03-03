@@ -2,7 +2,6 @@
 test_that("create_heatmap() namespaces", {
   expect_true(requireNamespace("data.table", quietly = TRUE))
   expect_true(requireNamespace("ggplot2", quietly = TRUE))
-  expect_true(requireNamespace("methods", quietly = TRUE))
   expect_true(requireNamespace("RColorBrewer", quietly = TRUE))
   expect_true(requireNamespace("vdiffr", quietly = TRUE))
 })

@@ -80,7 +80,6 @@
 #' @examples
 #' library(ggplot2)
 #' library(data.table)
-#' library(methods)
 #' library(RplotterPkg)
 #'
 #' RplotterPkg::create_heatmap(

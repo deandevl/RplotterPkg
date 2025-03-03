@@ -28,7 +28,7 @@ Imports:
   purrr (>= 1.0.2),
   ggplotify (>= 0.1.2),
   aplpack (>= 1.3.5),
-  methods (>= 4.4.2)
+  methods
 Suggests:
     knitr (>= 1.49),
     RColorBrewer (>= 1.1-3),

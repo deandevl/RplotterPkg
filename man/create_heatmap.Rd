@@ -193,7 +193,6 @@ Function returns a ggplot2 x/y plot of a pair of discrete variables. Instead of 
 \examples{
 library(ggplot2)
 library(data.table)
-library(methods)
 library(RplotterPkg)
 
 RplotterPkg::create_heatmap(

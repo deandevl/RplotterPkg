@@ -1,5 +1,4 @@
 test_that("create_stick_plot() namespaces", {
-  expect_true(requireNamespace("methods", quietly = TRUE))
   expect_true(requireNamespace("ggplot2", quietly = TRUE))
   expect_true(requireNamespace("vdiffr", quietly = TRUE))
 })
