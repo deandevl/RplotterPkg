@@ -1,3 +1,7 @@
+# RplotterPkg 0.1.3
+
+* Removed version number for methods package in DESCRIPTION
+
 # RplotterPkg 0.1.2
 
 * 'create_range_plot' function received an "orientation" parameter to better control 
