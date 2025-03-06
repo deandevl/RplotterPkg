@@ -8,6 +8,9 @@ approach along with the fast, efficient data frame processing from
 
 ## Installation
 
+The package is available for installation from
+[CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html).
+
 You can install the development version of RplotterPkg from
 [GitHub](https://github.com/) with:
 
@@ -34,6 +37,7 @@ Additional examples showing heatmap, waffle, and stem_leaf are available
 ``` r
 library(ggplot2)
 library(RplotterPkg)
+#> Warning: package 'RplotterPkg' was built under R version 4.4.3
 
 RplotterPkg::create_scatter_plot(
     df = ggplot2::economics,

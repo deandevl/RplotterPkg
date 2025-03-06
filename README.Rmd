@@ -18,6 +18,8 @@ The goal of RplotterPkg is to provide easy access to the many ggplot2 geom plott
 
 ## Installation
 
+The package is available for installation from [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html).
+
 You can install the development version of RplotterPkg from [GitHub](https://github.com/) with:
 
 Using `pak::pak()`:
