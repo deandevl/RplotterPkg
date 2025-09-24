@@ -1,7 +1,7 @@
 Package: RplotterPkg
 Type: Package
 Title: R Plotting Functions Using 'ggplot2'
-Version: 0.1.3
+Version: 0.1.4
 Authors@R: c(
     person(
       "Rick", "Dean",

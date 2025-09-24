@@ -1,3 +1,8 @@
+# RplotterPkg 0.1.4
+
+* In tests/testthat folder for test-create_table.R, changed 'rowname_col' from
+'ID' to 'col_0'.
+
 # RplotterPkg 0.1.3
 
 * Removed version number for methods package in DESCRIPTION

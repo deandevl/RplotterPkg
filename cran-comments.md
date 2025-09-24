@@ -1,5 +1,12 @@
 ## Resubmission
 
+Version 0.1.4:
+This is a resubmission. In this version I have:
+
+* In tests/testthat folder for test-create_table.R, changed 'rowname_col' from
+'ID' to 'col_0'.
+
+Version 0.1.3:
 This is a resubmission. In this version I have:
 
 * removed version number from methods package in DESCRIPTION

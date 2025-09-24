@@ -110,7 +110,7 @@ RplotterPkg::create_table(
     cols = 4,
     decimal = 0
   ),
-  rowname_col = "ID",
+  rowname_col = "col_0",
   source_note = "Source: *Chardon City Directory*",
   footnote_title = "Employees are current",
   footnote_col_head_lst = list(

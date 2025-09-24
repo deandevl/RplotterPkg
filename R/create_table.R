@@ -67,7 +67,7 @@
 #'     cols = 4,
 #'     decimal = 0
 #'   ),
-#'   rowname_col = "ID",
+#'   rowname_col = "col_0",
 #'   source_note = "Source: *Chardon City Directory*",
 #'   footnote_title = "Employees are current",
 #'   footnote_col_head_lst = list(
@@ -122,6 +122,14 @@ create_table <- function(
   # table caption
   if(!is.null(caption)){
     caption = md(caption)
+  }
+
+  # table rowname_col
+  if(!is.null(rowname_col)){
+    column_names <- names(df)
+    if(!rowname_col %in% column_names){
+      stop(paste0("The column ", rowname_col, " specified in 'rowname_col' does not exist in the data."))
+    }
   }
 
   # initialize gt with title,subtitle,caption
