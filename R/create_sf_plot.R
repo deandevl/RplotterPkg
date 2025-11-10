@@ -40,7 +40,7 @@
 #'   The default is NULL and takes on ggplot2's default white.
 #' @param grid_line_size A numeric that sets the grid line's width. The default is 1.
 #' @param panel_color A string in hexidecimal or color name that sets the plot panel's color.
-#'   The default is NULL and takes on ggplot2's default gray..
+#'   The default is NULL and takes on ggplot2's default gray.
 #' @param panel_border_color A string in hexidecimal or color name that sets the plot panel's border color.
 #'   The default is "black". Set it to \code{NA} to eliminate the border rectangle entirely.
 #' @param panel_expand A logical which if TRUE, expands the plot panel and potentially hides the tics.
@@ -51,7 +51,7 @@
 #' @param sf_shape A numeric that sets the non-variable associated shape aesthetic.
 #' @param sf_size A numeric value that sets the size attribute for scaling points.
 #' @param sf_linewidth A numeric value that sets the line width of POLYGON, LINESTRING geometries.
-#' @param sf_alpha A numeric value that sets the alpha level attribute of point and line geometries..
+#' @param sf_alpha A numeric value that sets the alpha level attribute of point and line geometries.
 #' @param inherit_aes A logical which if \code{FALSE} the aesthetics are not combined with other overlapping geoms.
 #' @param na_rm A logical which if \code{TRUE}, missing observations are removed. If FALSE, the default,
 #'   missing observations are removed with a warning.

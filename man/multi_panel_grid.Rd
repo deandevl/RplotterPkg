@@ -31,7 +31,7 @@ The default is 0.5 cm and may be increased when a wider labeling is needed.}
 
 \item{cell_width}{A numeric that sets the cell widths in the \code{gtable} in cm}
 
-\item{cell_height}{A numeric that sets the cell widths in the \code{gtable} in cm}
+\item{cell_height}{A numeric that sets the cell heights in the \code{gtable} in cm}
 
 \item{do_grid}{A logical which if \code{TRUE} will arrange the plot objects according to 'layout' without considering
 their scale and label components. You define the axis scaling, titling, etc for each

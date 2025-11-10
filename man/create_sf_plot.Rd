@@ -109,7 +109,7 @@ The default is NULL and takes on ggplot2's default white.}
 \item{grid_line_size}{A numeric that sets the grid line's width. The default is 1.}
 
 \item{panel_color}{A string in hexidecimal or color name that sets the plot panel's color.
-The default is NULL and takes on ggplot2's default gray..}
+The default is NULL and takes on ggplot2's default gray.}
 
 \item{panel_border_color}{A string in hexidecimal or color name that sets the plot panel's border color.
 The default is "black". Set it to \code{NA} to eliminate the border rectangle entirely.}
@@ -129,7 +129,7 @@ The default is \code{FALSE}.}
 
 \item{sf_linewidth}{A numeric value that sets the line width of POLYGON, LINESTRING geometries.}
 
-\item{sf_alpha}{A numeric value that sets the alpha level attribute of point and line geometries..}
+\item{sf_alpha}{A numeric value that sets the alpha level attribute of point and line geometries.}
 
 \item{inherit_aes}{A logical which if \code{FALSE} the aesthetics are not combined with other overlapping geoms.}
 
