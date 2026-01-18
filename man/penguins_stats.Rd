@@ -5,7 +5,7 @@
 \alias{penguins_stats}
 \title{penguins_stats data}
 \format{
-An object of class \code{data.table} (inherits from \code{data.frame}) with 3 rows and 4 columns.
+An object of class \code{data.table} (inherits from \code{data.frame}) with 3 rows and 5 columns.
 }
 \source{
 \code{palmerpenguins:penguins}
@@ -21,7 +21,8 @@ average, minimum and maximum body mass.
 \tabular{ll}{
   \strong{avg_body_mass} \tab numeric species average body mass \cr
   \strong{min_body_mass} \tab numeric species minimum body mass \cr
-  \strong{max_body_mass} \tab numeric species maximum body mass
+  \strong{max_body_mass} \tab numeric species maximum body mass \cr
+  \strong{mid_labels} \tab character species average body mass
 }
 }
 \keyword{datasets}

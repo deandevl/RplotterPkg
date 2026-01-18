@@ -1,3 +1,8 @@
+# RplotterPkg 0.1.5
+
+* Made significant changes to 'create_range_plot' description, parameter names,
+and range line segment labeling (Janurary 18, 2026).
+
 # RplotterPkg 0.1.4
 
 * In tests/testthat folder for test-create_table.R, changed 'rowname_col' from

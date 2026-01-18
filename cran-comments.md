@@ -1,5 +1,13 @@
 ## Resubmission
 
+Version 0.1.5:
+This is a re-submission. In this version I have:
+
+* Revised the description and parameter names for the function 'create_range_plot' for easier
+implementation for either vertical or horizontal range segment line orientation.
+
+* Added points, specify colors, labeling to the range segment lines of 'create_range_plot'.
+
 Version 0.1.4:
 This is a resubmission. In this version I have:
 

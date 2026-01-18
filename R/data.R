@@ -147,7 +147,8 @@
 #' \tabular{ll}{
 #'   \strong{avg_body_mass} \tab numeric species average body mass \cr
 #'   \strong{min_body_mass} \tab numeric species minimum body mass \cr
-#'   \strong{max_body_mass} \tab numeric species maximum body mass
+#'   \strong{max_body_mass} \tab numeric species maximum body mass \cr
+#'   \strong{mid_labels} \tab character species average body mass
 #' }
 #' @source \code{palmerpenguins:penguins}
 #'
